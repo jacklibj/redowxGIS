@@ -86,10 +86,45 @@ wxXmlNode* wxGISConfig::GetConfigNode(wxGISEnumConfigKey key, wxString sPath)
 				{
 					wxFileName::Mkdir(sys_dir, 0755,wxPATH_MKDIR_FULL);
 				}
-
+				sXMLDocPath = sys_path;
+				break;
 			}
+		case enumGISHKCU:
+			{
+				wxString user_dir = m_sUserConfigDir + wxFileName::GetPathSeperator() + sRootNodeName;
+				wxString user_path = user_dir + wxFileName::GetPathSeperator() + HKCU_CONFIG_NAME;
+				
+				if(!wxDirExists(user_dir))
+				{
+					wxFileName::Mkdir(user_dir, 0755, wxPATH_MKDIR_FULL);
+					return NULL;
+				}
+				sXMLDocPath = user_path;
+				break;
+			}
+		case enumGISHKCC:
+		case enumGISHKCR:
+		default:
+			return NULL;
 
 		}
+
+		if(wxFileName::FileExsits(sXMLDocPath))
+		    pDoc =    new wxXmlDocument(sXMLDocPath);
+		else
+		{
+			if(key == enumGISHKLM)
+			{
+				wxString sPath = m_sExeDirPath + wxFileName::GetPathSeperator() + sRootNodeName + wxT("xml");
+				pDoc = new wxXmlDocument(sPath);
+			}
+
+			if(!pDoc)
+			{
+				pDoc = new wxXmlDocument();
+				//pDoc->SetRoot(new wxXmlNode(wxXML_
+		}
+
 	}
 }
 
