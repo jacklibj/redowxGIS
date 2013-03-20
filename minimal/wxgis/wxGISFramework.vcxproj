@@ -57,6 +57,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GDAL)\alg;$(GDAL)\gcore;$(GDAL)\port;$(GDAL)\ogr;$(GDAL)\ogr\ogrsf_frmts;C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud;C:\Users\jack\dev\wx\wxWidgets-2.9.4\include;C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

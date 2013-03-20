@@ -72,6 +72,9 @@
 #include <map>
 #include <vector>
 
+//temperaly define here, in fact should be in catolog.h, begin
+#define APP_NAME wxT("wxGISCatolog")
+//temperaly define here, in fact should be in catolog.h, end
 #define CONFIG_DIR wxT("wxGIS")
 #define DEF wxT("~def")
 #define NON wxT("~non")
