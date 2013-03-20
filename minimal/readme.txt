@@ -1,0 +1,1 @@
+please use the wxgis.sln only, other makefile and other version slun files is not update to right.
