@@ -164,5 +164,96 @@ class IGISCommandBar :
 	virtual void SetType(wxGISEnumCommandBars type) = 0;
 	virtual wxGISEnumCommandBars GetType(void) = 0;
 	virtual void AddCommand(ICommand* pCmd) = 0 ;
+	virtual void RemoveCommand(size_t nIndex) = 0;
+	virtual void MoveCommandLeft(size_t nIndex) = 0;
+	virtual void MoveCommandRight(size_t nIndex) = 0;
+	virtual size_t GetCommandCount(void) = 0;
+	virtual ICommand* GetCommand(void) = 0;
+	virtual void Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore = false) = 0;
 };
 
+typedef std::vector<IGISCommandBar*> COMMANDBARARRAY;
+typedef std::vector<wxWindow*> WINDOWARRAY;
+
+class IApplication
+{
+public:
+	virtual ~IApplication(void) {};
+	//pure virtual
+	virtual void OnApplicaiton(void) = 0;
+	virtual IStatusBar* GetStatusBar(void) = 0;
+	virtual IGISConfig* GetConfig(void) = 0;
+	virtual IGISCommandBar* GetCommandBar(wxString sName) = 0;
+	virtual void RemoveCommandBar(IGISCommandBar* pBar) = 0;
+	virtual bool AddCommandBar(IGISCommandBar* pBar) = 0 ;
+	virtual void Customize(void) = 0;
+	virtual ICommand* GetCommand(long CmdID) = 0;
+	virtual ICommand* GetCommand(wxString sCmdName, unsigned char rCmdSubType) = 0;
+	virtual void ShowStatusBar(bool bShow) = 0;
+	virtual bool IsStatusBarShown(void) = 0;
+	virtual void ShowApplicationWindow(wxWindow* pWnd, bool bShow = true) = 0;
+	virtual WINDOWARRAY* GetChildWindows(void) = 0;
+    virtual void RegisterChildWindow(wxWindow* pWnd) = 0;
+};
+
+class ICommand :
+	public wxObject
+{
+public:
+	ICommand(void) : m_subtype(0) {};
+	virtual ~ICommand(void) {};
+
+	//pure vitual
+	virtual  wxIcon GetBitmap(void) = 0;
+	virtual wxString getCaption(void) = 0;
+	virtual wxString GetCategory(void ) = 0;
+	virtual bool GetChecked(void) = 0;
+	virtual bool GetEnabled(void) = 0;
+	virtual wxString GetMessage(void) = 0;
+	virtual wxGISEnumCommandKind GetKind(void) =0;
+	virtual void OnClick(void) = 0;
+	virtual bool OnCreate(IApplication* pApp) = 0;
+	virtual wxString GetTooltip(void) = 0;
+	virtual unsigned char GetCount(void) = 0;
+	virtual void SetID(long nID) { m_CommandID = nID; };
+	virtual long GetID(void) {return m_CommandID; };
+
+	//
+	virtual void SetSubType(unsigned char SubType){m_subtype = SubType;};
+	virtual unsigned char GetSubType(void){return m_subtype; };
+protected:
+	unsigned char m_subtype;
+	long m_CommandID;
+};
+
+typedef std::vector<ICommand*> COMMANDARRAY;
+
+class IToolBarControl
+{
+public:
+	virtual ~IToolBarControl(void) {};
+	virtual void Activate(IApplication* pApp) = 0;
+	virtual void Deactivate(void) = 0;
+};
+
+class IToolControl :
+      public ICommand
+{
+public:
+	virtual ~IToolControl(void) {};
+	virtual IToolBarControl* GetControl(void) = 0;
+	virtual wxString GetToolLabel(void) = 0;
+	virtual bool HasToolLabel(void) = 0;
+};
+
+class ITool :
+	public ICommand
+{
+	virtual ~ITool(void) {};
+	virtual void SetChecked(bool bCheck) = 0;
+	virtual wxCursor GetCursor( void )  = 0;
+	virtual void OnMouseDowm(wxMouseEvent& event) = 0;
+	virtual void OnMouseUP(wxMouseEvent& event) = 0;
+	virtual void OnMouseMove(wxMouseEvent& event) = 0;	
+	virtual void OnMouseDoubleClick(wxMouseEvent& event) = 0;
+};
