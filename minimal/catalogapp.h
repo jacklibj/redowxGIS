@@ -75,6 +75,8 @@ public:
     virtual bool OnInit();
 
 private:
+	wxLocale m_locale; // locale we'll be using
+	wxFFile m_LogFile;
 	wxGISAppConfig* m_pConfig;
 
 };

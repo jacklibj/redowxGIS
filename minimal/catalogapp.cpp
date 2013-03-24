@@ -77,8 +77,57 @@ END_EVENT_TABLE()
 bool wxGISCatalogApp::OnInit()
 {
 	m_pConfig = new wxGISAppConfig(APP_NAME, CONFIG_DIR);
-	
+	//setup loging
 	wxString sLogDir = m_pConfig->GetLogDir();
+	if(sLogDir.IsEmpty())
+	{
+		wxLogError(_("wxGISCatalogApp: Failed to log dir"));
+	}
+
+	if(!wxDirExists(sLogDir))
+		wxFileName::Mkdir(sLogDir, 0777, wxPATH_MKDIR_FULL);
+
+	wxDateTime dt(wxDateTime::Now());
+	wxString logfilename = sLogDir + wxFileName::GetPathSeparator() + wxString::Format(wxT("log_%.4d%.2d%.2d.log"), dt.GetYear(), dt.GetMonth() + 1, dt.GetDay());
+
+	if(!m_LogFile.Open(logfilename.GetData(), wxT("a+")))
+		wxLogError(_("wxGISCatalogApp: Failed to open log file %s"), logfilename.c_str());
+
+	wxLog::SetActiveTarget(new wxLogStderr(m_LogFile.fp()));
+
+	wxLogMessage(wxT(" "));
+	wxLogMessage(wxT("####################################################################")); 
+	wxLogMessage(wxT("##                    %s                    ##"),wxNow().c_str()); 
+	wxLogMessage(wxT("####################################################################")); 
+    wxLogMessage(wxT("HOST '%s': OS desc - %s, free memory -%u Mb"), wxGetFullHostName().c_str(),wxGetOsDescription().c_str(), wxGetFreeMemory()/1048576);
+
+
+	wxLogMessage(_("wxGISCatalogApp: Initializeing..."));
+	wxLogMessage(_("wxGISCatalogApp: Log file: %s"), logfilename.c_str());
+	wxLogMessage(_("wxGISCatalogApp: Initialize locale"));
+
+	wxString sLocale = m_pConfig->GetLocale();
+	//init locale
+	if(!sLocale.IsEmpty() )
+	{
+		int iLocale(0);
+		const wxLanguageInfo* loc_info = wxLocale::FindLanguageInfo(sLocale);
+		if(loc_info != NULL)
+		{
+			iLocale = loc_info->Language;
+			wxLogMessage(_("wxGISCatalogApp: Language set to %s"), loc_info->Description.c_str());
+		}
+
+		//don't use wxLOCALE_LOAD_DEFAULT flag so that Init() deesn't return
+		//false just becasue it failed tp load wxstd catalog
+		if( !m_locale.Init(iLocale, wxLOCALE_CONV_ENCODING) )
+		{
+			wxLogError(wxT("wxGISCatalogApp: This language is not supported by the system."));
+			return false;
+		}
+
+	}
+
 
     // call the base class initialization method, currently it only parses a
     // few common command-line options but it could be do more in the future
