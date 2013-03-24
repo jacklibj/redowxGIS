@@ -76,6 +76,7 @@ public:
 
 private:
 	wxLocale m_locale; // locale we'll be using
+	char* m_pszOldLocale;
 	wxFFile m_LogFile;
 	wxGISAppConfig* m_pConfig;
 

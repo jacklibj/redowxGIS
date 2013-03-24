@@ -1,4 +1,4 @@
-﻿Build started 2013/3/24 12:47:33.
+﻿Build started 2013/3/24 18:48:17.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
@@ -9,7 +9,9 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7): warning C4005: 'wgWX2MB' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(6) : see previous definition of 'wgWX2MB'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(106): warning C4018: '<=' : signed/unsigned mismatch
-     1>catalogapp.cpp(215): warning C4100: 'event' : unreferenced formal parameter
+     1>catalogapp.cpp(172): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
+     1>catalogapp.cpp(295): warning C4100: 'event' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
@@ -33,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:14.40
+Time Elapsed 00:00:25.85
