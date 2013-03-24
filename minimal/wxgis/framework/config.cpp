@@ -208,7 +208,7 @@ wxXmlNode* wxGISConfig::CreateConfigNode(wxGISEnumConfigKey Key, wxString sPath,
 		if(tkz.HasMoreTokens())
 			token = token.RemoveLast();
 		token.MakeLower();
-		bCreate = ture;
+		bCreate = true;
 		while(pChildNode)
 		{
 			sChildName = pChildNode->GetName();
@@ -283,9 +283,9 @@ wxString wxGISAppConfig::GetLocale(void)
 
 wxString wxGISAppConfig::GetLocaleDir(void)
 {
-	wxXmlNode* pNode = GetConfigNode(emumGISHKCU, wxString(wxT("loc")));
+	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, wxString(wxT("loc")));
  
-	wxString sDefaultOut = m_sExeDirPath + wxFileName::GetPathSeperator() + wxT("locale");
+	wxString sDefaultOut = m_sExeDirPath + wxFileName::GetPathSeparator() + wxT("locale");
 	if(!pNode)
 		return sDefaultOut;
 	return pNode->GetPropVal(wxT("path"), sDefaultOut);
@@ -293,16 +293,27 @@ wxString wxGISAppConfig::GetLocaleDir(void)
 
 wxString wxGISAppConfig::GetLogDir(void)
 {
-	wxXmlNode* pNode = GetConfigNode(emumGISHKCU, wxString(wxT("log")));
+	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, wxString(wxT("log")));
 
-	wxString sDefaultOut = m_sExeDirPath + wxFileName::GetPathSeperator() + wxT("log");
+	wxString sDefaultOut = m_sExeDirPath + wxFileName::GetPathSeparator() + wxT("log");
 	if(!pNode)
 		return sDefaultOut;
 	return pNode->GetPropVal(wxT("path"),sDefaultOut);
 
 }
 
-bool wxGISAppCoonfig::GetDebugMode(void)
+
+wxString wxGISAppConfig::GetSysDir(void)
+{
+	wxXmlNode* pNode = GetConfigNode(enumGISHKLM, wxString(wxT("sys")));
+
+	wxString sDefaultOut = m_sExeDirPath + wxFileName::GetPathSeparator() + wxT("sys");
+	if(!pNode)
+		return sDefaultOut;
+	return pNode->GetPropVal(wxT("path"), sDefaultOut);
+
+}
+bool wxGISAppConfig::GetDebugMode(void)
 {
 	wxXmlNode* pNode = GetConfigNode(enumGISHKLM, wxString(wxT("debug")));
 
@@ -315,7 +326,22 @@ bool wxGISAppCoonfig::GetDebugMode(void)
 void wxGISAppConfig::SetLocale(wxString sLocale)
 {
 	wxString sPropPath(wxT("loc"));
-	wxXmlNode* pNode = GetConfigNode(enumGISHKCKU, sPropPath);
+	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, sPropPath);
+	if(pNode)
+	{
+		pNode = CreateConfigNode(enumGISHKCU, sPropPath);
+		if(!pNode)
+			return;
+	}
+	if(pNode->HasProp(wxT("path")))
+		pNode->DeleteProperty(wxT("path"));
+	pNode->AddProperty(wxT("path"), sLocale);
+}
+
+void wxGISAppConfig::SetLocaleDir(wxString sLocaleDir)
+{
+	wxString sPropPath(wxT("loc"));
+	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, sPropPath);
 	if(pNode)
 	{
 		pNode = CreateConfigNode(enumGISHKCU, sPropPath);
@@ -326,7 +352,6 @@ void wxGISAppConfig::SetLocale(wxString sLocale)
 		pNode->DeleteProperty(wxT("path"));
 	pNode->AddProperty(wxT("path"), sLocaleDir);
 }
-
 
 void wxGISAppConfig::SetSysDir(wxString sSysDir)
 {

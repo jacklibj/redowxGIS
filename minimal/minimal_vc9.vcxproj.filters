@@ -17,9 +17,18 @@
     <ClInclude Include="catalogapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="wxgis\framework\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wxgis\framework\framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wxgis\framework\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

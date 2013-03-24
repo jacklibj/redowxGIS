@@ -10,13 +10,6 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="framework\config.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="framework\config.h" />
-    <ClInclude Include="framework\framework.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{48C7BAEB-FFE9-4CDD-A790-55AD58EE5567}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
