@@ -1,0 +1,1 @@
+#include "wxgis\framework\framework.h"

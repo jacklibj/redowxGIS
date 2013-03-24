@@ -505,10 +505,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp" />
+    <ClCompile Include="catalogframe.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catalogapp.h" />
+    <ClInclude Include="catalogframe.h" />
     <ClInclude Include="wxgis\framework\config.h" />
     <ClInclude Include="wxgis\framework\framework.h" />
   </ItemGroup>

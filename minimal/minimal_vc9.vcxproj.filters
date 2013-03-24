@@ -23,12 +23,16 @@
     <ClInclude Include="wxgis\framework\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="catalogframe.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wxgis\framework\config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="catalogframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
