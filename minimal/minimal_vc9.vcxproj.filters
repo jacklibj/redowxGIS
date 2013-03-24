@@ -24,6 +24,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="catalogframe.h" />
+    <ClInclude Include="gxapplication.h" />
+    <ClInclude Include="catalog.h" />
+    <ClInclude Include="datasource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="catalogframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxapplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
