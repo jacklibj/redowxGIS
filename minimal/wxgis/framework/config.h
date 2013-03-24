@@ -1,6 +1,14 @@
 
 #include "framework.h"
 
+#include <wx/stdpaths.h>
+#include <wx/filename.h>
+
+
+#define HKCU_CONFIG_NAME wxT("hkcu_config.xml")
+#define HKLM_CONFIG_NAME wxT("hklm_config.xml")
+
+
 class WXDLLIMPEXP_GIS_FRW wxGISConfig :
 	public IGISConfig
 {
@@ -20,7 +28,7 @@ public:
 	{
 		wxXmlNode* pXmlNode;
 		wxString sXmlpath;
-		wxGISEnumConfigKey key;
+		wxGISEnumConfigKey Key;
 	}WXXMLCONFNODE;
 
 	typedef struct wxxmlconf
@@ -28,7 +36,7 @@ public:
 		wxString sRootNodeName;
 		wxXmlDocument* pXmlDoc;
 		wxString xml_path;
-		wxGISEnumConfigKey key;
+		wxGISEnumConfigKey Key;
 	}WXXMLCONF;
 
 protected:

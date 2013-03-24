@@ -76,9 +76,9 @@ END_EVENT_TABLE()
 // 'Main program' equivalent: the program execution "starts" here
 bool wxGISCatalogApp::OnInit()
 {
-	//m_pConfig = new wxGISAppConfig(APP_NAME, CONFIG_DIR);
+	m_pConfig = new wxGISAppConfig(APP_NAME, CONFIG_DIR);
 	
-	//wxString sLogDir = m_pConfig->GetLogDir();
+	wxString sLogDir = m_pConfig->GetLogDir();
 	/*
     // call the base class initialization method, currently it only parses a
     // few common command-line options but it could be do more in the future
