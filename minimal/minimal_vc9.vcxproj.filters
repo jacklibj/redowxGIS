@@ -27,6 +27,12 @@
     <ClInclude Include="gxapplication.h" />
     <ClInclude Include="catalog.h" />
     <ClInclude Include="datasource.h" />
+    <ClInclude Include="application.h" />
+    <ClInclude Include="statusbar.h" />
+    <ClInclude Include="acceleratorbar.h" />
+    <ClInclude Include="menubar.h" />
+    <ClInclude Include="commandbar.h" />
+    <ClInclude Include="animation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">

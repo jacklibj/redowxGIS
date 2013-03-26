@@ -9,7 +9,7 @@
 #define NOTFIRESELID 1010
 
 class IGxObject;
-typedef std::vector<IGxPbject*> GxObjectArray;
+typedef std::vector<IGxObject*> GxObjectArray;
 
 class IGxSelection
 {
