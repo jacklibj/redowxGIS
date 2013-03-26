@@ -82,7 +82,16 @@ class wxGISSpatialFilter : public IQueryFilter
 	virtual ~wxGISSpatialFilter(void){};
 	virtual void SetEnvelope(double dfMinX, double dfMinY, double dfMaxX, double dfMaxY)
 	{
-	
+		m_Env.MinX = dfMinX;
+		m_Env.MaxX = dfMaxY;
+		m_Env.MinY = dfMinY;
+		m_Env.MaxY = dfMaxY;
 	}
 
+	virtual void SetEnvelope(OGREnvelope Env)
+	{
+		m_Env = Env;
+	}
+protected:
+	OGREnvelope m_Env;
 };
