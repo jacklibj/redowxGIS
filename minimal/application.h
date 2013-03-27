@@ -14,8 +14,8 @@ public:
 	};
 
 	//cosntructor
-	wxGISApplication(IGISConfig* pConfig, wxWindow* pParent, wxWindosID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
-		const wxSize& size = wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER );
+	wxGISApplication(IGISConfig* pConfig, wxWindow* pParent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
+		const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER );
 	//destructor
 	virtual ~wxGISApplication(void);
 	//events
@@ -41,7 +41,7 @@ public:
 	virtual void OnMouseMove(wxMouseEvent& event);
 //IApplication
 	virtual ICommand* GetCommand(long CmdID);
-	virtual ICommand* GetCOmmand(wxString sCmdName. unsigned char nCmdSubType);
+	virtual ICommand* GetCommand(wxString sCmdName, unsigned char nCmdSubType);
 	virtual IStatusBar* GetStatusbar(void);
 	virtual IGISConfig* GetConfig(void);
 	virtual IGISCommandBar* GetCommandBar(wxString sName);
@@ -61,6 +61,6 @@ protected:
 	ITool* m_CurrentTool;
 
 
-	DELARE_EVENT_TABLE()
+	DECLARE_EVENT_TABLE()
 
 };

@@ -1,4 +1,4 @@
-#program once
+#pragma once
 
 #include "wxgis\framework\framework.h"
 

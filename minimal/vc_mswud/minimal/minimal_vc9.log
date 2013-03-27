@@ -1,4 +1,4 @@
-﻿Build started 2013/3/26 22:11:59.
+﻿Build started 2013/3/27 23:40:59.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
@@ -26,9 +26,9 @@
                      _Ty=GDALColorEntry
                  ]
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(6) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(106): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
@@ -56,4 +56,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:21.44
+Time Elapsed 00:00:17.20

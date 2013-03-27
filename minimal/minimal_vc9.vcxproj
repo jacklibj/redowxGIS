@@ -510,15 +510,19 @@
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="acceleratorbar.h" />
+    <ClInclude Include="accelerator.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="catalog.h" />
     <ClInclude Include="catalogapp.h" />
     <ClInclude Include="catalogframe.h" />
+    <ClInclude Include="catalogui.h" />
     <ClInclude Include="commandbar.h" />
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
+    <ClInclude Include="gxtabview.h" />
+    <ClInclude Include="gxtreeview.h" />
+    <ClInclude Include="gxview.h" />
     <ClInclude Include="menubar.h" />
     <ClInclude Include="statusbar.h" />
     <ClInclude Include="wxgis\framework\config.h" />
