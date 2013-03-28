@@ -207,7 +207,7 @@ bool wxGISCatalogApp::OnInit()
 
 
 	// need add wxGISCatalogFrame class
-	//wxFrame* frame = new wxGISCatalogFrame(m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
+	wxFrame* frame = new wxGISCatalogFrame(m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
 	//SetTopWindow(frame);
 	//frame->Show();
 

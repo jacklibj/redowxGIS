@@ -19,11 +19,21 @@
 //wxGISCatalogFrame
 //-----------------------
 
-/*
+
 class wxGISCatalogApp;
 
 class wxGISCatalogFrame :
 	public wxGxApplication
 {
+public:
+	wxGISCatalogFrame(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
+		const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER);
+
+	~wxGISCatalogFrame(void);
+//IApplication
+    virtual void OnAppAbout(void);
+private:
+	wxXMLNode* m_pConfXmlNode;
+
+	DECLARE_EVENT_TABLE()
 }
-*/
