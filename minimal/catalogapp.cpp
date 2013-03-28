@@ -100,7 +100,7 @@ bool wxGISCatalogApp::OnInit()
 	wxLogMessage(wxT("####################################################################")); 
 	wxLogMessage(wxT("##                    %s                    ##"),wxNow().c_str()); 
 	wxLogMessage(wxT("####################################################################")); 
-    wxLogMessage(wxT("HOST '%s': OS desc - %s, free memory -%u Mb"), wxGetFullHostName().c_str(),wxGetOsDescription().c_str(), wxGetFreeMemory()/1048576);
+    //wxLogMessage(_("HOST '%s': OS desc - %s, free memory - %u Mb"), wxGetFullHostName().c_str(),wxGetOsDescription().c_str(), wxGetFreeMemory()/1048576);
 
 
 	wxLogMessage(_("wxGISCatalogApp: Initializeing..."));
@@ -121,7 +121,7 @@ bool wxGISCatalogApp::OnInit()
 
 		//don't use wxLOCALE_LOAD_DEFAULT flag so that Init() deesn't return
 		//false just becasue it failed tp load wxstd catalog
-		if( !m_locale.Init(iLocale, wxLOCALE_CONV_ENCODING) )
+		if( !m_locale.Init(iLocale) /*!m_locale.Init(iLocale, wxLOCALE_CONV_ENCODING) */)
 		{
 			wxLogError(wxT("wxGISCatalogApp: This language is not supported by the system."));
 			return false;

@@ -9,6 +9,7 @@ wxGISConfig::wxGISConfig(wxString sAppName, wxString sConfigDir, bool bPortable)
 
 	wxStandardPaths stp;
 	m_sAppName = sAppName;
+	m_sExeDirPath = wxPathOnly(stp.GetExecutablePath());
 
 	if(bPortable)
 	{
@@ -327,7 +328,7 @@ void wxGISAppConfig::SetLocale(wxString sLocale)
 {
 	wxString sPropPath(wxT("loc"));
 	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, sPropPath);
-	if(pNode)
+	if(!pNode)
 	{
 		pNode = CreateConfigNode(enumGISHKCU, sPropPath);
 		if(!pNode)
@@ -342,7 +343,7 @@ void wxGISAppConfig::SetLocaleDir(wxString sLocaleDir)
 {
 	wxString sPropPath(wxT("loc"));
 	wxXmlNode* pNode = GetConfigNode(enumGISHKCU, sPropPath);
-	if(pNode)
+	if(!pNode)
 	{
 		pNode = CreateConfigNode(enumGISHKCU, sPropPath);
 		if(!pNode)

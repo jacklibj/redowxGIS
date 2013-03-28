@@ -1,37 +1,74 @@
-﻿Build started 2013/3/27 23:40:59.
+﻿Build started 2013/3/28 21:59:10.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
+         Creating "vc_mswud\minimal\wxGISCat.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt gxapplication.cpp /MP 
-         gxapplication.cpp
-     1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
-                 with
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-                 and
-                 [
-                     _Ty=char
-                 ]
-                 and
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-     1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
-                 with
-                 [
-                     _Ty=GDALColorEntry
-                 ]
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt wxgis\framework\config.cpp /MP 
+         config.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>wxgis\framework\config.cpp(282): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>wxgis\framework\config.cpp(292): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>wxgis\framework\config.cpp(302): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>wxgis\framework\config.cpp(314): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>wxgis\framework\config.cpp(324): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>wxgis\framework\config.cpp(337): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
+     1>wxgis\framework\config.cpp(338): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(338): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(339): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(339): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(352): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
+     1>wxgis\framework\config.cpp(353): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(353): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(354): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(354): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(368): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
+     1>wxgis\framework\config.cpp(369): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(369): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(370): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(370): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(384): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
+     1>wxgis\framework\config.cpp(385): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(385): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(386): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(386): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(399): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
+     1>wxgis\framework\config.cpp(400): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(400): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
+     1>wxgis\framework\config.cpp(401): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>wxgis\framework\config.cpp(401): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
@@ -56,4 +93,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:17.20
+Time Elapsed 00:00:12.26
