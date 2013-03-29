@@ -54,7 +54,8 @@ public:
 	virtual void OnObjectRefreshed(IGxObject* object);
 	virtual void OnRefreshAll(void);
 
-	typedef std::map<IGxObject*, wxTreeItemID> WETREEMAP;
+	
+	typedef std::map<IGxObject*, wxTreeItemId> WETREEMAP;
 private:
 	wxImageList m_TreeImageList;
 	WETREEMAP m_TreeMap;
@@ -62,6 +63,6 @@ private:
 	long m_ConnectionPointCatalogCookie, m_ConnectionPointSelectionCookie;
 	IGxSelection* m_pSelection;
 
-	DECLARE_EVENT_TABHLE()
+	DECLARE_EVENT_TABLE()
 
 };

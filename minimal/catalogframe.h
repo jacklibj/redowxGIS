@@ -1,14 +1,14 @@
 #pragma once
 
 #include "wxgis\framework\framework.h"
+#include "gxapplication.h"
 
-//#include "gxapplication.h"
-
-//#include "mainframe.xpm"
+#include "art\mainframe.xpm"
 
 #include "wx\aui\aui.h"
 #include "wx\generic\logg.h"
 #include "wx\artprov.h"
+#include "wx\event.h"
 #include "wx\menu.h"
 
 
@@ -33,7 +33,7 @@ public:
 //IApplication
     virtual void OnAppAbout(void);
 private:
-	wxXMLNode* m_pConfXmlNode;
+	wxXmlNode* m_pConfXmlNode;
 
 	DECLARE_EVENT_TABLE()
-}
+};

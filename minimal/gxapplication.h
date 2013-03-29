@@ -2,6 +2,7 @@
 #include "catalog.h"
 #include "application.h"
 #include "gxtreeview.h"
+#include "gxtabview.h"
 
 #include "wx\aui\aui.h"
 #include "wx/artprov.h"
@@ -14,12 +15,12 @@ class WXDLLIMPEXP_GIS_CLU wxGxApplication :
 	public wxGISApplication
 {
 	wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title,
-		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | WXSUNKEN_BORDER);
+		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER);
 	virtual ~wxGxApplication(void);
 
 
 	virtual void SerailizeFramePos(bool bSave = false);
-	virtual wxAuiManger*  GetAuiManger(void) {return & m_mgr;};
+	virtual wxAuiManager*  GetAuiManger(void) {return & m_mgr;};
 	virtual void ShowPane(wxWindow* pWnd, bool bShow = true);
 	virtual bool ShowPane(const wxString& sName, bool bShow = true);
 	virtual bool IsPaneShown(const wxString& sName);
@@ -33,7 +34,7 @@ class WXDLLIMPEXP_GIS_CLU wxGxApplication :
 	virtual WINDOWARRAY* GetChildWindows(void);
 	virtual void RegisterChildWindow(wxWindow* pWnd);
 protected:
-	wxAuiManger m_mgr;
+	wxAuiManager m_mgr;
 	wxGxTreeView* m_pTreeview;
 	wxGxTabView* m_pTabView;
 	IGxCatalog* m_pCatalog;

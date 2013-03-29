@@ -18,6 +18,9 @@
 // ----------------------------------------------------------------------------
 
 // For compilers that support precompilation, includes "wx/wx.h".
+#pragma once
+
+
 #include "wx/wxprec.h"
 
 #ifdef __BORLANDC__

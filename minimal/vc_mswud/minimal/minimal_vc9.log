@@ -1,30 +1,10 @@
-﻿Build started 2013/3/28 22:59:00.
+﻿Build started 2013/3/30 0:48:56.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "vc_mswud\minimal\wxGISCat.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt catalogapp.cpp catalogframe.cpp gxapplication.cpp /MP 
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt catalogapp.cpp /MP 
          catalogapp.cpp
-         catalogframe.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalogframe.h(27): error C2504: 'wxGxApplication' : base class undefined
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalogframe.h(36): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalogframe.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalogframe.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>catalogframe.cpp(2): fatal error C1004: unexpected end-of-file found
-         gxapplication.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
-     1>catalogapp.cpp(172): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strdup. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(238) : see declaration of 'strdup'
-     1>catalogapp.cpp(210): error C2061: syntax error : identifier 'wxGISCatalogFrame'
-     1>catalogapp.cpp(219): error C2371: 'frame' : redefinition; different basic types
-                 catalogapp.cpp(210) : see declaration of 'frame'
      1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
                  with
                  [
@@ -52,14 +32,14 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(31): error C2504: 'wxGxView' : base class undefined
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(46): error C2061: syntax error : identifier 'wxGxApplication'
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(57): error C2065: 'wxTreeItemID' : undeclared identifier
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(67): error C2143: syntax error : missing ';' before '}'
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(67): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxtreeview.h(67): warning C4183: 'DECLARE_EVENT_TABHLE': missing return type; assumed to be a member function returning 'int'
+     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
+                 due to following members:
+                 'void IApplication::OnApplicaiton(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(184) : see declaration of 'IApplication::OnApplicaiton'
+                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(185) : see declaration of 'IApplication::GetStatusBar'
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:20.89
+Time Elapsed 00:00:10.87

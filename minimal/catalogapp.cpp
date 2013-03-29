@@ -1,8 +1,8 @@
-/*
-#include "wxgis/catalog/catalog.h"
-#include "wxgis/cat_app/catalogapp.h"
-#include "wxgis/cat_app/catalogframe.h"
-*/
+
+#include "catalog.h"
+#include "catalogapp.h"
+#include "catalogframe.h"
+
 
 #include "catalogapp.h"
 #include <locale.h>
@@ -207,7 +207,7 @@ bool wxGISCatalogApp::OnInit()
 
 
 	// need add wxGISCatalogFrame class
-	wxFrame* frame = new wxGISCatalogFrame(m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
+	wxFrame* frame = new wxGISCatalogFrame( m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
 	//SetTopWindow(frame);
 	//frame->Show();
 
@@ -216,7 +216,7 @@ bool wxGISCatalogApp::OnInit()
     if ( !wxApp::OnInit() )
         return false;
 
-    MyFrame *frame = new MyFrame("Minimal wxWidgets App");
+    //MyFrame *frame = new MyFrame("Minimal wxWidgets App");
 
     // and show it (the frames, unlike simple controls, are not shown when
     // created initially)
