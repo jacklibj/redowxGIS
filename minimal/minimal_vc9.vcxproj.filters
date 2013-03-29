@@ -23,20 +23,49 @@
     <ClInclude Include="wxgis\framework\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="catalogframe.h" />
-    <ClInclude Include="gxapplication.h" />
-    <ClInclude Include="catalog.h" />
-    <ClInclude Include="datasource.h" />
-    <ClInclude Include="application.h" />
-    <ClInclude Include="statusbar.h" />
-    <ClInclude Include="menubar.h" />
-    <ClInclude Include="commandbar.h" />
-    <ClInclude Include="animation.h" />
-    <ClInclude Include="gxtreeview.h" />
-    <ClInclude Include="gxtabview.h" />
-    <ClInclude Include="gxview.h" />
-    <ClInclude Include="catalogui.h" />
-    <ClInclude Include="accelerator.h" />
+    <ClInclude Include="accelerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="catalog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="catalogframe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="catalogui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commandbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="datasource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxapplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxtabview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxtreeview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menubar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="statusbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customizedlg.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">

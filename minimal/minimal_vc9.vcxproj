@@ -518,6 +518,7 @@
     <ClInclude Include="catalogframe.h" />
     <ClInclude Include="catalogui.h" />
     <ClInclude Include="commandbar.h" />
+    <ClInclude Include="customizedlg.h" />
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
     <ClInclude Include="gxtabview.h" />

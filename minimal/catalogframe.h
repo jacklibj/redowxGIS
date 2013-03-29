@@ -12,13 +12,9 @@
 #include "wx\menu.h"
 
 
-
-
-
 //----------------------
 //wxGISCatalogFrame
 //-----------------------
-
 
 class wxGISCatalogApp;
 
