@@ -1,9 +1,9 @@
-﻿Build started 2013/3/30 1:06:38.
+﻿Build started 2013/3/30 19:44:09.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt catalogapp.cpp catalogframe.cpp /MP 
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt catalogapp.cpp catalogframe.cpp gxapplication.cpp gxcatalog.cpp /MP 
          catalogapp.cpp
          catalogframe.cpp
      1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
@@ -33,6 +33,7 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(178): warning C4100: 'parent' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
@@ -40,20 +41,103 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
-                 due to following members:
-                 'void IApplication::OnApplicaiton(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(184) : see declaration of 'IApplication::OnApplicaiton'
-                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(185) : see declaration of 'IApplication::GetStatusBar'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(178): warning C4100: 'parent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(41): error C2470: 'wxGISMenu' : looks like a function definition, but there is no parameter list; skipping apparent body
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(67): error C2470: 'wxGISToolBar' : looks like a function definition, but there is no parameter list; skipping apparent body
      1>catalogframe.cpp(8): error C2248: 'wxGxApplication::wxGxApplication' : cannot access private member declared in class 'wxGxApplication'
                  c:\users\jack\documents\github\redowxgis\minimal\gxapplication.h(17) : see declaration of 'wxGxApplication::wxGxApplication'
                  c:\users\jack\documents\github\redowxgis\minimal\gxapplication.h(14) : see declaration of 'wxGxApplication'
      1>catalogframe.cpp(14): error C2248: 'wxGxApplication::~wxGxApplication' : cannot access private member declared in class 'wxGxApplication'
                  c:\users\jack\documents\github\redowxgis\minimal\gxapplication.h(19) : see declaration of 'wxGxApplication::~wxGxApplication'
                  c:\users\jack\documents\github\redowxgis\minimal\gxapplication.h(14) : see declaration of 'wxGxApplication'
+         gxapplication.cpp
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(41): error C2470: 'wxGISMenu' : looks like a function definition, but there is no parameter list; skipping apparent body
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(67): error C2470: 'wxGISToolBar' : looks like a function definition, but there is no parameter list; skipping apparent body
+     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
+                 due to following members:
+                 'void IApplication::OnApplicaiton(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(184) : see declaration of 'IApplication::OnApplicaiton'
+                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(185) : see declaration of 'IApplication::GetStatusBar'
+         gxcatalog.cpp
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(3): error C2001: newline in constant
+     1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
+                 with
+                 [
+                     _Elem=char,
+                     _Alloc=std::allocator<char>
+                 ]
+                 and
+                 [
+                     _Ty=char
+                 ]
+                 and
+                 [
+                     _Elem=char,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
+                 with
+                 [
+                     _Elem=char,
+                     _Alloc=std::allocator<char>
+                 ]
+                 and
+                 [
+                     _Ty=char
+                 ]
+                 and
+                 [
+                     _Elem=char,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
+                 with
+                 [
+                     _Ty=GDALColorEntry
+                 ]
+     1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
+                 with
+                 [
+                     _Ty=GDALColorEntry
+                 ]
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxfolder.h(44): error C2555: 'wxGxFolder::EditProperties': overriding virtual function return type differs and is not covariant from 'IGxObjectEdit::EditProperties'
+                 c:\users\jack\documents\github\redowxgis\minimal\catalog.h(178) : see declaration of 'IGxObjectEdit::EditProperties'
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxdisconnection.h(27): error C2555: 'wxGxDiscConnection::EditProperties': overriding virtual function return type differs and is not covariant from 'wxGxFolder::EditProperties'
+                 c:\users\jack\documents\github\redowxgis\minimal\gxfolder.h(28) : see declaration of 'wxGxFolder::EditProperties'
+     1>gxcatalog.cpp(110): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>gxcatalog.cpp(111): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(178): warning C4100: 'parent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(41): error C2470: 'wxGISMenu' : looks like a function definition, but there is no parameter list; skipping apparent body
+     1>c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(67): error C2470: 'wxGISToolBar' : looks like a function definition, but there is no parameter list; skipping apparent body
+     1>c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(61): error C2039: 'm_split10nIdle' : is not a member of 'wxGISToolBarPanel'
+                 c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(22) : see declaration of 'wxGISToolBarPanel'
+     1>c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(61): error C2065: 'm_split10nIdle' : undeclared identifier
+     1>c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(120): error C2039: 'm_splitter2OnIdle' : is not a member of 'wxGISToolBarPanel'
+                 c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(22) : see declaration of 'wxGISToolBarPanel'
+     1>c:\users\jack\documents\github\redowxgis\minimal\customizedlg.h(120): error C2276: '&' : illegal operation on bound member function expression
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(3): error C2001: newline in constant
+     1>c:\users\jack\documents\github\redowxgis\minimal\application.h(6): error C2011: 'wxGISApplication' : 'class' type redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\application.h(6) : see declaration of 'wxGISApplication'
+     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(8): error C2504: 'wxGISMenu' : base class undefined
+     1>gxapplication.cpp(13): error C2027: use of undefined type 'wxGISApplication'
+                 c:\users\jack\documents\github\redowxgis\minimal\application.h(6) : see declaration of 'wxGISApplication'
+     1>gxapplication.cpp(13): fatal error C1903: unable to recover from previous error(s); stopping compilation
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:11.99
+Time Elapsed 00:00:23.46

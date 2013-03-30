@@ -35,7 +35,7 @@ class WXDLLIMPEXP_GIS_CLU wxGxApplication :
 	virtual void RegisterChildWindow(wxWindow* pWnd);
 protected:
 	wxAuiManager m_mgr;
-	wxGxTreeView* m_pTreeview;
+	wxGxTreeView* m_pTreeView;
 	wxGxTabView* m_pTabView;
 	IGxCatalog* m_pCatalog;
 	WINDOWARRAY m_WindowArray;

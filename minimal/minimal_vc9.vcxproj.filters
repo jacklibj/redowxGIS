@@ -66,6 +66,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="customizedlg.h" />
+    <ClInclude Include="gxcatalog.h" />
+    <ClInclude Include="gxselection.h" />
+    <ClInclude Include="toolbarmenu.h" />
+    <ClInclude Include="gxdisconnection.h" />
+    <ClInclude Include="gxfolder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
@@ -78,6 +83,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gxapplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxcatalog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

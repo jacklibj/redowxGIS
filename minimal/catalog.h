@@ -167,6 +167,17 @@ public:
 	virtual bool Invoke(wxWindow* pParentWnd) = 0;
 };
 
+class IGxObjectEdit
+{
+public:
+	virtual ~IGxObjectEdit(void) {}
+	virtual bool Delete(void){return false;}
+	virtual bool CanDelete(void){return false;};
+	virtual bool Rename(wxString NewName){return false;};
+	virtual bool CanRename(void){return false;};
+	virtual void EditProperties(wxWindow * parent){};
+};
+
 class IGxObjectContainer :
 	public IGxObject
 {

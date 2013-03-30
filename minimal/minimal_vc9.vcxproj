@@ -507,6 +507,7 @@
     <ClCompile Include="catalogapp.cpp" />
     <ClCompile Include="catalogframe.cpp" />
     <ClCompile Include="gxapplication.cpp" />
+    <ClCompile Include="gxcatalog.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -521,11 +522,16 @@
     <ClInclude Include="customizedlg.h" />
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
+    <ClInclude Include="gxcatalog.h" />
+    <ClInclude Include="gxdisconnection.h" />
+    <ClInclude Include="gxfolder.h" />
+    <ClInclude Include="gxselection.h" />
     <ClInclude Include="gxtabview.h" />
     <ClInclude Include="gxtreeview.h" />
     <ClInclude Include="gxview.h" />
     <ClInclude Include="menubar.h" />
     <ClInclude Include="statusbar.h" />
+    <ClInclude Include="toolbarmenu.h" />
     <ClInclude Include="wxgis\framework\config.h" />
     <ClInclude Include="wxgis\framework\framework.h" />
   </ItemGroup>
