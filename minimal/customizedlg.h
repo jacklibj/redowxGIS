@@ -117,7 +117,7 @@ public:
 	void m_splitter2OnIdle( wxIdleEvent& )
 	{
 	m_splitter2->SetSashPosition( 150 );
-	m_splitter2->Disconnect( wxEVT_IDLE, wxIdleEventHandler( wxGISToolBarPanel::m_splitter2OnIdle ), NULL, this );
+	m_splitter2->Disconnect( wxEVT_IDLE, wxIdleEventHandler( wxGISCommandPanel::m_splitter2OnIdle ), NULL, this );
 	}
 	//events
 	void OnListboxSelect(wxCommandEvent& event);

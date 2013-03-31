@@ -25,7 +25,7 @@ public:
 	virtual bool CanDelete(void){return true;};
 	virtual bool Rename(wxString NewName);
 	virtual bool CanRename(void){return true;};
-	virtual bool EditProperties(wxWindow * parent);
+	virtual void EditProperties(wxWindow * parent);
 	//IGxObjectContainer
 	virtual bool DeleteChild(IGxObject* pChild);
 	virtual bool AreChildrenViewable(void){return true;};

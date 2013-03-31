@@ -38,12 +38,12 @@ protected:
 // wxGISMenu
 //--------------
 
-class WXDLLIMP_GIS_FRW wxGISMenu :
+class WXDLLIMPEXP_GIS_FRW wxGISMenu :
 	public wxMenu,
 	public wxGISCommandBar
 {
 public:
-	wxGISmenu(const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"),
+	wxGISMenu(const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"),
 		wxGISEnumCommandBars type = enumGISCBNone, const wxString& title = _(""), long style = 0);
 	virtual ~wxGISMenu(void);
 	virtual void AddCommand(ICommand* pCmd);
@@ -64,14 +64,14 @@ protected:
 // wxGISToolbar
 //----------------------------------------------------------------------
 
-class WXDLLIMP_GIS_FRW wxGISToolBar :
+class WXDLLIMPEXP_GIS_FRW wxGISToolBar :
 	public wxAuiToolBar,
 	public wxGISCommandBar
 {
 public:
 	wxGISToolBar(wxWindow* parent, wxWindowID id = -1, const wxPoint& position = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize, long style = wxAUI_TB_DEFAULT_STYLE, const wxStirng& sName = NONAME, const wxString& sCaption = _("No Caption"),
-		wxGISEnumCommandBars type = enumGISBNone);
+		const wxSize& size = wxDefaultSize, long style = wxAUI_TB_DEFAULT_STYLE, const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"),
+		wxGISEnumCommandBars type = enumGISCBNone);
 	virtual ~wxGISToolBar(void);
 	virtual void SetLeftDockable(bool bLDock);
 	virtual void SetRightDockable(bool bRDock);
@@ -81,9 +81,9 @@ public:
 	virtual void SetName(const wxString& sName);
 	virtual wxString GetName(void);
 	virtual void SetCaption(const wxString& sCaption);
-	virtual wxString GeCaption(void);
-	virtual void RemoveCommand(size_t nIndex)
-	virtual void MoveCommandleft(size_t nIndex);
+	virtual wxString GetCaption(void);
+	virtual void RemoveCommand(size_t nIndex);
+	virtual void MoveCommandLeft(size_t nIndex);
 	virtual void MoveCommandRight(size_t nIndex);
 	virtual void Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore = false);
 	virtual void AddMenu(wxMenu* pMenu, wxString sName);
@@ -98,7 +98,7 @@ protected:
 	bool m_bLDock;
 	bool m_bRDock;
 
-	std::vector<size_t, IToolBarControl*> m_RemControlMap;
+	std::map<size_t, IToolBarControl*> m_RemControlMap;
 
 	DECLARE_EVENT_TABLE()
 };

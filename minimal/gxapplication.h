@@ -14,15 +14,21 @@
 class WXDLLIMPEXP_GIS_CLU wxGxApplication :
 	public wxGISApplication
 {
+public:
 	wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title,
 		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER);
 	virtual ~wxGxApplication(void);
 
 
-	virtual void SerailizeFramePos(bool bSave = false);
-	virtual wxAuiManager*  GetAuiManger(void) {return & m_mgr;};
+	
+	
+	
+	
+	
+	virtual void SerializeFramePos(bool bSave = false);
+	virtual wxAuiManager*  GetAuiManager(void) {return & m_mgr;};
 	virtual void ShowPane(wxWindow* pWnd, bool bShow = true);
-	virtual bool ShowPane(const wxString& sName, bool bShow = true);
+	virtual void ShowPane(const wxString& sName, bool bShow = true);
 	virtual bool IsPaneShown(const wxString& sName);
 	//wxGISApplication
 	virtual void RemoveCommandBar(IGISCommandBar* pBar);

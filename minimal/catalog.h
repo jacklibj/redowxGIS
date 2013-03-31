@@ -104,6 +104,7 @@ public:
 	virtual bool GetShowHidden(void) {return m_bShowHidden;};
 	virtual bool GetSHowExt(void) {return m_bShowExt;};
 	virtual void SetShowHidden(bool bShowHidden) {m_bShowHidden = bShowHidden;};
+	virtual void SetShowExt(bool bShowExt){m_bShowExt = bShowExt;};	
 	virtual void ObjectAdded(IGxObject* pObject) = 0;
 	virtual void ObjectChanged(IGxObject* pObject) = 0;
 	virtual void ObjectDeleted(IGxObject* pObject) = 0;
@@ -126,6 +127,7 @@ public:
 	{
 		m_pParent = pParent;
 		m_pCatalog = pCatalog;
+		return true;
 	}
 
 	virtual void Detach(void)
