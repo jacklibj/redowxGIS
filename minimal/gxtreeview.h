@@ -38,10 +38,10 @@ public:
 	void AddTreeItem(IGxObject* pGxObject, wxTreeItemId hParent, bool sort = true);
 	void AddRoot(IGxObject* pGxObject);
 //
-	void OnItemExpanding(wxTreeEvent* event);
-	void OnBeginLabelEdit(wxTreeEvent* event);
-	void OnEndLabelEdit(wxTreeEvent* event);
-	void OnSelChange(wxTreeEvent* event);
+	void OnItemExpanding(wxTreeEvent& event);
+	void OnBeginLabelEdit(wxTreeEvent& event);
+	void OnEndLabelEdit(wxTreeEvent& event);
+	void OnSelChanged(wxTreeEvent& event);
 //IGxView
 	virtual bool Activate(wxGxApplication* application,  IGxCatalog* Catalog, wxXmlNode* pConf);
 	virtual void Deactivate(void);

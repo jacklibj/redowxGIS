@@ -21,10 +21,6 @@ public:
 
 
 	
-	
-	
-	
-	
 	virtual void SerializeFramePos(bool bSave = false);
 	virtual wxAuiManager*  GetAuiManager(void) {return & m_mgr;};
 	virtual void ShowPane(wxWindow* pWnd, bool bShow = true);

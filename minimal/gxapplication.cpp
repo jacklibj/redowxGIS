@@ -15,6 +15,20 @@ wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindow
 
 	m_mgr.SetManagedWindow(this);
 
-	wxGxCatalog* pcatalog = new wxGxCatalog();
+	wxGxCatalog* pCatalog = new wxGxCatalog();
+	pCatalog->Init();
+	m_pCatalog = static_cast<IGxCatalog*>(pCatalog);
+
+	wxXmlNode* pViewsNode = m_pConf->GetConfigNode(enumGISHKLM, wxString(wxT("frame/views")));
+
+	if(!pViewsNode)
+	{
+		wxLogError(_("wxGxApplication: Error find <views> XML Node"));
+		return;
+	}
+
+	m_pTreeView = new wxGxTreeView(this, TREECTRLID);
+
+
 
 };

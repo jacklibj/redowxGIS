@@ -508,6 +508,7 @@
     <ClCompile Include="catalogframe.cpp" />
     <ClCompile Include="gxapplication.cpp" />
     <ClCompile Include="gxcatalog.cpp" />
+    <ClCompile Include="gxtreeview.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -523,7 +524,7 @@
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
     <ClInclude Include="gxcatalog.h" />
-    <ClInclude Include="gxdisconnection.h" />
+    <ClInclude Include="gxdiscconnection.h" />
     <ClInclude Include="gxfolder.h" />
     <ClInclude Include="gxselection.h" />
     <ClInclude Include="gxtabview.h" />

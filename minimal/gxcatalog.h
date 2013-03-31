@@ -15,6 +15,7 @@ class WXDLLIMPEXP_GIS_CLT wxGxCatalog :
 	public IGxCatalog,
 	public IConnectionPointContainer
 {
+public:
 	wxGxCatalog(void);
 	virtual ~wxGxCatalog(void);
 	//IGxObject
@@ -28,17 +29,18 @@ class WXDLLIMPEXP_GIS_CLT wxGxCatalog :
 	virtual wxIcon GetLargeImage(void){return wxIcon();};
 	virtual wxIcon GetSmallimage(void){return wxIcon(mainframe_xpm);};
 	virtual wxString ContextMenu(void){return wxString(wxT("wxGxCatalog.ContextMenu"));};
-	virtual wxString NewMenu(void){return wxString(wxT("wxCatalog.NewMenu"));};
+	virtual wxString NewMenu(void){return wxString(wxT("wxGxCatalog.NewMenu"));};
 	//IGxObjectEdit
 	virtual bool Delete(void){return false;};
 	virtual bool CanDelete(void){return false;};
 	virtual bool Rename(wxString NewName){return false;};
+	virtual bool CanRename(void){return false;};
 	virtual void EditProperties(wxWindow *parent);
 	//IGxObjectContainer
 	virtual bool AddChild(IGxObject* pChild);
 	virtual bool DeleteChild(IGxObject* pChild);
 	virtual bool AreChildrenViewable(void){return true;};
-	virtual bool HasChildren(void){return true;}
+	virtual bool HasChildren(void){return true;};
 	virtual GxObjectArray* GetChildren(void){return &m_Children;};
 	//IGxCatalog
 	virtual wxString ConstructFullName(IGxObject* pObject);

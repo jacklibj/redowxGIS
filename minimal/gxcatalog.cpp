@@ -1,5 +1,5 @@
 #include "gxcatalog.h"
-#include "gxdisconnection.h"
+#include "gxdiscconnection.h"
 #include "wxgis\framework\config.h"
 #include "wx\volume.h"
 #include "wx\msgdlg.h"
@@ -87,7 +87,18 @@ bool wxGxCatalog::DeleteChild(IGxObject* pChild)
 
 void wxGxCatalog::EmptyChildren(void)
 {
-	for(size_t i =0; i < m_Children.size(); i++)
+	for(size_t i = 0; i < m_Children.size(); i++)
+	{
+		m_Children[i]->Detach();
+		delete m_Children[i];
+	}
+	m_Children.empty();
+	m_bIsChildrenLoaded = false;
+}
+
+void wxGxCatalog::EmptyObjectFactories(void)
+{
+	for(size_t i = 0; i < m_ObjectFactoriesArray.size(); i++)
 	{
 		wxDELETE(m_ObjectFactoriesArray[i].pFactory);
 	}
@@ -107,7 +118,7 @@ void wxGxCatalog::Init(void)
 	if(!pConfXmlNode)
 		return;
 
-	m_bShowHidden = wxAtoi(pConfXmlNode->GetPropVal(wxT("Show_hidden"), wxT("0")));
+	m_bShowHidden = wxAtoi(pConfXmlNode->GetPropVal(wxT("show_hidden"), wxT("0")));
 	m_bShowExt = wxAtoi(pConfXmlNode->GetPropVal(wxT("show_ext"), wxT("1")));
 
 	wxXmlNode* pObjectFactoriesNode = m_pConf->GetConfigNode(enumGISHKLM, wxString(wxT("catalog/objectfactories")));
@@ -115,6 +126,8 @@ void wxGxCatalog::Init(void)
 
 	//loads current user and when local machine items
 	wxXmlNode* pRootItemsNode = m_pConf->GetConfigNode(enumGISHKCU, wxString(wxT("Catalog/rootitems")));
+	LoadChildren(pRootItemsNode);
+	pRootItemsNode = m_pConf->GetConfigNode(enumGISHKLM, wxString(wxT("catalog/rootitems"))); 
 	LoadChildren(pRootItemsNode);
 }
 
@@ -132,7 +145,7 @@ void wxGxCatalog::LoadObjectFactories(wxXmlNode* pNode)
 		{
 			wxObject *obj = wxCreateDynamicObject(sName);
 			IGxObjectFactory *Factory = dynamic_cast<IGxObjectFactory*>(obj);
-			if(!Factory != NULL)
+			if( Factory != NULL)
 			{
 				Factory->PutCatalogRef(this);
 				OBJFACTORYDESC desc = {Factory, bool(wxAtoi(pChildren->GetPropVal(wxT("is_enabled"), wxT("1"))))};
@@ -201,8 +214,8 @@ void wxGxCatalog::SetShowExt(bool bShowExt)
 {
 	IGxCatalog::SetShowExt(bShowExt);
 	wxXmlNode* pConfXmlNode = m_pConf->CreateConfigNode(enumGISHKCU, wxString(wxT("catalog")), true);
-	if(pConfXmlNode->HasProp(wxT("show_ext")));
-	pConfXmlNode->DeleteProperty(wxT("show_ext"));
+	if(pConfXmlNode->HasProp(wxT("show_ext")))
+		pConfXmlNode->DeleteProperty(wxT("show_ext"));
 	pConfXmlNode->AddProperty(wxT("show_ext"), wxString::Format(wxT("%u"), bShowExt));
 }
 
