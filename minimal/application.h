@@ -1,3 +1,4 @@
+#pragma once
 #include "statusbar.h"
 #include "accelerator.h"
 #include "menubar.h"

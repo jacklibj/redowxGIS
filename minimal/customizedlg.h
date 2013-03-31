@@ -48,17 +48,17 @@ protected:
 	wxGxApplication* m_pGxApp;
 	wxImageList m_ImageList;
 	bool m_bToolsFocus, m_bCmdFocus;
-	wxMenu* m_pContextmenu;
+	wxMenu* m_pContextMenu;
 	int m_nContextMenuPos, m_nMenubarPos, m_nToolbarPos;
 
 public:
 	wxGISToolBarPanel(wxGxApplication* pGxApp, wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, 
 		const wxSize& size = wxSize( 540,400 ), long style = wxTAB_TRAVERSAL );
 	~wxGISToolBarPanel();
-	void m_splitter10nIdle( wxIdleEvent& )
+	void m_splitter1OnIdle( wxIdleEvent& )
 	{
 		m_splitter1->SetSashPosition( 150 );
-		m_splitter1->Disconnect( wxEVT_IDLE, wxIdleEventHandler( wxGISToolBarPanel::m_split10nIdle), NULL, this );
+		m_splitter1->Disconnect( wxEVT_IDLE, wxIdleEventHandler( wxGISToolBarPanel::m_splitter1OnIdle), NULL, this );
 	}
 	//events
 	void OnListboxSelect(wxCommandEvent& event);
@@ -66,7 +66,7 @@ public:
 	void OnCheckboxToggle(wxCommandEvent& event);
 	void OnListctrlActivated(wxListEvent& event);
 	void OnListctrlRClick(wxListEvent& event);
-	void SetKeyCode(wxCommandEvent& event);
+	void OnSetKeyCode(wxCommandEvent& event);
 	void OnUpdateUI(wxUpdateUIEvent& event);
 	void OnCreateCommandBar(wxCommandEvent& event);
 	void OnDeleteCommandBar(wxCommandEvent& event);
