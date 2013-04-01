@@ -157,6 +157,7 @@ class IApplication;
 class IGISCommandBar :
 	public IPointer
 {
+public:
 	virtual ~IGISCommandBar(void) {};
 	virtual void SetName(const wxString& sName) = 0;
 	virtual wxString GetName(void) = 0;

@@ -27,7 +27,7 @@ public:
 	virtual ICommand* GetCommand(size_t nIndex);
 	virtual void Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore = false);
 protected:
-	COMMANDARRAY m_CommmandArray;
+	COMMANDARRAY m_CommandArray;
 	wxString m_sName;
 	wxString m_sCaption;
 	wxGISEnumCommandBars m_type;

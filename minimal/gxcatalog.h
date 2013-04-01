@@ -27,7 +27,7 @@ public:
 	virtual void Refresh(void);
 	//IGxObjectUI
 	virtual wxIcon GetLargeImage(void){return wxIcon();};
-	virtual wxIcon GetSmallimage(void){return wxIcon(mainframe_xpm);};
+	virtual wxIcon GetSmallImage(void){return wxIcon(mainframe_xpm);};
 	virtual wxString ContextMenu(void){return wxString(wxT("wxGxCatalog.ContextMenu"));};
 	virtual wxString NewMenu(void){return wxString(wxT("wxGxCatalog.NewMenu"));};
 	//IGxObjectEdit

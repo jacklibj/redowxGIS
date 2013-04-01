@@ -19,7 +19,7 @@ wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindow
 	pCatalog->Init();
 	m_pCatalog = static_cast<IGxCatalog*>(pCatalog);
 
-	wxXmlNode* pViewsNode = m_pConf->GetConfigNode(enumGISHKLM, wxString(wxT("frame/views")));
+	wxXmlNode* pViewsNode = m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame/views")));
 
 	if(!pViewsNode)
 	{

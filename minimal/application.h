@@ -58,7 +58,7 @@ protected:
 	COMMANDARRAY m_CommandArray;
 	COMMANDBARARRAY m_CommandBarArray;
 	wxGISAcceleratorTable* m_pGISAcceleratorTable;
-	wxGISMenuBar* m_pMenubar;
+	wxGISMenuBar* m_pMenuBar;
 	ITool* m_CurrentTool;
 
 

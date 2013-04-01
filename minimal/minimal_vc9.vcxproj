@@ -504,8 +504,10 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="application.cpp" />
     <ClCompile Include="catalogapp.cpp" />
     <ClCompile Include="catalogframe.cpp" />
+    <ClCompile Include="commandbar.cpp" />
     <ClCompile Include="gxapplication.cpp" />
     <ClCompile Include="gxcatalog.cpp" />
     <ClCompile Include="gxtreeview.cpp" />

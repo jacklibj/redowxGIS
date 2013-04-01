@@ -1,4 +1,4 @@
-﻿Build started 2013/3/31 18:31:44.
+﻿Build started 2013/4/1 20:07:01.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
@@ -54,21 +54,17 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
-     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pCatalog' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pParent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(16): warning C4100: 'pCmd' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(17): warning C4100: 'nIndex' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(18): warning C4100: 'nIndex' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(19): warning C4100: 'nIndex' : unreferenced formal parameter
+     1>gxapplication.cpp(30): error C2259: 'wxGxTreeView' : cannot instantiate abstract class
                  due to following members:
-                 'void IApplication::OnApplicaiton(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(184) : see declaration of 'IApplication::OnApplicaiton'
-                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(185) : see declaration of 'IApplication::GetStatusBar'
+                 'void IGxCatalogEvents::OnObjectRefreshAll(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\catalog.h(259) : see declaration of 'IGxCatalogEvents::OnObjectRefreshAll'
          gxcatalog.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
      1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
                  with
                  [
@@ -84,21 +80,25 @@
                      _Elem=char,
                      _Alloc=std::allocator<char>
                  ]
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pCatalog' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pParent' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(16): warning C4100: 'pCmd' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(17): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(18): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(19): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>gxapplication.cpp(18): error C2259: 'wxGxCatalog' : cannot instantiate abstract class
-                 due to following members:
-                 'wxIcon IGxObjectUI::GetSmallImage(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\catalog.h(160) : see declaration of 'IGxObjectUI::GetSmallImage'
      1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
                  with
                  [
                      _Ty=GDALColorEntry
                  ]
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(107): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
+     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
+                 due to following members:
+                 'void IApplication::OnApplicaiton(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(184) : see declaration of 'IApplication::OnApplicaiton'
+                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(185) : see declaration of 'IApplication::GetStatusBar'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
@@ -181,4 +181,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:23.82
+Time Elapsed 00:00:26.50
