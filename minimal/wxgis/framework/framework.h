@@ -40,7 +40,7 @@ enum wxGISEnumCommandBars
 
 enum wxGISEnumCommandKind
 {
-	enumGISCommandSeperator = wxITEM_SEPARATOR,
+	enumGISCommandSeparator = wxITEM_SEPARATOR,
 	enumGISCommandNormal = wxITEM_NORMAL,
 	enumGISCommandCheck = wxITEM_CHECK,
 	enumGISCommandRadio = wxITEM_RADIO,
