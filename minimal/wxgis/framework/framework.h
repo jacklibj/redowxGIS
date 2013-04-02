@@ -42,7 +42,8 @@ enum wxGISEnumCommandKind
 {
 	enumGISCommandSeperator = wxITEM_SEPARATOR,
 	enumGISCommandNormal = wxITEM_NORMAL,
-	enumGISCommandCheck = wxITEM_RADIO,
+	enumGISCommandCheck = wxITEM_CHECK,
+	enumGISCommandRadio = wxITEM_RADIO,
 	enumGISCommandMax = wxITEM_MAX,
 	enumGISCommandMenu = wxITEM_MAX + 10,
 	enumGISCommandControl

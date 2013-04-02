@@ -88,7 +88,31 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 		pNode->AddProperty(wxT("caption"), m_sCaption);
 		for(size_t i = m_CommandArray.size(); i > 0; i--)
 		{
+			ICommand* pCmd = m_CommandArray[i-1];
+			if(pCmd)
+			{
+				wxXmlNode* pNewNode = new wxXmlNode(pNode, wxXML_ELEMENT_NODE, wxString(wxT("Item")));
+				wxGISEnumCommandKind Kind = pCmd->GetKind();
+				switch(Kind)
+				{
+				case enumGISCommandSeperator:
+					pNewNode->AddProperty(wxT("type"), wxT("sep"));
+					break;
+				case enumGISCommandCheck:
+				case enumGISCommandRadio:
+				case enumGISCommandNormal:
+				case enumGISCommandControl:
+					{
+						pNewNode->AddProperty(wxT("type"), wxT("cmd"));
+						wxObject* pObj = dynamic_cast<wxObject*>(pCmd);
+						if(pObj)
+						{
+							wxClassInfo*
+						}
+					}
 
+				}
+			}
 		}
 	}
 }
