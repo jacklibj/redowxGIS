@@ -281,4 +281,168 @@ wxGISToolBar::~wxGISToolBar(void)
 
 void wxGISToolBar::OnMotion(wxMouseEvent& evt)
 {
+	if(!m_pStatusBar)
+		return;
+	//
+	wxAuiToolBarItem* packing_hit_item = FindToolByPositionWithPacking(evt.GetX(), evt.GetY());
+	if(packing_hit_item)
+	{
+		wxString Help = packing_hit_item->GetLongHelp();
+		if( !Help.IsEmpty() )
+			m_pStatusBar->SetMessage(Help);
+		else
+			m_pStatusBar->SetMessage(wxT(""));
+	}
+	else
+	{
+		m_pStatusBar->SetMessage(wxT(""));
+	}
+	evt.Skip();
 }
+
+void wxGISToolBar::SetLeftDockable(bool bLDock)
+{
+	m_bLDock = bLDock;
+}
+
+void wxGISToolBar::SetRightDockable(bool bRDock)
+{
+	m_bRDock = bRDock;
+}
+
+
+bool wxGISToolBar::GetLeftDockable(void)
+{
+	return m_bLDock;
+}
+
+bool wxGISToolBar::GetRightDockable(void)
+{
+	return m_bRDock;
+}
+
+void wxGISToolBar::AddCommand(ICommand* pCmd)
+{
+	switch(pCmd->GetKind())
+	{
+
+	case enumGISCommandMenu:
+		return;
+	case enumGISCommandSeparator:
+	case enumGISCommandCheck:
+	case enumGISCommandRadio:
+	case enumGISCommandNormal:
+		{
+			wxBitmap Bitmap = pCmd->GetBitmap();
+			if(Bitmap.IsOk())
+				Bitmap = wxBitmap(default_16_xpm);
+
+			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->getCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), pCmd->GetMessage(), NULL);
+		}
+		break;
+	case enumGISCommandControl:
+		{
+			IToolControl* pToolCtrl = dynamic_cast<IToolControl*>(pCmd);
+			if(pToolCtrl)
+			{
+				IToolBarControl* pToolBarControl = pToolCtrl->GetControl();
+				wxControl* pControl = dynamic_cast<wxControl*>(pToolBarControl);
+				if(pControl)
+				{
+					if(pToolCtrl->HasToolLabel())
+					{
+						wxString sToolLabel = pToolCtrl->GetToolLabel();
+						AddLabel(wxID_ANY, sToolLabel, sToolLabel.Len() * 5);
+					}
+					pControl->Reparent(this);
+					AddControl(pControl);
+					//ad d ctrol to remove map
+					m_RemControlMap[m_CommandArray.size()] = pToolBarControl;
+				}
+				else return;
+			}
+			else return;
+		}
+		break;
+	default: return;
+	}
+	wxGISCommandBar::AddCommand(pCmd);
+	Realize();
+}
+
+void wxGISToolBar::ReAddCommand(ICommand* pCmd)
+{
+	switch(pCmd->GetKind())
+	{
+	case enumGISCommandMenu:
+		return;
+	case enumGISCommandSeparator:
+	case enumGISCommandCheck:
+	case enumGISCommandRadio:
+	case enumGISCommandNormal:
+		{
+			wxBitmap Bitmap = pCmd->GetBitmap();
+			if(!Bitmap.IsOk())
+				Bitmap = wxBitmap(default_16_xpm);
+
+			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->getCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), 
+				pCmd->GetMessage(), NULL);
+		}
+		break;
+	case enumGISCommandControl:
+		return;
+	}
+}
+
+void wxGISToolBar::SetName(const wxString& sName)
+{
+	wxGISCommandBar::SetName(sName);
+}
+
+wxString wxGISToolBar::GetName(void)
+{
+	return wxGISCommandBar::GetName();
+}
+
+void wxGISToolBar::SetCaption(const wxString& sCaption)
+{
+	wxGISCommandBar::SetCaption(sCaption);
+}
+
+wxString wxGISToolBar::GetCaption(void)
+{
+	return wxGISCommandBar::GetCaption();
+}
+
+void wxGISToolBar::RemoveCommand(size_t nIndex)
+{
+	size_t nRealIndex = nIndex;
+	//count beforehead controls and check if labels exists
+	for(size_t i = 0; i < nIndex; i++)
+	{
+		if(m_CommandArray[nIndex]->GetKind() == enumGISCommandControl)
+		{
+			IToolControl* pToolControl = dynamic_cast<IToolControl*>(m_CommandArray[nIndex]);
+			if(pToolControl->HasToolLabel())
+				nRealIndex++;
+		}
+	}
+	//check if it;s control
+	if(m_CommandArray[nIndex]->GetKind() == enumGISCommandControl)
+	{
+		IToolControl* pToolControl = dynamic_cast<IToolControl*>(m_CommandArray[nIndex]);
+		if(pToolControl->HasToolLabel())
+		{
+			DeleteByIndex(nRealIndex);
+			DeleteByIndex(nRealIndex); //?
+		}
+		else
+			DeleteByIndex(nRealIndex);
+		wxDELETE(m_RemControlMap[nIndex]);
+	}
+	else
+		DeleteByIndex(nRealIndex);
+	wxGISCommandBar::RemoveCommand(nIndex);
+	Realize();
+}
+
