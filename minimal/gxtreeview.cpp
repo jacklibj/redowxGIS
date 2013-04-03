@@ -158,7 +158,44 @@ void wxGxTreeView::OnEndLabelEdit(wxTreeEvent& event)
 		wxGxTreeItemData* pData = (wxGxTreeItemData*)GetItemData(event.GetItem());
 		if(pData == NULL)
 		{
-
+			event.Veto();
+			return;
 		}
+		IGxObjectEdit* pObjEdit = dynamic_cast<IGxObjectEdit*>(pData->m_pObject);
+		if(pObjEdit == NULL)
+		{
+			event.Veto();
+			return;
+		}
+		pObjEdit->Rename(event.GetLabel());
 	}
+}
+
+bool wxGxTreeView::Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf)
+{
+	if(!wxGxView::Activate(application, Catalog, pConf))
+		return false;
+
+	AddRoot(dynamic_cast<IGxObject*>(m_pCatalog));
+
+	m_pConnectionPointCatalog = dynamic_cast<IConnectionPointContainer*>( m_pCatalog );
+	if(m_pConnectionPointCatalog != NULL)
+		m_ConnectionPointCatalogCookie =  m_pConnectionPointCatalog->Advise(this);
+
+	m_pSelection = m_pCatalog->GetSelection();
+	m_pConnectionPointSelection = dynamic_cast<IConnectionPointContainer*>( m_pSelection );
+	if(m_pConnectionPointSelection != NULL)
+		m_ConnectionPointSelectionCookie = m_pConnectionPointSelection->Advise(this);
+
+	return true;
+}
+
+void wxGxTreeView::Deactivate(void)
+{
+	if(m_ConnectionPointCatalogCookie != -1)
+		m_pConnectionPointSelection->Unadvise(m_ConnectionPointCatalogCookie);
+	if(m_ConnectionPointCatalogCookie != -1)
+		m_pConnectionPointCatalog->Unadvise(m_ConnectionPointCatalogCookie);
+
+	wxGxView::Deactivate();
 }

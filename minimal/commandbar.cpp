@@ -446,3 +446,75 @@ void wxGISToolBar::RemoveCommand(size_t nIndex)
 	Realize();
 }
 
+void wxGISToolBar::MoveCommandLeft(size_t nIndex)
+{
+	wxGISCommandBar::MoveCommandLeft(nIndex);
+	wxAuiToolBar::Clear();
+	for(size_t i = 0; i < m_CommandArray.size(); i++)
+		ReAddCommand(m_CommandArray[i]);
+	wxAuiToolBar::Realize();
+}
+
+void wxGISToolBar::MoveCommandRight(size_t nIndex)
+{
+	wxGISCommandBar::MoveCommandRight(nIndex);
+	wxAuiToolBar::Clear();
+	for(size_t i = 0; i < m_CommandArray.size(); i++)
+		ReAddCommand(m_CommandArray[i]);
+	wxAuiToolBar::Realize();
+}
+
+void wxGISToolBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore)
+{
+	if(bStore)
+	{
+		pNode->AddProperty(wxT("size"), wxString::Format(wxT("%u"), GetToolBitmapSize().GetWidth()));
+		pNode->AddProperty(wxT("LeftDockable"), m_bLDock == true ? wxT("t") : wxT("f"));
+		pNode->AddProperty(wxT("RightDockable"), m_bRDock == true ? wxT("t") : wxT("f"));
+		wxGISCommandBar::Serialize(pApp, pNode, bStore);
+	}
+	else
+	{
+		m_bLDock = pNode->GetPropVal(wxT("LeftDockable"), wxT("f")) == wxT("f") ? false : true;
+		m_bRDock = pNode->GetPropVal(wxT("RightDockable"), wxT("f")) == wxT("f") ? false : true;
+		short iSize = wxAtoi(pNode->GetPropVal(wxT("size"), wxT("16")));
+		SetToolBitmapSize(wxSize(iSize, iSize));
+
+		wxAuiToolBarItemArray prepend_items;
+		wxAuiToolBarItemArray append_items;
+		ICommand* pCmd = pApp->GetCommand(wxT("wxGISCommand"), 2);
+		if(pCmd)
+		{
+			wxAuiToolBarItem item;
+			item.SetKind(wxITEM_SEPARATOR);
+			append_items.Add(item);
+			item.SetKind(pCmd->GetKind());
+			item.SetId(pCmd->GetID());
+			item.SetLabel(pCmd->getCaption());
+			append_items.Add(item);
+		}
+		SetCustomOverflowItems(prepend_items, append_items);
+		wxGISCommandBar::Serialize(pApp, pNode, bStore);
+		Realize();
+	}
+}
+
+void wxGISToolBar::AddMenu(wxMenu* pMenu, wxString sName)
+{
+}
+
+void wxGISToolBar::Activate(IApplication* pApp)
+{
+	for(std::map<size_t, IToolBarControl*>::const_iterator IT = m_RemControlMap.begin(); IT != m_RemControlMap.end(); ++IT)
+	{
+		IT->second->Activate(pApp);
+	}
+}
+
+void wxGISToolBar::Deactivate(void)
+{
+	for(std::map<size_t, IToolBarControl*>::const_iterator IT = m_RemControlMap.begin(); IT != m_RemControlMap.end(); ++IT)
+	{
+		IT->second->Deactivate();
+	}
+}
