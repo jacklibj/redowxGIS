@@ -1,9 +1,9 @@
-﻿Build started 2013/4/3 21:25:29.
+﻿Build started 2013/4/4 18:54:45.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt application.cpp catalogapp.cpp catalogframe.cpp commandbar.cpp gxapplication.cpp gxcatalog.cpp gxtreeview.cpp wxgis\framework\config.cpp /MP 
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt application.cpp catalogapp.cpp catalogframe.cpp commandbar.cpp gxapplication.cpp statusbar.cpp /MP 
          application.cpp
          catalogapp.cpp
      1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
@@ -27,40 +27,32 @@
                      _Ty=GDALColorEntry
                  ]
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
-                 due to following members:
-                 'void IApplication::OnApplicaiton(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(186) : see declaration of 'IApplication::OnApplicaiton'
-                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(187) : see declaration of 'IApplication::GetStatusBar'
-         catalogframe.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(16): warning C4100: 'pCmd' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(17): warning C4100: 'nIndex' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(18): warning C4100: 'nIndex' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(19): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>application.cpp(16): error C2572: 'wxGISApplication::wxGISApplication' : redefinition of default parameter : parameter 7
-                 c:\users\jack\documents\github\redowxgis\minimal\application.h(18) : see declaration of 'wxGISApplication::wxGISApplication'
-     1>application.cpp(16): error C2572: 'wxGISApplication::wxGISApplication' : redefinition of default parameter : parameter 6
-                 c:\users\jack\documents\github\redowxgis\minimal\application.h(18) : see declaration of 'wxGISApplication::wxGISApplication'
-     1>application.cpp(16): error C2572: 'wxGISApplication::wxGISApplication' : redefinition of default parameter : parameter 5
-                 c:\users\jack\documents\github\redowxgis\minimal\application.h(18) : see declaration of 'wxGISApplication::wxGISApplication'
-     1>application.cpp(46): error C2143: syntax error : missing ';' before '}'
-     1>application.cpp(46): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>application.cpp(95): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
+     1>application.cpp(138): warning C4100: 'number' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
+         catalogframe.cpp
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
+     1>catalogapp.cpp(210): error C2259: 'wxGISCatalogFrame' : cannot instantiate abstract class
+                 due to following members:
+                 'IStatusBar *IApplication::GetStatusBar(void)' : is abstract
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(188) : see declaration of 'IApplication::GetStatusBar'
          commandbar.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
      1>commandbar.cpp(10): error C2572: 'wxGISCommandBar::wxGISCommandBar' : redefinition of default parameter : parameter 3
                  c:\users\jack\documents\github\redowxgis\minimal\commandbar.h(13) : see declaration of 'wxGISCommandBar::wxGISCommandBar'
@@ -83,28 +75,37 @@
      1>commandbar.cpp(113): error C2039: 'Fromat' : is not a member of 'wxString'
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/string.h(445) : see declaration of 'wxString'
      1>commandbar.cpp(113): error C3861: 'Fromat': identifier not found
-     1>commandbar.cpp(114): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>commandbar.cpp(114): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
      1>commandbar.cpp(120): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
      1>commandbar.cpp(124): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(125): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>commandbar.cpp(125): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
+     1>commandbar.cpp(204): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
+     1>commandbar.cpp(204): error C2440: 'initializing' : cannot convert from 'IGISCommandBar *' to 'wxMenuItem *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
      1>commandbar.cpp(213): error C2248: 'wxString::wxString' : cannot access private member declared in class 'wxString'
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/string.h(467) : see declaration of 'wxString::wxString'
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/string.h(445) : see declaration of 'wxString'
+     1>commandbar.cpp(340): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
+     1>commandbar.cpp(388): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
      1>commandbar.cpp(471): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
      1>commandbar.cpp(472): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
      1>commandbar.cpp(473): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
+     1>commandbar.cpp(493): error C2039: 'getCaption' : is not a member of 'ICommand'
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(204) : see declaration of 'ICommand'
          gxapplication.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
      1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
                  with
                  [
@@ -120,213 +121,34 @@
                      _Elem=char,
                      _Alloc=std::allocator<char>
                  ]
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
      1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
                  with
                  [
                      _Ty=GDALColorEntry
                  ]
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
-         gxcatalog.cpp
-     1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
-                 with
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-                 and
-                 [
-                     _Ty=char
-                 ]
-                 and
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-     1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
-                 with
-                 [
-                     _Ty=GDALColorEntry
-                 ]
+         statusbar.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
+     1>statusbar.cpp(145): warning C4100: 'event' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pCatalog' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pParent' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(16): warning C4100: 'pCmd' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(17): warning C4100: 'nIndex' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(18): warning C4100: 'nIndex' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(19): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>gxapplication.cpp(30): error C2259: 'wxGxTreeView' : cannot instantiate abstract class
-                 due to following members:
-                 'void IGxCatalogEvents::OnObjectRefreshAll(void)' : is abstract
-                 c:\users\jack\documents\github\redowxgis\minimal\catalog.h(259) : see declaration of 'IGxCatalogEvents::OnObjectRefreshAll'
-         gxtreeview.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pCatalog' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\gxcatalog.h(22): warning C4100: 'pParent' : unreferenced formal parameter
-     1>gxcatalog.cpp(31): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(61): warning C4100: 'parent' : unreferenced formal parameter
-     1>gxcatalog.cpp(121): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>gxcatalog.cpp(121): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(122): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>gxcatalog.cpp(122): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(143): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(151): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>gxcatalog.cpp(151): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(170): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(208): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>gxcatalog.cpp(209): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(209): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(210): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(210): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(217): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>gxcatalog.cpp(218): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(218): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(219): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(219): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(287): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(287): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(288): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>gxcatalog.cpp(289): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(289): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>gxcatalog.cpp(290): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(290): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(298): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(298): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(299): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(299): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>gxcatalog.cpp(305): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>gxcatalog.cpp(305): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(324): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxcatalog.cpp(325): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
-         config.cpp
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(180): warning C4100: 'parent' : unreferenced formal parameter
-     1>gxtreeview.cpp(8): warning C4002: too many actual parameters for macro 'END_EVENT_TABLE'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(8): warning C4005: 'wgWX2MB' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(7) : see previous definition of 'wgWX2MB'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>wxgis\framework\config.cpp(282): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>wxgis\framework\config.cpp(292): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>wxgis\framework\config.cpp(302): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>wxgis\framework\config.cpp(314): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>wxgis\framework\config.cpp(324): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>wxgis\framework\config.cpp(337): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>wxgis\framework\config.cpp(338): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(338): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(339): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(339): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(352): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>wxgis\framework\config.cpp(353): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(353): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(354): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(354): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(368): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>wxgis\framework\config.cpp(369): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(369): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(370): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(370): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(384): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>wxgis\framework\config.cpp(385): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(385): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(386): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(386): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(399): warning C4996: 'wxXmlNode::HasProp': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(184) : see declaration of 'wxXmlNode::HasProp'
-     1>wxgis\framework\config.cpp(400): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(400): warning C4996: 'wxXmlNode::DeleteProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(200) : see declaration of 'wxXmlNode::DeleteProperty'
-     1>wxgis\framework\config.cpp(401): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>wxgis\framework\config.cpp(401): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
@@ -334,4 +156,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:56.31
+Time Elapsed 00:01:24.84

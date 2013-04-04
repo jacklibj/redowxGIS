@@ -3,6 +3,7 @@
 #include <wx\tokenzr.h>
 #include "art\default_16.xpm"
 
+
 BEGIN_EVENT_TABLE(wxGISApplication, wxFrame)
 	EVT_ERASE_BACKGROUND(wxGISApplication::OnEraseBackground)
 	EVT_SIZE(wxGISApplication::OnSize)
@@ -11,8 +12,7 @@ BEGIN_EVENT_TABLE(wxGISApplication, wxFrame)
 	EVT_UPDATE_UI_RANGE(wxGISApplication::ID_PLUGINCMD, ID_PLUGINCMD + 512, wxGISApplication::OnCommandUI)
 END_EVENT_TABLE()
 
-wxGISApplication::wxGISApplication(IGISConfig* pConfig, wxWindow* pParent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
-		const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER )
+wxGISApplication::wxGISApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos , const wxSize& size , long style ) : wxFrame(parent, id, title, pos, size, style), m_nCmdCounter(0), m_pGISAcceleratorTable(NULL), m_pMenuBar(NULL), m_CurrentTool(NULL)
 {
 	m_pConfig = pConfig;
 
@@ -42,5 +42,240 @@ wxGISApplication::wxGISApplication(IGISConfig* pConfig, wxWindow* pParent, wxWin
     //mark menus from menu bar as enumGISTAMMenubar
 	for(size_t i = 0; i< m_CommandBarArray.size(); i++)
 		if(m_pMenuBar->IsMenuBarMenu(m_CommandBarArray[i]->GetName()))
+			m_CommandBarArray[i]->SetType(enumGISCBMenubar);
+
+	//
+	//
+	//
+	SetMinSize(wxSize(800, 480));
+
+	SerializeFramePos(false);
+	SetAcceleratorTable(m_pGISAcceleratorTable->GetAcceleratorTable());
+}
+
+wxGISApplication::~wxGISApplication(void)
+{
+	if(m_pGISAcceleratorTable)
+		m_pGISAcceleratorTable->Store();
+	wxDELETE(m_pGISAcceleratorTable);
+	if(m_pMenuBar)
+	{
+		wxXmlNode* pMenuBarNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/menubar")));
+		if(!pMenuBarNode)
+			pMenuBarNode = m_pConfig->CreateConfigNode(enumGISHKCU, wxString(wxT("frame/menubar")), true);
+		m_pMenuBar->Serialize(pMenuBarNode);
+	}
+	//wxDELETE(m_pMenuBar): delete by wxApp
+
+	SerializeCommandBars(true);
+	SerializeFramePos(true);
+
+	//delete opsite direction to prevent delete sub menus
+
+	for(size_t i = 0; i < m_CommandBarArray.size() ; i++)
+		wxDELETE(m_CommandBarArray[i]);
+
+	for(size_t i = 0; i < m_CommandArray.size() ; i++)
+		wxDELETE(m_CommandArray[i]);
+}
+
+ICommand* wxGISApplication::GetCommand(long CmdID)
+{
+	for(size_t i =0; i < m_CommandArray.size(); i++)
+		if(m_CommandArray[i]->GetID() == CmdID)
+			return m_CommandArray[i];
+	return NULL;
+}
+
+void wxGISApplication::LoadCommands(wxXmlNode* pRootNode)
+{
+	wxXmlNode *child = pRootNode->GetChildren();
+	while(child)
+	{
+		wxString sName = child->GetPropVal(wxT("name"), wxT(""));
+		if(!sName.IsEmpty())
+		{
+			wxObject *obj = wxCreateDynamicObject(sName);
+			ICommand *pCmd = dynamic_cast<ICommand*>(obj);
+			if(pCmd)
+			{
+				for(unsigned char i = 0; i < pCmd->GetCount(); i++)
+				{
+					wxObject *newobj = wxCreateDynamicObject(sName);
+					ICommand *pNewCmd = dynamic_cast<ICommand*>(newobj);
+					if(pNewCmd && pNewCmd->OnCreate(static_cast<IApplication*>(this)))
+					{
+						pNewCmd->SetID(ID_PLUGINCMD + m_nCmdCounter);
+						pNewCmd->SetSubType(i);
+						m_CommandArray.push_back(pNewCmd);
+						m_nCmdCounter++;
+					}
+				}
+				wxDELETE(pCmd);
+			}
+		}
+		child = child->GetNext();
+	}
+}
+
+IGISCommandBar* wxGISApplication::GetCommandBar(wxString sName)
+{
+	for(size_t i = 0; i < m_CommandBarArray.size(); i++)
+		if(m_CommandBarArray[i]->GetName() == sName)
+			return m_CommandBarArray[i];
+	return NULL;
+}
+
+IGISConfig* wxGISApplication::GetConfig(void)
+{
+	return m_pConfig;
+}
+
+COMMANDBARARRAY* wxGISApplication::GetCommandBars(void)
+{
+	return &m_CommandBarArray;
+}
+
+COMMANDARRAY* wxGISApplication::GetCommands(void)
+{
+	return &m_CommandArray;
+}
+
+wxStatusBar* wxGISApplication::OnCreateStatusBar(int number, long style, wxWindowID id, const wxString& name)
+{
+	wxGISStatusBar *sb = new wxGISStatusBar(this, id, style, name);
+	return static_cast<wxStatusBar*>(sb);
+}
+
+IStatusBar* wxGISApplication::GetStatusBar(void)
+{
+	return dynamic_cast<IStatusBar*>(wxFrame::GetStatusBar());
+}
+
+void wxGISApplication::OnEraseBackground(wxEraseEvent& event)
+{
+	event.Skip();
+}
+
+void wxGISApplication::OnSize(wxSizeEvent& event)
+{
+	event.Skip();
+}
+
+void wxGISApplication::OnCommand(wxCommandEvent& event)
+{
+	OnCommand(GetCommand(event.GetId()));
+}
+
+void wxGISApplication::OnCommand(ICommand* pCmd)
+{
+	ITool* pTool = dynamic_cast<ITool*>(pCmd);
+	if(pTool)
+	{
+
+		if(m_CurrentTool)
+			m_CurrentTool->SetChecked(false);
+
+		pTool->SetChecked(true);
+			m_CurrentTool = pTool;
+	}
+	else
+		pCmd->OnClick();
+}
+
+void wxGISApplication::OnCommandUI(wxUpdateUIEvent& event)
+{
+	ICommand* pCmd = GetCommand(event.GetId());
+	if(pCmd)
+	{
+		if(pCmd->GetKind() == enumGISCommandCheck)
+			event.Check(pCmd->GetChecked());
+		event.Enable(pCmd->GetEnabled());
+		wxString sAcc = m_pGISAcceleratorTable->GetText(event.GetId());
+		event.SetText(pCmd->GetCaption() + wxT("\t") + sAcc);
+		////
+		for(size_t i =0; i < m_CommandBarArray.size(); i++)
+		{
+			switch(m_CommandBarArray[i]->GetType())
+			{
+			case enumGISCBMenubar:
+				{
+					wxMenu* pMenu = dynamic_cast<wxMenu*>(m_CommandBarArray[i]);
+					wxMenuItem *pItem = pMenu->FindItem(event.GetId());
+					if(pItem != NULL)
+					{
+						wxBitmap Bmp = pCmd->GetBitmap();
+
+						pItem->SetBitmap(Bmp);
+					}
+				}
+				break;
+			case enumGISCBToolbar:
+				{
+					wxAuiToolBar* pToolbar = dynamic_cast<wxAuiToolBar*>(m_CommandBarArray[i]);
+					wxAuiToolBarItem* pTool = pToolbar->FindTool(event.GetId());
+					if(pTool != NULL)
+					{
+						wxBitmap Bmp = pCmd->GetBitmap();
+						if(Bmp.IsOk())
+							pTool->SetBitmap(Bmp);
+						else
+							pTool->SetBitmap(wxBitmap(default_16_xpm));
+						if(!sAcc.IsEmpty())
+							pTool->SetShortHelp(pCmd->GetTooltip() + wxT(" (") + sAcc + wxT(")"));
+					}
+				}
+				break;
+			case enumGISCBNone:
+			case enumGISCBContextmenu:
+			case enumGISCBSubMenu:
+			default:
+				break;
+			}
+		}
+	}
+}
+
+void wxGISApplication::SerializeFramePos(bool bSave)
+{
+	wxXmlNode* pFrameXmlNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame")));
+
+	if(bSave)
+	{
+		if(!pFrameXmlNode)
+			pFrameXmlNode = m_pConfig->CreateConfigNode(enumGISHKCU, wxString(wxT("frame")), true);
+
+		if( IsMaximized() )
+		{
+			if(pFrameXmlNode->HasProp(wxT("maxi")))
+				pFrameXmlNode->DeleteProperty(wxT("maxi"));
+			pFrameXmlNode->AddProperty(wxT("maxi"), wxT("1"));
+		}
+		else
+		{
+			int x, y, w, h;
+			GetClientSize(&w, &h);
+			GetPosition(&x,&y);
+
+			wxXmlProperty* prop = pFrameXmlNode->GetProperties();
+			while(prop)
+			{
+				wxXmlProperty* prev_prop = prop;
+				prop = prop->GetNext();
+				wxDELETE(prev_prop);
+			}
+
+			wxXmlProperty* pHProp = new wxXmlProperty(wxT("Height"), wxString::Format( wxT("%u"), h), NULL);
+			wxXmlProperty* pWProp = new wxXmlProperty(wxT("Width"), wxString::Format( wxT("%u"), w), NULL);
+			wxXmlProperty* pYProp = new wxXmlProperty(wxT("YPos"), wxString::Format( wxT("%d"), y), NULL);
+			wxXmlProperty* pXProp = new wxXmlProperty(wxT("XPos"), wxString::Format( wxT("%d"), x), NULL);
+			wxXmlProperty* pMaxi = new wxXmlProperty(wxT("maxi"), wxT("%0"), pXProp);
+
+			pFrameXmlNode->SetProperties(pMaxi);
+		}
+		//
+		wxXmlNode* 
+	}
 
 }
+

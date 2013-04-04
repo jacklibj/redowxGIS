@@ -97,5 +97,11 @@
     <ClCompile Include="commandbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gxcontentview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="statusbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

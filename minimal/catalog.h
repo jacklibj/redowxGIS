@@ -25,7 +25,7 @@ public:
 		for(std::map<long, GxObjectArray*>::iterator CI = m_SelectionMap.begin(); CI != m_SelectionMap.end(); ++CI)
 			wxDELETE(CI->second);
 	}
-	virtual void Select( IGxObject* pObject, bool appendToExistingSelection, long nInitiator )\
+	virtual void Select( IGxObject* pObject, bool appendToExistingSelection, long nInitiator )
 	{
 		m_currentInitiator = nInitiator;
 		if(!appendToExistingSelection)
@@ -71,9 +71,18 @@ public:
 	virtual size_t GetCount(void)
 	{
 		if(m_currentInitiator == INIT_NONE || m_SelectionMap[m_currentInitiator] == NULL)
-			return NULL;
+			return 0;
 		else
 			return m_SelectionMap[m_currentInitiator]->size();
+	}
+
+	virtual GxObjectArray* GetSelectedObjects(void)
+	{
+
+		if(m_currentInitiator == INIT_NONE || m_SelectionMap[m_currentInitiator] == NULL)
+			return NULL;
+		else
+			return m_SelectionMap[m_currentInitiator];
 	}
 
 	virtual GxObjectArray* GetSelectedObjects(long nInitiator)
@@ -128,7 +137,7 @@ public:
 		m_pParent = pParent;
 		m_pCatalog = pCatalog;
 		return true;
-	}
+	};
 
 	virtual void Detach(void)
 	{
@@ -172,8 +181,8 @@ public:
 class IGxObjectEdit
 {
 public:
-	virtual ~IGxObjectEdit(void) {}
-	virtual bool Delete(void){return false;}
+	virtual ~IGxObjectEdit(void) {};
+	virtual bool Delete(void){return false;};
 	virtual bool CanDelete(void){return false;};
 	virtual bool Rename(wxString NewName){return false;};
 	virtual bool CanRename(void){return false;};
@@ -242,7 +251,7 @@ class IGxObjectFactory
 public:
 	IGxObjectFactory(void) : m_pCatalog(NULL){};
 	virtual ~IGxObjectFactory(void){};
-	virtual bool GetChildren(wxString sParentDir, wxArrayString* pFileNames, GxObjectArray* pObjectArray) = 0;
+	virtual bool GetChildren(wxString sParentDir, wxArrayString* pFileNames, GxObjectArray* pObjArray) = 0;
 	virtual void PutCatalogRef(IGxCatalog* pCatalog){m_pCatalog = pCatalog;};
 protected:
 	IGxCatalog* m_pCatalog;
@@ -256,7 +265,7 @@ public:
 	virtual void OnObjectChanged(IGxObject* object) = 0;
 	virtual void OnObjectDeleted(IGxObject* object) = 0;
 	virtual void OnObjectRefreshed(IGxObject* object) = 0;
-	virtual void OnObjectRefreshAll(void) = 0;
+	virtual void OnRefreshAll(void) = 0;
 };
 
 class IGxDataset

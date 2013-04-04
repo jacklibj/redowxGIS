@@ -4,8 +4,8 @@
 
 #define wgDELETE(p,func) if( p!= NULL ) {p->func; delete p; p = NULL;}
 #define wsDELETE(p) if(p != NULL) {p->Release(); p = NULL; }
-#define wgWX2MB(x) wxConvCurrent->cWx2MB(x)
-#define wgWX2MB(x) wxConvCurrent->cMB2WX(x)
+#define wgWX2MB(x) wxConvCurrent->cWX2MB(x)
+#define wgMB2WX(x) wxConvCurrent->cMB2WX(x)
 
 enum wxGISEnumMouseState
 {
@@ -15,14 +15,14 @@ enum wxGISEnumMouseState
 	enumGISMouseWheel = 0x0004
 };
 
-enum wxGISEnumStateBarPanes
+enum wxGISEnumStatusBarPanes
 {
 	enumGISStatusMain = 1,
 	enumGISStatusAnimation = 2,
 	enumGISStatusPosition = 4,
 	enumGISStatusPagePosition =8,
 	enumGISStatusSize = 16,
-	enumGISStatusCapslock = 32,
+	enumGISStatusCapsLock = 32,
 	enumGISStatusNumLock = 64,
 	enumGISStatusScrollLock = 128,
 	enumGISStatusClock = 256,
@@ -60,16 +60,16 @@ enum wxGISEnumConfigKey
 class IGISConfig
 {
 public:
-	virtual ~IGISConfig(void) {}
+	virtual ~IGISConfig(void) {};
 	//
 	virtual wxXmlNode* GetConfigNode(wxGISEnumConfigKey key, wxString sPath) = 0;
-	virtual wxXmlNode* CreateConfigNode(wxGISEnumConfigKey key, wxString sPath, bool bUniq) = 0;
+	virtual wxXmlNode* CreateConfigNode(wxGISEnumConfigKey Key, wxString sPath, bool bUniq) = 0;
 };
 
 class IProgressor
 {
 public:
-	virtual ~IProgressor(void) {}
+	virtual ~IProgressor(void) {};
 	//pure virtual
 	virtual bool Show(bool bShow) = 0;
 };
@@ -85,10 +85,10 @@ public :
 	virtual IProgressor* GetAnimation(void) = 0;
 	virtual IProgressor* GetProgressor(void) = 0;
 	//
-	virtual WXWORD GetPanes(void) {return m_Panes;}
-	virtual void SetPanes(WXWORD Panes) {m_Panes = Panes;};
+	virtual WXDWORD GetPanes(void) {return m_Panes;};
+	virtual void SetPanes(WXDWORD Panes) {m_Panes = Panes;};
 protected:
-	WXWORD m_Panes;
+	WXDWORD m_Panes;
 };
 
 class IConnectionPointContainer
@@ -120,9 +120,9 @@ class IPointer
 {
 public:
 	IPointer(void) : m_RefCount(0) {};
-	virtual ~IPointer(void) {}
-	virtual wxInt32 Reference(void) {return m_RefCount++;}
-	virtual wxInt32 Dereference(void) {return m_RefCount--;}
+	virtual ~IPointer(void) {};
+	virtual wxInt32 Reference(void) {return m_RefCount++;};
+	virtual wxInt32 Dereference(void) {return m_RefCount--;};
 	virtual wxInt32 Release(void)
 	{
 		Dereference();
@@ -143,10 +143,11 @@ class ITrackCancel
 public:
 	ITrackCancel(void) : m_bIsCanceled(false) {};
 	virtual ~ITrackCancel(void) {};
-	virtual void Cancel(void) {m_bIsCanceled = true;}
-	virtual bool Continue(void) {return !m_bIsCanceled;}
-	virtual void Reset(void) { m_bIsCanceled = false;}
-	virtual IProgressor* GetProgressor(void) { return m_pProgressor;}
+	virtual void Cancel(void) {m_bIsCanceled = true;};
+	virtual bool Continue(void) {return !m_bIsCanceled;};
+	virtual void Reset(void) { m_bIsCanceled = false;};
+	virtual IProgressor* GetProgressor(void) { return m_pProgressor;};
+	virtual void SetProgressor(IProgressor* pProgressor){m_pProgressor = pProgressor; };
 protected:
 	bool m_bIsCanceled;
 	IProgressor* m_pProgressor;
@@ -171,7 +172,7 @@ public:
 	virtual void MoveCommandLeft(size_t nIndex) = 0;
 	virtual void MoveCommandRight(size_t nIndex) = 0;
 	virtual size_t GetCommandCount(void) = 0;
-	virtual ICommand* GetCommand(void) = 0;
+	virtual ICommand* GetCommand(size_t nIndex) = 0;
 	virtual void Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore = false) = 0;
 };
 
@@ -183,7 +184,7 @@ class IApplication
 public:
 	virtual ~IApplication(void) {};
 	//pure virtual
-	virtual void OnApplicaiton(void) = 0;
+	virtual void OnAppAbout(void) = 0;
 	virtual IStatusBar* GetStatusBar(void) = 0;
 	virtual IGISConfig* GetConfig(void) = 0;
 	virtual IGISCommandBar* GetCommandBar(wxString sName) = 0;
@@ -191,9 +192,10 @@ public:
 	virtual bool AddCommandBar(IGISCommandBar* pBar) = 0 ;
 	virtual void Customize(void) = 0;
 	virtual ICommand* GetCommand(long CmdID) = 0;
-	virtual ICommand* GetCommand(wxString sCmdName, unsigned char rCmdSubType) = 0;
+	virtual ICommand* GetCommand(wxString sCmdName, unsigned char nCmdSubType) = 0;
 	virtual void ShowStatusBar(bool bShow) = 0;
 	virtual bool IsStatusBarShown(void) = 0;
+	virtual void ShowToolBarMenu(void) = 0;
 	virtual void ShowApplicationWindow(wxWindow* pWnd, bool bShow = true) = 0;
 	virtual WINDOWARRAY* GetChildWindows(void) = 0;
     virtual void RegisterChildWindow(wxWindow* pWnd) = 0;
@@ -206,9 +208,9 @@ public:
 	ICommand(void) : m_subtype(0) {};
 	virtual ~ICommand(void) {};
 
-	//pure vitual
+	//pure virtual
 	virtual  wxIcon GetBitmap(void) = 0;
-	virtual wxString getCaption(void) = 0;
+	virtual wxString GetCaption(void) = 0;
 	virtual wxString GetCategory(void ) = 0;
 	virtual bool GetChecked(void) = 0;
 	virtual bool GetEnabled(void) = 0;
@@ -252,11 +254,12 @@ public:
 class ITool :
 	public ICommand
 {
+public:
 	virtual ~ITool(void) {};
 	virtual void SetChecked(bool bCheck) = 0;
 	virtual wxCursor GetCursor( void )  = 0;
-	virtual void OnMouseDowm(wxMouseEvent& event) = 0;
-	virtual void OnMouseUP(wxMouseEvent& event) = 0;
+	virtual void OnMouseDown(wxMouseEvent& event) = 0;
+	virtual void OnMouseUp(wxMouseEvent& event) = 0;
 	virtual void OnMouseMove(wxMouseEvent& event) = 0;	
 	virtual void OnMouseDoubleClick(wxMouseEvent& event) = 0;
 };

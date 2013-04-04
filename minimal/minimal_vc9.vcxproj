@@ -510,7 +510,9 @@
     <ClCompile Include="commandbar.cpp" />
     <ClCompile Include="gxapplication.cpp" />
     <ClCompile Include="gxcatalog.cpp" />
+    <ClCompile Include="gxcontentview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />
+    <ClCompile Include="statusbar.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>

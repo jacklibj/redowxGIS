@@ -4,6 +4,7 @@
 #include "menubar.h"
 #include "commandbar.h"
 
+
 class WXDLLIMPEXP_GIS_FRW wxGISApplication :
 	public wxFrame,
 	public IApplication
@@ -15,7 +16,7 @@ public:
 	};
 
 	//cosntructor
-	wxGISApplication(IGISConfig* pConfig, wxWindow* pParent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
+	wxGISApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
 		const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER );
 	//destructor
 	virtual ~wxGISApplication(void);
@@ -30,7 +31,8 @@ public:
 	virtual void LoadCommands(wxXmlNode* pRootNode);
 	virtual void LoadMenus(wxXmlNode* pRootNode);
 	virtual void LoadToolbars(wxXmlNode* pRootNode);
-	virtual COMMANDBARARRAY* GetCommands(void);
+	virtual COMMANDBARARRAY* GetCommandBars(void);
+	virtual COMMANDARRAY* GetCommands(void);
 	virtual wxGISMenuBar* GetMenuBar(void);
 	virtual wxGISAcceleratorTable* GetGISAcceleratorTable(void);
 	virtual void SerializeFramePos(bool bSave = false);
@@ -43,10 +45,10 @@ public:
 //IApplication
 	virtual ICommand* GetCommand(long CmdID);
 	virtual ICommand* GetCommand(wxString sCmdName, unsigned char nCmdSubType);
-	virtual IStatusBar* GetStatusbar(void);
+	virtual IStatusBar* GetStatusBar(void);
 	virtual IGISConfig* GetConfig(void);
 	virtual IGISCommandBar* GetCommandBar(wxString sName);
-	virtual void RemoveCommandBar(wxString sName);
+	virtual void RemoveCommandBar(IGISCommandBar*  pBar);
 	virtual bool AddCommandBar(IGISCommandBar* pBar);
 	virtual void ShowStatusBar(bool bShow);
 	virtual bool IsStatusBarShown(void);

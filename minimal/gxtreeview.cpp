@@ -7,11 +7,7 @@ BEGIN_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
 	EVT_TREE_SEL_CHANGED(TREECTRLID, wxGxTreeView::OnSelChanged)
 END_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
 
-wxGxTreeView::wxGxTreeView(wxWindow* parent, wxWindowID id) 
-: wxTreeCtrl(parent, id, wxDefaultPosition, wxDefaultSize, wxTR_HAS_BUTTONS | wxBORDER_NONE | wxTR_EDIT_LABELS
-      /*|wxTR_MULTIPLE| wxTR_HIDE_ROOT | wxTR_LINES_AT_ROOT*/ ,
-	  wxDefaultValidator, wxT("wxGxTreeView")), 
-	  m_pConnectionPointCatalog(NULL), m_pConnectionPointSelection(NULL), m_ConnectionPointCatalogCookie(-1),m_ConnectionPointSelectionCookie(-1)
+wxGxTreeView::wxGxTreeView(wxWindow* parent, wxWindowID id) : wxTreeCtrl(parent, id, wxDefaultPosition, wxDefaultSize, wxTR_HAS_BUTTONS | wxBORDER_NONE | wxTR_EDIT_LABELS/*|wxTR_MULTIPLE| wxTR_HIDE_ROOT | wxTR_LINES_AT_ROOT*/ ,wxDefaultValidator, wxT("wxGxTreeView")), m_pConnectionPointCatalog(NULL), m_pConnectionPointSelection(NULL), m_ConnectionPointCatalogCookie(-1),m_ConnectionPointSelectionCookie(-1)
 {
 	m_TreeImageList.Create(16,16);
 	SetImageList(&m_TreeImageList);
@@ -192,10 +188,143 @@ bool wxGxTreeView::Activate(wxGxApplication* application, IGxCatalog* Catalog, w
 
 void wxGxTreeView::Deactivate(void)
 {
-	if(m_ConnectionPointCatalogCookie != -1)
-		m_pConnectionPointSelection->Unadvise(m_ConnectionPointCatalogCookie);
+	if(m_ConnectionPointSelectionCookie != -1)
+		m_pConnectionPointSelection->Unadvise(m_ConnectionPointSelectionCookie);
 	if(m_ConnectionPointCatalogCookie != -1)
 		m_pConnectionPointCatalog->Unadvise(m_ConnectionPointCatalogCookie);
 
 	wxGxView::Deactivate();
+}
+
+void wxGxTreeView::OnSelChanged(wxTreeEvent& event)
+{
+	wxTreeItemId item = event.GetItem();
+	if(!item.IsOk())
+		return;
+	wxGxTreeItemData* pData = (wxGxTreeItemData*)GetItemData(item);
+	if(pData != NULL)
+	{
+		m_pSelection->Select(pData->m_pObject, false, GetId());
+	}
+}
+
+void wxGxTreeView::OnSelectionChanged(IGxSelection* Selection, long nInitiator)
+{
+	if(nInitiator == GetId())
+		return;
+	GxObjectArray* pGxObjectArray = m_pSelection->GetSelectedObjects();
+	if(pGxObjectArray == NULL || pGxObjectArray->size() == 0)
+		return;
+	IGxObject* pGxObj = pGxObjectArray->at(pGxObjectArray->size() -1);
+	wxTreeItemId ItemId = m_TreeMap[pGxObj];
+	if(ItemId.IsOk())
+	{
+		wxTreeCtrl::SelectItem(ItemId);
+		SetFocus();
+	}
+	else
+	{
+		IGxObject* pParentGxObj = pGxObj->GetParent();
+		while(pParentGxObj)
+		{
+			wxTreeItemId ItemId = m_TreeMap[pParentGxObj];
+			if(ItemId.IsOk())
+			{
+				wxTreeCtrl::Expand(ItemId);
+				break;
+			}
+			else
+				pParentGxObj = pParentGxObj->GetParent();
+		}
+		OnSelectionChanged(Selection, nInitiator);
+	}
+}
+
+void wxGxTreeView::OnObjectAdded(IGxObject* object)
+{
+	if(object == NULL)
+		return;
+	IGxObject* pParentObject = object->GetParent();
+	wxTreeItemId TreeItemId = m_TreeMap[pParentObject];
+	if(TreeItemId.IsOk())
+	{
+		wxGxTreeItemData* pData = (wxGxTreeItemData*)GetItemData(TreeItemId);
+		if(pData!= NULL)
+		{
+			if(pData->m_bExpandedOnce)
+				AddTreeItem(object, TreeItemId);
+			else
+				SetItemHasChildren(TreeItemId, true);
+		}
+	}
+}
+
+void wxGxTreeView::OnObjectChanged(IGxObject* object)
+{
+	if(object == NULL)
+		return;
+
+	wxTreeItemId TreeItemId = m_TreeMap[object];
+	if(TreeItemId.IsOk())
+	{
+		wxGxTreeItemData* pData = (wxGxTreeItemData*)GetItemData(TreeItemId);
+		if(pData != NULL)
+		{
+			IGxObjectUI* pGxObjectUI = dynamic_cast<IGxObjectUI*>(pData->m_pObject);
+			IGxObjectContainer* pGxObjectContainer = dynamic_cast<IGxObjectContainer*>(pData->m_pObject);
+			if(pGxObjectUI != NULL)
+			{
+				wxString sName = pData->m_pObject->GetName();
+				wxIcon icon = pGxObjectUI->GetSmallImage();
+
+				if(icon.IsOk())
+					m_TreeImageList.Replace(pData->m_smallimage_index, icon);
+				SetItemText(TreeItemId, sName);
+				if(pGxObjectContainer != NULL)
+				{
+					bool bItemHasChildren = pGxObjectContainer->HasChildren();
+					if(ItemHasChildren(TreeItemId) && !bItemHasChildren)
+						DeleteChildren(TreeItemId);
+					SetItemHasChildren(TreeItemId, bItemHasChildren && pGxObjectContainer->AreChildrenViewable());
+				}
+				wxTreeCtrl::Refresh();
+			}
+		}
+	}
+}
+
+void wxGxTreeView::OnObjectDeleted(IGxObject* object)
+{
+	if(object == NULL)
+		return;
+	wxTreeItemId TreeItemId = m_TreeMap[object];
+	if(TreeItemId.IsOk())
+		Delete(TreeItemId);
+	m_TreeMap.erase(object);
+}
+
+void wxGxTreeView::OnObjectRefreshed(IGxObject* object)
+{
+	if(object == NULL)
+		return;
+    wxTreeItemId TreeItemId = m_TreeMap[object];
+	if(TreeItemId.IsOk())
+	{
+		wxGxTreeItemData* pData = (wxGxTreeItemData*)GetItemData(TreeItemId);
+		if(pData != NULL)
+		{
+			if(pData->m_bExpandedOnce)
+			{
+				DeleteChildren(TreeItemId);
+				pData->m_bExpandedOnce = false;
+				Expand(TreeItemId);
+			}
+		}
+	}
+}
+
+void wxGxTreeView::OnRefreshAll(void)
+{
+	DeleteAllItems();
+	AddRoot(dynamic_cast<IGxObject*>(m_pCatalog));
 }
