@@ -274,8 +274,137 @@ void wxGISApplication::SerializeFramePos(bool bSave)
 			pFrameXmlNode->SetProperties(pMaxi);
 		}
 		//
-		wxXmlNode* 
+		wxXmlNode* pStatusBarNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/statusbar")));
+		if(pStatusBarNode)
+		{
+			if(pStatusBarNode->HasProp(wxT("shown")))
+				pStatusBarNode->DeleteProperty(wxT("shown"));
+		}
+		else
+		{
+			pStatusBarNode = new wxXmlNode(pFrameXmlNode, wxXML_ELEMENT_NODE, wxT("statusbar"));
+		}
+		pStatusBarNode->AddProperty(wxT("shown"), IsStatusShown() == true ? wxT("t") : wxT("f"));
 	}
+	else
+	{
+		//load
+		if(!pFrameXmlNode)
+			pFrameXmlNode = m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame")));
 
+		if(pFrameXmlNode == NULL)
+			return;
+
+		bool bMaxi = wxAtoi(pFrameXmlNode->GetPropVal(wxT("maxi"), wxT("0")));
+		if(!bMaxi)
+		{
+			int x = wxAtoi(pFrameXmlNode->GetPropVal(wxT("XPos"), wxT("50")));
+			int y = wxAtoi(pFrameXmlNode->GetPropVal(wxT("YPos"), wxT("50")));
+			int w = wxAtoi(pFrameXmlNode->GetPropVal(wxT("Width"), wxT("850")));
+			int h = wxAtoi(pFrameXmlNode->GetPropVal(wxT("Height"), wxT("530")));
+
+			Move(x, y);
+			SetClientSize(w, h);
+		}
+		else
+		{
+			Maximize();
+		}
+		wxXmlNode* pStatusBarNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/statusbar")));
+		if(pStatusBarNode)
+		{
+			bool bStatusBarShow = pStatusBarNode->GetPropVal(wxT("shown"), wxT("t")) == wxString(wxT("t")) ? true : false;
+			ShowStatusBar(bStatusBarShow);
+		}
+	}
+}
+
+wxGISAcceleratorTable* wxGISApplication::GetGISAcceleratorTable(void)
+{
+	return m_pGISAcceleratorTable;
+}
+
+wxGISMenuBar* wxGISApplication::GetMenuBar(void)
+{
+	return m_pMenuBar;
+}
+
+void wxGISApplication::RemoveCommandBar(IGISCommandBar* pBar)
+{
+	for(size_t i =0; i < m_CommandBarArray.size(); i++)
+	{
+		if(m_CommandBarArray[i] == pBar)
+		{
+			switch(m_CommandBarArray[i]->GetType())
+			{
+			case enumGISCBMenubar:
+				m_pMenuBar->Removemenu(pBar);
+				break;
+			case enumGISCBToolbar:
+			case enumGISCBContextmenu:
+			case enumGISCBSubMenu:
+				break;
+			}
+			wsDELETE(pBar);
+			m_CommandBarArray.erase(m_CommandBarArray.begin() + i);
+			break;
+		}
+	}
+}
+
+
+bool wxGISApplication::AddCommandBar(IGISCommandBar* pBar)
+{
+	if(!pBar)
+		return false;
+	pBar->Reference();
+	m_CommandBarArray.push_back(pBar);
+	switch(pBar->GetType())
+	{
+	case enumGISCBMenubar:
+		m_pMenuBar->AddMenu(pBar);
+		break;
+	case enumGISCBToolbar:
+	case enumGISCBContextmenu:
+	case enumGISCBSubMenu:
+	case enumGISCBNone: 
+		break;
+	}			
+	return true;
+}
+
+
+ICommand* wxGISApplication::GetCommand(wxString sCmdName, unsigned char nCmdSubType)
+{
+	for(size_t i = 0; i < m_CommandArray.size() ; i++)
+	{
+		wxClassInfo * pInfo = m_CommandArray[i]->GetClassInfo();
+		wxString sCommandName = pInfo->GetClassName();
+		if(sCommandName == sCmdName && m_CommandArray[i]->GetSubType() == nCmdSubType)
+			return m_CommandArray[i];
+	}
+	return NULL;
+}
+
+void wxGISApplication::SerializeCommandBars(bool bSave)
+{
+	wxXmlNode* pMenuesNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/menues")));
+
+	wxXmlNode* pToolbarsNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/toolbars")));
+
+	if(bSave)
+	{
+		if(!pMenuesNode)
+			pMenuesNode = m_pConfig->CreateConfigNode(enumGISHKCU, wxString(wxT("frame/menues")), true);
+		else
+			wxGISConfig::DeleteNodeChildren(pMenuesNode);
+
+		if(!pToolbarsNode)
+			pToolbarsNode = m_pConfig->CreateConfigNode(enumGISHKCU, wxString(wxT("frame/toolbars")), true);
+		else
+			wxGISConfig::DeleteNodeChildren(pToolbarsNode);
+
+
+	}
 }
 
