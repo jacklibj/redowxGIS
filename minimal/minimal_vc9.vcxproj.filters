@@ -83,6 +83,9 @@
     <ClInclude Include="toolbarmenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="viewsfactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
@@ -113,6 +116,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="statusbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxtabview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,7 +17,6 @@
 //-----------
 // wxGxTab
 //------------
-
 class wxGxTab :
 	public wxPanel,
 	public IGxSelectionEvents
@@ -58,9 +57,9 @@ DECLARE_EVENT_TABLE()
 //---------
 // wxGxTabView
 //-------------
-
 class WXDLLIMPEXP_GIS_CLU wxGxTabView : 
 	public wxAuiNotebook,
+	public wxGxView,
 	public IGxSelectionEvents
 {
 public:
@@ -68,7 +67,7 @@ public:
 	virtual ~wxGxTabView(void);
 	virtual wxWindow* GetCurrentWnd(void);
 //IGxView
-	virtual void Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf);
+	virtual bool Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf);
 	virtual void Deactivate(void);
 //IGxSelectionEvents
 	virtual void OnSelectionChanged(IGxSelection* Selection, long nInitiator);

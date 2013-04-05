@@ -28,6 +28,19 @@ wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindow
 	}
 
 	m_pTreeView = new wxGxTreeView(this, TREECTRLID);
+	if(m_pTreeView->Activate(this, m_pCatalog, m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame/views/treeview")))))
+	{
+		m_mgr.AddPane(m_pTreeView, wxAuiPaneInfo().Name(wxT("tree_window")).Caption(_("Tree Pane")).BestSize(wxSize(280,128)).MinSize(wxSize(200,64)).Left().Layer(1).Position(1).CloseButton(true));
+		RegisterChildWindow(m_pTreeView);
+	}
+	else
+		wxDELETE(m_pTreeView);
+
+	m_pTabView = new wxGxTabView(this);
+	if(m_pTabView->Activate(this, m_pCatalog, m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame/views/tabview")))))
+	{
+
+	}
 
 
 

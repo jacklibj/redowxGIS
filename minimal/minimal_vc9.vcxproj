@@ -511,7 +511,9 @@
     <ClCompile Include="gxapplication.cpp" />
     <ClCompile Include="gxcatalog.cpp" />
     <ClCompile Include="gxcontentview.cpp" />
+    <ClCompile Include="gxtabview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />
+    <ClCompile Include="gxview.cpp" />
     <ClCompile Include="statusbar.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
@@ -537,6 +539,7 @@
     <ClInclude Include="menubar.h" />
     <ClInclude Include="statusbar.h" />
     <ClInclude Include="toolbarmenu.h" />
+    <ClInclude Include="viewsfactory.h" />
     <ClInclude Include="wxgis\framework\config.h" />
     <ClInclude Include="wxgis\framework\framework.h" />
   </ItemGroup>

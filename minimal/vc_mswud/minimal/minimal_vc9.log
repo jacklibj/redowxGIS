@@ -1,79 +1,32 @@
-﻿Build started 2013/4/5 11:15:49.
+﻿Build started 2013/4/5 19:05:28.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt commandbar.cpp /MP 
-         commandbar.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt gxtabview.cpp /MP 
+         gxtabview.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>commandbar.cpp(87): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(87): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(88): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(88): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(99): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(99): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(106): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(106): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(112): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(112): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(113): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(113): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(114): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(114): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(120): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(120): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(124): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(124): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(125): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(125): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(140): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
+                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
+     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
+     1>gxtabview.cpp(16): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(143): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+     1>gxtabview.cpp(17): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(144): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+     1>gxtabview.cpp(22): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(152): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+     1>gxtabview.cpp(23): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(471): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(471): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(472): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(472): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(473): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(473): warning C4996: 'wxXmlNode::AddProperty': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(198) : see declaration of 'wxXmlNode::AddProperty'
-     1>commandbar.cpp(478): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
+     1>gxtabview.cpp(24): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
                  C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(479): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(480): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>commandbar.cpp(502): warning C4100: 'pMenu' : unreferenced formal parameter
+     1>gxtabview.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+     1>gxtabview.cpp(41): warning C4018: '<' : signed/unsigned mismatch
+     1>gxtabview.cpp(114): warning C4018: '>=' : signed/unsigned mismatch
+     1>gxtabview.cpp(327): warning C4018: '<' : signed/unsigned mismatch
+     1>gxtabview.cpp(338): warning C4018: '<' : signed/unsigned mismatch
+     1>gxtabview.cpp(348): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
@@ -88,7 +41,9 @@
          vc_mswud\minimal\gxapplication.obj
          vc_mswud\minimal\gxcatalog.obj
          vc_mswud\minimal\gxcontentview.obj
+         vc_mswud\minimal\gxtabview.obj
          vc_mswud\minimal\gxtreeview.obj
+         vc_mswud\minimal\gxview.obj
          vc_mswud\minimal\statusbar.obj
          vc_mswud\minimal\config.obj
             Creating library vc_mswud\wxGISCat.lib and object vc_mswud\wxGISCat.exp
@@ -143,20 +98,58 @@
      1>commandbar.obj : error LNK2019: unresolved external symbol "public: void __thiscall wxAuiToolBar::SetToolBitmapSize(class wxSize const &)" (?SetToolBitmapSize@wxAuiToolBar@@QAEXABVwxSize@@@Z) referenced in function "public: virtual void __thiscall wxGISToolBar::Serialize(class IApplication *,class wxXmlNode *,bool)" (?Serialize@wxGISToolBar@@UAEXPAVIApplication@@PAVwxXmlNode@@_N@Z)
      1>commandbar.obj : error LNK2019: unresolved external symbol "public: class wxSize __thiscall wxAuiToolBar::GetToolBitmapSize(void)const " (?GetToolBitmapSize@wxAuiToolBar@@QBE?AVwxSize@@XZ) referenced in function "public: virtual void __thiscall wxGISToolBar::Serialize(class IApplication *,class wxXmlNode *,bool)" (?Serialize@wxGISToolBar@@UAEXPAVIApplication@@PAVwxXmlNode@@_N@Z)
      1>gxapplication.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxAuiManager::~wxAuiManager(void)" (??1wxAuiManager@@UAE@XZ) referenced in function __unwindfunclet$??0wxGxApplication@@QAE@PAVIGISConfig@@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z$0
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual __thiscall wxAuiManager::~wxAuiManager(void)" (??1wxAuiManager@@UAE@XZ)
+     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: bool __thiscall wxAuiManager::AddPane(class wxWindow *,class wxAuiPaneInfo const &)" (?AddPane@wxAuiManager@@QAE_NPAVwxWindow@@ABVwxAuiPaneInfo@@@Z) referenced in function "public: __thiscall wxGxApplication::wxGxApplication(class IGISConfig *,class wxWindow *,int,class wxString const &,class wxPoint const &,class wxSize const&,long)" (??0wxGxApplication@@QAE@PAVIGISConfig@@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z)
      1>gxapplication.obj : error LNK2019: unresolved external symbol "public: void __thiscall wxAuiManager::SetManagedWindow(class wxWindow *)" (?SetManagedWindow@wxAuiManager@@QAEXPAVwxWindow@@@Z) referenced in function "public: __thiscall wxGxApplication::wxGxApplication(class IGISConfig *,class wxWindow *,int,class wxString const &,class wxPoint const &,class wxSize const &,long)" (??0wxGxApplication@@QAE@PAVIGISConfig@@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z)
      1>gxapplication.obj : error LNK2019: unresolved external symbol "public: __thiscall wxAuiManager::wxAuiManager(class wxWindow *,unsigned int)" (??0wxAuiManager@@QAE@PAVwxWindow@@I@Z) referenced in function "public: __thiscall wxGxApplication::wxGxApplication(class IGISConfig *,class wxWindow *,int,class wxString const &,class wxPoint const &,class wxSize const &,long)" (??0wxGxApplication@@QAE@PAVIGISConfig@@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: __thiscall wxAuiManager::wxAuiManager(class wxWindow *,unsigned int)" (??0wxAuiManager@@QAE@PAVwxWindow@@I@Z)
+     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: __thiscall wxAuiPaneButtonArray::~wxAuiPaneButtonArray(void)" (??1wxAuiPaneButtonArray@@QAE@XZ) referenced in function __unwindfunclet$??0wxAuiPaneInfo@@QAE@XZ$0
+     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: bool __thiscall wxAuiPaneInfo::IsValid(void)const " (?IsValid@wxAuiPaneInfo@@QBE_NXZ) referenced in function "public: class wxAuiPaneInfo & __thiscall wxAuiPaneInfo::DefaultPane(void)" (?DefaultPane@wxAuiPaneInfo@@QAEAAV1@XZ)
+     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: class wxAuiPaneButtonArray & __thiscall wxAuiPaneButtonArray::operator=(class wxAuiPaneButtonArray const &)" (??4wxAuiPaneButtonArray@@QAEAAV0@ABV0@@Z) referenced in function "public: __thiscall wxAuiPaneInfo::wxAuiPaneInfo(class wxAuiPaneInfo const &)" (??0wxAuiPaneInfo@@QAE@ABV0@@Z)
      1>gxcatalog.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGxSelection::wxGxSelection(void)" (??0wxGxSelection@@QAE@XZ) referenced in function "public: __thiscall wxGxCatalog::wxGxCatalog(void)" (??0wxGxCatalog@@QAE@XZ)
      1>gxcatalog.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGxDiscConnection::wxGxDiscConnection(class wxString,class wxString,bool)" (??0wxGxDiscConnection@@QAE@VwxString@@0_N@Z) referenced in function "public: virtual void __thiscall wxGxCatalog::SerializeDiscConnections(class wxXmlNode *,bool)" (?SerializeDiscConnections@wxGxCatalog@@UAEXPAVwxXmlNode@@_N@Z)
-     1>gxtreeview.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxGxView::~wxGxView(void)" (??1wxGxView@@UAE@XZ) referenced in function "public: virtual __thiscall wxGxTreeView::~wxGxTreeView(void)" (??1wxGxTreeView@@UAE@XZ)
-     1>gxtreeview.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGxView::wxGxView(void)" (??0wxGxView@@QAE@XZ) referenced in function "public: __thiscall wxGxTreeView::wxGxTreeView(class wxWindow *,int)" (??0wxGxTreeView@@QAE@PAVwxWindow@@H@Z)
-     1>gxtreeview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxGxView::Applies(class IGxSelection *)" (?Applies@wxGxView@@UAE_NPAVIGxSelection@@@Z)
-     1>gxtreeview.obj : error LNK2001: unresolved external symbol "public: virtual class wxString __thiscall wxGxView::GetName(void)" (?GetName@wxGxView@@UAE?AVwxString@@XZ)
-     1>gxtreeview.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall wxGxView::Activate(class wxGxApplication *,class IGxCatalog *,class wxXmlNode *)" (?Activate@wxGxView@@UAE_NPAVwxGxApplication@@PAVIGxCatalog@@PAVwxXmlNode@@@Z) referenced in function "public: virtual bool __thiscall wxGxTreeView::Activate(class wxGxApplication *,class IGxCatalog *,class wxXmlNode *)" (?Activate@wxGxTreeView@@UAE_NPAVwxGxApplication@@PAVIGxCatalog@@PAVwxXmlNode@@@Z)
-     1>gxtreeview.obj : error LNK2019: unresolved external symbol "public: virtual void __thiscall wxGxView::Deactivate(void)" (?Deactivate@wxGxView@@UAEXXZ) referenced in function "public: virtual void __thiscall wxGxTreeView::Deactivate(void)" (?Deactivate@wxGxTreeView@@UAEXXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: static struct wxEventTable const wxAuiNotebook::sm_eventTable" (?sm_eventTable@wxAuiNotebook@@1UwxEventTable@@B)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxGxTab::~wxGxTab(void)" (??1wxGxTab@@UAE@XZ) referenced in function "public: virtual void * __thiscall wxGxTab::`scalar deleting destructor'(unsigned int)" (??_GwxGxTab@@UAEPAXI@Z)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxAuiNotebook::~wxAuiNotebook(void)" (??1wxAuiNotebook@@UAE@XZ) referenced in function "public: virtual __thiscall wxGxTabView::~wxGxTabView(void)" (??1wxGxTabView@@UAE@XZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual class wxClassInfo * __thiscall wxAuiNotebook::GetClassInfo(void)const " (?GetClassInfo@wxAuiNotebook@@UBEPAVwxClassInfo@@XZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall wxAuiNotebook::SetWindowStyleFlag(long)" (?SetWindowStyleFlag@wxAuiNotebook@@UAEXJ@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::SetFont(class wxFont const &)" (?SetFont@wxAuiNotebook@@UAE_NABVwxFont@@@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual void __thiscall wxAuiNotebook::DoThaw(void)" (?DoThaw@wxAuiNotebook@@MAEXXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual unsigned int __thiscall wxAuiNotebook::GetPageCount(void)const " (?GetPageCount@wxAuiNotebook@@UBEIXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual class wxWindow * __thiscall wxAuiNotebook::GetPage(unsigned int)const " (?GetPage@wxAuiNotebook@@UBEPAVwxWindow@@I@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall wxAuiNotebook::GetSelection(void)const " (?GetSelection@wxAuiNotebook@@UBEHXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::SetPageText(unsigned int,class wxString const &)" (?SetPageText@wxAuiNotebook@@UAE_NIABVwxString@@@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual class wxString __thiscall wxAuiNotebook::GetPageText(unsigned int)const " (?GetPageText@wxAuiNotebook@@UBE?AVwxString@@I@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall wxAuiNotebook::GetPageImage(unsigned int)const " (?GetPageImage@wxAuiNotebook@@UBEHI@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::SetPageImage(unsigned int,int)" (?SetPageImage@wxAuiNotebook@@UAE_NIH@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall wxAuiNotebook::SetPageSize(class wxSize const &)" (?SetPageSize@wxAuiNotebook@@UAEXABVwxSize@@@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::DeletePage(unsigned int)" (?DeletePage@wxAuiNotebook@@UAE_NI@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::RemovePage(unsigned int)" (?RemovePage@wxAuiNotebook@@UAE_NI@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::DeleteAllPages(void)" (?DeleteAllPages@wxAuiNotebook@@UAE_NXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::AddPage(class wxWindow *,class wxString const &,bool,int)" (?AddPage@wxAuiNotebook@@UAE_NPAVwxWindow@@ABVwxString@@_NH@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall wxAuiNotebook::InsertPage(unsigned int,class wxWindow *,class wxString const &,bool,int)" (?InsertPage@wxAuiNotebook@@UAE_NIPAVwxWindow@@ABVwxString@@_NH@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall wxAuiNotebook::SetSelection(unsigned int)" (?SetSelection@wxAuiNotebook@@UAEHI@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall wxAuiNotebook::ChangeSelection(unsigned int)" (?ChangeSelection@wxAuiNotebook@@UAEHI@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall wxAuiNotebook::HitTest(class wxPoint const &,long *)const " (?HitTest@wxAuiNotebook@@UBEHABVwxPoint@@PAJ@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall wxAuiNotebook::SetUniformBitmapSize(class wxSize const &)" (?SetUniformBitmapSize@wxAuiNotebook@@UAEXABVwxSize@@@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall wxAuiNotebook::SetTabCtrlHeight(int)" (?SetTabCtrlHeight@wxAuiNotebook@@UAEXH@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall wxAuiNotebook::Split(unsigned int,int)" (?Split@wxAuiNotebook@@UAEXIH@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual bool __thiscall wxAuiNotebook::UpdateTabCtrlHeight(void)" (?UpdateTabCtrlHeight@wxAuiNotebook@@MAE_NXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual int __thiscall wxAuiNotebook::CalculateTabCtrlHeight(void)" (?CalculateTabCtrlHeight@wxAuiNotebook@@MAEHXZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual class wxSize __thiscall wxAuiNotebook::CalculateNewSplitSize(void)" (?CalculateNewSplitSize@wxAuiNotebook@@MAE?AVwxSize@@XZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual int __thiscall wxAuiNotebook::DoModifySelection(unsigned int,bool)" (?DoModifySelection@wxAuiNotebook@@MAEHI_N@Z)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxAuiTabContainer::~wxAuiTabContainer(void)" (??1wxAuiTabContainer@@UAE@XZ) referenced in function __unwindfunclet$??0wxAuiNotebook@@QAE@PAVwxWindow@@HABVwxPoint@@ABVwxSize@@J@Z$0
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: bool __thiscall wxAuiNotebook::Create(class wxWindow *,int,class wxPoint const &,class wxSize const &,long)" (?Create@wxAuiNotebook@@QAE_NPAVwxWindow@@HABVwxPoint@@ABVwxSize@@J@Z) referenced in function "public: __thiscall wxAuiNotebook::wxAuiNotebook(class wxWindow *,int,class wxPoint const &,class wxSize const &,long)" (??0wxAuiNotebook@@QAE@PAVwxWindow@@HABVwxPoint@@ABVwxSize@@J@Z)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "protected: void __thiscall wxAuiNotebook::Init(void)" (?Init@wxAuiNotebook@@IAEXXZ) referenced in function "public: __thiscall wxAuiNotebook::wxAuiNotebook(class wxWindow *,int,class wxPoint const &,class wxSize const &,long)" (??0wxAuiNotebook@@QAE@PAVwxWindow@@HABVwxPoint@@ABVwxSize@@J@Z)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: __thiscall wxAuiTabContainer::wxAuiTabContainer(void)" (??0wxAuiTabContainer@@QAE@XZ) referenced in function "public: __thiscall wxAuiNotebook::wxAuiNotebook(class wxWindow *,int,class wxPoint const &,class wxSize const &,long)" (??0wxAuiNotebook@@QAE@PAVwxWindow@@HABVwxPoint@@ABVwxSize@@J@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual struct wxEventTable const * __thiscall wxAuiNotebook::GetEventTable(void)const " (?GetEventTable@wxAuiNotebook@@MBEPBUwxEventTable@@XZ)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "protected: virtual class wxEventHashTable & __thiscall wxAuiNotebook::GetEventHashTable(void)const " (?GetEventHashTable@wxAuiNotebook@@MBEAAVwxEventHashTable@@XZ)
+     1>gxtabview.obj : error LNK2019: unresolved external symbol "public: bool __thiscall wxAuiNotebook::AddPage(class wxWindow *,class wxString const &,bool,class wxBitmap const &)" (?AddPage@wxAuiNotebook@@QAE_NPAVwxWindow@@ABVwxString@@_NABVwxBitmap@@@Z) referenced in function "public: virtual bool __thiscall wxGxTabView::Activate(class wxGxApplication *,class IGxCatalog *,class wxXmlNode *)" (?Activate@wxGxTabView@@UAE_NPAVwxGxApplication@@PAVIGxCatalog@@PAVwxXmlNode@@@Z)
+     1>gxtabview.obj : error LNK2001: unresolved external symbol "class wxEventTypeTag<class wxAuiNotebookEvent> const wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED" (?wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED@@3V?$wxEventTypeTag@VwxAuiNotebookEvent@@@@B)
      1>statusbar.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGISAnimation::wxGISAnimation(class wxWindow *,int,class wxBitmap const &,int,class wxPoint const &,class wxSize const &,long,class wxString)" (??0wxGISAnimation@@QAE@PAVwxWindow@@HABVwxBitmap@@HABVwxPoint@@ABVwxSize@@JVwxString@@@Z) referenced in function "public: __thiscall wxGISStatusBar::wxGISStatusBar(class wxWindow *,int,long,class wxString const &,unsigned long)" (??0wxGISStatusBar@@QAE@PAVwxWindow@@HJABVwxString@@K@Z)
-     1>vc_mswud\wxGISCat.exe : fatal error LNK1120: 50 unresolved externals
+     1>vc_mswud\wxGISCat.exe : fatal error LNK1120: 86 unresolved externals
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:20.95
+Time Elapsed 00:00:22.04
