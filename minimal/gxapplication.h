@@ -18,9 +18,7 @@ public:
 	wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title,
 		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER);
 	virtual ~wxGxApplication(void);
-
-
-	
+	virtual IGxCatalog* GetCatalog(void);
 	virtual void SerializeFramePos(bool bSave = false);
 	virtual wxAuiManager*  GetAuiManager(void) {return & m_mgr;};
 	virtual void ShowPane(wxWindow* pWnd, bool bShow = true);
