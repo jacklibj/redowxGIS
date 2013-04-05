@@ -29,7 +29,7 @@ public:
 //
 	virtual wxStatusBar* OnCreateStatusBar(int number, long style, wxWindowID id, const wxString& name);
 	virtual void LoadCommands(wxXmlNode* pRootNode);
-	virtual void LoadMenus(wxXmlNode* pRootNode);
+	virtual void LoadMenues(wxXmlNode* pRootNode);
 	virtual void LoadToolbars(wxXmlNode* pRootNode);
 	virtual COMMANDBARARRAY* GetCommandBars(void);
 	virtual COMMANDARRAY* GetCommands(void);

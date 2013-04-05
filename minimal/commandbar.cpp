@@ -5,8 +5,8 @@
 // wxGISCommandBar
 //------------------------
 
-wxGISCommandBar::wxGISCommandBar(const wxString& sName = NONAME, 
-	const wxString& sCaption = _("No Caption"), wxGISEnumCommandBars type = enumGISCBNone)
+wxGISCommandBar::wxGISCommandBar(const wxString& sName, 
+	const wxString& sCaption, wxGISEnumCommandBars type)
 {
 	m_sName = sName;
 	m_sCaption = sCaption;
@@ -95,7 +95,7 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 				wxGISEnumCommandKind Kind = pCmd->GetKind();
 				switch(Kind)
 				{
-				case enumGISCommandSeperator:
+				case enumGISCommandSeparator:
 					pNewNode->AddProperty(wxT("type"), wxT("sep"));
 					break;
 				case enumGISCommandCheck:
@@ -110,8 +110,8 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 							wxClassInfo* pInfo = pObj->GetClassInfo();
 							wxString sClassName = pInfo->GetClassName();
 							pNewNode->AddProperty(wxT("cmd_name"), sClassName);
-							pNewNode->AddProperty(wxT("subtype"), wxString::Fromat(wxT("%u"), pCmd->GetSubType()));
-							pNewNode->AddProperty(wxT("name"), pCmd->getCaption());
+							pNewNode->AddProperty(wxT("subtype"), wxString::Format(wxT("%u"), pCmd->GetSubType()));
+							pNewNode->AddProperty(wxT("name"), pCmd->GetCaption());
 						}
 						break;
 					}
@@ -122,7 +122,7 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 						if(pCB)
 						{
 							pNewNode->AddProperty(wxT("cmd_name"), pCB->GetName());
-							pNewNode->AddProperty(wxT("name"), pCmd->getCaption());
+							pNewNode->AddProperty(wxT("name"), pCmd->GetCaption());
 						}
 						break;
 					}
@@ -201,7 +201,7 @@ void wxGISMenu::AddCommand(ICommand* pCmd)
 			if(pGISCommandBar)
 			{
 				pGISCommandBar->Reference();
-				SUBMENUDATA data = {AppendSubMenu(dynamic_cast<wxMenu*>(pCmd), pCmd->getCaption(), pCmd->GetMessage()), pGISCommandBar};
+				SUBMENUDATA data = {AppendSubMenu(dynamic_cast<wxMenu*>(pCmd), pCmd->GetCaption(), pCmd->GetMessage()), pGISCommandBar};
 				m_SubmenuArray.push_back(data);
 			}
 		}
@@ -210,7 +210,7 @@ void wxGISMenu::AddCommand(ICommand* pCmd)
 	case enumGISCommandRadio:
 	case enumGISCommandNormal:
 		{
-			wxMenuItem *item = new wxMenuItem(this, pCmd->GetID(), pCmd->GetMessage(), (wxItemKind)pCmd->GetKind());
+			wxMenuItem *item = new wxMenuItem(this, pCmd->GetID(),  pCmd->GetCaption(), pCmd->GetMessage(), (wxItemKind)pCmd->GetKind());
 			wxBitmap Bmp = pCmd->GetBitmap();
 			if(Bmp.IsOk())
 				item->SetBitmaps(Bmp);
@@ -337,7 +337,7 @@ void wxGISToolBar::AddCommand(ICommand* pCmd)
 			if(Bitmap.IsOk())
 				Bitmap = wxBitmap(default_16_xpm);
 
-			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->getCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), pCmd->GetMessage(), NULL);
+			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->GetCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), pCmd->GetMessage(), NULL);
 		}
 		break;
 	case enumGISCommandControl:
@@ -385,7 +385,7 @@ void wxGISToolBar::ReAddCommand(ICommand* pCmd)
 			if(!Bitmap.IsOk())
 				Bitmap = wxBitmap(default_16_xpm);
 
-			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->getCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), 
+			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->GetCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), 
 				pCmd->GetMessage(), NULL);
 		}
 		break;
@@ -490,7 +490,7 @@ void wxGISToolBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore)
 			append_items.Add(item);
 			item.SetKind(pCmd->GetKind());
 			item.SetId(pCmd->GetID());
-			item.SetLabel(pCmd->getCaption());
+			item.SetLabel(pCmd->GetCaption());
 			append_items.Add(item);
 		}
 		SetCustomOverflowItems(prepend_items, append_items);

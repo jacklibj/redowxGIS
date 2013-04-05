@@ -284,7 +284,7 @@ void wxGISApplication::SerializeFramePos(bool bSave)
 		{
 			pStatusBarNode = new wxXmlNode(pFrameXmlNode, wxXML_ELEMENT_NODE, wxT("statusbar"));
 		}
-		pStatusBarNode->AddProperty(wxT("shown"), IsStatusShown() == true ? wxT("t") : wxT("f"));
+		pStatusBarNode->AddProperty(wxT("shown"), IsStatusBarShown() == true ? wxT("t") : wxT("f"));
 	}
 	else
 	{
@@ -404,7 +404,172 @@ void wxGISApplication::SerializeCommandBars(bool bSave)
 		else
 			wxGISConfig::DeleteNodeChildren(pToolbarsNode);
 
+		for(size_t i = m_CommandBarArray.size(); i>0; i--)
+		{
+			//skip wxGISToolBarMenu
+			if(m_CommandBarArray[i-1]->GetName() == TOOLBARMENUNAME)
+				continue;
+			switch(m_CommandBarArray[i-1]->GetType())
+			{
+			case enumGISCBMenubar:
+			case enumGISCBContextmenu:
+			case enumGISCBSubMenu:
+				{
+					wxXmlNode* pNewNode = new wxXmlNode(pMenuesNode, wxXML_ELEMENT_NODE, wxString(wxT("menu")));
+					m_CommandBarArray[i-1]->Serialize(this, pNewNode, bSave);
+				}
+				break;
+			case enumGISCBToolbar:
+				{
+					wxXmlNode* pNewNode = new wxXmlNode(pToolbarsNode, wxXML_ELEMENT_NODE, wxString(wxT("toolbar")));
+					m_CommandBarArray[i-1]->Serialize(this, pNewNode, bSave);
+				}
+				break;
+			case enumGISCBNone:
+			default:
+				break;
+			}
 
+		}
+
+	}
+	else
+	{
+		//create wxGISToolBarMenu
+		wxGISToolBarMenu* pToolBarMenu = new wxGISToolBarMenu();
+		pToolBarMenu->OnCreate(this);
+		pToolBarMenu->Reference();
+		m_CommandBarArray.push_back(pToolBarMenu);
+		pToolBarMenu->Reference();
+		m_CommandArray.push_back(pToolBarMenu);
+
+		//
+		//
+		LoadMenues(pMenuesNode);
+		pMenuesNode = m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame/menues")));
+		LoadMenues(pMenuesNode);
+
+		//
+		LoadToolbars(pToolbarsNode);
+		pToolbarsNode = m_pConfig->GetConfigNode(enumGISHKLM, wxString(wxT("frame/toolbars")));
+		LoadToolbars(pToolbarsNode);
+
+		//////////////////////
+
+
+
+
+
+
+
+
+
+		pToolBarMenu->Update();
 	}
 }
 
+void wxGISApplication::ShowStatusBar(bool bShow)
+{
+	wxFrame::GetStatusBar()->Show(bShow);
+}
+
+bool wxGISApplication::IsStatusBarShown(void)
+{
+	return wxFrame::GetStatusBar()->IsShown();
+}
+void wxGISApplication::OnRightDown(wxMouseEvent& event)
+{
+	ShowToolBarMenu();
+	event.Skip();
+}
+
+void wxGISApplication::ShowToolBarMenu(void)
+{
+	wxGISToolBarMenu* pToolBarMenu = dynamic_cast<wxGISToolBarMenu*>(GetCommandBar(TOOLBARMENUNAME));
+	if(pToolBarMenu)
+		PopupMenu(pToolBarMenu);
+}
+
+void wxGISApplication::OnMouseDown(wxMouseEvent& event)
+{
+	if(m_CurrentTool)
+		m_CurrentTool->OnMouseDown(event);
+}
+
+void wxGISApplication::OnMouseUp(wxMouseEvent& event)
+{
+	if(m_CurrentTool)
+		m_CurrentTool->OnMouseUp(event);
+}
+
+void wxGISApplication::OnMouseDoubleClick(wxMouseEvent& event)
+{
+	if(m_CurrentTool)
+		m_CurrentTool->OnMouseDoubleClick(event);
+}
+
+void wxGISApplication::OnMouseMove(wxMouseEvent& event)
+{
+	if(m_CurrentTool)
+		m_CurrentTool->OnMouseMove(event);
+}
+
+void wxGISApplication::LoadMenues(wxXmlNode* pRootNode)
+{
+	if(pRootNode)
+	{
+		wxXmlNode *child = pRootNode->GetChildren();
+		while(child)
+		{
+			bool bAdd = true;
+			wxString sName =child->GetPropVal(wxT("name"), wxT(""));
+			for(size_t i = 0; i< m_CommandBarArray.size(); i++)
+			{
+				if(m_CommandBarArray[i]->GetName() == sName)
+				{
+					bAdd = false;
+					break;
+				}
+			}
+			if(bAdd)
+			{
+				wxString sCaption = child->GetPropVal(wxT("caption"), wxT("No Title"));
+				wxGISMenu* pMenu = new wxGISMenu(sName, sCaption, enumGISCBContextmenu);//
+				pMenu->Serialize(this, child, false);
+				m_CommandBarArray.push_back(pMenu);
+			}
+			child = child->GetNext();
+		}
+	}
+}
+
+void wxGISApplication::LoadToolbars(wxXmlNode* pRootNode)
+{
+	if(pRootNode)
+	{
+		wxXmlNode *child = pRootNode->GetChildren();
+		while(child)
+		{
+			bool bAdd = true;
+			wxString sName = child->GetPropVal(wxT("name"), wxT(""));
+			for(size_t i =0; i< m_CommandBarArray.size(); i++)
+			{
+				if(m_CommandBarArray[i]->GetName() == sName)
+				{
+					bAdd = false;
+					break;
+				}
+			}
+			if(bAdd)
+			{
+				wxString sCaption = child->GetPropVal(wxT("caption"), wxT("No Title"));
+				wxGISToolBar* pTB = new wxGISToolBar(this, wxID_ANY, wxDefaultPosition,
+					wxDefaultSize, wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW, sName, sCaption, enumGISCBToolbar);
+				pTB->Serialize(this, child, false);
+				pTB->Reference();
+				m_CommandBarArray.push_back(pTB);
+			}
+			child = child->GetNext();
+		}
+	}
+}
