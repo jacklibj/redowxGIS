@@ -124,5 +124,14 @@
     <ClCompile Include="gxview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="accelerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menubar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbarmenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

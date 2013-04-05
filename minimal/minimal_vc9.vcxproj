@@ -195,7 +195,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxbase29ud_xml.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;gdal_i.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw29ud_core.lib;wxbase29ud.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;gdal_i.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>vc_mswud\wxGISCat.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib;C:\Users\jack\dev\gdal\gdal\ogr;C:\Users\jack\dev\gdal\gdal;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -504,6 +504,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="accelerator.cpp" />
     <ClCompile Include="application.cpp" />
     <ClCompile Include="catalogapp.cpp" />
     <ClCompile Include="catalogframe.cpp" />
@@ -514,7 +515,9 @@
     <ClCompile Include="gxtabview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />
     <ClCompile Include="gxview.cpp" />
+    <ClCompile Include="menubar.cpp" />
     <ClCompile Include="statusbar.cpp" />
+    <ClCompile Include="toolbarmenu.cpp" />
     <ClCompile Include="wxgis\framework\config.cpp" />
   </ItemGroup>
   <ItemGroup>
