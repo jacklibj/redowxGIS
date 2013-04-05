@@ -65,12 +65,24 @@
     <ClInclude Include="statusbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="customizedlg.h" />
-    <ClInclude Include="gxcatalog.h" />
-    <ClInclude Include="gxselection.h" />
-    <ClInclude Include="toolbarmenu.h" />
-    <ClInclude Include="gxfolder.h" />
-    <ClInclude Include="gxdiscconnection.h" />
+    <ClInclude Include="customizedlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxcatalog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxdiscconnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxfolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxselection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbarmenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
