@@ -1,0 +1,6 @@
+#include "customizedlg.h"
+#include "keycodedlg.h"
+#include "createdbdlg.h"
+#include "addcommanddlg.h"
+#include "wx\accel.h"
+#include "wx\utils.h"

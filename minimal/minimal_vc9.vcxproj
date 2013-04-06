@@ -527,6 +527,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accelerator.h" />
+    <ClInclude Include="addcommanddlg.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="catalog.h" />
@@ -534,6 +535,7 @@
     <ClInclude Include="catalogframe.h" />
     <ClInclude Include="catalogui.h" />
     <ClInclude Include="commandbar.h" />
+    <ClInclude Include="createdbdlg.h" />
     <ClInclude Include="customizedlg.h" />
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
@@ -544,6 +546,7 @@
     <ClInclude Include="gxtabview.h" />
     <ClInclude Include="gxtreeview.h" />
     <ClInclude Include="gxview.h" />
+    <ClInclude Include="keycodedlg.h" />
     <ClInclude Include="menubar.h" />
     <ClInclude Include="statusbar.h" />
     <ClInclude Include="toolbarmenu.h" />
