@@ -9,8 +9,7 @@ class wxGISToolBarMenu :
 	public ICommand
 {
 public:
-	wxGISToolBarMenu(const wxString& sName = TOOLBARMENUNAME, const wxString& sCaption = _("Toolbars"), 
-		wxGISEnumCommandBars type = enumGISCBContextmenu, const wxString& title = _(""), long style = 0 );
+	wxGISToolBarMenu(const wxString& sName = TOOLBARMENUNAME, const wxString& sCaption = _("Toolbars"), wxGISEnumCommandBars type = enumGISCBContextmenu, const wxString& title = _(""), long style = 0 );
 	~wxGISToolBarMenu(void);
 	//wxGISMenu
 	virtual void AddCommand(ICommand* pCmd) {};

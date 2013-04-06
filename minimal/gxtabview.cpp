@@ -268,6 +268,18 @@ bool wxGxTab::Show(bool bShow)
 		m_pCurrentWnd->Show(bShow);
 	return wxWindow::Show(bShow);
 }
+
+wxGxTab::~wxGxTab(void)
+{
+	for(size_t i = 0; i < m_pWindows.size(); i++)
+	{
+		wxGxView* pView = dynamic_cast<wxGxView*>(m_pWindows[i]);
+		if(pView != NULL)
+			pView->Deactivate();
+		wxDELETE(m_pWindows[i]);
+	}
+}
+
 //------
 // wxGxTabView
 //------

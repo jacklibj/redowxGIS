@@ -133,5 +133,17 @@
     <ClCompile Include="toolbarmenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="customizedlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxdisconnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxselection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

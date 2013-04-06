@@ -505,13 +505,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="accelerator.cpp" />
+    <ClCompile Include="animation.cpp" />
     <ClCompile Include="application.cpp" />
     <ClCompile Include="catalogapp.cpp" />
     <ClCompile Include="catalogframe.cpp" />
     <ClCompile Include="commandbar.cpp" />
+    <ClCompile Include="customizedlg.cpp" />
     <ClCompile Include="gxapplication.cpp" />
     <ClCompile Include="gxcatalog.cpp" />
     <ClCompile Include="gxcontentview.cpp" />
+    <ClCompile Include="gxdisconnection.cpp" />
+    <ClCompile Include="gxselection.cpp" />
     <ClCompile Include="gxtabview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />
     <ClCompile Include="gxview.cpp" />

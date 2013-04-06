@@ -16,7 +16,7 @@ public:
 	virtual void Store(void);
 protected:
 	int GetKeyCode(wxString sKeyCode);
-	WXWORD GetFlags(wxString sFlags);
+	WXDWORD GetFlags(wxString sFlags);
 private:
 	std::vector<wxAcceleratorEntry> m_AccelEntryArray;
 	bool bHasChanges;

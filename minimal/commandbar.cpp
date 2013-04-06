@@ -32,6 +32,11 @@ void wxGISCommandBar::SetCaption(const wxString& sCaption)
 	m_sCaption = sCaption;
 }
 
+wxString wxGISCommandBar::GetCaption(void)
+{
+	return m_sCaption;
+}
+
 void wxGISCommandBar::SetType(wxGISEnumCommandBars type)
 {
 	m_type = type;
