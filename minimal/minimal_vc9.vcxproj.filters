@@ -145,5 +145,8 @@
     <ClCompile Include="gxselection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gxfolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

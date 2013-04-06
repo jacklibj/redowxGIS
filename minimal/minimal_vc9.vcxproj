@@ -515,6 +515,7 @@
     <ClCompile Include="gxcatalog.cpp" />
     <ClCompile Include="gxcontentview.cpp" />
     <ClCompile Include="gxdisconnection.cpp" />
+    <ClCompile Include="gxfolder.cpp" />
     <ClCompile Include="gxselection.cpp" />
     <ClCompile Include="gxtabview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />

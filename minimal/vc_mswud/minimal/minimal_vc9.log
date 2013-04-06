@@ -1,45 +1,20 @@
-﻿Build started 2013/4/6 12:00:25.
+﻿Build started 2013/4/6 14:07:14.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt animation.cpp customizedlg.cpp gxdisconnection.cpp gxtabview.cpp toolbarmenu.cpp /MP 
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt animation.cpp /MP 
          animation.cpp
-         customizedlg.cpp
-         gxdisconnection.cpp
-         gxtabview.cpp
-         toolbarmenu.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(15): warning C4100: 'pCmd' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(16): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(17): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\toolbarmenu.h(18): warning C4100: 'nIndex' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
-     1>gxtabview.cpp(16): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxtabview.cpp(17): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxtabview.cpp(22): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxtabview.cpp(23): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxtabview.cpp(24): warning C4996: 'wxXmlNode::GetPropVal': was declared deprecated
-                 C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\wx/xml/xml.h(183) : see declaration of 'wxXmlNode::GetPropVal'
-     1>gxtabview.cpp(40): warning C4018: '<' : signed/unsigned mismatch
-     1>gxtabview.cpp(41): warning C4018: '<' : signed/unsigned mismatch
-     1>gxtabview.cpp(114): warning C4018: '>=' : signed/unsigned mismatch
-     1>gxtabview.cpp(339): warning C4018: '<' : signed/unsigned mismatch
-     1>gxtabview.cpp(350): warning C4018: '<' : signed/unsigned mismatch
-     1>gxtabview.cpp(360): warning C4018: '<' : signed/unsigned mismatch
+     1>animation.cpp(9): warning C4100: 'style' : unreferenced formal parameter
+     1>animation.cpp(9): warning C4100: 'size' : unreferenced formal parameter
+     1>animation.cpp(9): warning C4100: 'pos' : unreferenced formal parameter
+     1>animation.cpp(9): warning C4100: 'id' : unreferenced formal parameter
+     1>animation.cpp(9): warning C4100: 'parent' : unreferenced formal parameter
+     1>animation.cpp(27): warning C4100: 'event' : unreferenced formal parameter
+     1>animation.cpp(42): warning C4100: 'event' : unreferenced formal parameter
+     1>animation.cpp(47): warning C4100: 'event' : unreferenced formal parameter
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
@@ -58,6 +33,8 @@
          vc_mswud\minimal\gxcatalog.obj
          vc_mswud\minimal\gxcontentview.obj
          vc_mswud\minimal\gxdisconnection.obj
+         vc_mswud\minimal\gxfolder.obj
+         vc_mswud\minimal\gxselection.obj
          vc_mswud\minimal\gxtabview.obj
          vc_mswud\minimal\gxtreeview.obj
          vc_mswud\minimal\gxview.obj
@@ -68,12 +45,9 @@
             Creating library vc_mswud\wxGISCat.lib and object vc_mswud\wxGISCat.exp
      1>gxapplication.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxGISCustomizeDlg::~wxGISCustomizeDlg(void)" (??1wxGISCustomizeDlg@@UAE@XZ) referenced in function "public: virtual void __thiscall wxGxApplication::Customize(void)" (?Customize@wxGxApplication@@UAEXXZ)
      1>gxapplication.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGISCustomizeDlg::wxGISCustomizeDlg(class wxWindow *,int,class wxString const &,class wxPoint const &,class wxSize const &,long)" (??0wxGISCustomizeDlg@@QAE@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z) referenced in function "public: virtual void __thiscall wxGxApplication::Customize(void)" (?Customize@wxGxApplication@@UAEXXZ)
-     1>gxcatalog.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGxSelection::wxGxSelection(void)" (??0wxGxSelection@@QAE@XZ) referenced in function "public: __thiscall wxGxCatalog::wxGxCatalog(void)" (??0wxGxCatalog@@QAE@XZ)
-     1>gxcatalog.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGxDiscConnection::wxGxDiscConnection(class wxString,class wxString,bool)" (??0wxGxDiscConnection@@QAE@VwxString@@0_N@Z) referenced in function "public: virtual void __thiscall wxGxCatalog::SerializeDiscConnections(class wxXmlNode *,bool)" (?SerializeDiscConnections@wxGxCatalog@@UAEXPAVwxXmlNode@@_N@Z)
-     1>statusbar.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGISAnimation::wxGISAnimation(class wxWindow *,int,class wxBitmap const &,int,class wxPoint const &,class wxSize const &,long,class wxString)" (??0wxGISAnimation@@QAE@PAVwxWindow@@HABVwxBitmap@@HABVwxPoint@@ABVwxSize@@JVwxString@@@Z) referenced in function "public: __thiscall wxGISStatusBar::wxGISStatusBar(class wxWindow *,int,long,class wxString const &,unsigned long)" (??0wxGISStatusBar@@QAE@PAVwxWindow@@HJABVwxString@@K@Z)
-     1>vc_mswud\wxGISCat.exe : fatal error LNK1120: 5 unresolved externals
+     1>vc_mswud\wxGISCat.exe : fatal error LNK1120: 2 unresolved externals
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:17.68
+Time Elapsed 00:00:12.77

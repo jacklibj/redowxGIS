@@ -10,6 +10,7 @@ class WXDLLIMPEXP_GIS_CLT wxGxFolder :
 {
 public:
 	wxGxFolder(wxString path, wxString Name, bool bShowHidden);
+	virtual ~wxGxFolder(void);
 	virtual void Detach(void);
 	virtual wxString GetName(void){return m_sName;};
 	virtual wxString GetPath(void){return m_sPath;};
