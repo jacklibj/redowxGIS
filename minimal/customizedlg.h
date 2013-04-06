@@ -52,8 +52,7 @@ protected:
 	int m_nContextMenuPos, m_nMenubarPos, m_nToolbarPos;
 
 public:
-	wxGISToolBarPanel(wxGxApplication* pGxApp, wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, 
-		const wxSize& size = wxSize( 540,400 ), long style = wxTAB_TRAVERSAL );
+	wxGISToolBarPanel(wxGxApplication* pGxApp, wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 540,400 ), long style = wxTAB_TRAVERSAL );
 	~wxGISToolBarPanel();
 	void m_splitter1OnIdle( wxIdleEvent& )
 	{
@@ -110,10 +109,8 @@ protected:
 	int m_CurSelection;
 
 public:
-	wxGISCommandPanel( wxGxApplication* pGxApp, wxWindow* parent,wxWindowID id = wxID_ANY,
-		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 540, 400), long style = wxTAB_TRAVERSAL );
+	wxGISCommandPanel( wxGxApplication* pGxApp, wxWindow* parent,wxWindowID id = wxID_ANY,const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 540, 400), long style = wxTAB_TRAVERSAL );
 	~wxGISCommandPanel();
-
 	void m_splitter2OnIdle( wxIdleEvent& )
 	{
 	m_splitter2->SetSashPosition( 150 );
@@ -144,8 +141,7 @@ protected:
 	wxGxApplication* m_pGxApp;
 
 public:
-	wxGISCustomizeDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("CUstomize"),
-		const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 540, 400), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+	wxGISCustomizeDlg( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("CUstomize"),const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 540, 400), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
 	~wxGISCustomizeDlg();
 
 };

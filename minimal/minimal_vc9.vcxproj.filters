@@ -86,9 +86,15 @@
     <ClInclude Include="viewsfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="keycodedlg.h" />
-    <ClInclude Include="createdbdlg.h" />
-    <ClInclude Include="addcommanddlg.h" />
+    <ClInclude Include="addcommanddlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="createdbdlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keycodedlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">

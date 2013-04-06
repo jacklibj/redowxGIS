@@ -1,4 +1,4 @@
-﻿Build started 2013/4/6 14:19:00.
+﻿Build started 2013/4/6 22:30:36.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
@@ -31,39 +31,29 @@
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
                  c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
      1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
-       ManifestResourceCompile:
-         All outputs are up-to-date.
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"vc_mswud\wxGISCat.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib" /LIBPATH:C:\Users\jack\dev\gdal\gdal\ogr /LIBPATH:C:\Users\jack\dev\gdal\gdal wxmsw29ud_core.lib wxbase29ud.lib wxbase29ud_xml.lib wxmsw29ud_aui.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib gdal_i.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"vc_mswud\minimal\wxGISCat.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"vc_mswud\minimal.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"vc_mswud\wxGISCat.lib" /MACHINE:X86 vc_mswud\minimal\wxGISCat.exe.embed.manifest.res
-         vc_mswud\minimal\accelerator.obj
-         vc_mswud\minimal\animation.obj
-         vc_mswud\minimal\application.obj
-         vc_mswud\minimal\catalogapp.obj
-         vc_mswud\minimal\catalogframe.obj
-         vc_mswud\minimal\commandbar.obj
-         vc_mswud\minimal\customizedlg.obj
-         vc_mswud\minimal\gxapplication.obj
-         vc_mswud\minimal\gxcatalog.obj
-         vc_mswud\minimal\gxcontentview.obj
-         vc_mswud\minimal\gxdisconnection.obj
-         vc_mswud\minimal\gxfolder.obj
-         vc_mswud\minimal\gxselection.obj
-         vc_mswud\minimal\gxtabview.obj
-         vc_mswud\minimal\gxtreeview.obj
-         vc_mswud\minimal\gxview.obj
-         vc_mswud\minimal\menubar.obj
-         vc_mswud\minimal\statusbar.obj
-         vc_mswud\minimal\toolbarmenu.obj
-         vc_mswud\minimal\config.obj
-            Creating library vc_mswud\wxGISCat.lib and object vc_mswud\wxGISCat.exp
-     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall wxGISCustomizeDlg::~wxGISCustomizeDlg(void)" (??1wxGISCustomizeDlg@@UAE@XZ) referenced in function "public: virtual void __thiscall wxGxApplication::Customize(void)" (?Customize@wxGxApplication@@UAEXXZ)
-     1>gxapplication.obj : error LNK2019: unresolved external symbol "public: __thiscall wxGISCustomizeDlg::wxGISCustomizeDlg(class wxWindow *,int,class wxString const &,class wxPoint const &,class wxSize const &,long)" (??0wxGISCustomizeDlg@@QAE@PAVwxWindow@@HABVwxString@@ABVwxPoint@@ABVwxSize@@J@Z) referenced in function "public: virtual void __thiscall wxGxApplication::Customize(void)" (?Customize@wxGxApplication@@UAEXXZ)
-     1>vc_mswud\wxGISCat.exe : fatal error LNK1120: 2 unresolved externals
+     1>customizedlg.cpp(190): warning C4100: 'event' : unreferenced formal parameter
+     1>customizedlg.cpp(228): warning C4100: 'event' : unreferenced formal parameter
+     1>customizedlg.cpp(251): warning C4018: '<' : signed/unsigned mismatch
+     1>customizedlg.cpp(261): warning C4100: 'event' : unreferenced formal parameter
+     1>customizedlg.cpp(371): warning C4100: 'event' : unreferenced formal parameter
+     1>customizedlg.cpp(452): warning C4100: 'event' : unreferenced formal parameter
+     1>customizedlg.cpp(464): error C2065: 'wxGISAddCommandDlg' : undeclared identifier
+     1>customizedlg.cpp(464): error C2146: syntax error : missing ';' before identifier 'dlg'
+     1>customizedlg.cpp(464): error C3861: 'dlg': identifier not found
+     1>customizedlg.cpp(465): error C2065: 'dlg' : undeclared identifier
+     1>customizedlg.cpp(465): error C2228: left of '.ShowModal' must have class/struct/union
+                 type is ''unknown-type''
+     1>customizedlg.cpp(467): error C2065: 'dlg' : undeclared identifier
+     1>customizedlg.cpp(467): error C2228: left of '.m_IDArray' must have class/struct/union
+                 type is ''unknown-type''
+     1>customizedlg.cpp(467): error C2228: left of '.size' must have class/struct/union
+     1>customizedlg.cpp(470): warning C4018: '>=' : signed/unsigned mismatch
+     1>customizedlg.cpp(473): error C2065: 'dlg' : undeclared identifier
+     1>customizedlg.cpp(473): error C2228: left of '.m_IDArray' must have class/struct/union
+                 type is ''unknown-type''
+     1>customizedlg.cpp(733): warning C4018: '<' : signed/unsigned mismatch
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:14.00
+Time Elapsed 00:00:20.18
