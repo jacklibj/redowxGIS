@@ -1,59 +1,54 @@
-﻿Build started 2013/4/6 22:30:36.
+﻿Build started 2013/4/7 21:29:29.
      1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt customizedlg.cpp /MP 
-         customizedlg.cpp
-     1>C:\Users\jack\dev\gdal\gdal\port\cpl_string.h(225): warning C4251: 'std::_String_val<_Elem,_Alloc>::_Alval' : class 'std::allocator<_Ty>' needs to have dll-interface to be used by clients of class 'std::_String_val<_Elem,_Alloc>'
-                 with
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-                 and
-                 [
-                     _Ty=char
-                 ]
-                 and
-                 [
-                     _Elem=char,
-                     _Alloc=std::allocator<char>
-                 ]
-     1>C:\Users\jack\dev\gdal\gdal\gcore\gdal_priv.h(436): warning C4251: 'GDALColorTable::aoEntries' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'GDALColorTable'
-                 with
-                 [
-                     _Ty=GDALColorEntry
-                 ]
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I.\..\..\samples /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt keycodedlg.cpp /MP 
+         keycodedlg.cpp
      1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(153): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
-     1>c:\users\jack\documents\github\redowxgis\minimal\datasource.h(83): warning C4100: 'dfMaxX' : unreferenced formal parameter
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(6): warning C4005: 'APP_NAME' : macro redefinition
-                 c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(76) : see previous definition of 'APP_NAME'
-     1>c:\users\jack\documents\github\redowxgis\minimal\catalog.h(189): warning C4100: 'parent' : unreferenced formal parameter
-     1>customizedlg.cpp(190): warning C4100: 'event' : unreferenced formal parameter
-     1>customizedlg.cpp(228): warning C4100: 'event' : unreferenced formal parameter
-     1>customizedlg.cpp(251): warning C4018: '<' : signed/unsigned mismatch
-     1>customizedlg.cpp(261): warning C4100: 'event' : unreferenced formal parameter
-     1>customizedlg.cpp(371): warning C4100: 'event' : unreferenced formal parameter
-     1>customizedlg.cpp(452): warning C4100: 'event' : unreferenced formal parameter
-     1>customizedlg.cpp(464): error C2065: 'wxGISAddCommandDlg' : undeclared identifier
-     1>customizedlg.cpp(464): error C2146: syntax error : missing ';' before identifier 'dlg'
-     1>customizedlg.cpp(464): error C3861: 'dlg': identifier not found
-     1>customizedlg.cpp(465): error C2065: 'dlg' : undeclared identifier
-     1>customizedlg.cpp(465): error C2228: left of '.ShowModal' must have class/struct/union
-                 type is ''unknown-type''
-     1>customizedlg.cpp(467): error C2065: 'dlg' : undeclared identifier
-     1>customizedlg.cpp(467): error C2228: left of '.m_IDArray' must have class/struct/union
-                 type is ''unknown-type''
-     1>customizedlg.cpp(467): error C2228: left of '.size' must have class/struct/union
-     1>customizedlg.cpp(470): warning C4018: '>=' : signed/unsigned mismatch
-     1>customizedlg.cpp(473): error C2065: 'dlg' : undeclared identifier
-     1>customizedlg.cpp(473): error C2228: left of '.m_IDArray' must have class/struct/union
-                 type is ''unknown-type''
-     1>customizedlg.cpp(733): warning C4018: '<' : signed/unsigned mismatch
-     1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)) -- FAILED.
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis/framework/framework.h(108): warning C4018: '<=' : signed/unsigned mismatch
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(90): warning C4505: 'DoubleToString' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(115): warning C4505: 'StringToDouble' : unreferenced local function has been removed
+     1>c:\users\jack\documents\github\redowxgis\minimal\wxgis\framework\base.h(146): warning C4505: 'NumberScale' : unreferenced local function has been removed
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"vc_mswud\wxGISCat.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib" /LIBPATH:C:\Users\jack\dev\gdal\gdal\ogr /LIBPATH:C:\Users\jack\dev\gdal\gdal wxmsw29ud_core.lib wxbase29ud.lib wxbase29ud_xml.lib wxmsw29ud_aui.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib wininet.lib gdal_i.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"vc_mswud\minimal\wxGISCat.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"vc_mswud\minimal.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"vc_mswud\wxGISCat.lib" /MACHINE:X86 vc_mswud\minimal\wxGISCat.exe.embed.manifest.res
+         vc_mswud\minimal\accelerator.obj
+         vc_mswud\minimal\addcommanddlg.obj
+         vc_mswud\minimal\animation.obj
+         vc_mswud\minimal\application.obj
+         vc_mswud\minimal\catalogapp.obj
+         vc_mswud\minimal\catalogframe.obj
+         vc_mswud\minimal\commandbar.obj
+         vc_mswud\minimal\createcbdlg.obj
+         vc_mswud\minimal\customizedlg.obj
+         vc_mswud\minimal\gxapplication.obj
+         vc_mswud\minimal\gxcatalog.obj
+         vc_mswud\minimal\gxcontentview.obj
+         vc_mswud\minimal\gxdisconnection.obj
+         vc_mswud\minimal\gxfolder.obj
+         vc_mswud\minimal\gxselection.obj
+         vc_mswud\minimal\gxtabview.obj
+         vc_mswud\minimal\gxtreeview.obj
+         vc_mswud\minimal\gxview.obj
+         vc_mswud\minimal\keycodedlg.obj
+         vc_mswud\minimal\menubar.obj
+         vc_mswud\minimal\statusbar.obj
+         vc_mswud\minimal\toolbarmenu.obj
+         vc_mswud\minimal\config.obj
+            Creating library vc_mswud\wxGISCat.lib and object vc_mswud\wxGISCat.exp
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"vc_mswud\minimal\wxGISCat.exe.embed.manifest" /manifest vc_mswud\minimal\wxGISCat.exe.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         minimal_vc9.vcxproj -> C:\Users\jack\Documents\GitHub\redowxGIS\minimal\vc_mswud\wxGISCat.exe
+       FinalizeBuildStatus:
+         Deleting file "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
+         Touching "vc_mswud\minimal\wxGISCat.lastbuildstate".
+     1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\minimal\minimal_vc9.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:20.18
+Time Elapsed 00:00:21.88

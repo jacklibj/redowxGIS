@@ -34,6 +34,8 @@ protected:
 	wxChoice* m_choice1;
 	wxStaticText* m_staticText41;
 	wxCheckBox* m_checkLeftD;
+	wxStaticText* m_staticText51;
+	wxCheckBox* m_checkRightD;
 	wxStdDialogButtonSizer* m_sdbSizer1;
 	wxButton* m_sdbSizer1OK;
 	wxButton* m_sdbSizer1Cancel;

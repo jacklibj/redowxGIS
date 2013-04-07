@@ -157,5 +157,14 @@
     <ClCompile Include="gxfolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="addcommanddlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="createcbdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keycodedlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
