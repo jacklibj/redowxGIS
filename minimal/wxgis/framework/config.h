@@ -28,7 +28,7 @@ public:
 	typedef struct wxxmlconfnode
 	{
 		wxXmlNode* pXmlNode;
-		wxString sXmlpath;
+		wxString sXmlPath;
 		wxGISEnumConfigKey Key;
 	}WXXMLCONFNODE;
 

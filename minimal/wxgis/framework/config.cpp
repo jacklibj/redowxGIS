@@ -27,7 +27,7 @@ wxGISConfig::wxGISConfig(wxString sAppName, wxString sConfigDir, bool bPortable)
 		if(!wxDirExists(m_sUserConfigDir))
 			wxFileName::Mkdir(m_sUserConfigDir, 0755, wxPATH_MKDIR_FULL);
 		if(!wxDirExists(m_sSysConfigDir))
-			wxFileName::Mkdir(m_sSysConfigDir, 0755, wxPATH_MKDIR_FULL);
+			wxFileName::Mkdir(m_sSysConfigDir, 0775, wxPATH_MKDIR_FULL);
 
 	}
 }
@@ -53,7 +53,7 @@ wxXmlNode* wxGISConfig::GetConfigNode(wxGISEnumConfigKey Key, wxString sPath)
 	//
 	for(size_t i =0; i< m_confignodes_arr.size(); i++)
 	{
-		if(m_confignodes_arr[i].sXmlpath == sPath && m_confignodes_arr[i].Key == Key )
+		if(m_confignodes_arr[i].sXmlPath == sPath && m_confignodes_arr[i].Key == Key )
 		{
 			return m_confignodes_arr[i].pXmlNode;
 		}
@@ -85,7 +85,7 @@ wxXmlNode* wxGISConfig::GetConfigNode(wxGISEnumConfigKey Key, wxString sPath)
 
 				if(!wxDirExists(sys_dir))
 				{
-					wxFileName::Mkdir(sys_dir, 0755,wxPATH_MKDIR_FULL);
+					wxFileName::Mkdir(sys_dir, 0775,wxPATH_MKDIR_FULL);
 				}
 				sXMLDocPath = sys_path;
 				break;
@@ -116,8 +116,8 @@ wxXmlNode* wxGISConfig::GetConfigNode(wxGISEnumConfigKey Key, wxString sPath)
 		{
 			if(Key == enumGISHKLM)
 			{
-				wxString sPath = m_sExeDirPath + wxFileName::GetPathSeparator() + sRootNodeName + wxT("xml");
-				pDoc = new wxXmlDocument(sPath);
+				wxString sPath = m_sExeDirPath + wxFileName::GetPathSeparator() + wxT("config")  + wxFileName::GetPathSeparator() + sRootNodeName+ wxT(".xml");
+				pDoc = new wxXmlDocument(sPath); //ДэГідкет?
 			}
 
 			if(!pDoc)
@@ -190,7 +190,7 @@ wxXmlNode* wxGISConfig::CreateConfigNode(wxGISEnumConfigKey Key, wxString sPath,
 		}
 	}
 
-	if(pDoc)
+	if(!pDoc)
 		return NULL;
 
 	wxXmlNode* pRoot(NULL);

@@ -174,7 +174,7 @@ bool wxGISCatalogApp::OnInit()
 		m_pszOldLocale = NULL;
 
 	//setup sys dir
-	wxString sSysDir = m_pConfig->GetSysDir();
+	wxString sSysDir = m_pConfig->GetSysDir(); //ДэГідкет
 	if(!wxDirExists(sSysDir))
 	{
 		wxLogError(wxString::Format(_T("wxGISaCatalogApp: System dir is absent! Lookup path '%s'"), sSysDir.c_str()));
