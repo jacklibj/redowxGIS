@@ -95,6 +95,10 @@
     <ClInclude Include="keycodedlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gxshapefactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxdataset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
@@ -164,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="keycodedlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gxshapefactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

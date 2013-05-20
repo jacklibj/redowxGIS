@@ -21,7 +21,7 @@ enum wxGISEnumShapefileDatasetType
 	enumMapinfoTablefile =2
 };
 
-enum wxGISEnumRasterType
+enum wxGISEnumRasterDatasetType
 {
 	enumRasterUnknow = 0
 };

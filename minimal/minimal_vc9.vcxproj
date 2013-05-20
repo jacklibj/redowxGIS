@@ -519,6 +519,7 @@
     <ClCompile Include="gxdisconnection.cpp" />
     <ClCompile Include="gxfolder.cpp" />
     <ClCompile Include="gxselection.cpp" />
+    <ClCompile Include="gxshapefactory.cpp" />
     <ClCompile Include="gxtabview.cpp" />
     <ClCompile Include="gxtreeview.cpp" />
     <ClCompile Include="gxview.cpp" />
@@ -543,9 +544,11 @@
     <ClInclude Include="datasource.h" />
     <ClInclude Include="gxapplication.h" />
     <ClInclude Include="gxcatalog.h" />
+    <ClInclude Include="gxdataset.h" />
     <ClInclude Include="gxdiscconnection.h" />
     <ClInclude Include="gxfolder.h" />
     <ClInclude Include="gxselection.h" />
+    <ClInclude Include="gxshapefactory.h" />
     <ClInclude Include="gxtabview.h" />
     <ClInclude Include="gxtreeview.h" />
     <ClInclude Include="gxview.h" />
