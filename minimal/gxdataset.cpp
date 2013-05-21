@@ -1,0 +1,5 @@
+#include "gxdataset.h"
+#include "art/shape_icon16.xpm"
+#include "art/shape_icon48.xpm"
+#include "featuredataset.h"
+#include "rasterdataset.h"

@@ -84,7 +84,7 @@ class WXDLLIMPEXP_GIS_CLT wxGxRasterDataset :
 	public IGxDataset
 {
 public:
-	wxGxRasterDataset(wxString Path, wxString Name, wxGISEnumRasterType Type);
+	wxGxRasterDataset(wxString Path, wxString Name, wxGISEnumRasterDatasetType Type);
 	virtual ~wxGxRasterDataset(void);
 	//IGxObject
 	virtual wxString GetName(void){return m_sName;};
