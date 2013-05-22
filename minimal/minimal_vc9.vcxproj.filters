@@ -98,12 +98,24 @@
     <ClInclude Include="gxshapefactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gxdataset.h" />
-    <ClInclude Include="featuredataset.h" />
-    <ClInclude Include="rasterdataset.h" />
-    <ClInclude Include="carto.h" />
-    <ClInclude Include="display.h" />
-    <ClInclude Include="base.h" />
+    <ClInclude Include="base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="carto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="featuredataset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gxdataset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rasterdataset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catalogapp.cpp">
