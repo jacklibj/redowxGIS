@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISFramework", "wxGISFram
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCarto", "wxGISCarto.vcxproj", "{D3470CCE-A046-4D74-8C62-21F87F02ACEB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISDispaly", "..\wxGISDispaly\wxGISDispaly.vcxproj", "{918054FD-651D-40B1-A70A-D2CE0308FC9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -67,6 +69,22 @@ Global
 		{D3470CCE-A046-4D74-8C62-21F87F02ACEB}.Universal Debug|Win32.Build.0 = Debug|Win32
 		{D3470CCE-A046-4D74-8C62-21F87F02ACEB}.Universal Release|Win32.ActiveCfg = Release|Win32
 		{D3470CCE-A046-4D74-8C62-21F87F02ACEB}.Universal Release|Win32.Build.0 = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Debug|Win32.Build.0 = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Debug|Win32.ActiveCfg = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Debug|Win32.Build.0 = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Release|Win32.ActiveCfg = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Release|Win32.Build.0 = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Universal Debug|Win32.Build.0 = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Universal Release|Win32.ActiveCfg = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.DLL Universal Release|Win32.Build.0 = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Release|Win32.ActiveCfg = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Release|Win32.Build.0 = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Debug|Win32.Build.0 = Debug|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Release|Win32.ActiveCfg = Release|Win32
+		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
