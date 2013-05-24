@@ -33,6 +33,9 @@
     <ClInclude Include="..\..\include\wxgis\carto\rasterlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\carto\cartocmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\carto\map.cpp">

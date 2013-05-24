@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\wxgis\carto\carto.h" />
+    <ClInclude Include="..\..\include\wxgis\carto\cartocmd.h" />
     <ClInclude Include="..\..\include\wxgis\carto\featuredataset.h" />
     <ClInclude Include="..\..\include\wxgis\carto\map.h" />
     <ClInclude Include="..\..\include\wxgis\carto\mapview.h" />
