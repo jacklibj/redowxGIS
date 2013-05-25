@@ -1,7 +1,7 @@
 #pragma once
 
-#include "display.h"
-#include "datasource.h"
+#include "wxgis/display/display.h"
+#include "wxgis/datasource.h"
 
 enum wxGISEnumMapToolState
 {

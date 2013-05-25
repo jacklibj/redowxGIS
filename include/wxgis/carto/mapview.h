@@ -73,7 +73,25 @@ public:
 	//
 	void OnThreadExit(void);
 	virtual ICachedDisplay* GetCachedDisplay(void){return pGISScreenDisplay;};
-
+	virtual ITrackCancel* GetTrackCancel(void){return m_PTrackCancel;};
+	virtual void SetTrackCancel(ITrackCancel* pTrackCancel);
+	virtual void SetFullExtent(void);
+	virtual void SetExtent(OGREnvelope Env);
+	virtual ExtentStack* GetExtentStack(void){return m_pExtentStack;};
 protected:
 	ICachedDisplay* pGISScreenDisplay;
+	WXWORD* m_MouseState;
+	WXWORD m_MapToolState;;
+	ITrackCancel* m_PTrackCancel;
+	wxDrawingThread* m_pThread;
+	wxGISAnimation* m_pAni;
+	wxCriticalSection m_CriticalSection;
+	wxTimer m_timer;
+	wxRect m_virtualrc;
+	OGREnvelope m_virtualbounds;
+	wxPoint m_StartMouseLocation;
+	bool m_bZoomIn;
+	ExtentStack* m_pExtentStack;
+
+	DECLARE_EVENT_TABLE()
 };

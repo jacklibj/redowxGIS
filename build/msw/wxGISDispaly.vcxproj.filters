@@ -15,39 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\wxgis\carto\carto.h">
+    <ClInclude Include="..\..\include\wxgis\display\display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\featuredataset.h">
+    <ClInclude Include="..\..\include\wxgis\display\screendisplayplus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\map.h">
+    <ClInclude Include="..\..\include\wxgis\display\screendisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\mapview.h">
+    <ClInclude Include="..\..\include\wxgis\display\displaytransformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\rasterdataset.h">
+    <ClInclude Include="..\..\include\wxgis\display\rubberband.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\rasterlayer.h">
+    <ClInclude Include="..\..\include\wxgis\display\simplefillsymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\cartocmd.h">
+    <ClInclude Include="..\..\include\wxgis\display\simplelinesymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\rasterrender.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\carto\simplerender.h">
+    <ClInclude Include="..\..\include\wxgis\display\simplemarkersymbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\carto\map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\carto\mapview.cpp">
+    <ClCompile Include="..\..\src\display\screendisplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

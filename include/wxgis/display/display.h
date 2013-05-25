@@ -55,7 +55,7 @@ public:
 	virtual void SetPen(wxPen& Pen) = 0;
 	virtual void SetFont(wxFont& Font) = 0;
 	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoofset = 0, int fill_style = wxODDEVEN_RULE) = 0;
-	virtual void DrawPolyPolygon(int n, in count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0. int fill_style = wxODDEVEN_RULE) = 0;
+	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, int fill_style = wxODDEVEN_RULE) = 0;
 	virtual void DrawPoint(wxCoord x, wxCoord y) = 0;
 	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0) = 0;
 	virtual void DrawCircle(wxCoord x, wxCoord y, wxCoord radius) = 0;

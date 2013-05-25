@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISFramework", "wxGISFram
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCarto", "wxGISCarto.vcxproj", "{D3470CCE-A046-4D74-8C62-21F87F02ACEB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISDispaly", "..\wxGISDispaly\wxGISDispaly.vcxproj", "{918054FD-651D-40B1-A70A-D2CE0308FC9E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISDispaly", "wxGISDispaly.vcxproj", "{918054FD-651D-40B1-A70A-D2CE0308FC9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
