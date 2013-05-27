@@ -94,10 +94,82 @@ void ExtentStack::Do(OGREnvelope NewEnv)
 	SetExtent(NewEnv);
 }
 
-void ExtentStack::Redo()
+void ExtenStack::Redo()
 {
 	m_Pos++;
-	if ()
+	if(m_Pos < m_EnvelopeArray.size())
 	{
+		OGREnvelope Env = m_EnvelopeArray[m_Pos];
+		SetExtent(Env);
 	}
+}
+
+void ExtentStack::Undo
+{
+	m_Pos--;
+	if(m_Pos > -1)
+	{
+		OGREnvelope Env = m_EnvelopArray[m_Pos];
+		SetExtent(Env);
+	}
+};
+
+void ExtentStack::SetExtent(OGREnvelope Env)
+{
+	m_pView->GetTrackCancel()->Cancel();
+	if(m_pView->m_pThread)
+		m_pView->m_pThread->Delete();
+	IDisplayTransformation* pDisplayTransformation = m_pView->pGISScreenDisplay->GetDisplayTransformation();
+	pDisplayTransformation->SetBounds(Env);
+	m_pView->pGISScreenDisplay->SetDerty(true);
+	m_pView->Refresh(false);
+}
+
+void ExtentStack::Reset()
+{
+	m_EnvelopArray.clear();
+	m_Pos = -1;
+}
+
+size_t ExtentStack::GetSize()
+{
+	return m_EnvelopArray.size();
+}
+
+//-------
+// wxGISMapView
+//-------
+
+BEGIN_EVENT_TABLE(wxGISMapView, wxScrolledWindow)
+	EVT_ERASE_BACKGROUND(wxGISMapView::OnEraseBackGround)
+	EVT_SIZE(wxGISMapView::OnSize)
+	EVT_MOUSEWHEEL(wxGISMapView::OnMouseWheel)
+	EVT_KEY_DOWN(wxGISMapView::OnKeyDown)
+	EVT_TIMER( TIMER_ID, wxGISMapView::OnTimer )
+END_EVENT_TABLE()
+
+wxGISMapView::wxGISMapView(wxWindow* parent, wxWindowID id, const wxPoint& pos , const wxSize& size , long style ) : wxScrolledWindow(parent, id, pos, size, 
+style | wxHSCROLL | wxVSCROLL), wxGISMap(),
+m_PTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
+{
+	//set map init envelope
+
+#if wxUSE_GRAPHICS_CONTEXT
+	pGISScreenDisplay = new wxGISScreenDisplayPlus();
+#else
+	pGISScreenDisplay = new wxGISScreenDisplay();
+#endif
+	m_pExtentStack = new ExtentStack(this);
+
+	m_PTrackCancel = new ITrackCancel();
+	m_PTrackCancel->Reset();
+
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+	pDisplayTransformation->SetDeviceFrame(GetClientRect());
+	wxClientDC CDC(this);
+	pDisplayTransformation->SetPPI(CDC.GetPPI());
+
+	m_MouseState = enumGISMouseNone;
+	m_MapToolState = enumGISMapNone;
+
 }
