@@ -413,7 +413,172 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 		if (factor < 0)
 		{
 			dx = ((double)m_virtualrc.width * (world_zoom / (world_zoom - 1))) / -2;
-			dy = ((double)m_virtualrc.height * (world_zoom))
+			dy = ((double)m_virtualrc.height * (world_zoom / (world_zoom - 1))) / -2;
 		}
+		else
+		{
+			//
+			//
+			dx = ((double)m_virtualrc.width * (world_zoom)) / 2;
+			dy = ((double)m_virtualrc.height * (world_zoom)) / 2;
+		}
+
+		m_virtualrc.Inflate(dx, dy);
+		if(m_virtualrc.width <= 10 || m_virtualrc.height <= 10)
+			return;
+
+		m_virtualrc.CenterIn(GetClientRect());
+		wxCoord x = m_virtualrc.x;
+		wxCoord y = m_virtualrc.y;
+
+		if (factor < 0)
+		{
+			dwx = (m_virtualbounds.MaxX - m_virtualbounds.MinX) * (world_zoom) / 2;
+			dwy = (m_virtualbounds.MaxY - m_virtualbounds.MinY) * (world_zoom) / 2;
+		}
+		else
+		{
+			dwx = (m_virtualbounds.MaxX - m_virtualbounds.MinX) * (world_zoom) / (2 * (1 + world_zoom));
+			dwy = (m_virtualbounds.MaxY - m_virtualbounds.MinY) * (world_zoom) / (2 * (1 + world_zoom));
+		}
+
+		m_virtualbounds.MaxX -= dwx;
+		m_virtualbounds.MinX += dwx;
+		m_virtualbounds.MaxY -= dwy;
+		m_virtualbounds.MinY += dwy;
+
+		wxClientDC CDC(this);
+
+		if(!m_virtualrc.Contains(GetClientRect()))//
+			pGISScreenDisplay->OnStretchDraw(CDC, m_virtualrc.width, m_virtualrc.height, x, y, true, enumGISQualityBicubic);
+		else
+		{
+			wxRect client_rc = GetClientRect();
+			wxRect rc = client_rc;
+			rc.width = rc.width * rc.width / m_virtualrc.width;
+			rc.height = rc.height * rc.height / m_virtualrc.height;
+			rc.x = client_rc.x + (client_rc.width - rc.width) / 2;
+			rc.y = client_rc.y + (client_rc.height - rc.height) / 2;
+			pGISScreenDisplay->OnStretchDraw2(CDC, rc, fasle, enumGISQualityFourQuadBilinear);
+		}
+
+		pDisplayTransformation->SetBounds(m_virtualbounds);
+		//draw scale text
+		double sc = pDisplayTransformation->GetScaleRatio();
+		wxString format_s = NumberScale(sc);
+		format_s.Prepend(wxT("1 : "));
+        //
+		//
+		wxSize size = GetClientSize();
+		int width, height;
+
+		CDC.SetFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
+		CDC.GetTextExtent(format_s, &width, &height);
+
+		wxBrush br(wxSystemSettings::GetColour(wxSYS_COLOUR_INFOBK));
+		CDC.SetBrush(br);
+		CDC.SetPen(*wxBLACK_PEN);
+		int x1 = (size.x - width) / 2, y1 = (size.y - height) - 50;
+		CDC.DrawRectangle( x1 - 5, y2 - 2, width + 10, height + 4);
+
+		CDC.DrawText(format_s, x1, y1);
+
+		//
+		//
+
+		m_timer.Start(WAITTIME);
+	}
+}
+
+void wxGISMapView::OnTimer( wxTimeEvent& event )
+{
+	wxMouseState = wxGetMouseState();
+	IDisplayTransformation* pDisPlayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+
+	if (!state.LeftDown() && (m_MouseState & enumGISMouseLeftDown))
+	{
+		m_MouseState &= ~enumGISMouseLeftDown;
+		//
+		pDisPlayTransformation->SetDeviceFrame(GetClientRect());
+	}
+	else if(m_MouseState & enumGISMouseLeftDown)
+	{
+		m_MouseState &= ~enumGISMouseWheel;
+
+		//
+		m_timer.Stop();
+		m_pExtentStack->Do(m_virtualbounds);
+		return;
+	}
+	else
+		return;
+
+	pGISScreenDisplay->SetDerty(true);
+	m_timer.Stop();
+	Refresh(false);
+}
+
+void wxGISMapView::SetFullExtent(void)
+{
+	SetExtent(GetFullExtent());
+}
+
+void wxGISMapView::SetExtent(OGREnvelope Env)
+{
+	m_pExtentStack->Do(Env);
+
+	//
+}
+
+void wxGISMapView::PanStart(wxPoint MouseLocation)
+{
+	if (m_timer.IsRunning())
+	{
+		wxTimerEvent ev;
+		OnTimer( ev );
+#define WAITTIME
+		wxMilliSleep(WAITTIME);
+#endif
+		m_PTrackCancel->Cancel();
+		if(m_pThread)
+			m_pThread->Delete();
+	}
+	m_StartMouseLocation = MouseLocation;
+	m_MapToolState |= enumGISMapPanning;
+	CaptureMouse(); //events 
+}
+
+void wxGISMapView::PanMoveTo(wxPoint MouseLocation)
+{
+	
+	if (m_MapToolState & enumGISMapPanning)
+	{
+		wxCoord x = m_StartMouseLocation.x - MouseLocation.x;
+		wxCoord y = m_StartMouseLocation.y - MouseLocation.y;
+		wxClientDC CDC(this);
+		pGISScreenDisplay->OnPanDraw(CDC, x, y);
+	}
+}
+
+void wxGISMapView::PanStop(wxPoint MouseLocation)
+{
+
+	if (m_MapToolState & enumGISMapPanning)
+	{
+		m_MapToolState &= ~enumGISMapPanning;
+		ReleaseMouse();
+		wxCoord x = m_StartMouseLocation.x - MouseLocation.x;
+		wxCoord y = m_StartMouseLocation.y - MouseLocation.y;
+		//calc new envelope
+        IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+		wxRect rect = pDisplayTransformation->GetDeviceFrame();
+		rect.Offset(x, y);
+		//
+		//
+		OGREnvelope Env = pDisplayTransformation->TransformRect(rect);
+		m_pExtentStack->Do(Env);
+		//
+		//
+		//
 	}
 }
