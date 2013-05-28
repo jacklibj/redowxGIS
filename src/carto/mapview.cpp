@@ -173,3 +173,247 @@ m_PTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 	m_MapToolState = enumGISMapNone;
 
 }
+
+wxGISMapView::~wxGISMapView(void)
+{
+	wxDELETE(pGISScreenDisplay);
+	wxDELETE(m_pExtentStack);
+	wxDELETE(m_PTrackCancel);
+	if(m_pThread)
+		m_pThread->Delete();
+}
+
+void wxGISMapView::OnDraw(wxDC& dc)
+{
+	if (m_pExtentStack->GetSize() == 0)
+	{
+		IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+		m_pExtentStack->Do(pDisplayTransformation->GetBounds());
+	}
+
+	if(m_PTrackCancel && !m_pAni)
+		m_pAni = static_cast<wxGISAnimation*>(m_PTrackCancel->GetProgressor());
+
+
+	if(pGISScreenDisplay->IsDerty())
+	{
+		wxCriticalSectionLocker locker(m_CriticalSection);
+		if (m_pAni)
+		{
+			m_pAni->Show(true);
+			m_pAni->Play();
+		}
+
+		if(m_pThread)
+			m_pThread->Delete();
+
+		//start draw thread
+		m_pThread = new wxDrawingThread(this, m_Layers);
+		if ( !m_pThread || m_pThread->Create() != wxTHREAD_NO_ERROR )
+		{
+			wxLogError(wxString(_("wxGISMapView: Can't create wxDrawingThread!")));
+			return;
+		}
+		if ( !m_pThread || m_pThread->Run() != wxTHREAD_NO_ERROR )
+		{
+			wxLogError(wxString(_("wxGISMapView: Can't run wxDrawingThread!")));
+			return;
+		}
+
+		wxScrolledWindow::SetFocus();
+
+		return;
+
+	}
+
+	if(m_MouseState != enumGISMouseNone)
+		return;
+	if(m_MapToolState != enumGISMapNone)
+		return;
+	pGISScreenDisplay->OnDraw(dc);
+	//
+}
+
+void wxGISMapView::OnSize(wxSizeEvent & event)
+{
+	m_PTrackCancel->Cancel();
+	if(m_pThread)
+		m_pThread->Delete();
+
+	wxClientDC CDC(this);
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+	pDisplayTransformation->SetPPI(CDC.GetPPI());
+
+	wxMouseState state = wxGetMouseState();
+	if(state.LeftDown())
+	{
+		wxRect rc = GetClientRect();
+		pGISScreenDisplay->OnStretchDraw(CDC, rc.width, rc.height);
+		m_MouseState |= enumGISMouseLeftDown;
+		m_timer.Start(300);
+	}
+	else
+	{
+		m_MouseState &= ~enumGISMouseLeftDown;
+		//set map init envelope
+		pDisplayTransformation->SetDeviceFrame(GetClientRect());
+		pGISScreenDisplay->SetDerty(true);
+	}
+	Refresh(false);
+
+	event.Skip();
+}
+
+void wxGISMapView::AddLayer(wxGISLayer* pLayer)
+{
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+	if (pDisplayTransformation->GetSpatialReference() == NULL)
+	{
+		OGRSpatialReference* pSpaRef = pLayer->GetSpatialReference();
+		if(pSpaRef)
+			pDisplayTransformation->GetSpatialReference(pSpaRef);
+		else
+		{
+			OGREnvelope* pEnv = pLayer->GetEnvelop();
+			if (pEnv)
+			{
+				if (pEnv->MaxX <= 180 && pEnv->MaxY <= 90 && pEnv->MinX >= -180 && pEnv->MinY >= -90)
+				{
+					OGRSpatialReference* pSpaRef = new OGRSpatialReference();
+					pSpaRef->SetWellKnownGeogCS("WGS84");
+					pDisplayTransformation->SetSpatialReference(pSpaRef);
+				}
+			}
+		}
+	}
+
+	OGREnvelope* pEnv = pLayer->GetEnvelop();
+	if(pEnv == NULL)
+		return;
+
+	OGRSpatialReference* pSpaRef = pLayer->GetSpatialReference();
+
+	if (pSpaRef && pDisplayTransformation->GetSpatialReference())
+	{
+		if (!pDisplayTransformation->GetSpatialReference()->IsSame(pSpaRef))
+		{
+			OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pSpaRef, pDisplayTransformation->GetSpatialReference() );
+			poCT->Transform(1, &pEnv->MaxX, &pEnv->MaxY);
+			poCT->Transform(1, &pEnv->MinX, &pEnv->MinY);
+		}
+	}
+
+	if(!pDisplayTransformation->IsBoundsSet())
+		pDisplayTransformation->SetBounds(*pEnv);
+	else
+	{
+		OGREnvelope Bounds = pDisplayTransformation->GetBounds();
+		Bounds.Merge(*pEnv);
+		pDisplayTransformation->SetBounds(Bounds);
+	}
+
+	//Caching
+	if(pLayer->GetCached())
+	{
+		pLayer->SetCacheID(pGISScreenDisplay->AddCache());
+	}
+	else
+	{
+		if(m_Layers.size() > 0 && m_Layers[m_Layers.size() - 1]->GetCached())
+			pLayer->SetCacheID(pGISScreenDisplay->AddCache());
+		else
+			pLayer->SetCacheID(pGISScreenDisplay->GetLastCacheID());
+	}
+	wxGISMap::AddLayer(pLayer);
+}
+
+void wxGISMapView::ClearLayers(void)
+{
+	m_pTrackCancel->Cancel();
+	if(m_pThread)
+		m_pThread->Delete();
+
+	//delete all cashes
+	pGISScreenDisplay->ClearCaches();
+	//reset spatial reference
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+	pDisplayTransformation->Reset();
+	//reset views stack
+	m_pExtentStack->Reset();
+
+	wxGISMap::ClearLayers();
+}
+
+void wxGISmapView::OnKeyDown(wxKeyEvent & event)
+{
+	switch(event.GetKeyCode())
+	{
+	case WXK_ESCAPE:
+		m_pTrackCancel->Cancel();
+		break;
+	default:
+		break;
+	}
+	event.Skip();
+}
+
+void wxGISMapView::SetTrackCancel(ITrackCancel* m_PTrackCancel)
+{
+	if(pTrackCancel == NULL)
+		return;
+
+	if (m_PTrackCancel)
+	{
+		m_PTrackCancel->Cancel();
+		//wait while the thread s exited;
+		wxSleep(1);
+		delete m_PTrackCancel;
+	}
+	m_PTrackCancel = m_PTrackCancel;
+}
+
+void wxGISMapView::OnThreadExit(void)
+{
+	m_pThread == NULL;
+	if (m_pAni)
+	{
+		m_pAni->Stop();
+		m_pAni->Hide();
+	}
+}
+
+void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
+{
+	event.Skip();
+
+	m_PTrackCancel->Cancel();
+	if (m_pThread)
+	    m_pThread->Delete();
+
+	wxClientDC CDC(this);
+
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplayTransformation();
+	if (pDisplayTransformation)
+	{
+		if (!(m_MouseState & enumGISMouseWheel))
+		{
+			m_virtualrc = GetClientRect();
+			m_virtualbounds = pDisplayTransformation->GetBounds();
+
+			m_MouseState |= enumGISMouseWheel;
+		}
+		int direction = event.GetWheelRotation();
+		int delta = event.GetWheelDelta();
+		int factor = direction / delta;
+
+		double world_zoom = ZOOM_FACTOR * (double)factor;
+
+		//calc zoom dc
+		int dx(0), dy(0);
+		if (factor < 0)
+		{
+			dx = ((double)m_virtualrc.width * (world_zoom / (world_zoom - 1))) / -2;
+			dy = ((double)m_virtualrc.height * (world_zoom))
+		}
+	}
+}
