@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\include\wxgis\carto\simplerender.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\carto\featuredataset.cpp" />
     <ClCompile Include="..\..\src\carto\featurelayer.cpp" />
     <ClCompile Include="..\..\src\carto\map.cpp" />
     <ClCompile Include="..\..\src\carto\mapview.cpp" />

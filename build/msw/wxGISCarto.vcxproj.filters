@@ -56,5 +56,8 @@
     <ClCompile Include="..\..\src\carto\featurelayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\carto\featuredataset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
