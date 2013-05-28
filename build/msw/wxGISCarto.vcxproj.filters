@@ -42,12 +42,18 @@
     <ClInclude Include="..\..\include\wxgis\carto\simplerender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\carto\featurelayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\carto\map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\carto\mapview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\carto\featurelayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
