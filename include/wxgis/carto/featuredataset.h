@@ -16,6 +16,7 @@ public:
 	virtual OGRLayer* GetLayer(int iLayer = 0);
 	virtual wxGISEnumDatasetType GetTyoe(void){return enumGISFeatureDataset;};
 	virtual bool Open(int iLayer);
+	virtual OGRSpatialReference* GetSpatialReference(void);
 	virtual OGREnvelope* GetEnvelope(void);
 	virtual void SetSpatialFilter(double dfMinX, double dfMinY, double dfMaxX, double dfMaxY);
 	virtual void Empty(void);
