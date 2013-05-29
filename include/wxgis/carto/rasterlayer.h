@@ -3,7 +3,7 @@
 #include "carto.h"
 #include "rasterdataset.h"
 
-class WXDLLIMPEXP_GIS_CRT wxGISRasterlayer :
+class WXDLLIMPEXP_GIS_CRT wxGISRasterLayer :
 	public wxGISLayer
 {
 public:

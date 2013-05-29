@@ -66,5 +66,55 @@ bool wxGISRasterDataset::Open(void)
 
 	m_psExtent = new OGREnvelope();
 	double adfGeoTransform[6];
+	if(m_poDataset->GetGeoTransform( adfGeoTransform ) != CE_Fatal )
+	{
+		double inX[4];
+		double inY[4];
 
+		inX[0] = 0;
+		inY[0] = 0;
+		inX[1] = nXSize;
+		inY[1] = 0;
+		inX[2] = nXSize;
+		inY[2] = nYSize;
+		inX[3] = 0;
+		inY[3] = nYSize;
+
+		m_psExtent->MaxX = 0;
+		m_psExtent->MaxY = 0;
+		m_psExtent->MinX = 1000000000;
+		m_psExtent->MinY = 1000000000;
+		for(int i = 0; i < 4; i++)
+		{
+			double rX, rY;
+			GDALApplyGeoTransform( adfGeoTransform, inX[i], inY[i], &rX, &rY);
+			if(m_psExtent->MaxX < rX)
+				m_psExtent->MaxX = rX;
+			if(m_psExtent->MinX > rX)
+				m_psExtent->MinX = rX;
+			if(m_psExtent->MaxY < rY)
+				m_psExtent->MaxY = rY;
+			if(m_psExtent->MinY > rY)
+				m_psExtent->MinY = rY;
+		}
+	}
+	else
+	{
+		wxDELETE(m_psExtent);
+		m_psExtent = NULL;
+	}
+	
+	//
+
+	m_bIsOpened = true;
+	return true;
 }
+
+OGREnvelope* wxGISRasterDataset::GetEnvelope(void)
+{
+	if(m_psExtent)
+		return m_psExtent;
+	return NULL;
+}
+
+//

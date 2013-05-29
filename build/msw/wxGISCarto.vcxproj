@@ -19,7 +19,7 @@
     <ClInclude Include="..\..\include\wxgis\carto\mapview.h" />
     <ClInclude Include="..\..\include\wxgis\carto\rasterdataset.h" />
     <ClInclude Include="..\..\include\wxgis\carto\rasterlayer.h" />
-    <ClInclude Include="..\..\include\wxgis\carto\rasterrender.h" />
+    <ClInclude Include="..\..\include\wxgis\carto\rasterrenderer.h" />
     <ClInclude Include="..\..\include\wxgis\carto\simplerender.h" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +28,7 @@
     <ClCompile Include="..\..\src\carto\map.cpp" />
     <ClCompile Include="..\..\src\carto\mapview.cpp" />
     <ClCompile Include="..\..\src\carto\rasterdataset.cpp" />
+    <ClCompile Include="..\..\src\carto\rasterlayer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D3470CCE-A046-4D74-8C62-21F87F02ACEB}</ProjectGuid>
