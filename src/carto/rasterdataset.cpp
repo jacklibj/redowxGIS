@@ -65,4 +65,6 @@ bool wxGISRasterDataset::Open(void)
 	//
 
 	m_psExtent = new OGREnvelope();
+	double adfGeoTransform[6];
+
 }
