@@ -98,3 +98,74 @@ bool wxGISFeatureDataset::Open(int iLayer)
 	m_bIsOpened = true;
 	return true;
 }
+
+OGRSpatialReference* wxGISFeatureDataset::GetSpatialReference(void)
+{
+	if(!m_bIsOpened)
+		if(!Open(0)£©
+			return NULL;
+	if( m_poLayer )
+		return m_poLayer->GetSpatialRef();
+	return NULL;
+}
+
+OGREnvelope* wxGISFeatureDataset::GetEnvelope(void)
+{
+	if(m_psExtent)
+		return m_psExtent;
+	return NULL;
+}
+void wxGISFeatureDataset::SetSpatialFilter(double dfMinX, double dfMinY, double dfMaxX, double dfMaxY)
+{
+	if(!m_bIsOpened)
+		if( !Open(0))
+			return;
+	if ( m_poLayer )
+	{
+		m_poLayer->SetSpatialFilterRect(dfMinX, dfMinY, dfMaxX, dfMaxY);
+	}
+}
+
+void wxGISFeatureDataset::Empty(void)
+{
+	for (size_t i = 0; i < m_OGRFeatureArray.size(); i++)
+	     OGRFeature::DestroyFeature( m_OGRFeatureArray[i] );
+	m_OGRFeatureArray.clear();
+
+}
+
+void wxGISFeatureDataset::AddFeature(OGRFeature* poFeature)
+{
+	if(m_pQuadTree)
+		CPLQuadTreeInsert(m_pQuadTree, poFeature);
+	m_OGRFeatureArray.push_back(poFeature);
+}
+
+OGRFeature* wxGISFeatureDataset::GetAt(int nIndex)
+{
+	wxASSERT(nIndex >= 0);
+	//
+	while(nIndex + 1 > m_OGRFeatureArray.size())
+	{
+		size_t count(0);
+		OGRFeature *poFeature;
+		while( (count < CACHE_SZIE) && (poFeature = m_poLayer->GetNextFeature()) != NULL)
+		{
+			AddFeature(poFeature);
+			count++;
+		}
+	}
+	return m_OGRFeatureArray[nIndex];
+}
+
+OGRFeature* wxGISFeatureDataset::operator [](int nIndex)
+{
+	return GetAt(nIndex);
+}
+
+wxString wxGISFeatureDataset::GetAsString(int row, int col)
+{
+	if(m_poLayer->GetFeature() <= row)
+		return wxString();
+
+}
