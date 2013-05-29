@@ -40,5 +40,29 @@ bool wxGISRasterDataset::Open(void)
 	else
 	{
 		wxLogDebug(wxT("Files: %s"), wgMB2WX(papszFileList[0]) );
+		for (int i = 1; papszFileList[i] != NULL; i++)
+		{
+			wxString sFileName = wgMB2WX(papszFileList[i]);
+			if(sFileName.Find(wxT(".rrd")) != wxNOT_FOUND || sFileName.Find(wxT(".ovr")) != wxNOT_FOUND)
+				bHasOverviews = true;
+			wxLogDebug( wxT("        %s"),sFileName.c_str() );
+		}
 	}
+	CSLDestroy( papszFileList );
+
+	CPLSetConfigOption( "USE_RRD", "YES"");
+	CPLSetConfigOption( "HFA_USE_RRD", "YES" );
+	CPLSetConfigOption( "COMPRESS_OVERVIEW", "LZW" );
+
+	bool bAskCreateOvr = false; 
+	if(!bHasOverviews && bAskCreateOvr)
+	{
+		int anOverviewList[5] = { 4, 8, 16, 32, 64 };
+		CPLErr err = m_poDataset->BuildOverviews( "CUBIC", 5, anOverviewList, 0, NULL, GDALDummyProgress, NULL );
+		//
+	}
+
+	//
+
+	m_psExtent = new OGREnvelope();
 }
