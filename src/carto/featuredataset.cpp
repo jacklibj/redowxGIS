@@ -167,5 +167,98 @@ wxString wxGISFeatureDataset::GetAsString(int row, int col)
 {
 	if(m_poLayer->GetFeature() <= row)
 		return wxString();
+	else
+	{
+		OGRFeature* pFeature = GetAt(row);
+		OGRFieldDefn* pDef = pFeature->GetFieldDefnRef(col);
+		switch(pDef->GetType())
+		{
+		case OFTDate:
+			{
+				int year, mon, daym hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
+				return dt.Format(_("%d-%m-%Y"));
+			}
+		case OFTTime:
+			{
+				int year, mon, daym hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
+				return dt.Format(_("%H:%M:%S"));
+			}
+		case OFTDateTime:
+			{
+				int year, mon, daym hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
+				return dt.Format(_("%d-%m-%Y %H:%M:%S"));
+			}
+		case OFTReal:
+				return wxString::Format(_("%.6f"), pFeature->GetFieldAsDouble(col));
+		default:
+			return wgMB2WX(pFeature->GetFieldAsString(col));
+		}
+	}
+}
 
+wxGISFeatureSet* wxGISFeatureDataset::GetFeatureSet(IQueryFilter* pQFilter /* = NULL */, ITrackCancel* pTrackCancel /* = NULL */)
+{
+	if (m_OGRFeatureArray.size() < GetSize())
+	{
+		OGRFeature* poFeature;
+		while((poFeature = m_poLayer->GetNextFeature()) != NULL )
+		{
+			if (pTrackCancel && !pTrackCancel->Continue())
+				return NULL;
+			AddFeature(poFeature);
+		}
+	}
+
+	wxGISFeatureSet* pGISFeatureSet = new wxGISFeatureSet(m_OGRFeatureArray.size());
+	if (pQFilter)
+	{
+
+		wxGISSpatialFilter* pSpaFil = dynamic_cast<wxGISSpatialFilter*>(pQFilter);
+		if (pSpaFil && m_pQuadTree)
+		{
+			int count(0);
+			OGREnvelope Env = pSpaFil->GetEnvelope();
+			CPLRectObj Rect = {Env.MinX, Env.MinY, Env.MaxX, Env.MaxY};
+			OGRFeature** pFeatureArr = (OGRFeature**)CPLQuadTreeSearch(m_pQuadTree, &Rect, &count);
+			for (int i = 0; i < count; i++)
+			{
+				if (pTrackCancel && pTrackCancel->Continue())
+			         break;
+				pGISFeatureSet->AddFeature(pFeatureArr[i]);
+			}
+			delete [] pFeatureArr;
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < m_OGRFeatureArray.size(); i++)
+		{
+			if(pTrackCancel && !pTrackCancel->Continue())
+				break;
+			pGISFeatureSet->AddFeature(m_OGRFeatureArray[i]);
+		}
+	}
+	return pGISFeatureSet;
+}
+
+void GetFeatureBoundFunc(const void* hFeature, CPLRectObj* pBounds)
+{
+	OGRFeature* pFeature = (OGRFeature*)hFeature;
+	if(!pFeature)
+		return;
+	OGRGeometry* pGeom = pFeature->GetGeometryRef();
+	if(!pGeom)
+		return;
+	OGREnvelope Env;
+	pGeom->getEnvelope(&Env);
+	pBounds->minx = Env.MinX;
+	pBounds->maxx = Env.MaxX;
+	pBounds->miny = Env.MinY;
+	pBounds->maxy = Env.MaxY;
 }
