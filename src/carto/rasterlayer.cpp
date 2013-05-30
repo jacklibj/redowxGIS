@@ -20,5 +20,29 @@ wxGISRasterLayer::~wxGISRasterLayer(void)
 
 void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel)
 {
-
+	IDisplayTransformation* pDisplayTransformation  = pDisplay->GetDisplayTransformation();
+	if(!=pDisplayTransformation)
+		return;
+	//1. get envelope
+	OGREnvelope Env = pDisplayTransformation->GetVisibleBounds();
+	OGREnvelope* LayerEnv = m_pwxGISRasterDataset->GetEnvelope();
+	OGRSpatialReference* pEnvSpaRef = pDisplayTransformation->GetSpatialReference();
+	OGRSpatialReference* pLayerSpaRef = m_pwxGISRasterDataset->GetSpatialReference();
+	
+	if(pLayerSpaRef && pEnvSpaRef)
+	{
+		if(!pLayerSpaRef->isSame(pEnvSpaRef))
+		{
+			OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pEnvSpaRef, pLayerSpaRef );
+			poCT->Transform(1, &Env.MaxX, &Env.MaxY);
+			poCT->Transform(1, &Env.MinX, &Env.MinY);
+		}
+	}
+    
+	//2. set spatial filter
+	pDisplay->StartDrawing(GetCacheID());
+	if (m_pRasterRenderer && m_pRasterRenderer->CanRender(m_pwxGISRasterDataset))
+	{
+		m_pRasterRenderer
+	}
 }
