@@ -52,7 +52,8 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 		//Intersect bounds
 		OGREnvelope DrawBounds;
 		DrawBounds.MinX = MAX(RasterEnvelope.MinX, VisibleBounds.MinX);
-		DrawBounds.MinY = MAX()
+		DrawBounds.MinY = MAX(RasterEnvelope.MinY, VisibleBounds.MinY);
+		DrawBounds
 	}
 
 }
