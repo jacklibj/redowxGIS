@@ -21,7 +21,7 @@ wxGISRasterLayer::~wxGISRasterLayer(void)
 void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel)
 {
 	IDisplayTransformation* pDisplayTransformation  = pDisplay->GetDisplayTransformation();
-	if(!=pDisplayTransformation)
+	if(!pDisplayTransformation)
 		return;
 	//1. get envelope
 	OGREnvelope Env = pDisplayTransformation->GetVisibleBounds();
@@ -43,6 +43,27 @@ void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDispl
 	pDisplay->StartDrawing(GetCacheID());
 	if (m_pRasterRenderer && m_pRasterRenderer->CanRender(m_pwxGISRasterDataset))
 	{
-		m_pRasterRenderer
+		m_pRasterRenderer->Draw(m_pwxGISRasterDataset, DrawPhase, pDisplay, pTrackCancel);
+		m_pPreviousDisplayEvn = Env;
 	}
+	// 5. clear a spatial filter
+	pDisplay->FinishDrawing();
+}
+OGRSpatialReference* wxGISRasteLayer::GetSpatialReference(void)
+{
+	if(m_pwGISRasterDataset)
+		return m_pwxGISRasterDataset->GetSpatialReference();
+    return NULL;
+}
+
+OGREnvelope* wxGISRasterLayer::GetEnvelope(void)
+{
+	if(m_pwxGISRasterDataset)
+		return m_pwxGISRasterDataset->GetEnvelope();
+	return NULL;
+}
+
+bool wxGISRasterLayer::IsValid(void)
+{
+	return m_pwGISRasterDataset == NULL ? false : true;
 }
