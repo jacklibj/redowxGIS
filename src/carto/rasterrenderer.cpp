@@ -61,7 +61,7 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 		OGRRawPoints[0].y = DrawBounds.MinY;
 		OGRRawPoints[1].x = DrawBounds.MaxX;
 		OGRRawPoints[1].y = DrawBounds.MaxY;
-		wxPoint* pDCPoints = pDisplayTransformation->TransforCoordWorld2DC(OGRRawPoints, 2);
+		wxPoint* pDCPoints = pDisplayTransformation->TransformCoordWorld2DC(OGRRawPoints, 2);
 
 		if (!pDCPoints)
 		{
@@ -178,8 +178,132 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 	}
 	else
 	{
-		//1. 
+		//1. convert newrasterenvelope to DC
+		OGRRawPoint OGRRawPoints[2];
+		OGRRawPoints[0].x = RasterEnvelope.MinX;
+		OGRRawPoints[0].y = RasterEnvelope.MinY;
+		OGRRawPoints[1].x = RasterEnvelope.MaxX;
+		OGRRawPoints[1].y = RasterEnvelope.MaxY;
+		wxPoint* pDCPoints = pDisplayTransformation->TransformCoordWorld2DC(OGRRawPoints, 2);
+
+		if (!pDCPoints)
+		{
+			wxDELETEA(pDCPoints);
+			return;
+		}
+
+		int nDCXOrig = pDCPoints[0].x;
+		int nDCYOrig = pDCPoints[1].y;
+		int nWidth = pDCPoints[1].x - pDCPoints[0].x;
+		int nHeight = pDCPoints[0].y - pDCPoints[1].y;
+		delete[] (pDCPoints);
+
+	
+		GDALDataset* pGDALDataset = pRaster->GetRaster();
+		int nImgWidth = pGDALDataset->GetRasterXSize();
+		int nImgHeight = pGDALDataset->GetRasterYSize();
+
+		int nBandCount = pGDALDataset->GetRasterCount();
+		//hack!
+		int bands[3];
+		if (nBandCount < 3)
+		{
+			bands[0] = 1;
+			bands[1] = 1;
+			bands[2] = 1;
+		}
+		else
+		{
+			bands[0] = 1;
+			bands[1] = 2;
+			bands[2] = 3;
+		}
+
+		//Create buffer
+		unsigned char* data = new unsigned char[nWidth * nHeight * 3];
+		if (IsSpaRefSame)
+		{
+			//read in budder
+			CPLErr err = pGDALDataset->RasterIO(GF_Read, 0, 0, nImgWidth, nImgHeight, data, nWidth, nHeight,
+				GDT_Byte, 3, bands, sizeof(unsigned char) * 3, 0, sizeof(unsigned char));
+			if (err != CE_None)
+			{
+				wxDELETEA(data);
+				return;
+			}
+		}
+		else
+		{
+			//1. 
+			//2. 
+			unsigned char* pTempData;
+			//3.
+		   //4.
+			//
+		}
+		//3.
+		wxImage ResultImage(nWidth, nHeight, data);
+		pDisplay->DrawBitmap(ResultImage, nDCXOrig, nDCYOrig);
+
+		//
 
     }
 
+}
+
+OGREnvelope wxGISRasterRGBRenderer::TransfromEnvelop(OGREnvelope* pEnvelope, OGRSpatialReference* pSrsSpatialReference, OGRSpatialReference* pDstSpatialReference)
+{
+	//get new envelope - it may rotate
+	OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pSrsSpatialReference, pDstSpatialReference;
+	double pointsx[4];
+	double pointsy[4];
+	pointsx[0] = pEnvelope->MaxX;
+	pointsx[0] = pEnvelope->MaxY;
+	pointsx[1] = pEnvelope->MinX;
+	pointsx[1] = pEnvelope->MinY;
+	pointsx[0] = pEnvelope->MaxX;
+	pointsx[0] = pEnvelope->MinY;
+	pointsx[1] = pEnvelope->MinX;
+	pointsx[1] = pEnvelope->MaxY;
+	// get real envelope
+	poCT->Transform(4, pointsx, pointsy);
+	OCTDestroyCoordinateTransformation(poCT);
+	OGREnvelope out;
+	out.MinX = MIN(pointsx[0], MIN(pointsx[1], MIN(pointsx[2], pointsx[3])));
+	out.MaxX = MAX(pointsx[0], MAX(pointsx[1], MAX(pointsx[2], pointsx[3])));
+	out.MinY = MIN(pointsy[0], MIN(pointsy[1], MIN(pointsy[2], pointsy[3])));
+	out.MaxY = MAX(pointsy[0], MAX(pointsy[1], MAX(pointsy[2], pointsy[3])));
+	return out;
+}
+
+wxImage wxGISRasterRGBRenderer::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY, int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel* pTrackCancel)
+{
+
+	wxImage ResultImage(nDestX, nDestY, false);
+	unsigned char* pDestData = ResultImage.GetData();
+	//multithread
+	int CPUCount(2); //check cpu count
+	std::vector<wxRasterDrawThread*> threadarray;
+	int nPartSize = nDestY /CPUCount;
+	int nBegY(0), nEndY;
+	for(int i = 0; i < CPUCount; i++)
+	{
+		if (i == CPUCount - 1)
+		   nEndY = nDestY;
+		else
+			nEndY = nPartSize * (i + 1);
+
+		unsigned char* pDestInputData = pDestData + (nDestX * nBegY * 3);
+		wxRasterDrawThread * thread = new wxRasterDrawThread(pData, pDestInputData, nOrigX, nOrigY, rOrigX, rOrigY, nDestX, nDestY, rDeltaX, rDeltaY, Quality, pTrackCancel, nBegY, nEndY);
+		thread->Create();
+		thread->Run();
+		threadarray.push_back(thread);
+		nBegY = nEndY ;
+	}
+
+	for (size_t i = 0; i < threadarray.size(); i++)
+	{
+		wxDELETE(threadarray[i], wait());
+	}
+	return ResultImage;
 }
