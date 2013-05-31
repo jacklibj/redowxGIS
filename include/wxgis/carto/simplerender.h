@@ -12,9 +12,9 @@ public:
 //IFeatureRenderer
     virtual bool CanRender(wxGISDataset* pDataset);
 	virtual void Draw(wxGISFeatureSet* pSet, wxGISEnumDrawPhase DrawPhase, IDisplay* pDisplay, ITrackCancel* pTrackCancel);
-	virtual void DrawGeometry(OGRGeometry *pGeometry, IDisplay* pDisplay);
+	virtual void DrawGeometry(OGRGeometry *poGeometry, IDisplay* pDisplay);
 protected:
 	ISymbol* m_pFillSymbol;
 	ISymbol* m_pLineSymbol;
-	ISymbol* m_pMakerSymbol;
+	ISymbol* m_pMarkerSymbol;
 };
