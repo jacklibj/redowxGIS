@@ -61,6 +61,7 @@ public:
 	virtual void OnDraw(wxDC& dc);
 	virtual void PanStart(wxPoint MouseLocation);
 	virtual void PanMoveTo(wxPoint MouseLocation);
+	virtual void PanStop(wxPoint MouseLocation);
 	//events
 	void OnEraseBackGround(wxEraseEvent & event);
 	void OnSize(wxSizeEvent & event);

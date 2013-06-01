@@ -30,3 +30,17 @@ protected:
 
 	DECLARE_EVENT_TABLE()
 };
+
+//--------
+// class wxGISRubberEnvelope
+//---------
+
+class WXDLLIMPEXP_GIS_DSP wxGISRubberEnvelope :
+	public wxGISRubberBand
+{
+public:
+	wxGISRubberEnvelope(void);
+	virtual ~wxGISRubberEnvelope(void);
+	virtual void OnMouseMove(wxMouseEvent& event);
+	virtual void OnMouseUp(wxMouseEvent& event);
+};

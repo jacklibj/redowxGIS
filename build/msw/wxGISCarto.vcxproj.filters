@@ -45,6 +45,9 @@
     <ClInclude Include="..\..\include\wxgis\carto\rasterrenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\carto\tableview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\carto\map.cpp">
