@@ -35,6 +35,7 @@ private:
 //-----
 
 class wxGISCartoMainTool :
+	public ITool
 {
 	DECLARE_DYNAMIC_CLASS(wxGISCartoMainTool)
 public:
@@ -49,5 +50,19 @@ public:
 	virtual wxString GetMessage(void);
 	virtual wxGISEnumCommandKind GetKind(void);
 	virtual void OnClick(void);
-
+	virtual bool onCreare(IApplication* pApp);
+	virtual wxString GetTooltip(void);
+	virtual unsigned char GetCount(void);
+	//ITool
+	virtual wxCursor GetCursor(void);
+	virtual void SetChecked(bool bCheck);
+	virtual void OnMouseDown(wxMouseEvent& event);
+	virtual void OnMouseUp(wxMouseEvent& event);
+	virtual void OnMouseDoubleClick(wxMouseEvent& event);
+	virtual void OnMouseMove(wxMouseEvent& event);
+private:
+	IApplication* m_pApp;
+	wxImageList m_ImageList;
+	wxGISMapView* m_pMapView;
+	bool m_bCheck;
 };
