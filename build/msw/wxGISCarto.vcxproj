@@ -33,6 +33,7 @@
     <ClCompile Include="..\..\src\carto\rasterlayer.cpp" />
     <ClCompile Include="..\..\src\carto\rasterrenderer.cpp" />
     <ClCompile Include="..\..\src\carto\simplerenderer.cpp" />
+    <ClCompile Include="..\..\src\carto\tableview.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D3470CCE-A046-4D74-8C62-21F87F02ACEB}</ProjectGuid>
