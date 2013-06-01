@@ -74,15 +74,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\catalogcmd.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\catalogui.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\customizedlg.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\gxapplication.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxcontentview.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxlocationcombobox.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxmapview.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtableview.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtabview.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtreeview.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\gxview.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalogui\viewsfactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\catalogui\catalogcmd.cpp" />
     <ClCompile Include="..\..\..\src\catalogui\customizedlg.cpp" />
     <ClCompile Include="..\..\..\src\catalogui\gxapplication.cpp" />
     <ClCompile Include="..\..\..\src\catalogui\gxcontentview.cpp" />

@@ -36,6 +36,21 @@
     <ClInclude Include="..\..\..\include\wxgis\catalogui\viewsfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\catalogcmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxcontentview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxlocationcombobox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxmapview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtableview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\catalogui\customizedlg.cpp">
@@ -54,6 +69,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\catalogui\gxview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\catalogui\catalogcmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

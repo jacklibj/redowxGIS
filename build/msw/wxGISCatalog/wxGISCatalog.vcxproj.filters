@@ -36,6 +36,12 @@
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxshapefactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalog\gxfolderfactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\wxgis\catalog\gxrasterfactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\catalog\gxcatalog.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\catalog\gxshapefactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\catalog\gxfolderfactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\catalog\gxrasterfactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,6 +16,8 @@
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxdataset.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxdiscconnection.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxfolder.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalog\gxfolderfactory.h" />
+    <ClInclude Include="..\..\..\include\wxgis\catalog\gxrasterfactory.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxselection.h" />
     <ClInclude Include="..\..\..\include\wxgis\catalog\gxshapefactory.h" />
   </ItemGroup>
@@ -24,6 +26,8 @@
     <ClCompile Include="..\..\..\src\catalog\gxdataset.cpp" />
     <ClCompile Include="..\..\..\src\catalog\gxdisconnection.cpp" />
     <ClCompile Include="..\..\..\src\catalog\gxfolder.cpp" />
+    <ClCompile Include="..\..\..\src\catalog\gxfolderfactory.cpp" />
+    <ClCompile Include="..\..\..\src\catalog\gxrasterfactory.cpp" />
     <ClCompile Include="..\..\..\src\catalog\gxselection.cpp" />
     <ClCompile Include="..\..\..\src\catalog\gxshapefactory.cpp" />
   </ItemGroup>
