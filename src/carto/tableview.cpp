@@ -152,3 +152,150 @@ wxGridCtrl::wxGridCtrl(wxWindow* parent, const long& id) :
 
  BEGIN_EVENT_TABLE(wxGISTableView, wxPanel)
 	 EVT_GRID_LABEL_LEFT_CLICK(wxGISTableView::OnLabelLeftClick)
+	 EVT_GRID_SELECT_CELL(wxGISTableView::ID_NEXT, wxGISTableView::OnBtnFirst);
+     EVT_BUTTON(wxGISTableView::ID_FIRST, wxGISTableView::OnBtnFirst)
+     EVT_BUTTON(wxGISTableView::ID_NEXT, wxGISTableView::OnBtnNext)
+	 EVT_BUTTON(wxGISTableView::ID_PREV, wxGISTableView::OnBtnPrev)
+	 EVT_BUTTON(wxGISTableView::ID_LAST, wxGISTableView::OnBtnLast)
+     EVT_TEXT_ENTER(wxGISTableView::ID_POS, wxGISTableView::OnSetPos)
+END_EVENT_TABLE();
+
+wxGISTableView::wxGISTableView(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style )
+	:wxPanel( parent, id, pos, size, style )
+{
+	wxBoxSizer* bSizerMain;
+	bSizerMain = new wxBoxSizer( wxVERTICAL );
+
+	m_grid = new wxGridCtrl( this, wxID_ANY);
+
+	// Grid
+	m_grid->CreateGrid( 5, 5 );
+	m_grid->EnableEditing( false );
+	m_grid->EnableDragGridSize( false );
+	m_grid->SetMargins( 0, 0 );
+
+	//Colums
+	m_grid->EnableDragColMove( false );
+	m_grid->EnableDragColSize( true );
+	m_grid->SetColLabelSize( 20 );
+	m_grid->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Rows
+	m_grid->EnableDragRowSize( true );
+	m_grid->SetRowLabelSize( 15 );
+	m_grid->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Label Appearance
+
+	//Cell Defaults
+	m_grid->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	//
+
+	bSizerMain->Add( m_grid, 1, wxALL|wxEXPAND, 0);
+
+	wxBoxSizer* bSizerLow;
+	bSizerLow = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText1 = new wxStaticText( this, wxID_ANY, _("Record:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText1->Wrap( -1 );
+	bSizerLow->Add( m_staticText1, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+
+	m_bpFirst = new wxBitmapButton( this, wxGISTableView::ID_FIRST, m_grid->m_pImageList->GetBitmap(0), wxDefaultPosition, 
+		wxSize( BITBUTTONSIZE, BITBUTTONSIZE ), wxBU_AUTODRAW );
+	m_bpFirst->SetMinSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+	m_bpFirst->SetMaxSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+
+	bSizerLow->Add( m_bpFirst, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0 );
+
+	m_bpPrev = new wxBitmapButton( this, wxGISTableView::ID_PREV, m_grid->m_pImageList->GetBitmap(1), wxDefaultPosition, 
+		wxSize( BITBUTTONSIZE, BITBUTTONSIZE ), wxBU_AUTODRAW );
+	m_bpPrev->SetMinSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+	m_bpPrev->SetMaxSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+
+	bSizerLow->Add( m_bpPrev, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0 );
+
+	m_position = new wxTextCtrl(this, wxGISTableView::ID_POS, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTER|wxTE_PROCESS_ENTER );
+	bSizerLow->Add( m_position, 0, wxALL, 5 );
+
+	m_bpNext= new wxBitmapButton( this, wxGISTableView::ID_NEXT, m_grid->m_pImageList->GetBitmap(2), wxDefaultPosition, 
+		wxSize( BITBUTTONSIZE, BITBUTTONSIZE ), wxBU_AUTODRAW );
+	m_bpNext->SetMinSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+	m_bpNext->SetMaxSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+
+	bSizerLow->Add( m_bpNext, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0 );
+
+	m_bpLast= new wxBitmapButton( this, wxGISTableView::ID_LAST, m_grid->m_pImageList->GetBitmap(3), wxDefaultPosition, 
+		wxSize( BITBUTTONSIZE, BITBUTTONSIZE ), wxBU_AUTODRAW );
+	m_bpLast->SetMinSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+	m_bpLast->SetMaxSize( wxSize( BITBUTTONSIZE, BITBUTTONSIZE ) );
+
+	bSizerLow->Add( m_bpLast, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0 );
+
+	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("of"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap(( -1 );
+	bSizerLow->Add( m_staticText2, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5);
+
+	bSizerMain->Add( bSizerLow, 0, wxEXPAND, 5);
+
+	this->SetSizer( bSizerMain );
+
+	(*m_position) << 1;
+
+	this->Layout();
+}
+
+wxGISTableView::~wxGISTableView(void)
+{
+
+}
+
+void wxGISTableView::OnLabelLeftClick(wxGridEvent& event)
+{
+	event.Skip();
+}
+
+void wxGISTableView::OnSelectCell(wxGridEvent& event)
+{
+	m_position->Clear();
+	(*m_position) << event.GetRow() + 1;
+
+	event.Skip();
+}
+
+void wxGISTableView::OnBtnFirst( wxCommandEvent& event )
+{
+	m_grid->SetGridCursor(0,0);
+	m_grid->MakeCellVisible(0,0);
+	m_position->Clear();
+	(*m_position) << 1;
+}
+
+void wxGISTableView::OnBtnNext(wxCommandEvent& event)
+{
+	m_grid->MoveCursorDown(false);
+	m_position->Clear();
+	(*m_position) << m_grid->GetGridCursorRow() + 1;
+}
+
+void wxGISTableView::OnBtnPrev(wxCommandEvent& event)
+{
+	m_grid->MoveCursorUp(false);
+	m_position->Clear();
+	(*m_position) << m_grid->GetGridCursorRow() + 1;
+}
+
+void wxGISTableView::OnBtnLast(wxCommandEvent& event)
+{
+	m_grid->SetGridCursor(m_grid->GetNumberRows() - 1,0);
+	m_grid->MakeCellVisible(m_grid->GetNumberRows() - 1,0);
+	m_position->Clear();
+	(*m_position) << m_grid->GetNumberRows();
+}
+
+void wxGISTableView::OnSetPos(wxCommandEvent& event)
+{
+	long pos = wxAtol(event.GetString());
+	m_grid->SetGridCursor(pos - 1,0);
+	m_grid->MakeCellVisible(pos - 1,0);
+
+}

@@ -97,7 +97,7 @@ public:
 	}
 	virtual void SetReadOnly(bool bIsReadOnly){if(m_grid) m_grid->EnableEditing( bIsReadOnly ) ;}
 	void OnLabelLeftClick(wxGridEvent& event);
-	void OnSelectCell(wxCommandEvent& event);
+	void OnSelectCell(wxGridEvent& event);
 	void OnBtnFirst(wxCommandEvent& event);
 	void OnBtnNext(wxCommandEvent& event);
 	void OnBtnPrev(wxCommandEvent& event);

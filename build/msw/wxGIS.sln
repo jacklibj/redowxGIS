@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCarto", "wxGISCarto.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISDispaly", "wxGISDispaly.vcxproj", "{918054FD-651D-40B1-A70A-D2CE0308FC9E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalog", "wxGISCatalog\wxGISCatalog.vcxproj", "{147AA7E8-1B20-4200-9F72-497247127E7C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalogUI", "wxGISCatalogUI\wxGISCatalogUI.vcxproj", "{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -85,6 +89,38 @@ Global
 		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Debug|Win32.Build.0 = Debug|Win32
 		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Release|Win32.ActiveCfg = Release|Win32
 		{918054FD-651D-40B1-A70A-D2CE0308FC9E}.Universal Release|Win32.Build.0 = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Debug|Win32.Build.0 = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Debug|Win32.ActiveCfg = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Debug|Win32.Build.0 = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Release|Win32.ActiveCfg = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Release|Win32.Build.0 = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Universal Debug|Win32.Build.0 = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Universal Release|Win32.ActiveCfg = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.DLL Universal Release|Win32.Build.0 = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Release|Win32.ActiveCfg = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Release|Win32.Build.0 = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Universal Debug|Win32.Build.0 = Debug|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Universal Release|Win32.ActiveCfg = Release|Win32
+		{147AA7E8-1B20-4200-9F72-497247127E7C}.Universal Release|Win32.Build.0 = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Debug|Win32.Build.0 = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Debug|Win32.ActiveCfg = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Debug|Win32.Build.0 = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Release|Win32.ActiveCfg = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Release|Win32.Build.0 = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Universal Debug|Win32.Build.0 = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Universal Release|Win32.ActiveCfg = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.DLL Universal Release|Win32.Build.0 = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Release|Win32.ActiveCfg = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Release|Win32.Build.0 = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Universal Debug|Win32.ActiveCfg = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Universal Debug|Win32.Build.0 = Debug|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Universal Release|Win32.ActiveCfg = Release|Win32
+		{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}.Universal Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
