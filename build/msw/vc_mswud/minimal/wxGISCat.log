@@ -1,15 +1,15 @@
-﻿Build started 2013/5/23 22:36:56.
-     1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\build\msw\wxGISCat.vcxproj" on node 2 (build target(s)).
+﻿Build started 2013/6/2 11:23:00.
+     1>Project "C:\Users\jack\Documents\GitHub\redowxGIS\build\msw\wxGISCat.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
          Touching "vc_mswud\minimal\wxGISCat.unsuccessfulbuild".
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\jack\dev\gdal\gdal\alg /IC:\Users\jack\dev\gdal\gdal\gcore /IC:\Users\jack\dev\gdal\gdal\port /IC:\Users\jack\dev\gdal\gdal\ogr /IC:\Users\jack\dev\gdal\gdal\ogr\ogrsf_frmts /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\lib\vc_lib\mswud" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include" /I"C:\Users\jack\dev\wx\wxWidgets-2.9.4\include\msvc" /I..\..\include /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE=1 /D _CRT_NON_CONFORMING_SWPRINTFS=1 /D _SCL_SECURE_NO_WARNINGS=1 /D __WXMSW__ /D _UNICODE /D _WINDOWS /D NOPCH /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"vc_mswud\minimal\\" /Fd"vc_mswud\minimal.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\cat_app\catalogapp.cpp ..\..\src\cat_app\catalogframe.cpp /MP 
          catalogapp.cpp
          catalogframe.cpp
-     1>..\..\src\cat_app\catalogframe.cpp(1): fatal error C1083: Cannot open include file: 'catalogframe.h': No such file or directory
      1>..\..\src\cat_app\catalogapp.cpp(2): fatal error C1083: Cannot open include file: 'catalog.h': No such file or directory
+     1>..\..\src\cat_app\catalogframe.cpp(1): fatal error C1083: Cannot open include file: 'catalogframe.h': No such file or directory
      1>Done Building Project "C:\Users\jack\Documents\GitHub\redowxGIS\build\msw\wxGISCat.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.30
+Time Elapsed 00:00:01.12

@@ -15,57 +15,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\catalog.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\catalogcmd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxcatalog.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\catalogui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxdataset.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\customizedlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxdiscconnection.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxapplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxfolder.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxcontentview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxselection.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxlocationcombobox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxshapefactory.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxmapview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxfolderfactory.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtableview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\wxgis\catalog\gxrasterfactory.h">
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtabview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtreeview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\catalogui\viewsfactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\catalog\gxcatalog.cpp">
+    <ClCompile Include="..\..\src\catalogui\catalogcmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxdataset.cpp">
+    <ClCompile Include="..\..\src\catalogui\customizedlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxdisconnection.cpp">
+    <ClCompile Include="..\..\src\catalogui\gxapplication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxfolder.cpp">
+    <ClCompile Include="..\..\src\catalogui\gxcontentview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxselection.cpp">
+    <ClCompile Include="..\..\src\catalogui\gxtabview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxshapefactory.cpp">
+    <ClCompile Include="..\..\src\catalogui\gxtreeview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxfolderfactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\catalog\gxrasterfactory.cpp">
+    <ClCompile Include="..\..\src\catalogui\gxview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

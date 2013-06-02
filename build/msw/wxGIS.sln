@@ -9,9 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCarto", "wxGISCarto.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISDispaly", "wxGISDispaly.vcxproj", "{918054FD-651D-40B1-A70A-D2CE0308FC9E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalog", "wxGISCatalog\wxGISCatalog.vcxproj", "{147AA7E8-1B20-4200-9F72-497247127E7C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalog", "wxGISCatalog.vcxproj", "{147AA7E8-1B20-4200-9F72-497247127E7C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalogUI", "wxGISCatalogUI\wxGISCatalogUI.vcxproj", "{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGISCatalogUI", "wxGISCatalogUI.vcxproj", "{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

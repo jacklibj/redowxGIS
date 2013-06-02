@@ -10,6 +10,29 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\wxgis\catalogui\catalogcmd.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\catalogui.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\customizedlg.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxapplication.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxcontentview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxlocationcombobox.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxmapview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtableview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtabview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxtreeview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\viewsfactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\catalogui\catalogcmd.cpp" />
+    <ClCompile Include="..\..\src\catalogui\customizedlg.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxapplication.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxcontentview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxtabview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxtreeview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxview.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -50,6 +73,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,29 +97,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\catalogcmd.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\catalogui.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\customizedlg.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxapplication.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxcontentview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxlocationcombobox.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxmapview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtableview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtabview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxtreeview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\gxview.h" />
-    <ClInclude Include="..\..\..\include\wxgis\catalogui\viewsfactory.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\src\catalogui\catalogcmd.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\customizedlg.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\gxapplication.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\gxcontentview.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\gxtabview.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\gxtreeview.cpp" />
-    <ClCompile Include="..\..\..\src\catalogui\gxview.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
