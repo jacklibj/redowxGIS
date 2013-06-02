@@ -74,5 +74,8 @@
     <ClCompile Include="..\..\src\catalogui\gxview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\catalogui\gxlocationcombobox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

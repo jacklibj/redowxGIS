@@ -29,6 +29,7 @@
     <ClCompile Include="..\..\src\catalogui\customizedlg.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxapplication.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxcontentview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxlocationcombobox.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxtabview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxtreeview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxview.cpp" />
