@@ -18,6 +18,7 @@
     <ClInclude Include="..\..\include\wxgis\catalogui\gxcontentview.h" />
     <ClInclude Include="..\..\include\wxgis\catalogui\gxlocationcombobox.h" />
     <ClInclude Include="..\..\include\wxgis\catalogui\gxmapview.h" />
+    <ClInclude Include="..\..\include\wxgis\catalogui\gxnoview.h" />
     <ClInclude Include="..\..\include\wxgis\catalogui\gxtableview.h" />
     <ClInclude Include="..\..\include\wxgis\catalogui\gxtabview.h" />
     <ClInclude Include="..\..\include\wxgis\catalogui\gxtreeview.h" />
@@ -30,6 +31,8 @@
     <ClCompile Include="..\..\src\catalogui\gxapplication.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxcontentview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxlocationcombobox.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxmapview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\gxnoview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxtabview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxtreeview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxview.cpp" />
