@@ -36,6 +36,7 @@
     <ClCompile Include="..\..\src\catalogui\gxtabview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxtreeview.cpp" />
     <ClCompile Include="..\..\src\catalogui\gxview.cpp" />
+    <ClCompile Include="..\..\src\catalogui\viewsfactory.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AB2A9288-3329-413F-9ED5-AD3FFD10E63E}</ProjectGuid>

@@ -71,6 +71,7 @@
     <ClInclude Include="..\..\include\wxgis\display\simplemarkersymbol.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\display\displaytransformation.cpp" />
     <ClCompile Include="..\..\src\display\screendisplay.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
