@@ -37,8 +37,10 @@ public:
 	virtual double GetScaleRatio(void) = 0;
 	virtual void SetSpatialReference(OGRSpatialReference* pSpatialReference) = 0;
 	virtual OGRSpatialReference* GetSpatialReference(void) = 0;
-	virtual wxPoint* TransforCoordWorld2DC(OGRRawPoint* point, size_t nPointCount, wxPoint* pResult) = 0;
-	virtual OGRRawPoint* TransforCoordDC2World(wxPoint* pPoints, size_t nPointCount)=0;
+
+	virtual wxPoint* TransformCoordWorld2DC(OGRRawPoint* point, size_t nPointCount) = 0;
+	virtual void TransformCoordWorld2DC(OGRRawPoint* point, size_t nPointCount, wxPoint* pResult) = 0;
+	virtual OGRRawPoint* TransformCoordDC2World(wxPoint* pPoints, size_t nPointCount)=0;
 	virtual void SetPPI(wxSize new_res) = 0;
 	virtual OGREnvelope TransformRect(wxRect rect) = 0;
 };

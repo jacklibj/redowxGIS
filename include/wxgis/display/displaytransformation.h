@@ -20,10 +20,10 @@ public:
 	virtual void SetSpatialReference(OGRSpatialReference* pSpatialReference);
 	virtual OGRSpatialReference* GetSpatialReference(void);
 	virtual wxPoint* TransformCoordWorld2DC(OGRRawPoint* pPoints, size_t nPointCount);
-	virtual void TransformCoordWorldDC2World(wxPoint* pPoints, size_t nPointCount, wxPoint* pResult);
+	virtual void TransformCoordWorld2DC(OGRRawPoint* pPoints, size_t nPointCount, wxPoint* pResult);
 	virtual OGRRawPoint* TransformCoordDC2World(wxPoint* pPoints, size_t nPointCount);
 	virtual void SetPPI(wxSize new_res);
-	virtual OGREnvelope TransfromRect(wxRect rect);
+	virtual OGREnvelope TransformRect(wxRect rect);
 protected:
 	//World2DC
 	double xWorld2DC(double x);
@@ -32,7 +32,7 @@ protected:
 	double xDC2World(int x);
 	double yDC2World(int y);
 protected:
-	double m_World2DC, m_DC2World, m_DCXDelta, m_DCYDelta, m_WolrdXDelta, m_WorldYDelta;
+	double m_World2DC, m_DC2World, m_DCXDelta, m_DCYDelta, m_WorldXDelta, m_WorldYDelta;
 	wxRect m_DeviceFrameRect;
 	OGREnvelope m_Bounds;
 	OGRSpatialReference* m_pSpatialReference;

@@ -16,15 +16,17 @@ public:
 		int nYbeg, int nYend);
 	virtual void *Entry();
 	virtual void OnExit();
-	/*virtual*/ static void OnNearestNeighbourInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int Yend, int nOrigWidth, 
+	/*virtual*/ static void OnNearestNeighbourInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, 
 		int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel);
 	/*virtual*/ static void OnBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, 
 		int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel);
 	/*virtual*/ static void OnHalfBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth,
 		int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel);
-	/*virtual*/ static void OnHalfQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, 
-		int nYBeg, int nYend, int nOrigWidth, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel);
+	/*virtual*/ static void OnHalfQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYBeg, int nYend, int nOrigWidth,
+		int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel);
 	/*virtuil*/ static void OnFourQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend,
+		int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDelatX, double rDelstaY, ITrackCancel* pTrackCancel);
+	/*virtual*/ static void OnBicubicInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend,
 		int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDelatX, double rDelstaY, ITrackCancel* pTrackCancel);
 	static double BiCubicKernel(double x);
 private:
