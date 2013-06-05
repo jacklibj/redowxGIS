@@ -45,6 +45,24 @@ private:
 	int m_nYbeg, m_nYend;
 };
 
+
+//-----------------------
+// wxGISDisplay
+//-------------------------
+
+class WXDLLIMPEXP_GIS_DSP wxGISDisplay :
+	public IDisplay
+{
+public:
+	wxGISDisplay(void);
+	virtual ~wxGISDisplay(void);
+	virtual bool IsDerty(void);
+	virtual void SetDerty(bool bIsDerty);
+	virtual IDisplayTransformation* GetDisplayTransformation(void);
+protected:
+	bool m_bIsDerty;
+	wxGISDisplayTransformation* m_pDisplayTransformation;
+};
 //---
 //wxGISScreenDisplay
 //-----
