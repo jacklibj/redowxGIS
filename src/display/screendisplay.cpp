@@ -560,4 +560,141 @@ void wxGISScreenDisplay::OnStretchDraw(wxDC &dc, wxCoord nDestwidth, wxCoord nDe
 	dc.DrawBitmap(Img, x, y);
 }
 
-void wxGISScreenDisplay::OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackground, wxGISEnum)
+void wxGISScreenDisplay::OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackground, wxGISEnumDrawQuality quality )
+{
+	wxCriticalSectionLocker locker(m_CritSect);
+
+	wxRect DevRect = m_pDisplayTransformation->GetDeviceFrame();
+	wxImage Img = m_caches[m_caches.size() - 1].bmp.GetSubBitmap(Rect).ConvertToImage();
+	//
+	Img = Scale(Img, DevRect.width, DevRect.height, quality);
+	if(bClearBackground)
+		dc.DrawBitmap(m_caches[0].bmp, 0, 0);
+	dc.DrawBitmap(Img, DevRect.x, DevRect.y);
+}
+
+void wxGISScreenDisplay::DrawPolygon(int n, wxPoint points[], wxCoord xoffset, wxCoord yofffset, int fill_style)
+{
+	m_dc.DrawPolygon(n, count, points, xoffset, yoffset, fill_style);
+}
+
+void wxGISScreenDisplay::DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset, wxCoord yoffset, int fill_style)
+{
+	m_dc.DrawPolyPolygon(n, count, points, xoffset, yoffset, fill_style);
+}
+
+void wxGISScreenDisplay::SetDerty(bool bIsDerty)
+{
+	m_bIsDerty = bIsDerty;
+
+	for(size_t i = 0; i < m_caches.size(); i++)
+		m_caches[i].IsDerty = bIsDerty ;
+}
+
+bool wxGISScreenDisplay::IsDerty(void)
+{
+	return m_bIsDerty;
+}
+
+IDisplayTransformation* wxGISScreenDisplay::GetDisplayTransformation(void)
+{
+	return static_cast<IDisplayTransformation*>(m_pDisplayTransformation);
+}
+
+void wxGISScreenDisplay::ClearCaches(void)
+{
+	m_caches.erase(m_caches.begin() + 2, m_caches.end());
+	MergeCaches(0,1);
+	m_bIsDerty = true;
+}
+
+void wxGISScreenDisplay::DrawPoint(wxCOord x, wxCoord y)
+{
+	m_dc.DrawPoint(x, y);
+}
+
+void wxGISScreenDisplay::DrawLines(int n, wxPoint points[], wxCoord xoffset, wxCoord yoffset)
+{
+	m_dc.DrawCircle(x, y, radius);
+}
+
+void wxGISScreenDisplay::SetBrush(wxBrush& Brush)
+{
+	m_dc.SetBrush(Brush);
+}
+
+void wxGISScreenDisplay::SetPen(wxPen& Pen)
+{
+	m_dc.SetPen(Pen);
+}
+
+void wxGISScreenDisplay::SetFont(wxFont& Font)
+{
+	m_dc.SetFont(Font);
+}
+
+bool wxGISScreenDisplay::IsCachedDerty(size_t cache_id)
+{
+	m_caches[cache_id].IsDerty = bIsDerty;
+}
+
+size_t wxGISScreenDisplay::AddCache(void)
+{
+	int max_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
+	int max_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
+	wxBitmap Buffer(wxBitmap(max_x,, max_y));
+	CACHEDATA data = ({true, Buffer};
+	m_caches.push_back(data);
+	m_nLastCacheID = m_caches.size() - 1;
+	return m_nLastCacheID;
+}
+
+void wxGISScreenDisplay::MergeCaches(size_t SrcCacheID, size_t DstCacheID)
+{
+	wxCriticalSectionLocker locker(m_CritSect);
+
+	m_dc.SelectObject(m_caches[DstCacheID].bmp);
+	m_dc.DrawBitmap(m_caches[SrcCacheID].bmp, 0, 0);
+	m_dc.SelectObject(wxNullBitmap);
+}
+
+void wxGISScreenDisplay::StartDrawing(size_t CacheID)
+{
+	wxCriticalSectionLocker locker(m_CritSect);
+
+	m_dc.SelectObject(m_caches[CacheID].bmp);
+}
+
+void wxGISScreenDisplay::FinishDrawing(void)
+{
+	wxCriticalSectionLocker locker(m_CritSect);
+
+	m_dc.SelectObject(wxNullBitmap);
+}
+
+size_t wxGISScreenDisplay::GetLastCacheID(void)
+{
+	return m_nLastCacheID;
+}
+
+void wxGISScreenDisplay::DrawRectangle(wxCoord x, wxCoord y, wxCoord width, wxCoord height)
+{
+	m_dc.DrawRectangle(x, y, width, height);
+}
+
+void wxGISScreenDisplay::DrawBitmap(const wxBitmap& bitmap, wxCoord x, wxCoord y, bool transparent)
+{
+	m_dc.DrawBitmap(bitmap, x, y, transparent);
+}
+
+//
+//
+
+wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawquality Quality, ITrackCancel* pTtrackCancel)
+{
+	unsigned char* pData = SourceImage.GetData();
+	int nSourceWidth = SourceImage.GetWidth();
+	int nSourceHeight = SourceImage.GetHeight();
+	return Scale(pData)
+
+}
