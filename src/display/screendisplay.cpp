@@ -451,4 +451,113 @@ void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsign
 //-----------------------
 // wxGISDisplay
 //------------------------------
-wxGISDisplay::wxGISDisplay(void)
+wxGISDisplay::wxGISDisplay(void) : m_bIsDerty(true)
+{
+	m_pDisplayTransformation = new wxGISDisplayTransformation();
+}
+
+wxGISDisplay::~wxGISDisplay(void)
+{
+	wxDELETE(m_pDisplayTransformation);
+}
+
+bool wxGISDisplay::IsDerty(void)
+{
+	return m_bIsDerty;
+}
+
+void wxGISDisplay::SetDerty(bool bIsDerty)
+{
+	m_bIsDerty = bIsDerty;
+}
+
+IDisplayTransformation* wxGISDisplay::GetDisplayTransformation(void)
+{
+	return static_cast<IDisplayTransformation*>(m_pDisplayTransformation);
+}
+
+//----------------------
+// wxGISScreenDisplay
+//----------------------
+
+wxGISScreenDisplay::wxGISScreenDisplay(void) : m_bIsDerty(true), m_nLastCacheID(1)
+{
+	m_pDisplayTransformation = new wxGISDisplayTransformation();
+
+	int max_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
+	int max_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
+	wxBitmap BackGroundBuffer(wxBitmap(max_x, max_y, 32));
+	m_dc.SelectObject(BackGroundBuffer);
+	m_dc.SetBackground(wxBrush(wxColour(240, 255, 255), wxSOLID));
+	m_dc.Clear();
+	m_dc.SelectObject(wxNullBitmap);
+	CACHEDATA bk_data = {false, BackGroundBuffer};
+	m_caches.push_back(bk_data);
+	//geography
+	wxBitmap Buffer(wxBitmap(max_x, max_y, 32));
+	CACHEDATA geo_data = {true, Buffer};
+	m_caches.push_back(geo_data);
+}
+
+wxGISScreenDisplay::~wxGISScreenDisplay(void)
+{
+	wxDELETE(m_pDisplayTransformation);
+}
+
+void wxGISScreenDisplay::OnDraw(wxDC &dc, wxCoord x /* = 0 */, wxCoord y /* = 0 */, bool bClearBackground /* = false */
+{
+	wxRect DevRect = m_pDisplayTransformation->GetDeviceFrame();
+	dc.SetClippingRegion(DevRect);
+	if(bClearBackground)
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(DevRect), 0, 0);
+	dc.DrawBitmap(m_caches[m_caches.size() - 1].bmp.GetSubBitmap(DevRect), x, y);
+}
+
+void wxGISScreenDisplay::OnPanDraw(wxDC &dc, wxCoord x, wxCoord y)
+{
+	wxRect DispRect = m_pDisplayTransformation->GetDeviceFrame();
+	dc.SetClippingRegion(DispRect);
+
+	if (abs(x) > DispRect.GetHeight() && abs(y) > DispRect.GetWidth())
+	{
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(DispRect), 0, 0);      //,true
+		return;
+	}
+	if (x < 0)
+	{
+		wxRect Rect(0, 0, -x, DispRect.GetHeight());
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(Rect), 0, 0);
+	}
+	if (y < 0)
+	{
+		wxRect Rect(0, 0, DispRect.GetWidth(), -y);
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(Rect), 0, 0);
+	}
+	if (x > 0)
+	{
+		wxRect Rect(0, 0, x, DispRect.GetHeight());
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(Rect), DispRect.GetWidth() - x, 0);
+	}
+	if (y > 0)
+	{
+		wxRect Rect(0, 0, DispRect.GetWidth(), y);
+		dc.DrawBitmap(m_caches[0].bmp.GetSubBitmap(Rect), 0, DispRect.GetHeight() - y);
+	}
+
+	dc.DrawBitmap(m_caches[m_caches.size() - 1].bmp.GetSubBitmap(DispRect), -x, -y);
+}
+
+void wxGISScreenDisplay::OnStretchDraw(wxDC &dc, wxCoord nDestwidth, wxCoord nDestHeight, wxCoord x, wxCoord y, bool bClearBackground, wxGISEnumDrawQuality quality )
+{
+	wxCriticalSectionLocker locker(m_CritSect);
+
+	wxRect Rect = m_pDisplayTransformation->GetDeviceFrame();
+	wxImage Img = m_caches[m_caches.size() - 1].bmp.GetSubBitmap(Rect).ConvertToImage();
+	Img = Img.Scale(nDestWidth, nDestHeight, quality);
+	//
+	if(bClearBackground)
+		dc.DrawBitmap(m_caches[0].bmp, 0, 0);
+	dc.DrawBitmap(Img, x, y);
+}
+
+void wxGISScreenDisplay::OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackground, wxGISEnum)
