@@ -690,11 +690,46 @@ void wxGISScreenDisplay::DrawBitmap(const wxBitmap& bitmap, wxCoord x, wxCoord y
 //
 //
 
-wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawquality Quality, ITrackCancel* pTtrackCancel)
+wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawQuality Quality, ITrackCancel* pTtrackCancel)
 {
 	unsigned char* pData = SourceImage.GetData();
 	int nSourceWidth = SourceImage.GetWidth();
 	int nSourceHeight = SourceImage.GetHeight();
-	return Scale(pData)
+	return Scale(pData, nSourceWidth, nSourceHeight, nSourceWidth, nSourceHeight, nDestWidth, nDestHeight, 0, 0, Quality, pTrackCancel);
+}
 
+wxImage wxGISScreenDisplay::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY,
+	int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel)
+{
+	wxImage ResultImage(nDestX, nDestY, false);
+	unsigned char* pDestData = ResultImage.GetData();
+
+	double rWRatio, rHRatio;
+	rWRatio = rOrigX / nDestY;
+	rHRatio = rOrigY / nDestY;
+
+	switch(Quality)
+	{
+	case enumGISQualityBilinear:
+		wxRasterDrawThread::OnBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	case enumGISQualityHalfBilinear:
+		wxRasterDrawThread::OnHalfBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	case enumGISQualityHalfQuadBilinear:
+		wxRasterDrawThread::OnHalfQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	case enumGISQualityFourQuadBilinear:
+		wxRasterDrawThread::OnFourQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	case enumGISQualityBicubic:
+		wxRasterDrawThread::OnBicubicInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	case enumGISQualityNearest:
+	default:
+		wxRasterDrawThread::OnNearestNeighbourInterpolation(pData, pDestData, 0, nDestY, nOrigX, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		break;
+	}
+	//
+	return ResultImage;
 }
