@@ -75,6 +75,9 @@
     <ClCompile Include="..\..\src\display\rubberband.cpp" />
     <ClCompile Include="..\..\src\display\screendisplay.cpp" />
     <ClCompile Include="..\..\src\display\screendisplayplus.cpp" />
+    <ClCompile Include="..\..\src\display\simplefillsymbol.cpp" />
+    <ClCompile Include="..\..\src\display\simplelinesymbol.cpp" />
+    <ClCompile Include="..\..\src\display\simplemarkersymbol.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
