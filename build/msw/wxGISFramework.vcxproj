@@ -16,6 +16,7 @@
     <ClInclude Include="..\..\include\wxgis\framework\animation.h" />
     <ClInclude Include="..\..\include\wxgis\framework\application.h" />
     <ClInclude Include="..\..\include\wxgis\framework\base.h" />
+    <ClInclude Include="..\..\include\wxgis\framework\command.h" />
     <ClInclude Include="..\..\include\wxgis\framework\commandbar.h" />
     <ClInclude Include="..\..\include\wxgis\framework\config.h" />
     <ClInclude Include="..\..\include\wxgis\framework\createcbdlg.h" />
@@ -30,6 +31,7 @@
     <ClCompile Include="..\..\src\framework\addcommanddlg.cpp" />
     <ClCompile Include="..\..\src\framework\animation.cpp" />
     <ClCompile Include="..\..\src\framework\application.cpp" />
+    <ClCompile Include="..\..\src\framework\command.cpp" />
     <ClCompile Include="..\..\src\framework\commandbar.cpp" />
     <ClCompile Include="..\..\src\framework\config.cpp" />
     <ClCompile Include="..\..\src\framework\createcbdlg.cpp" />

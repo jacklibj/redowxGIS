@@ -1,6 +1,6 @@
 #pragma once
 #include "gxview.h"
-#include "catalog.h"
+#include "wxgis/catalog/catalog.h"
 
 #include <wx\aui\aui.h>
 #include <wx\artprov.h>

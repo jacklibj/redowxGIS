@@ -54,6 +54,9 @@
     <ClInclude Include="..\..\include\wxgis\framework\toolbarmenu.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\wxgis\framework\command.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\framework\accelerator.cpp">
@@ -87,6 +90,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\framework\toolbarmenu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\framework\command.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

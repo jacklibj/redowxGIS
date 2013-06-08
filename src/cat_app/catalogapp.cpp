@@ -1,10 +1,9 @@
 
-#include "catalog.h"
-#include "catalogapp.h"
-#include "catalogframe.h"
+#include "wxgis/catalog/catalog.h"
+#include "wxgis/cat_app/catalogapp.h"
+#include "wxgis/cat_app/catalogframe.h"
 
 
-#include "catalogapp.h"
 #include <locale.h>
 #include "ogrsf_frmts.h"
 #include "ogr_api.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "datasource.h"
+#include "wxgis/datasource.h"
 #include "wx\filename.h"
 
 #define APP_NAME wxT("wxGISCatalog")

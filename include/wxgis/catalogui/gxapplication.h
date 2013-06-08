@@ -1,8 +1,8 @@
 #pragma once
-#include "catalog.h"
-#include "application.h"
-#include "gxtreeview.h"
-#include "gxtabview.h"
+#include "wxgis/catalog/catalog.h"
+#include "wxgis/framework/application.h"
+#include "wxgis/catalogui/gxtreeview.h"
+#include "wxgis/catalogui/gxtabview.h"
 
 #include "wx\aui\aui.h"
 #include "wx/artprov.h"

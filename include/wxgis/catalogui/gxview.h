@@ -1,6 +1,6 @@
 #pragma once
 #include "catalogui.h"
-#include "catalog.h"
+#include "wxgis/catalog/catalog.h"
 
 
 class wxGxApplication;

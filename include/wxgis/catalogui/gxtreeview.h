@@ -4,7 +4,7 @@
 
 #include <wx\treectrl.h>
 
-#include "art\document.xpm"
+#include "../../art/document.xpm"
 
 class wxGxTreeItemData : public wxTreeItemData
 {

@@ -1,4 +1,4 @@
-#include "catalogframe.h"
+#include "wxgis/cat_app/catalogframe.h"
 BEGIN_EVENT_TABLE(wxGISCatalogFrame, wxGxApplication)
 END_EVENT_TABLE()
 

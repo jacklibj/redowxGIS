@@ -1,9 +1,9 @@
 #pragma once
 
 #include "wxgis\framework\framework.h"
-#include "gxapplication.h"
+#include "wxgis/catalogui/gxapplication.h"
 
-#include "art\mainframe.xpm"
+#include "../../art\mainframe.xpm"
 
 #include "wx\aui\aui.h"
 #include "wx\generic\logg.h"
