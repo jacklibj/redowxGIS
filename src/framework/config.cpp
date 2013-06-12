@@ -1,4 +1,4 @@
-#include "config.h"
+#include "wxgis/framework/config.h"
 #include <wx\tokenzr.h>
 
 //

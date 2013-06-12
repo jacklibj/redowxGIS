@@ -1,4 +1,4 @@
-#include "addcommanddlg.h"
+#include "wxgis/framework/addcommanddlg.h"
 #include "wx\accel.h"
 #include "wx\utils.h"
 

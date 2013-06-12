@@ -1,4 +1,4 @@
-#include "animation.h"
+#include "wxgis/framework/animation.h"
 
 BEGIN_EVENT_TABLE(wxGISAnimation, wxControl)
 	EVT_PAINT(wxGISAnimation::OnPaint)

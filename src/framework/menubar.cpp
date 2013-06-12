@@ -1,6 +1,6 @@
-#include "menubar.h"
-#include "wxgis\framework\config.h"
-#include "toolbarmenu.h"
+#include "wxgis/framework/menubar.h"
+#include "wxgis/framework/config.h"
+#include "wxgis/framework/toolbarmenu.h"
 
 wxGISMenuBar::wxGISMenuBar(long style, IApplication* pApp, wxXmlNode* pConf) : wxMenuBar(style)
 {

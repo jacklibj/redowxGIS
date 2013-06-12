@@ -1,7 +1,7 @@
 #pragma once
 
 #include "wxgis/framework/framework.h"
-#include "art/charmap16.xpm"
+#include "../art/charmap16.xpm"
 
 #include "wx\intl.h"
 

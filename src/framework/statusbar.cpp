@@ -1,5 +1,5 @@
-#include "statusbar.h"
-#include "art/globe_imglst14.xpm"
+#include "wxgis/framework/statusbar.h"
+#include "../art/globe_imglst14.xpm"
 
 BEGIN_EVENT_TABLE(wxGISStatusBar, wxStatusBar)
 	EVT_SIZE(wxGISStatusBar::OnSize)

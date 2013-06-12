@@ -1,5 +1,5 @@
-#include "toolbarmenu.h"
-#include "commandbar.h"
+#include "wxgis/framework/toolbarmenu.h"
+#include "wxgis/framework/commandbar.h"
 
 BEGIN_EVENT_TABLE(wxGISToolBarMenu, wxMenu)
 	EVT_MENU_RANGE(wxGISApplication::ID_PLUGINCMD + 520, wxGISApplication::ID_PLUGINCMD + 1032, wxGISToolBarMenu::OnCommand)

@@ -1,4 +1,4 @@
-#include "accelerator.h"
+#include "wxgis/framework/accelerator.h"
 #include "wx\tokenzr.h"
 
 wxGISAcceleratorTable::wxGISAcceleratorTable(IApplication* pApp, IGISConfig* pConf) : bHasChanges(true)

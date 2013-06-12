@@ -1,7 +1,7 @@
-#include "application.h"
-#include "toolbarmenu.h"
+#include "wxgis/framework/application.h"
+#include "wxgis/framework/toolbarmenu.h"
 #include <wx\tokenzr.h>
-#include "art\default_16.xpm"
+#include "../art\default_16.xpm"
 
 
 BEGIN_EVENT_TABLE(wxGISApplication, wxFrame)

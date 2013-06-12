@@ -122,7 +122,7 @@ wxGISEnumCommandKind wxGISCommonCmd::GetKind(void)
 	}
 }
 
-wxString wxGISCommand::GetMessage(void)
+wxString wxGISCommonCmd::GetMessage(void)
 {
 	switch (m_subtype)
 	{
@@ -147,7 +147,7 @@ void wxGISCommonCmd::OnClick(void)
 	{
 	case 0:
 		{
-			wxFrame* pFrame = dynamic_cast<wxFrame*>(m_pApp));
+			wxFrame* pFrame = dynamic_cast<wxFrame*>(m_pApp);
 			if(pFrame)
 				pFrame->Close();
 			break;
@@ -157,7 +157,7 @@ void wxGISCommonCmd::OnClick(void)
 	case 2:
 		m_pApp->Customize();
 	case 4:
-		m_pApp->ShowStatusBar(!m_pApp->IsStatusBarShow())
+		m_pApp->ShowStatusBar(!m_pApp->IsStatusBarShown());
 			break;
 	case 3:
 	default:

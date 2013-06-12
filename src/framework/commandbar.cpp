@@ -1,5 +1,5 @@
-#include "commandbar.h"
-#include "art\default_16.xpm"
+#include "wxgis/framework/commandbar.h"
+#include "../art\default_16.xpm"
 
 //---------
 // wxGISCommandBar
