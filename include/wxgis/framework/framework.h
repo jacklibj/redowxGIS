@@ -1,5 +1,5 @@
 #pragma once
-#include "base.h"
+#include "wxgis/base.h"
 
 
 #define wgDELETE(p,func) if( p!= NULL ) {p->func; delete p; p = NULL;}

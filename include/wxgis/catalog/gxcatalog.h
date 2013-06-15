@@ -1,7 +1,7 @@
 #pragma once
 
 #include "catalog.h"
-#include "art\mainframe.xpm"
+#include "../art\mainframe.xpm"
 #include "gxselection.h"
 //----------------
 // wxGxCatalog

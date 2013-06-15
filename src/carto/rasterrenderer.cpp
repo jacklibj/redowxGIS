@@ -251,10 +251,10 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 
 }
 
-OGREnvelope wxGISRasterRGBRenderer::TransfromEnvelop(OGREnvelope* pEnvelope, OGRSpatialReference* pSrsSpatialReference, OGRSpatialReference* pDstSpatialReference)
+OGREnvelope wxGISRasterRGBRenderer::TransformEnvelope(OGREnvelope* pEnvelope, OGRSpatialReference* pSrsSpatialReference, OGRSpatialReference* pDstSpatialReference)
 {
 	//get new envelope - it may rotate
-	OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pSrsSpatialReference, pDstSpatialReference;
+	OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pSrsSpatialReference, pDstSpatialReference);
 	double pointsx[4];
 	double pointsy[4];
 	pointsx[0] = pEnvelope->MaxX;
@@ -276,7 +276,7 @@ OGREnvelope wxGISRasterRGBRenderer::TransfromEnvelop(OGREnvelope* pEnvelope, OGR
 	return out;
 }
 
-wxImage wxGISRasterRGBRenderer::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY, int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel* pTrackCancel)
+wxImage wxGISRasterRGBRenderer::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY, int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel)
 {
 
 	wxImage ResultImage(nDestX, nDestY, false);
@@ -303,7 +303,7 @@ wxImage wxGISRasterRGBRenderer::Scale(unsigned char* pData, int nOrigX, int nOri
 
 	for (size_t i = 0; i < threadarray.size(); i++)
 	{
-		wxDELETE(threadarray[i], wait());
+		wgDELETE(threadarray[i], Wait());
 	}
 	return ResultImage;
 }

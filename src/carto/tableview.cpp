@@ -46,7 +46,7 @@ wxString wxGISTable::GetValue(int row, int col)
 
 	//fetch more data
 	wxBusyCursor wait;
-	return m_pwxGISDataset->GetAtString(row, col);
+	return m_pwxGISDataset->GetAsString(row, col);
 }
 
 void wxGISTable::SetValue(int row, int col, const wxString &value)
@@ -152,7 +152,7 @@ wxGridCtrl::wxGridCtrl(wxWindow* parent, const long& id) :
 
  BEGIN_EVENT_TABLE(wxGISTableView, wxPanel)
 	 EVT_GRID_LABEL_LEFT_CLICK(wxGISTableView::OnLabelLeftClick)
-	 EVT_GRID_SELECT_CELL(wxGISTableView::ID_NEXT, wxGISTableView::OnBtnFirst);
+	 EVT_GRID_SELECT_CELL(wxGISTableView::OnSelectCell)
      EVT_BUTTON(wxGISTableView::ID_FIRST, wxGISTableView::OnBtnFirst)
      EVT_BUTTON(wxGISTableView::ID_NEXT, wxGISTableView::OnBtnNext)
 	 EVT_BUTTON(wxGISTableView::ID_PREV, wxGISTableView::OnBtnPrev)
@@ -232,7 +232,7 @@ wxGISTableView::wxGISTableView(wxWindow* parent, wxWindowID id, const wxPoint& p
 	bSizerLow->Add( m_bpLast, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0 );
 
 	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("of"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText2->Wrap(( -1 );
+	m_staticText2->Wrap( -1 );
 	bSizerLow->Add( m_staticText2, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5);
 
 	bSizerMain->Add( bSizerLow, 0, wxEXPAND, 5);

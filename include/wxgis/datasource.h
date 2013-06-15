@@ -18,12 +18,12 @@ enum wxGISEnumDatasetType
 enum wxGISEnumShapefileDatasetType
 {
 	enumESRIShapefile = 1,
-	enumMapinfoTablefile =2
+	enumMapinfoTabfile =2
 };
 
 enum wxGISEnumRasterDatasetType
 {
-	enumRasterUnknow = 0
+	enumRasterUnknown = 0
 };
 
 
@@ -31,6 +31,7 @@ enum wxGISEnumRasterDatasetType
 class wxGISDataset :
 	public IPointer
 {
+public:
 	wxGISDataset(wxString sPath) : IPointer() , m_sPath(sPath){};
 	virtual ~wxGISDataset(void){};
 	virtual wxGISEnumDatasetType GetType(void) = 0;
@@ -79,6 +80,7 @@ public:
 
 class wxGISSpatialFilter : public IQueryFilter
 {
+public:
 	virtual ~wxGISSpatialFilter(void){};
 	virtual void SetEnvelope(double dfMinX, double dfMinY, double dfMaxX, double dfMaxY)
 	{
@@ -92,6 +94,7 @@ class wxGISSpatialFilter : public IQueryFilter
 	{
 		m_Env = Env;
 	}
+	 virtual OGREnvelope GetEnvelope(void){return m_Env;};
 protected:
 	OGREnvelope m_Env;
 };

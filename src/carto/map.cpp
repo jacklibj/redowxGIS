@@ -32,6 +32,6 @@ OGREnvelope wxGISMap::GetFullExtent(void)
 	OGREnvelope res;
 	for(size_t i = 0; i < m_Layers.size(); i++)
 		//
-		res.Merge(*m_Layers[i]->GetEnvelop());
+		res.Merge(*m_Layers[i]->GetEnvelope());
 	return res;
 }

@@ -68,14 +68,14 @@ ExtentStack::ExtentStack(wxGISMapView* pView)
 
 bool ExtentStack::CanRedo()
 {
-	if(m_EnvelopArray.empty())
+	if(m_EnvelopeArray.empty())
 		return false;
-	return m_Pos < m_EnvelopArray.size() - 1;
+	return m_Pos < m_EnvelopeArray.size() - 1;
 }
 
 bool ExtentStack::CanUndo()
 {
-	if (m_EnvelopArray.empty())
+	if (m_EnvelopeArray.empty())
         return false;
 	return m_Pos > 0;
 }
@@ -83,18 +83,18 @@ bool ExtentStack::CanUndo()
 void ExtentStack::Do(OGREnvelope NewEnv)
 {
 	m_Pos++;
-	if (m_Pos == m_EnvelopArray.size())
-       m_EnvelopArray.push_back(NewEnv);
+	if (m_Pos == m_EnvelopeArray.size())
+       m_EnvelopeArray.push_back(NewEnv);
 	else
 	{
-		m_EnvelopArray[m_Pos] = NewEnv;
-		m_EnvelopArray.erase(m_EnvelopArray.begin() + m_Pos + 1, m_EnvelopArray.end());
+		m_EnvelopeArray[m_Pos] = NewEnv;
+		m_EnvelopeArray.erase(m_EnvelopeArray.begin() + m_Pos + 1, m_EnvelopeArray.end());
 	}
 
 	SetExtent(NewEnv);
 }
 
-void ExtenStack::Redo()
+void ExtentStack::Redo()
 {
 	m_Pos++;
 	if(m_Pos < m_EnvelopeArray.size())
@@ -104,7 +104,7 @@ void ExtenStack::Redo()
 	}
 }
 
-void ExtentStack::Undo
+void ExtentStack::Undo()
 {
 	m_Pos--;
 	if(m_Pos > -1)
@@ -112,7 +112,7 @@ void ExtentStack::Undo
 		OGREnvelope Env = m_EnvelopArray[m_Pos];
 		SetExtent(Env);
 	}
-};
+}
 
 void ExtentStack::SetExtent(OGREnvelope Env)
 {
@@ -127,13 +127,13 @@ void ExtentStack::SetExtent(OGREnvelope Env)
 
 void ExtentStack::Reset()
 {
-	m_EnvelopArray.clear();
+	m_EnvelopeArray.clear();
 	m_Pos = -1;
 }
 
 size_t ExtentStack::GetSize()
 {
-	return m_EnvelopArray.size();
+	return m_EnvelopeArray.size();
 }
 
 //-------
@@ -150,7 +150,7 @@ END_EVENT_TABLE()
 
 wxGISMapView::wxGISMapView(wxWindow* parent, wxWindowID id, const wxPoint& pos , const wxSize& size , long style ) : wxScrolledWindow(parent, id, pos, size, 
 style | wxHSCROLL | wxVSCROLL), wxGISMap(),
-m_PTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
+m_pTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 {
 	//set map init envelope
 
@@ -161,8 +161,8 @@ m_PTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 #endif
 	m_pExtentStack = new ExtentStack(this);
 
-	m_PTrackCancel = new ITrackCancel();
-	m_PTrackCancel->Reset();
+	m_pTrackCancel = new ITrackCancel();
+	m_pTrackCancel->Reset();
 
 	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
 	pDisplayTransformation->SetDeviceFrame(GetClientRect());
@@ -178,7 +178,7 @@ wxGISMapView::~wxGISMapView(void)
 {
 	wxDELETE(pGISScreenDisplay);
 	wxDELETE(m_pExtentStack);
-	wxDELETE(m_PTrackCancel);
+	wxDELETE(m_pTrackCancel);
 	if(m_pThread)
 		m_pThread->Delete();
 }
@@ -191,8 +191,8 @@ void wxGISMapView::OnDraw(wxDC& dc)
 		m_pExtentStack->Do(pDisplayTransformation->GetBounds());
 	}
 
-	if(m_PTrackCancel && !m_pAni)
-		m_pAni = static_cast<wxGISAnimation*>(m_PTrackCancel->GetProgressor());
+	if(m_pTrackCancel && !m_pAni)
+		m_pAni = static_cast<wxGISAnimation*>(m_pTrackCancel->GetProgressor());
 
 
 	if(pGISScreenDisplay->IsDerty())
@@ -236,7 +236,7 @@ void wxGISMapView::OnDraw(wxDC& dc)
 
 void wxGISMapView::OnSize(wxSizeEvent & event)
 {
-	m_PTrackCancel->Cancel();
+	m_pTrackCancel->Cancel();
 	if(m_pThread)
 		m_pThread->Delete();
 
@@ -271,10 +271,10 @@ void wxGISMapView::AddLayer(wxGISLayer* pLayer)
 	{
 		OGRSpatialReference* pSpaRef = pLayer->GetSpatialReference();
 		if(pSpaRef)
-			pDisplayTransformation->GetSpatialReference(pSpaRef);
+			pDisplayTransformation->SetSpatialReference(pSpaRef);
 		else
 		{
-			OGREnvelope* pEnv = pLayer->GetEnvelop();
+			OGREnvelope* pEnv = pLayer->GetEnvelope();
 			if (pEnv)
 			{
 				if (pEnv->MaxX <= 180 && pEnv->MaxY <= 90 && pEnv->MinX >= -180 && pEnv->MinY >= -90)
@@ -287,7 +287,7 @@ void wxGISMapView::AddLayer(wxGISLayer* pLayer)
 		}
 	}
 
-	OGREnvelope* pEnv = pLayer->GetEnvelop();
+	OGREnvelope* pEnv = pLayer->GetEnvelope();
 	if(pEnv == NULL)
 		return;
 
@@ -344,7 +344,7 @@ void wxGISMapView::ClearLayers(void)
 	wxGISMap::ClearLayers();
 }
 
-void wxGISmapView::OnKeyDown(wxKeyEvent & event)
+void wxGISMapView::OnKeyDown(wxKeyEvent & event)
 {
 	switch(event.GetKeyCode())
 	{
@@ -357,19 +357,19 @@ void wxGISmapView::OnKeyDown(wxKeyEvent & event)
 	event.Skip();
 }
 
-void wxGISMapView::SetTrackCancel(ITrackCancel* m_PTrackCancel)
+void wxGISMapView::SetTrackCancel(ITrackCancel* pTrackCancel)
 {
 	if(pTrackCancel == NULL)
 		return;
 
-	if (m_PTrackCancel)
+	if (m_pTrackCancel)
 	{
-		m_PTrackCancel->Cancel();
+		m_pTrackCancel->Cancel();
 		//wait while the thread s exited;
 		wxSleep(1);
-		delete m_PTrackCancel;
+		delete m_pTrackCancel;
 	}
-	m_PTrackCancel = m_PTrackCancel;
+	m_pTrackCancel = m_pTrackCancel;
 }
 
 void wxGISMapView::OnThreadExit(void)
@@ -386,13 +386,13 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 {
 	event.Skip();
 
-	m_PTrackCancel->Cancel();
+	m_pTrackCancel->Cancel();
 	if (m_pThread)
 	    m_pThread->Delete();
 
 	wxClientDC CDC(this);
 
-	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplayTransformation();
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
 	if (pDisplayTransformation)
 	{
 		if (!(m_MouseState & enumGISMouseWheel))
@@ -431,6 +431,9 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 		wxCoord x = m_virtualrc.x;
 		wxCoord y = m_virtualrc.y;
 
+		//calc zoom world
+		double dwx(0), dwy(0);
+
 		if (factor < 0)
 		{
 			dwx = (m_virtualbounds.MaxX - m_virtualbounds.MinX) * (world_zoom) / 2;
@@ -459,7 +462,7 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 			rc.height = rc.height * rc.height / m_virtualrc.height;
 			rc.x = client_rc.x + (client_rc.width - rc.width) / 2;
 			rc.y = client_rc.y + (client_rc.height - rc.height) / 2;
-			pGISScreenDisplay->OnStretchDraw2(CDC, rc, fasle, enumGISQualityFourQuadBilinear);
+			pGISScreenDisplay->OnStretchDraw2(CDC, rc, false, enumGISQualityFourQuadBilinear);
 		}
 
 		pDisplayTransformation->SetBounds(m_virtualbounds);
@@ -479,7 +482,7 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 		CDC.SetBrush(br);
 		CDC.SetPen(*wxBLACK_PEN);
 		int x1 = (size.x - width) / 2, y1 = (size.y - height) - 50;
-		CDC.DrawRectangle( x1 - 5, y2 - 2, width + 10, height + 4);
+		CDC.DrawRectangle( x1 - 5, y1 - 2, width + 10, height + 4);
 
 		CDC.DrawText(format_s, x1, y1);
 
@@ -490,9 +493,9 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 	}
 }
 
-void wxGISMapView::OnTimer( wxTimeEvent& event )
+void wxGISMapView::OnTimer( wxTimerEvent& event )
 {
-	wxMouseState = wxGetMouseState();
+	wxMouseState state = wxGetMouseState();
 	IDisplayTransformation* pDisPlayTransformation = pGISScreenDisplay->GetDisplayTransformation();
 
 	if (!state.LeftDown() && (m_MouseState & enumGISMouseLeftDown))
@@ -536,10 +539,10 @@ void wxGISMapView::PanStart(wxPoint MouseLocation)
 	{
 		wxTimerEvent ev;
 		OnTimer( ev );
-#define WAITTIME
+#ifdef WAITTIME
 		wxMilliSleep(WAITTIME);
 #endif
-		m_PTrackCancel->Cancel();
+		m_pTrackCancel->Cancel();
 		if(m_pThread)
 			m_pThread->Delete();
 	}

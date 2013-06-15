@@ -19,7 +19,7 @@ public:
 	void OnMouseDoubleClick(wxMouseEvent& event);
 //IGxView
 	virtual bool Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf);
-	virtual bool Deactivate(void);
+	virtual void Deactivate(void);
 	virtual bool Applies(IGxSelection* Selection);
 //iGxSelectionEvents
 	virtual void OnSelectionChanged(IGxSelection* Selection, long nInitiator);

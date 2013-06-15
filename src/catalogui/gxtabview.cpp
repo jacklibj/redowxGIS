@@ -1,6 +1,6 @@
-#include "gxtabview.h"
-#include "viewsfactory.h"
-#include "gxapplication.h"
+#include "wxgis/catalogui/gxtabview.h"
+#include "wxgis/catalogui/viewsfactory.h"
+#include "wxgis/catalogui/gxapplication.h"
 
 
 //---

@@ -41,11 +41,11 @@ void wxGxNoView::Serialized(wxXmlNode* pRootNode, bool bStore)
 	if (bStore)
 	{
 		pRootNode->DeleteProperty(wxT("red"));
-		pRootNode->AddProperty(wxT("red"), wxString::Format(wxT("%d"), R);
+		pRootNode->AddProperty(wxT("red"), wxString::Format(wxT("%d"), R));
 		pRootNode->DeleteProperty(wxT("green"));
-		pRootNode->AddProperty(wxT("green"), wxString::Format(wxT("%d"), G);
+		pRootNode->AddProperty(wxT("green"), wxString::Format(wxT("%d"), G));
 		pRootNode->DeleteProperty(wxT("blue"));
-		pRootNode->AddProperty(wxT("blue"), wxString::Format(wxT("%d"), B);
+		pRootNode->AddProperty(wxT("blue"), wxString::Format(wxT("%d"), B));
 		pRootNode->DeleteProperty(wxT("bold"));
 		pRootNode->AddProperty(wxT("bold"), wxString::Format(wxT("%d"), IsBold));
 		pRootNode->DeleteProperty(wxT("italic"));
@@ -80,7 +80,7 @@ void wxGxNoView::OnPaint(wxPaintEvent& WXUNUSED)
 	dc.SetPen(*wxGREY_PEN);
 	dc.DrawRectangle(0, 0, size.x, size.y);
 
-	wxBrush br(wxColour(R,G,B);
+	wxBrush br(wxColour(R,G,B));
 	dc.SetBrush(br);
 	dc.SetPen(*wxGREY_PEN);
 	int x1 = (size.x - width) / 2, y1 = (size.y - height) / 2;

@@ -43,7 +43,7 @@ void wxGISScreenDisplayPlus::DrawCircle(wxCoord x, wxCoord y, wxCoord radius)
 	GDC.DrawCircle(x, y, radius);
 }
 
-void wxGISScreenDisplayPlus::DrawPolygon(int n, wxPoint points[], wxCoord xoffset , wxCoord yoffset , int fill_style )
+void wxGISScreenDisplayPlus::DrawPolygon(int n, wxPoint points[], wxCoord xoffset , wxCoord yoffset , wxPolygonFillMode fill_style )
 {
 	wxGCDC GDC(m_dc);
 	GDC.SetPen(m_dc.GetPen());
@@ -52,7 +52,7 @@ void wxGISScreenDisplayPlus::DrawPolygon(int n, wxPoint points[], wxCoord xoffse
 	GDC.DrawPolygon(n, points, xoffset, yoffset, fill_style);
 }
 
-void wxGISScreenDisplayPlus::DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset , wxCoord yoffset )
+void wxGISScreenDisplayPlus::DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset , wxCoord yoffset , wxPolygonFillMode fill_style )
 {
 	wxGCDC GDC(m_dc);
 	GDC.SetPen(m_dc.GetPen());

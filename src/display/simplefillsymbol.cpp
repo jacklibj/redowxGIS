@@ -19,7 +19,7 @@ wxSimpleFillSymbol::wxSimpleFillSymbol(void)
 	m_Font = wxNullFont;
 }
 
-wxSimpleFillSymbol::wxSimpleFillSymbol(wxPen, wxBrush Brush)
+wxSimpleFillSymbol::wxSimpleFillSymbol(wxPen Pen, wxBrush Brush)
 {
 	m_Pen = Pen;
 	m_Brush = Brush;
@@ -71,7 +71,7 @@ void wxSimpleFillSymbol::DrawPolygon(OGRPolygon* pPoly, IDisplay* pwxGISDisplay)
 		if (NumInteriorRings == 0)
 		{
 			OGRRawPoint* pOGRRawPoints = new OGRRawPoint[nPointCount];
-			pLStr->getPoint(OGRRawPoint);
+			pLStr->getPoints(pOGRRawPoints);
 			wxPoint* pPoints = pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nPointCount);
 			delete[](pOGRRawPoints);
 			pwxGISDisplay->DrawPolygon(nPointCount, pPoints);
@@ -92,7 +92,7 @@ void wxSimpleFillSymbol::DrawPolygon(OGRPolygon* pPoly, IDisplay* pwxGISDisplay)
 
 			wxPoint *pFullPoints = new wxPoint[jPoint];
 			OGRRawPoint* pOGRRawPoints = new OGRRawPoint[nN[0]];
-			pLStr->getNumPoints(pOGRRawPoints);
+			pLStr->getPoints(pOGRRawPoints);
 			int counter(0);
 			pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[0], &pFullPoints[counter]);
 			delete[](pOGRRawPoints);
@@ -162,7 +162,7 @@ void wxSimpleFillSymbol::DrawPolyPolygon(OGRMultiPolygon* pPoly, IDisplay* pwxGI
 		OGRLineString *pLStr = (OGRLineString*)pRing;
 
 		OGRRawPoint* pOGRRawPoints = new OGRRawPoint[nN[counter]];
-		pLStr->getPoint(pOGRRawPoints);
+		pLStr->getPoints(pOGRRawPoints);
 		pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[counter], &pFullPoints[pos]);
 		pos += nN[counter];
 		counter++;
@@ -171,7 +171,8 @@ void wxSimpleFillSymbol::DrawPolyPolygon(OGRMultiPolygon* pPoly, IDisplay* pwxGI
 		{
 			pRing = pPolygon->getInteriorRing(iPart);
 			OGRLineString *pLstrInt = (OGRLineString*)pRing;
-			pOGRRawPoints->getPoints(pOGRRawPoints);
+			pOGRRawPoints = new OGRRawPoint[nN[counter]];
+			pLstrInt->getPoints(pOGRRawPoints);
 			pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[counter], &pFullPoints[pos]);
 			pos += nN[counter];
 			delete[](pOGRRawPoints);

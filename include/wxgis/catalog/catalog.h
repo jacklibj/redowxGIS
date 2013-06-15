@@ -111,7 +111,7 @@ public:
 	virtual wxString ConstructFullName(IGxObject* pObject) = 0;
 	virtual bool GetChildren(wxString sParentDir, wxArrayString* pFileNames, GxObjectArray* pObjArray) = 0;
 	virtual bool GetShowHidden(void) {return m_bShowHidden;};
-	virtual bool GetSHowExt(void) {return m_bShowExt;};
+	virtual bool GetShowExt(void) {return m_bShowExt;};
 	virtual void SetShowHidden(bool bShowHidden) {m_bShowHidden = bShowHidden;};
 	virtual void SetShowExt(bool bShowExt){m_bShowExt = bShowExt;};	
 	virtual void ObjectAdded(IGxObject* pObject) = 0;

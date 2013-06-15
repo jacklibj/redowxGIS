@@ -238,7 +238,7 @@ wxString wxGISCartoMainTool::GetCaption(void)
 	case 3:
 		return wxString(_("&Information"));
 	default:
-		return wxString()
+		return wxString();
 	}
 }
 
@@ -338,7 +338,7 @@ void wxGISCartoMainTool::OnClick(void)
 	}
 }
 
-bool wxGISCartoMainTool::onCreate(IApplication* pApp)
+bool wxGISCartoMainTool::OnCreate(IApplication* pApp)
 {
 	m_pApp = pApp;
 	return true;
@@ -373,29 +373,29 @@ wxCursor wxGISCartoMainTool::GetCursor(void)
 	case 0: // zoom in
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(13).ConvertToImage();
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
 			return wxCursor(CursorImage);
 		}
 	case 1: // zoom out
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(14).ConvertToImage();
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
 			return wxCursor(CursorImage);
 		}
 	case 2: // pan
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(1).ConvertToImage();
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
 			return wxCursor(CursorImage); //
 		}
 	case 3: // info
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(12).ConvertToImage();
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
 			return wxCursor(CursorImage); //
 		}
 	default:
@@ -425,7 +425,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
 			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView->GetCachedDisplay(), &symbol);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
 			if (pGeom)
 			{
 				OGREnvelope Env;
@@ -439,7 +439,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 					Env.MinX -= widthdiv4;
 					Env.MinY -= heightdiv4;
 					Env.MaxX += widthdiv4;
-					Env.MaxY += heightdiv4
+					Env.MaxY += heightdiv4;
 				}
 				m_pMapView->SetExtent(Env);
 			}
@@ -453,7 +453,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
 			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView->GetCachedDisplay(), &symbol);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
 			if (pGeom)
 			{
 				OGREnvelope Env;
@@ -473,8 +473,8 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 	case 2: // pan
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(11).ConvertToImage();
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_X, 7);
-			CursorImage.SetOption((wxIMAGE_OPTION_CUR_HOTSPOT_Y, 7);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 7);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 7);
 			m_pMapView->SetCursor(wxCursor(CursorImage));
 			m_pMapView->PanStart(event.GetPosition());
 			break;
@@ -486,7 +486,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
 			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView->GetCachedDisplay(), &symbol);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
 			if (pGeom)
 			{
 				//

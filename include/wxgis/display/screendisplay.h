@@ -81,13 +81,15 @@ public:
 	virtual void OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDestHeight, wxCoord x = 0 , wxCoord y = 0, bool bClearBackground = false, 
 		wxGISEnumDrawQuality quality = enumGISQualityNearest );
 	//cut buffer by Rect and stretch result in GetDeviceFrame()
+	virtual void OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackground = false, wxGISEnumDrawQuality quality = enumGISQualityNearest );
+
 	virtual void OnPanDraw(wxDC &dc, wxCoord x, wxCoord y);
 	//IDispaly
 	virtual void SetBrush(wxBrush& Brush);
 	virtual void SetPen(wxPen& Pen);
 	virtual void SetFont(wxFont& Font);
-	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, int fill_style = wxODDEVEN_RULE);
-	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset  = 0 , wxCoord yoffset  = 0. int fill_style  = wxODDEVEN_RULE );
+	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE);
+	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset  = 0 , wxCoord yoffset  = 0, wxPolygonFillMode fill_style  = wxODDEVEN_RULE );
 	virtual void DrawPoint(wxCoord x, wxCoord y);
 	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset  = 0 , wxCoord yoffset  = 0 );
 	virtual void DrawCircle(wxCoord x, wxCoord y, wxCoord radius);
@@ -101,8 +103,8 @@ public:
 		wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel = NULL);
 	wxImage Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel = NULL);
 	//ICachedDisplay
-	virtual bool IsCachedDerty(size_t cache_id);
-	virtual void SetCachedDerty(size_t cache_id, bool bIsDerty);
+	virtual bool IsCacheDerty(size_t cache_id);
+	virtual void SetCacheDerty(size_t cache_id, bool bIsDerty);
 	virtual size_t AddCache(void);
 	virtual void MergeCaches(size_t SrcCachedID, size_t DstCacheID);
 	virtual void StartDrawing(size_t CacheID);

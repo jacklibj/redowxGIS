@@ -3,17 +3,16 @@
 
 IMPLEMENT_DYNAMIC_CLASS(wxGxRasterFactory, wxObject)
 
-	wxGxFolderFactory::wxGxFolderFactory(void)
+wxGxRasterFactory::wxGxRasterFactory(void)
 {
 
 }
 
-wxGxFolderFactory::~wxGxFolderFactory(void)
+wxGxRasterFactory::~wxGxRasterFactory(void)
 {
-
 }
 
-wxGxRasterFactory::GetChildren(wxString sParentDir, wxArrayString* pFileNames, GxObjectArray* pObjArray)
+bool wxGxRasterFactory::GetChildren(wxString sParentDir, wxArrayString* pFileNames, GxObjectArray* pObjArray)
 {
 	for (size_t i = 0; i < pFileNames->GetCount(); i++)
 	{
@@ -24,22 +23,22 @@ wxGxRasterFactory::GetChildren(wxString sParentDir, wxArrayString* pFileNames, G
 
 		path.MakeLower();
 		wxString name, ext;
-		wxFileName::SplitPath(path, NULL, NULL, %name, &ext);
+		wxFileName::SplitPath(path, NULL, NULL, &name, &ext);
 
 		IGxObject* pGxObj = NULL;
-		if (ext == wxString(wxT("bmp")) || ext == wxString(wxT("jpg")) || ext == wxString(wxt("img")))
+		if (ext == wxString(wxT("bmp")) || ext == wxString(wxT("jpg")) || ext == wxString(wxT("img")))
 		{
-			if(m_pCatalog->GetSHowExt())
+			if(m_pCatalog->GetShowExt())
 				name += wxT(".") + ext;
-			wxGxRasterDataset* pDataset = new wxGxRasterDataset(path, name, enumRasterUnknow);
+			wxGxRasterDataset* pDataset = new wxGxRasterDataset(path, name, enumRasterUnknown);
 			pGxObj = dynamic_cast<IGxObject*>(pDataset);
 			goto REMOVE;
 		}
-		if (ext == wxString(wxT("tif")) || ext == wxString(wxT("tiff")) || ext == wxString(wxt("png")))
+		if (ext == wxString(wxT("tif")) || ext == wxString(wxT("tiff")) || ext == wxString(wxT("png")))
 		{
-			if(m_pCatalog->GetSHowExt())
+			if(m_pCatalog->GetShowExt())
 				name += wxT(".") + ext;
-			wxGxRasterDataset* pDataset = new wxGxRasterDataset(path, name, enumRasterUnknow);
+			wxGxRasterDataset* pDataset = new wxGxRasterDataset(path, name, enumRasterUnknown);
 			pGxObj = dynamic_cast<IGxObject*>(pDataset);
 			goto REMOVE;
 		}

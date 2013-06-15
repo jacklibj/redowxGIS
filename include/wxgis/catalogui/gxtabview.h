@@ -57,7 +57,7 @@ DECLARE_EVENT_TABLE()
 //---------
 // wxGxTabView
 //-------------
-class WXDLLIMPEXP_GIS_CLU wxGxTabView : 
+class WXDLLIMPEXP_GIS_CLU wxGxTabView :
 	public wxAuiNotebook,
 	public wxGxView,
 	public IGxSelectionEvents
@@ -66,12 +66,12 @@ public:
 	wxGxTabView(wxWindow* parent, wxWindowID id = TABCTRLID, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
 	virtual ~wxGxTabView(void);
 	virtual wxWindow* GetCurrentWnd(void);
-//IGxView
+	//IGxView
 	virtual bool Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf);
 	virtual void Deactivate(void);
-//IGxSelectionEvents
+	//IGxSelectionEvents
 	virtual void OnSelectionChanged(IGxSelection* Selection, long nInitiator);
-//Events
+	//Events
 	void OnAUINotebookPageChanged(wxAuiNotebookEvent& event);
 protected:
 	std::vector<wxGxTab*> m_Tabs;
@@ -79,5 +79,5 @@ protected:
 	long m_ConnectionPointSelectionCookie;
 	IGxSelection* m_pSelection;
 
-DECLARE_EVENT_TABLE()
+	DECLARE_EVENT_TABLE()
 };

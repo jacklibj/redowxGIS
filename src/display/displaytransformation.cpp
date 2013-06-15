@@ -54,7 +54,7 @@ void wxGISDisplayTransformation::SetBounds(OGREnvelope bounds)
 	m_WorldXDelta = (m_Bounds.MaxX - m_Bounds.MinX);
 	m_WorldYDelta = (m_Bounds.MaxY - m_Bounds.MinY);
 	double sc1 = fabs((double)m_DeviceFrameRect.GetWidth() / m_WorldXDelta);
-	double sc2 = fabs((double)m_DeviceFrameRect.Getheight() / m_WorldYDelta);
+	double sc2 = fabs((double)m_DeviceFrameRect.GetHeight() / m_WorldYDelta);
 	m_WorldXDelta /= 2;
 	m_WorldYDelta /= 2;
 	m_World2DC = MIN(sc1, sc2);
@@ -172,6 +172,6 @@ OGREnvelope wxGISDisplayTransformation::TransformRect(wxRect rect)
 	ResEnv.MaxX = xDC2World(RBPoint.x);
 	ResEnv.MinX = xDC2World(LTPoint.x);
 	ResEnv.MaxY = yDC2World(LTPoint.y);
-	ResEnv.MinY = yDC2World((RBPoint.y);
+	ResEnv.MinY = yDC2World(RBPoint.y);
 	return ResEnv;
 }

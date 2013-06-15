@@ -1,6 +1,6 @@
 #pragma once
 
-#include "carto.h"
+#include "wxgis/carto/carto.h"
 
 class WXDLLIMPEXP_GIS_CRT wxGISMap
 {

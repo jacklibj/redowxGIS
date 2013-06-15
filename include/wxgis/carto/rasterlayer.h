@@ -12,7 +12,7 @@ public:
 //IwxGISLayer
 	virtual void Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel);
 	virtual OGRSpatialReference* GetSpatialReference(void);
-	virtual OGREnvelope* GetEvelope(void);
+	virtual OGREnvelope* GetEnvelope(void);
 	virtual bool IsValid(void);
 //wxGISRasterLayer
 	virtual IRasterRenderer* GetRenderer(void){return m_pRasterRenderer;};

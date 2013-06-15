@@ -1,7 +1,7 @@
-#include "gxapplication.h"
-#include "customizedlg.h"
-#include "gxcatalog.h"
-#include "toolbarmenu.h"
+#include "wxgis/catalogui/gxapplication.h"
+#include "wxgis/catalogui/customizedlg.h"
+#include "wxgis/catalog/gxcatalog.h"
+#include "wxgis/framework/toolbarmenu.h"
 
 //---------------------
 // wxGxApplication

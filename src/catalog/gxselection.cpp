@@ -1,4 +1,4 @@
-#include "gxselection.h"
+#include "wxgis/catalog/gxselection.h"
 
 wxGxSelection::wxGxSelection(void)
 {

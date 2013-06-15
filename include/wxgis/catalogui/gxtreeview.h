@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gxview.h"
+#include "wxgis/catalogui/gxview.h"
 
 #include <wx\treectrl.h>
 

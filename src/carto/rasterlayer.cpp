@@ -31,7 +31,7 @@ void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDispl
 	
 	if(pLayerSpaRef && pEnvSpaRef)
 	{
-		if(!pLayerSpaRef->isSame(pEnvSpaRef))
+		if(!pLayerSpaRef->IsSame(pEnvSpaRef))
 		{
 			OGRCoordinateTransformation *poCT = OGRCreateCoordinateTransformation( pEnvSpaRef, pLayerSpaRef );
 			poCT->Transform(1, &Env.MaxX, &Env.MaxY);
@@ -49,9 +49,9 @@ void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDispl
 	// 5. clear a spatial filter
 	pDisplay->FinishDrawing();
 }
-OGRSpatialReference* wxGISRasteLayer::GetSpatialReference(void)
+OGRSpatialReference* wxGISRasterLayer::GetSpatialReference(void)
 {
-	if(m_pwGISRasterDataset)
+	if(m_pwxGISRasterDataset)
 		return m_pwxGISRasterDataset->GetSpatialReference();
     return NULL;
 }
@@ -65,5 +65,5 @@ OGREnvelope* wxGISRasterLayer::GetEnvelope(void)
 
 bool wxGISRasterLayer::IsValid(void)
 {
-	return m_pwGISRasterDataset == NULL ? false : true;
+	return m_pwxGISRasterDataset == NULL ? false : true;
 }

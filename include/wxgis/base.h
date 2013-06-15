@@ -10,63 +10,61 @@
     #include "wx/wx.h"
 #endif
 
-#ifdef WX_PRECOMP
-    #include "wx/wx.h"
-#endif
 
-#ifdef WXMAKINGGDAL_GIS_FRW
-#define WXDLLIMPEXP_GIS_FRW WXEXPORT
-#define WXDLLIMPEXP_DATA_GIS_FRW(type) WXEXPORT type
-#elif defined(WXUSINGGDALL)
-#define WXDLLIMPEXP_GIS_FRW WXIMPORT
-#define WXDLLIMPEXP_DATA_GIS_FRW(type) WXIMPORT type
+
+#ifdef WXMAKINGDLL_GIS_FRW
+#    define WXDLLIMPEXP_GIS_FRW WXEXPORT
+#    define WXDLLIMPEXP_DATA_GIS_FRW(type) WXEXPORT type
+#elif defined(WXUSINGDLL)
+#    define WXDLLIMPEXP_GIS_FRW WXIMPORT
+#    define WXDLLIMPEXP_DATA_GIS_FRW(type) WXIMPORT type
 #else /* not making nor using DLL */
-#     define WXDLLIMPEXP_GIS_FRW
-#     define WXDLLIMPEXP_DATA_GIS_FRW(type) typename
+#    define WXDLLIMPEXP_GIS_FRW
+#    define WXDLLIMPEXP_DATA_GIS_FRW(type) type
 #endif
 
-#ifdef WXNAKINGDLL_GIS_CLT
-#    define WXDLLIMPEXP_GIS WXEXPORT
+#ifdef WXMAKINGDLL_GIS_DSP
+#    define WXDLLIMPEXP_GIS_DSP WXEXPORT
+#    define WXDLLIMPEXP_DATA_GIS_DSP(type) WXEXPORT type
+#elif defined(WXUSINGDLL)
+#    define WXDLLIMPEXP_GIS_DSP WXIMPORT
+#    define WXDLLIMPEXP_DATA_GIS_DSP(type) WXIMPORT type
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_GIS_DSP
+#    define WXDLLIMPEXP_DATA_GIS_DSP(type) type
+#endif
+
+#ifdef WXMAKINGDLL_GIS_CRT
+#    define WXDLLIMPEXP_GIS_CRT WXEXPORT
+#    define WXDLLIMPEXP_DATA_GIS_CRT(type) WXEXPORT type
+#elif defined(WXUSINGDLL)
+#    define WXDLLIMPEXP_GIS_CRT WXIMPORT
+#    define WXDLLIMPEXP_DATA_GIS_CRT(type) WXIMPORT type
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_GIS_CRT
+#    define WXDLLIMPEXP_DATA_GIS_CRT(type) type
+#endif
+
+#ifdef WXMAKINGDLL_GIS_CLT
+#    define WXDLLIMPEXP_GIS_CLT WXEXPORT
 #    define WXDLLIMPEXP_DATA_GIS_CLT(type) WXEXPORT type
 #elif defined(WXUSINGDLL)
-#     define WXDLLIMPEXP_GIS_CLT WXIMPORT
-#     define WXDLLIMPEXP_DATA_GIS_CLT(type) WXIMPORT type
-#else /* not making nor using dll */
-#     define WXDLLIMPEXP_GIS_DSP
-#     define WXDLLIMPEXP_DATA_GIS_DSP(type) type
+#    define WXDLLIMPEXP_GIS_CLT WXIMPORT
+#    define WXDLLIMPEXP_DATA_GIS_CLT(type) WXIMPORT type
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_GIS_CLT
+#    define WXDLLIMPEXP_DATA_GIS_CLT(type) type
 #endif
 
-#ifndef WXMAKINGDLL_GIS_CRT
-#     define WXDLLIMPEXP_GIS_CRT WXEXPORT
-#     define WXDLLIMPEXP_DATA_GIS_CRT(type) WXEXPORT type
+#ifdef WXMAKINGDLL_GIS_CLU
+#    define WXDLLIMPEXP_GIS_CLU WXEXPORT
+#    define WXDLLIMPEXP_DATA_GIS_CLU(type) WXEXPORT type
 #elif defined(WXUSINGDLL)
-#     define WXDLLIMPEXP_GIS_CRT WXIMPORT
-#     define WXDLLIMPEXP_DATA_GIS_CRT(type) WXIMPORT type
-#else /* not  using nor using DLL */
-#     define WXDLLIMPEXP_GIS_CRT
-#     define WXDLLIMPEXP_DATA_GIS_CRT(type) type
-#endif
-
-#ifndef WXMAKINGDLL_GIS_CLT
-#     define WXMAKINGDLL_GIS_CLT WXEXPORT
-#     define WXDLLIMPEXP_DATA_GIS_CLT(type) WXEXPORT type
-#elif defined(WXUSINGDLL)
-#     define WXMAKINGDLL_GIS_CLT WXIMPORT
-#     define WXDLLIMPEXP_DATA_GIS_CLT(type) WXIMPORT type
-#else /* not  using nor using DLL */
-#     define WXMAKINGDLL_GIS_CLT
-#     define WXDLLIMPEXP_DATA_GIS_CLT(type) type
-#endif
-
-#ifndef WXMAKINGDLL_GIS_CLU
-#     define WXMAKINGDLL_GIS_CLU WXEXPORT
-#     define WXDLLIMPEXP_DATA_GIS_CLU(type) WXEXPORT type
-#elif defined(WXUSINGDLL)
-#     define WXMAKINGDLL_GIS_CLU WXIMPORT
-#     define WXDLLIMPEXP_DATA_GIS_CLU(type) WXIMPORT type
-#else /* not  using nor using DLL */
-#     define WXMAKINGDLL_GIS_CLU
-#     define WXDLLIMPEXP_DATA_GIS_CLU(type) type
+#    define WXDLLIMPEXP_GIS_CLU WXIMPORT
+#    define WXDLLIMPEXP_DATA_GIS_CLU(type) WXIMPORT type
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_GIS_CLU
+#    define WXDLLIMPEXP_DATA_GIS_CLU(type) type
 #endif
 
 
@@ -79,7 +77,7 @@
 #include <map>
 #include <vector>
 
-#define CONFIG_DIR_wxT("wxGIS")
+#define CONFIG_DIR wxT("wxGIS")
 #define DEF wxT("~def")
 #define NON wxT("~non")
 #define ERR wxT("~err")
@@ -96,12 +94,12 @@ static wxString DoubleToString(double Val, bool IsLon)
 	if(Val < 0)
 	{
 		if(IsLon) znak = _(" W");
-		else zank = -(" S");
+		else znak = _(" S");
 	}
 	else
 	{
-		if (IsLon) zank = _(" E");
-		else zank = _(" N");
+		if (IsLon) znak = _(" E");
+		else znak = _(" N");
 	}
 	Val = fabs(Val);
 	int grad = floor(Val);

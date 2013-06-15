@@ -9,9 +9,9 @@ wxSimpleMarkerSymbol::wxSimpleMarkerSymbol(void)
 	m_Pen.SetCap(
 		wxCAP_ROUND);
 	m_Pen.SetStyle(wxSOLID);
-	m_Pen.SetWidth(1)
+	m_Pen.SetWidth(1);
 
-	m_size = 4;
+	m_Size = 4;
 }
 
 wxSimpleMarkerSymbol::~wxSimpleMarkerSymbol(void)
@@ -28,13 +28,13 @@ void wxSimpleMarkerSymbol::Draw(OGRGeometry* pGeometry, IDisplay* pwxGISDisplay)
 	case wkbPoint:
 		{
 			OGRPoint *pPoint = (OGRPoint*)pGeometry;
-			OGRPoint Point;
+			OGRRawPoint Point;
 			Point.x = pPoint->getX();
 			Point.y = pPoint->getY();
 			wxPoint* pPoints = pDisplayTransformation->TransformCoordWorld2DC(&Point, 1);
 			pwxGISDisplay->SetBrush(m_Brush);
 			pwxGISDisplay->SetPen(m_Pen);
-			pwxGISDisplay->DrawCircle(pPoints[0], pPoints[0].y, m_Size);
+			pwxGISDisplay->DrawCircle(pPoints[0].x, pPoints[0].y, m_Size);
 			delete[](pPoints);
 		}
 		break;
@@ -50,8 +50,9 @@ void wxSimpleMarkerSymbol::Draw(OGRGeometry* pGeometry, IDisplay* pwxGISDisplay)
 			pGeometry->getEnvelope(&sEnvelope);
 			//
 			//
-			Point.X = sEnvelope.MinX;
-			Point.Y = sEnvelope.MinY;
+			OGRRawPoint Point;
+			Point.x = sEnvelope.MinX;
+			Point.y = sEnvelope.MinY;
 			wxPoint* pPoints = pDisplayTransformation->TransformCoordWorld2DC(&Point, 1);
 			pwxGISDisplay->SetBrush(m_Brush);
 			pwxGISDisplay->SetPen(m_Pen);

@@ -1,5 +1,5 @@
 #pragma once
-#include "catalogui.h"
+#include "wxgis/catalogui/catalogui.h"
 #include "wxgis/catalog/catalog.h"
 
 

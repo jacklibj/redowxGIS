@@ -16,13 +16,13 @@ public:
 	wxGISScreenDisplayPlus(void);
 	virtual ~wxGISScreenDisplayPlus(void);
 	//IDisplay
-	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0 , int fill_style = wxODDEVEN_RULE);
-	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset , wxCoord yoffset );
+	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0 , wxPolygonFillMode fill_style = wxODDEVEN_RULE);
+	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE);
 	virtual void DrawPoint(wxCoord x, wxCoord y);
-	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset , wxCoord yoffset );
+	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0);
 	virtual void DrawCircle(wxCoord x, wxCoord y, wxCoord radius);
 	virtual void DrawRectangle(wxCoord x, wxCoord y, wxCoord width, wxCoord height);
-	virtual void DrawBitmap(const wxBitmap& bitmap, wxCoord x, wxCoord y, bool transparent );
+	virtual void DrawBitmap(const wxBitmap& bitmap, wxCoord x, wxCoord y, bool transparent = false);
 };
 
 #endif

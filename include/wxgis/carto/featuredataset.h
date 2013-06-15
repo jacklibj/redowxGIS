@@ -1,4 +1,4 @@
-#include "datasource.h"
+#include "wxgis/datasource.h"
 #include "cpl_quad_tree.h"
 
 //
@@ -14,7 +14,7 @@ public:
 	wxGISFeatureDataset(wxString sPath);
 	virtual ~wxGISFeatureDataset(void);
 	virtual OGRLayer* GetLayer(int iLayer = 0);
-	virtual wxGISEnumDatasetType GetTyoe(void){return enumGISFeatureDataset;};
+	virtual wxGISEnumDatasetType GetType(void){return enumGISFeatureDataset;};
 	virtual bool Open(int iLayer);
 	virtual OGRSpatialReference* GetSpatialReference(void);
 	virtual OGREnvelope* GetEnvelope(void);
@@ -22,8 +22,8 @@ public:
 	virtual void Empty(void);
 	virtual void AddFeature(OGRFeature* poFeature);
 	virtual OGRFeature* GetAt(int nIndex);
-	virtual OGRFeature* operator [](index nIndex);
-	virtual wxString GetAtString(int row, int col);
+	virtual OGRFeature* operator [](int nIndex);
+	virtual wxString GetAsString(int row, int col);
 	virtual wxGISFeatureSet* GetFeatureSet(IQueryFilter* pQFilter = NULL, ITrackCancel* pTrackCancel = NULL);
 	virtual size_t GetSize(void){return m_poLayer->GetFeatureCount(false);};
 //

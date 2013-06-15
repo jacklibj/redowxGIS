@@ -6,17 +6,17 @@
 BEGIN_EVENT_TABLE(wxGxMapView, wxGISMapView)
 	EVT_LEFT_DOWN(wxGxMapView::OnMouseDown)
 	EVT_MIDDLE_DOWN(wxGxMapView::OnMouseDown)
-	EVT_RIGHT_DOWN(wxGISMapView::OnMouseDown)
-	EVT_LEFT_UP(wxGISMapView::OnMouseUp)
-	EVT_MIDDLE_UP(wxGISMapView::OnMouseUp)
-	EVT_RIGHT_UP(wxGISMapView::OnMouseUp)
-	EVT_LEFT_DCLICK(wxGISMapView::OnMouseDoubleClick)
-	EVT_MIDDLE_DCLICK(wxGISMapView::OnMouseDoubleClick)
-	EVT_RIGHT_DCLICK(wxGISMapView::OnMouseDoubleClick)
-	EVT_MOTION(wxGISMapView::OnMouseMove)
+	EVT_RIGHT_DOWN(wxGxMapView::OnMouseDown)
+	EVT_LEFT_UP(wxGxMapView::OnMouseUp)
+	EVT_MIDDLE_UP(wxGxMapView::OnMouseUp)
+	EVT_RIGHT_UP(wxGxMapView::OnMouseUp)
+	EVT_LEFT_DCLICK(wxGxMapView::OnMouseDoubleClick)
+	EVT_MIDDLE_DCLICK(wxGxMapView::OnMouseDoubleClick)
+	EVT_RIGHT_DCLICK(wxGxMapView::OnMouseDoubleClick)
+	EVT_MOTION(wxGxMapView::OnMouseMove)
 END_EVENT_TABLE()
 
-wxGxMapView::wxGxMapView(wxWindow* parent, wxWindowID id. const wxPoint& pos, const wxSize& size) : wxGISMapView(parent, id, pos, size)
+wxGxMapView::wxGxMapView(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size) : wxGISMapView(parent, id, pos, size)
 {
 	m_sViewName = wxString(_("Geography View"));
 }
@@ -46,7 +46,7 @@ void wxGxMapView::Deactivate(void)
 	wxGxView::Deactivate();
 }
 
-bool wxGxmapView::Applies(IGxSelecion* Selection)
+bool wxGxMapView::Applies(IGxSelection* Selection)
 {
 	if(Selection == NULL)
 		return false;
@@ -130,7 +130,7 @@ void wxGxMapView::OnMouseMove(wxMouseEvent& event)
 	if (pDisplayTransformation)
 	{
 		wxPoint* pDCPoint = new wxPoint(event.m_x, event.m_y);
-		OGRRawPoint* pGeoPoints = pDisplayTransformation->TransforCoordDC2World(pDCPoint, 1);
+		OGRRawPoint* pGeoPoints = pDisplayTransformation->TransformCoordDC2World(pDCPoint, 1);
 		m_pStatusBar->SetMessage(wxString::Format(_("X: %.4f Y: %.4f"), pGeoPoints->x, pGeoPoints->y), 2);
 		delete [] pDCPoint;
 		delete [] pGeoPoints;

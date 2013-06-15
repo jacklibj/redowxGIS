@@ -44,7 +44,7 @@ void wxGISSimpleRenderer::Draw(wxGISFeatureSet* pSet, wxGISEnumDrawPhase DrawPha
 		{
 			//proj goes here
 			OGRErr err = OGRERR_NONE;
-			if(!=IsSpaRefSame)
+			if(!IsSpaRefSame)
 				err = poGeometry->transformTo(pDisplaySpatialReference);
 			if (err == OGRERR_NONE)
 			{

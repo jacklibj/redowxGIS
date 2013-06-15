@@ -1,4 +1,4 @@
-#include "gxtreeview.h"
+#include "wxgis/catalogui/gxtreeview.h"
 
 BEGIN_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
 	EVT_TREE_BEGIN_LABEL_EDIT(TREECTRLID, wxGxTreeView::OnBeginLabelEdit)

@@ -1,6 +1,6 @@
-#include "gxdiscconnection.h"
-#include "art/folder_conn_16.xpm"
-#include "art/folder_conn_48.xpm"
+#include "wxgis/catalog/gxdiscconnection.h"
+#include "../../art/folder_conn_16.xpm"
+#include "../../art/folder_conn_48.xpm"
 #include "wx/filename.h"
 
 wxGxDiscConnection::wxGxDiscConnection(wxString Path, wxString Name, bool bShowHidden) : wxGxFolder(Path, Name, bShowHidden)

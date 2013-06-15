@@ -1,5 +1,5 @@
-#include "gxview.h"
-#include "gxcatalog.h"
+#include "wxgis/catalogui/gxview.h"
+#include "wxgis/catalog/gxcatalog.h"
 
 wxGxView::wxGxView(void)
 {

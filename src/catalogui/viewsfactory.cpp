@@ -1,4 +1,4 @@
-#include "wxgis/catalogui/viewfactory.h"
+#include "wxgis/catalogui/viewsfactory.h"
 #include "wxgis/catalogui/gxnoview.h"
 #include "wxgis/catalogui/gxcontentview.h"
 #include "wxgis/catalogui/gxtableview.h"
@@ -16,7 +16,7 @@ wxGISViewsFactory::~wxGISViewsFactory(void)
 
 }
 
-wxWindow* wxGISViewsFactory::wxCreateObject(wxString sName, wxWindow* parent)
+wxWindow* wxGISViewsFactory::CreateView(wxString sName, wxWindow* parent)
 {
 	if (sName == wxT("NoView"))
 	{
@@ -36,7 +36,7 @@ wxWindow* wxGISViewsFactory::wxCreateObject(wxString sName, wxWindow* parent)
 	if (sName == wxT("TableView"))
 	{
 		wxGxTableView* pwxGxTableView = new wxGxTableView(parent);
-		return static_cast<pwxGxTableView>;
+		return static_cast<wxWindow*>(pwxGxTableView);
 	}
 	return NULL;
 }

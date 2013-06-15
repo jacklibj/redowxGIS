@@ -1,5 +1,5 @@
 #pragma once
-#include "wxgis/catalogui/gxtabview.h"
+#include "wxgis/catalogui/gxview.h"
 #include <wx/listctrl.h>
 
 
@@ -21,7 +21,7 @@ public:
 	void ResetContents(void);
 	//IGxView
 	virtual bool Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf);
-	virtual bool Deactivate(void);
+	virtual void Deactivate(void);
 	virtual bool Applies(IGxSelection* Selection);
 	//IGxSelectionEvents
 	virtual void OnSelectionChanged(IGxSelection* Selection, long nInitiator);
@@ -32,8 +32,8 @@ public:
 	virtual void OnObjectRefreshed(IGxObject* object);
 	virtual void OnRefreshAll(void);
 //events
-	void OnColClick(wxListEvents& event);
-	void OnContentMenu(wxContextMenuEvent& event);
+	void OnColClick(wxListEvent& event);
+	void OnContextMenu(wxContextMenuEvent& event);
 	void ShowContextMenu(const wxPoint& pos);
 	void SetColumnImage(int col, int image);
 	void OnActivated(wxListEvent& event);
@@ -54,11 +54,11 @@ private:
 	bool m_bSortAsc;
 	short m_currentSortCol;
 	LISTSTYLE m_current_style;
-	wxImageList m_imageListSmall, m_imageListLarge;
+	wxImageList m_ImageListSmall, m_ImageListLarge;
 	IConnectionPointContainer* m_pConnectionPointCatalog;
-	long m_pConnectionPointCatalogCookie;
+	long m_ConnectionPointCatalogCookie;
 	IGxSelection* m_pSelection;
-	long style;
+	long m_style;
 	IGxObject* m_pParentGxObject;
 	bool m_bCtrlDown;
 

@@ -1,6 +1,6 @@
-#include "gxfolder.h"
-#include "art/folder1_16.xpm"
-#include "art/folder1_48.xpm"
+#include "wxgis/catalog/gxfolder.h"
+#include "../art/folder1_16.xpm"
+#include "../art/folder1_48.xpm"
 
 wxGxFolder::wxGxFolder(wxString path, wxString Name, bool bShowHidden) : m_bShowHidden(bShowHidden), m_bIsChildrenLoaded(false)
 {

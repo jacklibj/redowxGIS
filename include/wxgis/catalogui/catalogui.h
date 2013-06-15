@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wxgis\framework\base.h"
+#include "wxgis\base.h"
 
 #define TREECTRLID  1005 //wxGxCatalog tree
 #define LISTCTRLID  1006 //wxGxCatalog content view

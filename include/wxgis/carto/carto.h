@@ -25,7 +25,7 @@ public:
 	virtual ~wxGISLayer(void){};
 	//pure virtual
 	virtual OGRSpatialReference* GetSpatialReference(void) = 0;
-	virtual OGREnvelope* GetEnvelop(void) = 0;
+	virtual OGREnvelope* GetEnvelope(void) = 0;
 	virtual bool IsValid(void) = 0;
 	virtual void Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel) = 0;
 	//

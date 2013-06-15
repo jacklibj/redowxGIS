@@ -76,7 +76,7 @@ OGRSpatialReference* wxGISFeatureLayer::GetSpatialReference(void)
 	return NULL;
 }
 
-OGREnvelope* wxGISFeatureLayer::GetEnvelop(void)
+OGREnvelope* wxGISFeatureLayer::GetEnvelope(void)
 {
 	if(m_pwxGISFeatureDataset)
 		return m_pwxGISFeatureDataset->GetEnvelope();

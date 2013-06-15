@@ -10,7 +10,7 @@ BEGIN_EVENT_TABLE(wxGxContentView, wxListCtrl)
 	EVT_LIST_ITEM_ACTIVATED(LISTCTRLID, wxGxContentView::OnActivated)
 
 	EVT_LIST_COL_CLICK(LISTCTRLID, wxGxContentView::OnColClick)
-	EVT_CONTEXT_MENU(wxGxContentView::OnContentMenu)
+	EVT_CONTEXT_MENU(wxGxContentView::OnContextMenu)
 	EVT_LEFT_DOWN(wxGxContentView::OnLeftDown)
 END_EVENT_TABLE()
 
@@ -22,7 +22,7 @@ int wxCALLBACK MyCompareFunction(long item1, long item2, long sortData)
 	if(pItem1->bContainer && !pItem2->bContainer)
 		return sortData == 0 ? 1: -1;
 	if(!pItem1->bContainer && pItem2->bContainer)
-		return sortData == 0 ? 1: -1;
+		return sortData == 0 ? -1: 1;
 
 	return pItem1->pObject->GetName().CmpNoCase(pItem2->pObject->GetName()) * (sortData == 0 ? -1 : 1);
 }
@@ -30,21 +30,21 @@ int wxCALLBACK MyCompareFunction(long item1, long item2, long sortData)
 wxGxContentView::wxGxContentView(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size) :
 wxListCtrl(parent, id, pos, size, wxLC_REPORT | wxBORDER_NONE |wxLC_EDIT_LABELS | wxLC_SORT_ASCENDING),
 	m_bSortAsc(true), m_current_style(REPORT), m_pConnectionPointCatalog(NULL), 
-	m_pConnectionPointCatalogCookie(-1), m_pParentGxObject(NULL), m_currentSortCol(0), m_pSelection(NULL)
+	m_ConnectionPointCatalogCookie(-1), m_pParentGxObject(NULL), m_currentSortCol(0), m_pSelection(NULL)
 {
 	m_style = wxBORDER_NONE | wxLC_EDIT_LABELS;
-	InsertColum(0, _("Name"), wxLIST_FORMAT_LEFT, 150);
+	InsertColumn(0, _("Name"), wxLIST_FORMAT_LEFT, 150);
 	InsertColumn(1,_("Type"), wxLIST_FORMAT_LEFT, 250);
 
-	m_imageListSmall.Create(16, 16);
-	m_imageListLarge.Create(48, 48);
+	m_ImageListSmall.Create(16, 16);
+	m_ImageListLarge.Create(48, 48);
 	//
 	//
-	m_imageListLarge.Add(wxBitmap(cont_view_48_xpm));
-	m_imageListSmall.Add(wxBitmap(cont_view_16_xpm));
+	m_ImageListLarge.Add(wxBitmap(cont_view_48_xpm));
+	m_ImageListSmall.Add(wxBitmap(cont_view_16_xpm));
 
-	SetImageList(&m_imageListLarge, wxIMAGE_LIST_NORMAL);
-	SetImageList(&m_imageListSmall, wxIMAGE_LIST_SMALL);
+	SetImageList(&m_ImageListLarge, wxIMAGE_LIST_NORMAL);
+	SetImageList(&m_ImageListSmall, wxIMAGE_LIST_SMALL);
 	m_bCtrlDown = false;
 }
 
@@ -60,11 +60,22 @@ bool wxGxContentView::Activate(wxGxApplication* application, IGxCatalog* Catalog
 
 	m_pConnectionPointCatalog = dynamic_cast<IConnectionPointContainer*>( m_pCatalog );
 	if(m_pConnectionPointCatalog != NULL)
-		m_pConnectionPointCatalogCookie = m_pConnectionPointCatalog->Advise(this);
+		m_ConnectionPointCatalogCookie = m_pConnectionPointCatalog->Advise(this);
 
 	m_pSelection = m_pCatalog->GetSelection();
 
 	return true;
+}
+
+void wxGxContentView::Deactivate(void)
+{
+	//if(m_ConnectionPointSelectionCookie != -1)
+	//	m_pConnectionPointSelection->Unadvise(m_ConnectionPointSelectionCookie);
+	if(m_ConnectionPointCatalogCookie != -1)
+		m_pConnectionPointCatalog->Unadvise(m_ConnectionPointCatalogCookie);
+
+	Serialize(m_pXmlConf, true);
+	wxGxView::Deactivate();
 }
 
 void wxGxContentView::Serialize(wxXmlNode* pRootNode, bool bStore)
@@ -87,14 +98,14 @@ void wxGxContentView::AddObject(IGxObject* pObject)
 
 	int pos(0);
 	if(icon_small.IsOk())
-		pos = m_imageListSmall.Add(icon_small);
+		pos = m_ImageListSmall.Add(icon_small);
 	else
-		pos = m_imageListSmall.Add(m_imageListSmall.GetIcon(2));
+		pos = m_ImageListSmall.Add(m_ImageListSmall.GetIcon(2));
 
 	if(icon_large.IsOk())
-		pos = m_imageListLarge.Add(icon_large);
+		pos = m_ImageListLarge.Add(icon_large);
 	else
-		pos = m_imageListLarge.Add(m_imageListLarge.GetIcon(2));
+		pos = m_ImageListLarge.Add(m_ImageListLarge.GetIcon(2));
 
 	IGxObjectContainer* pGxObjectContainer = dynamic_cast<IGxObjectContainer*>(pObject);
 
@@ -113,7 +124,7 @@ void wxGxContentView::AddObject(IGxObject* pObject)
 	wxListCtrl::Refresh();
 }
 
-void wxGxContentView::OnColClick(wxListEvents& event)
+void wxGxContentView::OnColClick(wxListEvent& event)
 {
 	int col = event.GetColumn();
 	if(col != 0)
@@ -125,7 +136,7 @@ void wxGxContentView::OnColClick(wxListEvents& event)
 	SetColumnImage(col, m_bSortAsc ? 0 : 1);
 }
 
-void wxGxContentView::OnContentMenu(wxContextMenuEvent& event)
+void wxGxContentView::OnContextMenu(wxContextMenuEvent& event)
 {
 	wxPoint point = event.GetPosition();
 	// if from keyboard
@@ -202,7 +213,7 @@ void wxGxContentView::SetStyle(LISTSTYLE style)
 	{
 	case REPORT:
 		SetWindowStyleFlag(m_style | wxLC_REPORT);
-		break
+		break;
 	case SMALL:
 		SetWindowStyleFlag(m_style | wxLC_SMALL_ICON);
 		break;
@@ -230,7 +241,7 @@ void wxGxContentView::OnBeginLabelEdit(wxListEvent& event)
 		event.Veto();
 		return;
 	}
-	if (pObjEdit->CanRename())
+	if (!pObjEdit->CanRename())
 	{
 		event.Veto();
 		return;
@@ -290,7 +301,7 @@ void wxGxContentView::OnRefreshAll(void)
 
 void wxGxContentView::OnSelectionChanged(IGxSelection* Selection, long nInitiator)
 {
-	if(nInitiator == GetID())
+	if(nInitiator == GetId())
 		return;
 	GxObjectArray* pGxObjectArray = m_pSelection->GetSelectedObjects();
 	if(pGxObjectArray == NULL || pGxObjectArray->size() == 0)
@@ -306,7 +317,7 @@ void wxGxContentView::OnSelectionChanged(IGxSelection* Selection, long nInitiato
 	if(pObjContainer == NULL || !pObjContainer->HasChildren())
 		return;
 	GxObjectArray* pArr = pObjContainer->GetChildren();
-	for(size_t i = 0; i< pArr->size() i++)
+	for(size_t i = 0; i< pArr->size(); i++)
 	{
 		AddObject(pArr->at(i));
 	}
@@ -323,10 +334,10 @@ bool wxGxContentView::Applies(IGxSelection* Selection)
 		return false;
 
 	GxObjectArray* pGxObjectArray = Selection->GetSelectedObjects();
-	for (size_t i = 0; i < pGxObjectArray->Size(); i++)
+	for (size_t i = 0; i < pGxObjectArray->size(); i++)
 	{
-	     IGxObjectContainer* pObjectContainer = dynamic_cast<IGxObjectContainer*>( pGxObjectArray->at(i) );
-		 if( pObjectContainer != NULL)
+	     IGxObjectContainer* pGxObjectContainer = dynamic_cast<IGxObjectContainer*>( pGxObjectArray->at(i) );
+		 if( pGxObjectContainer != NULL)
 			 return true;
 	}
 	return false;
@@ -341,6 +352,6 @@ void wxGxContentView::ResetContents(void)
 
 void wxGxContentView::OnLeftDown(wxMouseEvent& event)
 {
-	event.Skip()
+	event.Skip();
 	m_bCtrlDown = event.m_controlDown;
 }

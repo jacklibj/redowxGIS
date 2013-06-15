@@ -2,7 +2,7 @@
 #include "wxgis/display/display.h"
 
 
-class WXDLLIMPEXP_DATA_GIS_DSP wxSimpleFillSymbol :
+class WXDLLIMPEXP_GIS_DSP wxSimpleFillSymbol :
 	public ISymbol
 {
 public:

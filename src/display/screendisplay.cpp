@@ -29,18 +29,21 @@ void *wxRasterDrawThread::Entry()
 	rHRatio = m_rOrigX / m_nDestY;
 	switch(m_Quality)
 	{
-	case enumGISQualityHalfBilinear:
-		OnBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX, rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+	case enumGISQualityBilinear:
+		OnBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
 		break;
 	case enumGISQualityHalfBilinear:
 		OnHalfBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+		break;
 	case enumGISQualityHalfQuadBilinear:
 		OnHalfQuadBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+		break;
 	case enumGISQualityBicubic:
 		OnBicubicInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+		break;
 	case enumGISQualityNearest:
 	default:
-		OnNearestNeighbourInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend,  m_nOrigX, m_nDestX, rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+		OnNearestNeighbourInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
 		break;
 	}
 
@@ -205,7 +208,7 @@ void wxRasterDrawThread::OnHalfBilinearInterpolation(unsigned char* pOrigData, u
 	}
 }
 
-void wxRasterDrawThread::OnHalfQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYBeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
+void wxRasterDrawThread::OnHalfQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
 {
 	int srcpixymax = nOrigHeight - 1;
 	int srcpixxmax = nOrigWidth - 1;
@@ -282,7 +285,7 @@ void wxRasterDrawThread::OnHalfQuadBilinearInterpolation(unsigned char* pOrigDat
 	}
 }
 
-void wxRasterDrawThread::OnFourQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDelatX, double rDelstaY, ITrackCancel* pTrackCancel)
+void wxRasterDrawThread::OnFourQuadBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
 {
 	int srcpixymax = nOrigHeight - 1;
 	int srcpixxmax = nOrigWidth - 1;
@@ -387,7 +390,7 @@ double wxRasterDrawThread::BiCubicKernel(double x)
 void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDelatX, double rDelstaY, ITrackCancel* pTrackCancel)
 {
 	int srcpixymax = nOrigHeight - 1;
-	int srcpixymax = nOrigWidth - 1;
+	int srcpixxmax = nOrigWidth - 1;
 
 	double srcpixy, dy;
 	double srcpixx, dx;
@@ -421,7 +424,7 @@ void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsign
 
 					//Calculate the exact position where the source data
 					// should be pulled from based on the x_offset and y_offset
-					int src_pixel_index = y_offset * nOrigWidth _ x_offset;
+					int src_pixel_index = y_offset * nOrigWidth + x_offset;
 
 					//Caculate the weight for the specified pixel according
 					// to the bicubic b-spline kernel we're using for
@@ -442,7 +445,7 @@ void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsign
 			pDestData[1] = (unsigned char)(sum_g + 0.5);
 			pDestData[2] = (unsigned char)(sum_b + 0.5);
 			pDestData += 3;
-			if(pTrackCancel && !pTrackCancel->continue())
+			if(pTrackCancel && !pTrackCancel->Continue())
 				return;
 		}
 	}
@@ -504,7 +507,7 @@ wxGISScreenDisplay::~wxGISScreenDisplay(void)
 	wxDELETE(m_pDisplayTransformation);
 }
 
-void wxGISScreenDisplay::OnDraw(wxDC &dc, wxCoord x /* = 0 */, wxCoord y /* = 0 */, bool bClearBackground /* = false */
+void wxGISScreenDisplay::OnDraw(wxDC &dc, wxCoord x /* = 0 */, wxCoord y /* = 0 */, bool bClearBackground /* = false */)
 {
 	wxRect DevRect = m_pDisplayTransformation->GetDeviceFrame();
 	dc.SetClippingRegion(DevRect);
@@ -547,7 +550,7 @@ void wxGISScreenDisplay::OnPanDraw(wxDC &dc, wxCoord x, wxCoord y)
 	dc.DrawBitmap(m_caches[m_caches.size() - 1].bmp.GetSubBitmap(DispRect), -x, -y);
 }
 
-void wxGISScreenDisplay::OnStretchDraw(wxDC &dc, wxCoord nDestwidth, wxCoord nDestHeight, wxCoord x, wxCoord y, bool bClearBackground, wxGISEnumDrawQuality quality )
+void wxGISScreenDisplay::OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDestHeight, wxCoord x, wxCoord y, bool bClearBackground, wxGISEnumDrawQuality quality )
 {
 	wxCriticalSectionLocker locker(m_CritSect);
 
@@ -573,12 +576,12 @@ void wxGISScreenDisplay::OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackgr
 	dc.DrawBitmap(Img, DevRect.x, DevRect.y);
 }
 
-void wxGISScreenDisplay::DrawPolygon(int n, wxPoint points[], wxCoord xoffset, wxCoord yofffset, int fill_style)
+void wxGISScreenDisplay::DrawPolygon(int n, wxPoint points[], wxCoord xoffset, wxCoord yoffset, wxPolygonFillMode fill_style)
 {
-	m_dc.DrawPolygon(n, count, points, xoffset, yoffset, fill_style);
+	m_dc.DrawPolygon(n,points, xoffset, yoffset, fill_style);
 }
 
-void wxGISScreenDisplay::DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset, wxCoord yoffset, int fill_style)
+void wxGISScreenDisplay::DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset, wxCoord yoffset, wxPolygonFillMode fill_style)
 {
 	m_dc.DrawPolyPolygon(n, count, points, xoffset, yoffset, fill_style);
 }
@@ -608,14 +611,14 @@ void wxGISScreenDisplay::ClearCaches(void)
 	m_bIsDerty = true;
 }
 
-void wxGISScreenDisplay::DrawPoint(wxCOord x, wxCoord y)
+void wxGISScreenDisplay::DrawPoint(wxCoord x, wxCoord y)
 {
 	m_dc.DrawPoint(x, y);
 }
 
 void wxGISScreenDisplay::DrawLines(int n, wxPoint points[], wxCoord xoffset, wxCoord yoffset)
 {
-	m_dc.DrawCircle(x, y, radius);
+	m_dc.DrawLines(n, points, xoffset, yoffset);
 }
 
 void wxGISScreenDisplay::SetBrush(wxBrush& Brush)
@@ -633,7 +636,12 @@ void wxGISScreenDisplay::SetFont(wxFont& Font)
 	m_dc.SetFont(Font);
 }
 
-bool wxGISScreenDisplay::IsCachedDerty(size_t cache_id)
+bool wxGISScreenDisplay::IsCacheDerty(size_t cache_id)
+{
+	return m_caches[cache_id].IsDerty;
+}
+
+void wxGISScreenDisplay::SetCacheDerty(size_t cache_id, bool bIsDerty)
 {
 	m_caches[cache_id].IsDerty = bIsDerty;
 }
@@ -642,8 +650,8 @@ size_t wxGISScreenDisplay::AddCache(void)
 {
 	int max_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
 	int max_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
-	wxBitmap Buffer(wxBitmap(max_x,, max_y));
-	CACHEDATA data = ({true, Buffer};
+	wxBitmap Buffer(wxBitmap(max_x, max_y));
+	CACHEDATA data = {true, Buffer};
 	m_caches.push_back(data);
 	m_nLastCacheID = m_caches.size() - 1;
 	return m_nLastCacheID;
@@ -690,7 +698,7 @@ void wxGISScreenDisplay::DrawBitmap(const wxBitmap& bitmap, wxCoord x, wxCoord y
 //
 //
 
-wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawQuality Quality, ITrackCancel* pTtrackCancel)
+wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDestHeight, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel)
 {
 	unsigned char* pData = SourceImage.GetData();
 	int nSourceWidth = SourceImage.GetWidth();
@@ -711,19 +719,19 @@ wxImage wxGISScreenDisplay::Scale(unsigned char* pData, int nOrigX, int nOrigY, 
 	switch(Quality)
 	{
 	case enumGISQualityBilinear:
-		wxRasterDrawThread::OnBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		wxRasterDrawThread::OnBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX,  rWRatio, rHRatio, 0, 0, NULL);
 		break;
 	case enumGISQualityHalfBilinear:
-		wxRasterDrawThread::OnHalfBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		wxRasterDrawThread::OnHalfBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX,  rWRatio, rHRatio, 0, 0, NULL);
 		break;
 	case enumGISQualityHalfQuadBilinear:
-		wxRasterDrawThread::OnHalfQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		wxRasterDrawThread::OnHalfQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX,  rWRatio, rHRatio, 0, 0, NULL);
 		break;
 	case enumGISQualityFourQuadBilinear:
-		wxRasterDrawThread::OnFourQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		wxRasterDrawThread::OnFourQuadBilinearInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX,  rWRatio, rHRatio, 0, 0, NULL);
 		break;
 	case enumGISQualityBicubic:
-		wxRasterDrawThread::OnBicubicInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX, rWRatio, rHRatio, 0, 0, NULL);
+		wxRasterDrawThread::OnBicubicInterpolation(pData, pDestData, 0, nDestY, nOrigX, nOrigY, nDestX,  rWRatio, rHRatio, 0, 0, NULL);
 		break;
 	case enumGISQualityNearest:
 	default:

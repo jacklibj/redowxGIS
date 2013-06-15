@@ -27,9 +27,6 @@
     <ClInclude Include="..\..\include\wxgis\framework\application.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\wxgis\framework\base.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\wxgis\framework\commandbar.h">
       <Filter>头文件</Filter>
     </ClInclude>

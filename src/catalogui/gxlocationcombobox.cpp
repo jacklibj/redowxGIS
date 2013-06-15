@@ -5,7 +5,7 @@ BEGIN_EVENT_TABLE(wxGxLocationComboBox, wxComboBox)
 	EVT_COMBOBOX(wxID_ANY, wxGxLocationComboBox::OnTextEnter)
 END_EVENT_TABLE()
 
-wxGxLocationComboBox::wxGxLocationComboBox(WXWindow* parent, wxWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size, 
+wxGxLocationComboBox::wxGxLocationComboBox(wxWindow* parent, wxWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size, 
 const wxArrayString& choices, long style /* = 0 */, const wxValidator& validator /* = wxDefaultValidator */, const wxString& name /* = wxT */) :
 wxComboBox(parent, id , value, pos, size, choices, style, validator, name), m_pApp(NULL)
 {

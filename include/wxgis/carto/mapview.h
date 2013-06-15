@@ -15,7 +15,7 @@ class wxDrawingThread : public wxThread
 {
 public:
 	//
-	wxDrawingThread(wxGISMapView* pView, std::vector<wxGISLayer*> Layers);
+	wxDrawingThread(wxGISMapView* pView, std::vector<wxGISLayer*>& Layers);
 	virtual void *Entry();
 	virtual void OnExit();
 private:
@@ -43,7 +43,7 @@ protected:
 	virtual void SetExtent(OGREnvelope Env);
 protected:
 	wxGISMapView* m_pView;
-	std::vector<OGREnvelope> m_EnvelopArray;
+	std::vector<OGREnvelope> m_EnvelopeArray;
 	int m_Pos;
 };
 
@@ -74,16 +74,16 @@ public:
 	//
 	void OnThreadExit(void);
 	virtual ICachedDisplay* GetCachedDisplay(void){return pGISScreenDisplay;};
-	virtual ITrackCancel* GetTrackCancel(void){return m_PTrackCancel;};
+	virtual ITrackCancel* GetTrackCancel(void){return m_pTrackCancel;};
 	virtual void SetTrackCancel(ITrackCancel* pTrackCancel);
 	virtual void SetFullExtent(void);
 	virtual void SetExtent(OGREnvelope Env);
 	virtual ExtentStack* GetExtentStack(void){return m_pExtentStack;};
 protected:
 	ICachedDisplay* pGISScreenDisplay;
-	WXWORD* m_MouseState;
+	WXWORD m_MouseState;
 	WXWORD m_MapToolState;;
-	ITrackCancel* m_PTrackCancel;
+	ITrackCancel* m_pTrackCancel;
 	wxDrawingThread* m_pThread;
 	wxGISAnimation* m_pAni;
 	wxCriticalSection m_CriticalSection;

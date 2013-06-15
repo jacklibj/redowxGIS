@@ -20,8 +20,12 @@ IMPLEMENT_DYNAMIC_CLASS(wxGISCatalogMainCmd, wxObject)
 wxGISCatalogMainCmd::wxGISCatalogMainCmd(void)
 {
 	m_ImageList.Create(16, 16);
-	m_ImageList.Add(wxBitmap(folder_con_16_xpm));
-	m_ImageList.Add(wxBitmap(location16_xpm));
+	m_ImageList.Add(wxBitmap(folder_conn_16_xpm));	//4
+	m_ImageList.Add(wxBitmap(location16_xpm));		//7
+}
+
+wxGISCatalogMainCmd::~wxGISCatalogMainCmd(void)
+{
 }
 
 wxIcon wxGISCatalogMainCmd::GetBitmap(void)
@@ -66,10 +70,15 @@ wxString wxGISCatalogMainCmd::GetCategory(void)
 	case 1:
 	case 2:
 	case 3:
-		return wxString(_("Catalog"))
+		return wxString(_("Catalog"));
 	default:
 		return wxString(_("[No category]"));
 	}
+}
+
+bool wxGISCatalogMainCmd::GetChecked(void)
+{
+	return false;
 }
 
 bool wxGISCatalogMainCmd::GetEnabled(void)
@@ -89,7 +98,7 @@ bool wxGISCatalogMainCmd::GetEnabled(void)
 				IGxObject* pGxObject = pArr->at(0);
 				IGxObject* pParentGxObject = pGxObject->GetParent();
 				if (!pParentGxObject)
-			       return false;
+			       return true;
 			}
 			return true;
 		}
@@ -144,7 +153,7 @@ wxString wxGISCatalogMainCmd::GetMessage(void)
 	case 2:
 		return wxString(_("Disconnect folder"));
 	case 3:
-		return wxStricmp(_("Set of get location"));
+		return wxString(_("Set or get location"));
 	default:
 		return wxString();
 	}
@@ -210,11 +219,11 @@ void wxGISCatalogMainCmd::OnClick(void)
 		}
 	case 3:
 	default:
-		return: 
+		return;
 	} 
 }
 
-bool wxGISCatalogMainCmd::onCreare(IApplication* pApp)
+bool wxGISCatalogMainCmd::OnCreate(IApplication* pApp)
 {
 	m_pApp = pApp;
 	return true;
@@ -231,7 +240,7 @@ wxString wxGISCatalogMainCmd::GetTooltip(void)
 	case 2:
 		return wxString(_("Disconnect folder"));
 	case 3:
-		return wxStricmp(_("Set or get location"));
+		return wxString(_("Set or get location"));
 	default:
 		return wxString();
 	}

@@ -17,11 +17,11 @@ public:
 	virtual wxString GetMessage(void);
 	virtual wxGISEnumCommandKind GetKind(void);
 	virtual void OnClick(void);
-	virtual bool onCreare(IApplication* pApp);
+	virtual bool OnCreate(IApplication* pApp);
 	virtual wxString GetTooltip(void);
 	virtual unsigned char GetCount(void);
 	//IToolControl
-	virtual IToolControl* GetControl(void);
+	virtual IToolBarControl* GetControl(void);
 	virtual wxString GetToolLabel(void);
 	virtual bool HasToolLabel(void);
 private:

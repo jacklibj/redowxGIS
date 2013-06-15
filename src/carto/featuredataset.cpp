@@ -70,7 +70,7 @@ bool wxGISFeatureDataset::Open(int iLayer)
 			{
 				OGREnvelope Env = *m_psExtent;
 				CPLRectObj Rect = {Env.MinX, Env.MinY, Env.MaxX, Env.MaxY};
-				m_pQuadTree = CPLQuadTreeCreate(&Rect, GetFeatureBoundFunc)
+				m_pQuadTree = CPLQuadTreeCreate(&Rect, GetFeatureBoundFunc);
 			}
 		//
 		//
@@ -84,7 +84,7 @@ bool wxGISFeatureDataset::Open(int iLayer)
 
 	size_t count(0);
 	OGRFeature *poFeature;
-	while ( (count < CACHE_SIZE) && ((poFeature = m_poLayer->GetNextFeature()) != NULL)
+	while ( (count < CACHE_SIZE) && ((poFeature = m_poLayer->GetNextFeature()) != NULL) )
 	{
 		AddFeature(poFeature);
 		count++;
@@ -102,7 +102,7 @@ bool wxGISFeatureDataset::Open(int iLayer)
 OGRSpatialReference* wxGISFeatureDataset::GetSpatialReference(void)
 {
 	if(!m_bIsOpened)
-		if(!Open(0)£©
+		if(!Open(0))
 			return NULL;
 	if( m_poLayer )
 		return m_poLayer->GetSpatialRef();
@@ -149,7 +149,7 @@ OGRFeature* wxGISFeatureDataset::GetAt(int nIndex)
 	{
 		size_t count(0);
 		OGRFeature *poFeature;
-		while( (count < CACHE_SZIE) && (poFeature = m_poLayer->GetNextFeature()) != NULL)
+		while( (count < CACHE_SIZE) && (poFeature = m_poLayer->GetNextFeature()) != NULL)
 		{
 			AddFeature(poFeature);
 			count++;
@@ -165,7 +165,7 @@ OGRFeature* wxGISFeatureDataset::operator [](int nIndex)
 
 wxString wxGISFeatureDataset::GetAsString(int row, int col)
 {
-	if(m_poLayer->GetFeature() <= row)
+	if(m_poLayer->GetFeatureCount() <= row)
 		return wxString();
 	else
 	{
@@ -175,22 +175,22 @@ wxString wxGISFeatureDataset::GetAsString(int row, int col)
 		{
 		case OFTDate:
 			{
-				int year, mon, daym hour, min, sec, flag;
-				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				int year, mon, day, hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &year, &mon, &day, &hour, &min, &sec, &flag);
 				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
 				return dt.Format(_("%d-%m-%Y"));
 			}
 		case OFTTime:
 			{
-				int year, mon, daym hour, min, sec, flag;
-				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				int year, mon, day, hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &year, &mon, &day, &hour, &min, &sec, &flag);
 				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
 				return dt.Format(_("%H:%M:%S"));
 			}
 		case OFTDateTime:
 			{
-				int year, mon, daym hour, min, sec, flag;
-				pFeature->GetFieldAsDateTime(col, &yearm &mon, &day, &hour, &min, &sec, &flag);
+				int year, mon, day, hour, min, sec, flag;
+				pFeature->GetFieldAsDateTime(col, &year, &mon, &day, &hour, &min, &sec, &flag);
 				wxDateTime dt(day, wxDateTime::Month(mon-1), year, hour, min, sec);
 				return dt.Format(_("%d-%m-%Y %H:%M:%S"));
 			}

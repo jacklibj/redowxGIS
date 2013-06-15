@@ -50,7 +50,7 @@ bool wxGISRasterDataset::Open(void)
 	}
 	CSLDestroy( papszFileList );
 
-	CPLSetConfigOption( "USE_RRD", "YES"");
+	CPLSetConfigOption( "USE_RRD", "YES" );
 	CPLSetConfigOption( "HFA_USE_RRD", "YES" );
 	CPLSetConfigOption( "COMPRESS_OVERVIEW", "LZW" );
 

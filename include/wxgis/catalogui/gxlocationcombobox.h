@@ -7,7 +7,7 @@ class wxGxLocationComboBox :
 	public IToolBarControl
 {
 public:
-	wxGxLocationComboBox(WXWindow*parent, WXWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size,
+	wxGxLocationComboBox(wxWindow* parent, wxWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size,
 		const wxArrayString& choices, long style = 0, const wxValidator& validator = wxDefaultValidator,
 		const wxString& name = wxT("LocationComboBox"));
 	virtual ~wxGxLocationComboBox(void);

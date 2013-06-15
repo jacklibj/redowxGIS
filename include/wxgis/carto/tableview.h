@@ -3,7 +3,7 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/string.h>
-#include <wx/font>
+#include <wx/font.h>
 #include <wx/grid.h>
 #include <wx/gdicmn.h>
 #include <wx/stattext.h>
@@ -60,7 +60,7 @@ public:
 	wxGridCtrl();
 	virtual ~wxGridCtrl(void);
 	wxGridCtrl(wxWindow* parent, const long& id);
-	wxImagelist* m_pImageList;
+	wxImageList* m_pImageList;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -86,11 +86,11 @@ public:
 		{
 			m_grid->SetTable(table, takeOwnership, selmode);
 			m_grid->SetGridCursor(0,0);
-			m_grid->MakeCellVisible();
+			m_grid->MakeCellVisible(0,0);
 			m_position->Clear();
 			(*m_position) << 1;
 
-			m_staticText2->SetLabel(wxString::Format("of %u"), m_grid->GetNumberRows())
+			m_staticText2->SetLabel(wxString::Format(_("of %u"), m_grid->GetNumberRows()));
 
 			//
 		}
@@ -115,13 +115,3 @@ private:
 
 	DECLARE_EVENT_TABLE()
 };
-
-void wxGISTableView::OnSelectCell( wxCommandEvent& event )
-{
-
-}
-
-void wxGISTableView::OnBtnFirst( wxCommandEvent& event )
-{
-
-}

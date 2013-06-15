@@ -1,7 +1,7 @@
-#include "customizedlg.h"
-#include "keycodedlg.h"
-#include "createdbdlg.h"
-#include "addcommanddlg.h"
+#include "wxgis/catalogui/customizedlg.h"
+#include "wxgis/framework/keycodedlg.h"
+#include "wxgis/framework/createcbdlg.h"
+#include "wxgis/framework/addcommanddlg.h"
 #include "wx\accel.h"
 #include "wx\utils.h"
 /////////

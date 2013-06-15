@@ -1,9 +1,9 @@
 #pragma once
 
-#include "base.h"
+#include "wxgis/base.h"
 #include "ogrsf_frmts.h"
 
-#define wxUSE_GRAPHICS_CONTEXT 1;
+#define wxUSE_GRAPHICS_CONTEXT 1
 
 enum wxGISEnumDrawPhase
 {
@@ -50,14 +50,14 @@ class IDisplay
 
 public:
 	virtual ~IDisplay(void){};
-	virtual void OnDraw(wxDC &dc, wxCoord x = 0, wxCoord y = 0. bool bClearBackground = false) = 0;
+	virtual void OnDraw(wxDC &dc, wxCoord x = 0, wxCoord y = 0, bool bClearBackground = false) = 0;
 	virtual bool IsDerty(void) = 0;
 	virtual void SetDerty(bool bIsDerty) = 0;
 	virtual void SetBrush(wxBrush& Brush) = 0;
 	virtual void SetPen(wxPen& Pen) = 0;
 	virtual void SetFont(wxFont& Font) = 0;
-	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoofset = 0, int fill_style = wxODDEVEN_RULE) = 0;
-	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, int fill_style = wxODDEVEN_RULE) = 0;
+	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoofset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE) = 0;
+	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE) = 0;
 	virtual void DrawPoint(wxCoord x, wxCoord y) = 0;
 	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0) = 0;
 	virtual void DrawCircle(wxCoord x, wxCoord y, wxCoord radius) = 0;
@@ -69,11 +69,11 @@ public:
 class ICachedDisplay :
 	public IDisplay
 {
+public:
 	virtual ~ICachedDisplay(void){};
 	virtual void OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDestHeight, wxCoord x = 0, wxCoord y = 0, bool bClearBackground = false,
 		wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
-	virtual void OnStretchDraw2(wxDC &dc, wxCoord nDestWidth, wxRect rect, bool bClearBackground = false,
-		wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
+	virtual void OnStretchDraw2(wxDC &dc, wxRect rect, bool bClearBackground = false, wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
 	virtual void OnPanDraw(wxDC &dc, wxCoord x, wxCoord y) = 0;
 	//
 	//

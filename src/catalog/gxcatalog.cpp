@@ -1,5 +1,5 @@
-#include "gxcatalog.h"
-#include "gxdiscconnection.h"
+#include "wxgis/catalog/gxcatalog.h"
+#include "wxgis/catalog/gxdiscconnection.h"
 #include "wxgis\framework\config.h"
 #include "wx\volume.h"
 #include "wx\msgdlg.h"

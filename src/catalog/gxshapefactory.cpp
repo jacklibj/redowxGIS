@@ -1,5 +1,5 @@
-#include "gxshapefactory.h"
-#include "gxdataset.h"
+#include "wxgis/catalog/gxshapefactory.h"
+#include "wxgis/catalog/gxdataset.h"
 
 IMPLEMENT_DYNAMIC_CLASS(wxGxShapeFactory, wxObject)
 
@@ -8,7 +8,7 @@ wxGxShapeFactory::wxGxShapeFactory(void)
 
 }
 
-wxGxShapeFactory::~wxShapeFactory(void)
+wxGxShapeFactory::~wxGxShapeFactory(void)
 {
 
 }
@@ -34,12 +34,12 @@ bool wxGxShapeFactory::GetChildren(wxString sParentDir, wxArrayString* pFileName
 
 		if(data_map[name].bHasShp != 1)
 			data_map[name].bHasShp = (ext == wxT("shp")) ? 1 : 0;
-		if(data_map[name].bHasDbf != 1
+		if(data_map[name].bHasDbf != 1)
 			data_map[name].bHasDbf = (ext == wxT("dbf")) ? 1 : 0;
 		if(data_map[name].bHasPrj != 1)
 			data_map[name].bHasPrj = (ext == wxT("prj")) ? 1 : 0;
 		if (data_map[name].path.IsEmpty() && (data_map[name].bHasShp || data_map[name].bHasPrj))
-			data_map.path = sParentDir + wxFileName::GetPathSeparator() + name;
+			data_map[name].path = sParentDir + wxFileName::GetPathSeparator() + name;
 		if(data_map[name].path.IsEmpty())
 			data_map.erase(name);
 

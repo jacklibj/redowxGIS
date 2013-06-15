@@ -3,7 +3,7 @@
 #include "wxgis/carto/carto.h"
 #include "wxgis/carto/featuredataset.h"
 
-class WXDLLIMPExP_GIS_CRT wxGISFeatureLayer :
+class WXDLLIMPEXP_GIS_CRT wxGISFeatureLayer :
 	public wxGISLayer
 {
 public:
@@ -12,7 +12,7 @@ public:
 	//
 	virtual void Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel);
 	virtual OGRSpatialReference* GetSpatialReference(void);
-	virtual OGREnvelope* GetEnvelop(void);
+	virtual OGREnvelope* GetEnvelope(void);
 	virtual bool IsValid(void);
 //wxGISFeatureLayer
 	virtual IFeatureRenderer* GetRender(void){return m_pFeatureRenderer;}
