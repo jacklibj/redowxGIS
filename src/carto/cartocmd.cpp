@@ -103,14 +103,14 @@ bool wxGISCartoMainCmd::GetEnabled(void)
 
 	switch(m_subtype)
 	{
-	case 0:
-		return m_pMapView->IsShown();
-	case 1:
-		return m_pMapView->IsShown() && m_pMapView->GetExtentStack()->CanUndo();
-	case 2:
-		return m_pMapView->IsShown() && m_pMapView->GetExtentStack()->CanRedo();
-	default:
-		return false;
+		case 0:
+			return m_pMapView->IsShown();
+		case 1:
+			return m_pMapView->IsShown() && m_pMapView->GetExtenStack()->CanUndo();
+		case 2:
+			return m_pMapView->IsShown() && m_pMapView->GetExtenStack()->CanRedo();
+		default:
+			return false;
 	}
 }
 
@@ -146,15 +146,15 @@ void wxGISCartoMainCmd::OnClick(void)
 {
 	switch(m_subtype)
 	{
-	case 0:
-		m_pMapView->SetFullExtent();
-		break;
-	case 1:
-		return m_pMapView->GetExtentStack()->Undo();
-	case 2:
-		return m_pMapView->GetExtentStack()->Redo();
-	default:
-		break;
+		case 0:	
+			m_pMapView->SetFullExtent();
+			break;
+		case 1:	
+			return m_pMapView->GetExtenStack()->Undo();
+		case 2:	
+			return m_pMapView->GetExtenStack()->Redo();
+		default:
+			break;
 	}
 }
 
@@ -212,16 +212,16 @@ wxIcon wxGISCartoMainTool::GetBitmap(void)
 {
 	switch(m_subtype)
 	{
-	case 0:
-		return m_ImageList.GetIcon(5);
-	case 1:
-		return m_ImageList.GetIcon(4);
-	case 2:
-		return m_ImageList.GetIcon(1);
-	case 3:
-		return m_ImageList.GetIcon(10);
-	default:
-		wxIcon();
+		case 0:
+			return m_ImageList.GetIcon(5);
+		case 1:
+			return m_ImageList.GetIcon(4);
+		case 2:
+			return m_ImageList.GetIcon(1);
+		case 3:
+			return m_ImageList.GetIcon(10);
+		default:
+			return wxIcon();
 	}
 }
 
@@ -246,13 +246,13 @@ wxString wxGISCartoMainTool::GetCategory(void)
 {
 	switch(m_subtype)
 	{
-	case 0:
-	case 1:
-	case 2:
-	case 3:
-		return wxString(_("Geography"));
-	default:
-		return wxString(_("[No Category]"));
+		case 0:	
+		case 1:	
+		case 2:	
+		case 3:	
+			return wxString(_("Geography"));
+		default:
+			return wxString(_("[No category]"));
 	}
 }
 
@@ -272,7 +272,7 @@ bool wxGISCartoMainTool::GetEnabled(void)
 			for(size_t i = 0; i < pWinArr->size(); i++)
 			{
 				wxGISMapView* pMapView = dynamic_cast<wxGISMapView*>(pWinArr->at(i));
-				if (m_pMapView)
+				if(pMapView)
 				{
 					m_pMapView = pMapView;
 					break;
@@ -384,19 +384,19 @@ wxCursor wxGISCartoMainTool::GetCursor(void)
 			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
 			return wxCursor(CursorImage);
 		}
-	case 2: // pan
+		case 2:	//pan
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(1).ConvertToImage();
-			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
-			return wxCursor(CursorImage); //
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 7);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 7);
+			return wxCursor(CursorImage);//wxCURSOR_HAND
 		}
 	case 3: // info
 		{
 			wxImage CursorImage = m_ImageList.GetBitmap(12).ConvertToImage();
-			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 6);
-			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 6);
-			return wxCursor(CursorImage); //
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_X, 0);
+			CursorImage.SetOption(wxIMAGE_OPTION_CUR_HOTSPOT_Y, 0);
+			return wxCursor(CursorImage);//*wxSTANDARD_CURSOR
 		}
 	default:
 		return wxNullCursor;
@@ -406,10 +406,8 @@ wxCursor wxGISCartoMainTool::GetCursor(void)
 void wxGISCartoMainTool::SetChecked(bool bCheck)
 {
 	m_bCheck = bCheck;
-	if (m_bCheck)
-	{
+	if(m_bCheck)
 		m_pMapView->SetCursor(GetCursor());
-	}
 }
 
 void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
@@ -421,12 +419,12 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 
 
 			wxGISRubberEnvelope RubberEnvelope;
-			wxPen Pen(wxColor(0, 0, 255, 100), 2);
+			wxPen Pen(wxColour(0, 0, 255, 100), 2);
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
-			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
-			if (pGeom)
+			wxSimpleFillSymbol Symbol(Pen, Brush);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &Symbol);
+			if(pGeom)
 			{
 				OGREnvelope Env;
 				pGeom->getEnvelope(&Env);
@@ -449,12 +447,12 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 	case 1:
 		{
 			wxGISRubberEnvelope RubberEnvelope;
-			wxPen Pen(wxColor(0, 0, 255, 100), 2);
+			wxPen Pen(wxColour(0, 0, 255, 100), 2);
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
-			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
-			if (pGeom)
+			wxSimpleFillSymbol Symbol(Pen, Brush);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &Symbol);
+			if(pGeom)
 			{
 				OGREnvelope Env;
 				pGeom->getEnvelope(&Env);
@@ -464,8 +462,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 				NewEnv.MinY = CurrentEnv.MinY + CurrentEnv.MinY - Env.MinY;
 				NewEnv.MaxX = CurrentEnv.MaxX + CurrentEnv.MaxX - Env.MaxX;
 				NewEnv.MaxY = CurrentEnv.MaxY + CurrentEnv.MaxY - Env.MaxY;
-				m_pMapView->SetExtent(Env);
-
+				m_pMapView->SetExtent(NewEnv);
 			}
 			wxDELETE(pGeom);
 			break;
@@ -482,12 +479,13 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 	case 3: // info
 		{
 			wxGISRubberEnvelope RubberEnvelope;
-			wxPen Pen(wxColor(0, 0, 255, 100), 2);
+			wxPen Pen(wxColour(0, 0, 255, 100), 2);
 			Pen.SetCap(wxCAP_BUTT);
 			wxBrush Brush(wxColour(0, 0, 255, 20));
-			wxSimpleFillSymbol symbol(Pen, Brush);
-			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &symbol);
-			if (pGeom)
+			wxSimpleFillSymbol Symbol(Pen, Brush);
+			OGRGeometry* pGeom = RubberEnvelope.TrackNew(event.GetX(), event.GetY(), m_pMapView, m_pMapView->GetCachedDisplay(), &Symbol);
+			m_pMapView->Refresh(false);
+			if(pGeom)
 			{
 				//
 			}

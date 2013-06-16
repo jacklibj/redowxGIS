@@ -556,7 +556,7 @@ void wxGISScreenDisplay::OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDe
 
 	wxRect Rect = m_pDisplayTransformation->GetDeviceFrame();
 	wxImage Img = m_caches[m_caches.size() - 1].bmp.GetSubBitmap(Rect).ConvertToImage();
-	Img = Img.Scale(nDestWidth, nDestHeight, quality);
+	Img = Img.Scale(nDestWidth, nDestHeight, (wxImageResizeQuality)quality);
 	//
 	if(bClearBackground)
 		dc.DrawBitmap(m_caches[0].bmp, 0, 0);
@@ -619,6 +619,11 @@ void wxGISScreenDisplay::DrawPoint(wxCoord x, wxCoord y)
 void wxGISScreenDisplay::DrawLines(int n, wxPoint points[], wxCoord xoffset, wxCoord yoffset)
 {
 	m_dc.DrawLines(n, points, xoffset, yoffset);
+}
+
+void wxGISScreenDisplay::DrawCircle(wxCoord x, wxCoord y, wxCoord radius)
+{
+	m_dc.DrawCircle(x, y, radius);
 }
 
 void wxGISScreenDisplay::SetBrush(wxBrush& Brush)

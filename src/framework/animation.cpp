@@ -6,7 +6,7 @@ BEGIN_EVENT_TABLE(wxGISAnimation, wxControl)
 	EVT_TIMER( ATIMER_ID, wxGISAnimation::OnTimer )
 END_EVENT_TABLE()
 
-wxGISAnimation::wxGISAnimation(wxWindow * parent, wxWindowID id, const wxBitmap & bitmap, const int bitmap_size, const wxPoint & pos, const wxSize & size, long style, const wxString name)
+wxGISAnimation::wxGISAnimation(wxWindow * parent, wxWindowID id, const wxBitmap & bitmap, const int bitmap_size, const wxPoint & pos, const wxSize & size, long style, const wxString name) : wxControl(parent, id, pos, size, style, wxDefaultValidator, name), m_timer(this, ATIMER_ID)
 {
 	m_nImgPos = 0;
 	m_ImageList.Create(bitmap_size, bitmap_size);
@@ -30,7 +30,7 @@ void wxGISAnimation::OnPaint(wxPaintEvent & event)
 	int x(0), y(0);
 	m_ImageList.GetSize(0, x, y);
 	wxRect rect;
-	wxRect rc = GetClientSize();
+	wxRect rc = GetClientRect();
 	x = (rc.width - x) / 2;
 	y = (rc.height - y) / 2;
 	m_ImageList.Draw(m_nImgPos, dc, x, y, wxIMAGELIST_DRAW_NORMAL, true);

@@ -34,7 +34,7 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 		IsSpaRefSame = pDisplaySpatialReference->IsSame(pRasterSpatialReference);
 	OGREnvelope VisibleBounds = pDisplayTransformation->GetVisibleBounds();
 	OGREnvelope* pRasterExtent = pRaster->GetEnvelope();
-	OGREnvelope RasterEnvelope, DisplayEnvelop;
+	OGREnvelope RasterEnvelope, DisplayEnvelope;
 
 	if(!IsSpaRefSame)
 	{
@@ -224,8 +224,7 @@ void wxGISRasterRGBRenderer::Draw(wxGISDataset* pRasterDataset, wxGISEnumDrawPha
 		if (IsSpaRefSame)
 		{
 			//read in budder
-			CPLErr err = pGDALDataset->RasterIO(GF_Read, 0, 0, nImgWidth, nImgHeight, data, nWidth, nHeight,
-				GDT_Byte, 3, bands, sizeof(unsigned char) * 3, 0, sizeof(unsigned char));
+			CPLErr err = pGDALDataset->RasterIO(GF_Read, 0, 0, nImgWidth, nImgHeight, data, nWidth, nHeight, GDT_Byte, 3, bands, sizeof(unsigned char) * 3, 0, sizeof(unsigned char));
 			if (err != CE_None)
 			{
 				wxDELETEA(data);
@@ -258,14 +257,14 @@ OGREnvelope wxGISRasterRGBRenderer::TransformEnvelope(OGREnvelope* pEnvelope, OG
 	double pointsx[4];
 	double pointsy[4];
 	pointsx[0] = pEnvelope->MaxX;
-	pointsx[0] = pEnvelope->MaxY;
+	pointsy[0] = pEnvelope->MaxY;
 	pointsx[1] = pEnvelope->MinX;
-	pointsx[1] = pEnvelope->MinY;
-	pointsx[0] = pEnvelope->MaxX;
-	pointsx[0] = pEnvelope->MinY;
-	pointsx[1] = pEnvelope->MinX;
-	pointsx[1] = pEnvelope->MaxY;
-	// get real envelope
+	pointsy[1] = pEnvelope->MinY;
+	pointsx[2] = pEnvelope->MaxX;
+	pointsy[2] = pEnvelope->MinY;
+	pointsx[3] = pEnvelope->MinX;
+	pointsy[3] = pEnvelope->MaxY;
+	//get real envelope
 	poCT->Transform(4, pointsx, pointsy);
 	OCTDestroyCoordinateTransformation(poCT);
 	OGREnvelope out;

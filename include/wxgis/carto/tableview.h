@@ -77,8 +77,7 @@ class WXDLLIMPEXP_GIS_CRT wxGISTableView :
 		ID_POS
 	};
 public:
-	wxGISTableView(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-		long style = wxSTATIC_BORDER|wxTAB_TRAVERSAL);
+	wxGISTableView(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSTATIC_BORDER|wxTAB_TRAVERSAL);
 	virtual ~wxGISTableView(void);
 	virtual void SetTable(wxGridTableBase* table, bool takeOwnership = false, wxGrid::wxGridSelectionModes selmode = wxGrid::wxGridSelectCells)
 	{
@@ -95,7 +94,7 @@ public:
 			//
 		}
 	}
-	virtual void SetReadOnly(bool bIsReadOnly){if(m_grid) m_grid->EnableEditing( bIsReadOnly ) ;}
+	virtual void SetReadOnly(bool bIsReadOnly){if(m_grid) m_grid->EnableEditing( bIsReadOnly );};
 	void OnLabelLeftClick(wxGridEvent& event);
 	void OnSelectCell(wxGridEvent& event);
 	void OnBtnFirst(wxCommandEvent& event);

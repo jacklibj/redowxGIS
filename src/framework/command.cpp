@@ -72,8 +72,8 @@ bool wxGISCommonCmd::GetChecked(void)
 {
 	switch(m_subtype)
 	{
-	case 1:
 	case 0:
+	case 1:
 	case 2:
 	case 3:
 	default:
@@ -154,8 +154,10 @@ void wxGISCommonCmd::OnClick(void)
 		}
 	case 1:
           m_pApp->OnAppAbout();
+		  break;
 	case 2:
 		m_pApp->Customize();
+		break;
 	case 4:
 		m_pApp->ShowStatusBar(!m_pApp->IsStatusBarShown());
 			break;

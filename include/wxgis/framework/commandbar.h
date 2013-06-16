@@ -1,6 +1,6 @@
 #pragma once
-#include "wxgis\framework\framework.h"
-#include "wx\aui\aui.h"
+#include "wxgis/framework/framework.h"
+#include "wx/aui/aui.h"
 
 //----------
 // wxGISCommandBar
@@ -43,8 +43,8 @@ class WXDLLIMPEXP_GIS_FRW wxGISMenu :
 	public wxGISCommandBar
 {
 public:
-	wxGISMenu(const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"),
-		wxGISEnumCommandBars type = enumGISCBNone, const wxString& title = _(""), long style = 0);
+	
+	wxGISMenu(const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"), wxGISEnumCommandBars type = enumGISCBNone, const wxString& title = _(""), long style = 0);
 	virtual ~wxGISMenu(void);
 	virtual void AddCommand(ICommand* pCmd);
 	virtual void RemoveCommand(size_t nIndex);
@@ -69,9 +69,8 @@ class WXDLLIMPEXP_GIS_FRW wxGISToolBar :
 	public wxGISCommandBar
 {
 public:
-	wxGISToolBar(wxWindow* parent, wxWindowID id = -1, const wxPoint& position = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize, long style = wxAUI_TB_DEFAULT_STYLE, const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"),
-		wxGISEnumCommandBars type = enumGISCBNone);
+	
+	wxGISToolBar(wxWindow* parent, wxWindowID id = -1, const wxPoint& position = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxAUI_TB_DEFAULT_STYLE, const wxString& sName = NONAME, const wxString& sCaption = _("No Caption"), wxGISEnumCommandBars type = enumGISCBNone);
 	virtual ~wxGISToolBar(void);
 	virtual void SetLeftDockable(bool bLDock);
 	virtual void SetRightDockable(bool bRDock);

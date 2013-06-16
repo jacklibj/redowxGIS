@@ -45,7 +45,7 @@ bool wxGISRasterDataset::Open(void)
 			wxString sFileName = wgMB2WX(papszFileList[i]);
 			if(sFileName.Find(wxT(".rrd")) != wxNOT_FOUND || sFileName.Find(wxT(".ovr")) != wxNOT_FOUND)
 				bHasOverviews = true;
-			wxLogDebug( wxT("        %s"),sFileName.c_str() );
+			wxLogDebug( wxT("       %s"), sFileName.c_str() );
 		}
 	}
 	CSLDestroy( papszFileList );
@@ -108,6 +108,21 @@ bool wxGISRasterDataset::Open(void)
 
 	m_bIsOpened = true;
 	return true;
+}
+
+OGRSpatialReference* wxGISRasterDataset::GetSpatialReference(void)
+{
+	if(!m_bIsOpened)
+		if(!Open())
+			return NULL;
+	if(m_pSpaRef)
+		return m_pSpaRef;
+	if ( m_poDataset )
+	{
+		m_pSpaRef = new OGRSpatialReference(m_poDataset->GetProjectionRef());
+		return m_pSpaRef;
+	}
+	return NULL;
 }
 
 OGREnvelope* wxGISRasterDataset::GetEnvelope(void)

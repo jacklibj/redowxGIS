@@ -57,34 +57,34 @@ void wxDrawingThread::OnExit()
 	m_pView->OnThreadExit();
 }
 
-//----
-// ExtentStack
-//------
-ExtentStack::ExtentStack(wxGISMapView* pView)
+//-----------------------------------------------
+//ExtenStack
+//-----------------------------------------------
+ExtenStack::ExtenStack(wxGISMapView* pView)
 {
 	m_pView = pView;
 	m_Pos = -1;
 }
 
-bool ExtentStack::CanRedo()
+bool ExtenStack::CanRedo()
 {
 	if(m_EnvelopeArray.empty())
 		return false;
 	return m_Pos < m_EnvelopeArray.size() - 1;
 }
 
-bool ExtentStack::CanUndo()
+bool ExtenStack::CanUndo()
 {
 	if (m_EnvelopeArray.empty())
         return false;
 	return m_Pos > 0;
 }
 
-void ExtentStack::Do(OGREnvelope NewEnv)
+void ExtenStack::Do(OGREnvelope NewEnv)
 {
 	m_Pos++;
-	if (m_Pos == m_EnvelopeArray.size())
-       m_EnvelopeArray.push_back(NewEnv);
+	if(m_Pos == m_EnvelopeArray.size())
+		m_EnvelopeArray.push_back(NewEnv);
 	else
 	{
 		m_EnvelopeArray[m_Pos] = NewEnv;
@@ -94,7 +94,7 @@ void ExtentStack::Do(OGREnvelope NewEnv)
 	SetExtent(NewEnv);
 }
 
-void ExtentStack::Redo()
+void ExtenStack::Redo()
 {
 	m_Pos++;
 	if(m_Pos < m_EnvelopeArray.size())
@@ -104,17 +104,17 @@ void ExtentStack::Redo()
 	}
 }
 
-void ExtentStack::Undo()
+void ExtenStack::Undo()
 {
 	m_Pos--;
 	if(m_Pos > -1)
 	{
-		OGREnvelope Env = m_EnvelopArray[m_Pos];
+		OGREnvelope Env = m_EnvelopeArray[m_Pos];
 		SetExtent(Env);
 	}
 }
 
-void ExtentStack::SetExtent(OGREnvelope Env)
+void ExtenStack::SetExtent(OGREnvelope Env)
 {
 	m_pView->GetTrackCancel()->Cancel();
 	if(m_pView->m_pThread)
@@ -125,13 +125,13 @@ void ExtentStack::SetExtent(OGREnvelope Env)
 	m_pView->Refresh(false);
 }
 
-void ExtentStack::Reset()
+void ExtenStack::Reset()
 {
 	m_EnvelopeArray.clear();
 	m_Pos = -1;
 }
 
-size_t ExtentStack::GetSize()
+size_t ExtenStack::GetSize()
 {
 	return m_EnvelopeArray.size();
 }
@@ -141,16 +141,14 @@ size_t ExtentStack::GetSize()
 //-------
 
 BEGIN_EVENT_TABLE(wxGISMapView, wxScrolledWindow)
-	EVT_ERASE_BACKGROUND(wxGISMapView::OnEraseBackGround)
+	EVT_ERASE_BACKGROUND(wxGISMapView::OnEraseBackground)
 	EVT_SIZE(wxGISMapView::OnSize)
 	EVT_MOUSEWHEEL(wxGISMapView::OnMouseWheel)
 	EVT_KEY_DOWN(wxGISMapView::OnKeyDown)
 	EVT_TIMER( TIMER_ID, wxGISMapView::OnTimer )
 END_EVENT_TABLE()
 
-wxGISMapView::wxGISMapView(wxWindow* parent, wxWindowID id, const wxPoint& pos , const wxSize& size , long style ) : wxScrolledWindow(parent, id, pos, size, 
-style | wxHSCROLL | wxVSCROLL), wxGISMap(),
-m_pTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
+wxGISMapView::wxGISMapView(wxWindow* parent, wxWindowID id, const wxPoint& pos , const wxSize& size , long style ) : wxScrolledWindow(parent, id, pos, size, style | wxHSCROLL | wxVSCROLL), wxGISMap(), m_pTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 {
 	//set map init envelope
 
@@ -159,8 +157,8 @@ m_pTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 #else
 	pGISScreenDisplay = new wxGISScreenDisplay();
 #endif
-	m_pExtentStack = new ExtentStack(this);
-
+	m_pExtenStack = new ExtenStack(this);
+	
 	m_pTrackCancel = new ITrackCancel();
 	m_pTrackCancel->Reset();
 
@@ -177,7 +175,7 @@ m_pTrackCancel(NULL), m_pThread(NULL), m_pAni(NULL), m_timer(this, TIMER_ID)
 wxGISMapView::~wxGISMapView(void)
 {
 	wxDELETE(pGISScreenDisplay);
-	wxDELETE(m_pExtentStack);
+	wxDELETE(m_pExtenStack);
 	wxDELETE(m_pTrackCancel);
 	if(m_pThread)
 		m_pThread->Delete();
@@ -185,10 +183,10 @@ wxGISMapView::~wxGISMapView(void)
 
 void wxGISMapView::OnDraw(wxDC& dc)
 {
-	if (m_pExtentStack->GetSize() == 0)
+	if (m_pExtenStack->GetSize() == 0)
 	{
 		IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
-		m_pExtentStack->Do(pDisplayTransformation->GetBounds());
+		m_pExtenStack->Do(pDisplayTransformation->GetBounds());
 	}
 
 	if(m_pTrackCancel && !m_pAni)
@@ -264,6 +262,10 @@ void wxGISMapView::OnSize(wxSizeEvent & event)
 	event.Skip();
 }
 
+void wxGISMapView::OnEraseBackground(wxEraseEvent & event)
+{
+
+}
 void wxGISMapView::AddLayer(wxGISLayer* pLayer)
 {
 	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
@@ -339,7 +341,7 @@ void wxGISMapView::ClearLayers(void)
 	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
 	pDisplayTransformation->Reset();
 	//reset views stack
-	m_pExtentStack->Reset();
+	m_pExtenStack->Reset();
 
 	wxGISMap::ClearLayers();
 }
@@ -369,13 +371,13 @@ void wxGISMapView::SetTrackCancel(ITrackCancel* pTrackCancel)
 		wxSleep(1);
 		delete m_pTrackCancel;
 	}
-	m_pTrackCancel = m_pTrackCancel;
+	m_pTrackCancel = pTrackCancel;
 }
 
 void wxGISMapView::OnThreadExit(void)
 {
-	m_pThread == NULL;
-	if (m_pAni)
+	m_pThread = NULL;
+	if(m_pAni)
 	{
 		m_pAni->Stop();
 		m_pAni->Hide();
@@ -496,21 +498,21 @@ void wxGISMapView::OnMouseWheel(wxMouseEvent& event)
 void wxGISMapView::OnTimer( wxTimerEvent& event )
 {
 	wxMouseState state = wxGetMouseState();
-	IDisplayTransformation* pDisPlayTransformation = pGISScreenDisplay->GetDisplayTransformation();
+	IDisplayTransformation* pDisplayTransformation = pGISScreenDisplay->GetDisplayTransformation();
 
 	if (!state.LeftDown() && (m_MouseState & enumGISMouseLeftDown))
 	{
 		m_MouseState &= ~enumGISMouseLeftDown;
-		//
-		pDisPlayTransformation->SetDeviceFrame(GetClientRect());
+		//set map init envelope
+		pDisplayTransformation->SetDeviceFrame(GetClientRect());
 	}
-	else if(m_MouseState & enumGISMouseLeftDown)
+	else if(m_MouseState & enumGISMouseWheel)
 	{
 		m_MouseState &= ~enumGISMouseWheel;
 
 		//
 		m_timer.Stop();
-		m_pExtentStack->Do(m_virtualbounds);
+		m_pExtenStack->Do(m_virtualbounds);
 		return;
 	}
 	else
@@ -528,7 +530,7 @@ void wxGISMapView::SetFullExtent(void)
 
 void wxGISMapView::SetExtent(OGREnvelope Env)
 {
-	m_pExtentStack->Do(Env);
+	m_pExtenStack->Do(Env);
 
 	//
 }
@@ -579,9 +581,9 @@ void wxGISMapView::PanStop(wxPoint MouseLocation)
 		//
 		//
 		OGREnvelope Env = pDisplayTransformation->TransformRect(rect);
-		m_pExtentStack->Do(Env);
-		//
-		//
-		//
+		m_pExtenStack->Do(Env);
+//		pDisplayTransformation->SetBounds(Env);
+//		pGISScreenDisplay->SetDerty(true);
+//		Refresh(false);
 	}
 }

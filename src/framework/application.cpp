@@ -1,7 +1,7 @@
 #include "wxgis/framework/application.h"
 #include "wxgis/framework/toolbarmenu.h"
 #include <wx\tokenzr.h>
-#include "../art\default_16.xpm"
+#include "../../art\default_16.xpm"
 
 
 BEGIN_EVENT_TABLE(wxGISApplication, wxFrame)
@@ -73,7 +73,7 @@ wxGISApplication::~wxGISApplication(void)
 	//delete opsite direction to prevent delete sub menus
 
 	for(size_t i = 0; i < m_CommandBarArray.size() ; i++)
-		wxDELETE(m_CommandBarArray[i]);
+		wsDELETE(m_CommandBarArray[i]);
 
 	for(size_t i = 0; i < m_CommandArray.size() ; i++)
 		wxDELETE(m_CommandArray[i]);
@@ -266,10 +266,10 @@ void wxGISApplication::SerializeFramePos(bool bSave)
 			}
 
 			wxXmlProperty* pHProp = new wxXmlProperty(wxT("Height"), wxString::Format( wxT("%u"), h), NULL);
-			wxXmlProperty* pWProp = new wxXmlProperty(wxT("Width"), wxString::Format( wxT("%u"), w), NULL);
-			wxXmlProperty* pYProp = new wxXmlProperty(wxT("YPos"), wxString::Format( wxT("%d"), y), NULL);
-			wxXmlProperty* pXProp = new wxXmlProperty(wxT("XPos"), wxString::Format( wxT("%d"), x), NULL);
-			wxXmlProperty* pMaxi = new wxXmlProperty(wxT("maxi"), wxT("%0"), pXProp);
+			wxXmlProperty* pWProp = new wxXmlProperty(wxT("Width"), wxString::Format( wxT("%u"), w), pHProp);
+			wxXmlProperty* pYProp = new wxXmlProperty(wxT("YPos"), wxString::Format( wxT("%d"), y), pWProp);
+			wxXmlProperty* pXProp = new wxXmlProperty(wxT("XPos"), wxString::Format( wxT("%d"), x), pYProp);
+			wxXmlProperty* pMaxi = new wxXmlProperty(wxT("maxi"), wxT("0"), pXProp);
 
 			pFrameXmlNode->SetProperties(pMaxi);
 		}
@@ -338,11 +338,12 @@ void wxGISApplication::RemoveCommandBar(IGISCommandBar* pBar)
 			switch(m_CommandBarArray[i]->GetType())
 			{
 			case enumGISCBMenubar:
-				m_pMenuBar->Removemenu(pBar);
+				m_pMenuBar->RemoveMenu(pBar);
 				break;
 			case enumGISCBToolbar:
 			case enumGISCBContextmenu:
 			case enumGISCBSubMenu:
+			case enumGISCBNone:
 				break;
 			}
 			wsDELETE(pBar);
@@ -536,6 +537,7 @@ void wxGISApplication::LoadMenues(wxXmlNode* pRootNode)
 				wxString sCaption = child->GetPropVal(wxT("caption"), wxT("No Title"));
 				wxGISMenu* pMenu = new wxGISMenu(sName, sCaption, enumGISCBContextmenu);//
 				pMenu->Serialize(this, child, false);
+				pMenu->Reference();
 				m_CommandBarArray.push_back(pMenu);
 			}
 			child = child->GetNext();
@@ -563,8 +565,7 @@ void wxGISApplication::LoadToolbars(wxXmlNode* pRootNode)
 			if(bAdd)
 			{
 				wxString sCaption = child->GetPropVal(wxT("caption"), wxT("No Title"));
-				wxGISToolBar* pTB = new wxGISToolBar(this, wxID_ANY, wxDefaultPosition,
-					wxDefaultSize, wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW, sName, sCaption, enumGISCBToolbar);
+				wxGISToolBar* pTB = new wxGISToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW, sName, sCaption, enumGISCBToolbar);
 				pTB->Serialize(this, child, false);
 				pTB->Reference();
 				m_CommandBarArray.push_back(pTB);

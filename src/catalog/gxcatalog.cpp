@@ -125,7 +125,7 @@ void wxGxCatalog::Init(void)
 	LoadObjectFactories(pObjectFactoriesNode);
 
 	//loads current user and when local machine items
-	wxXmlNode* pRootItemsNode = m_pConf->GetConfigNode(enumGISHKCU, wxString(wxT("Catalog/rootitems")));
+	wxXmlNode* pRootItemsNode = m_pConf->GetConfigNode(enumGISHKCU, wxString(wxT("catalog/rootitems"))); 
 	LoadChildren(pRootItemsNode);
 	pRootItemsNode = m_pConf->GetConfigNode(enumGISHKLM, wxString(wxT("catalog/rootitems"))); 
 	LoadChildren(pRootItemsNode);
@@ -149,8 +149,8 @@ void wxGxCatalog::LoadObjectFactories(wxXmlNode* pNode)
 			{
 				Factory->PutCatalogRef(this);
 				OBJFACTORYDESC desc = {Factory, bool(wxAtoi(pChildren->GetPropVal(wxT("is_enabled"), wxT("1"))))};
-				m_ObjectFactoriesArray.push_back(desc);
-				wxLogMessage(_("wxGxCatalog: ObjectFactory %s initilize"), sName.c_str());
+				m_ObjectFactoriesArray.push_back( desc );
+				wxLogMessage(_("wxGxCatalog: ObjectFactory %s initialize"), sName.c_str());
 				//plugin->Init(child);
 			}
 			else

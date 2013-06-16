@@ -15,7 +15,7 @@ public:
 	virtual OGREnvelope* GetEnvelope(void);
 	virtual bool IsValid(void);
 //wxGISFeatureLayer
-	virtual IFeatureRenderer* GetRender(void){return m_pFeatureRenderer;}
+	virtual IFeatureRenderer* GetRenderer(void){return m_pFeatureRenderer;};
 	virtual void SetRenderer(IFeatureRenderer* pFeatureRenderer){m_pFeatureRenderer = pFeatureRenderer;};
 protected:
 	wxGISFeatureDataset* m_pwxGISFeatureDataset;

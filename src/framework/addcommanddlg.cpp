@@ -59,7 +59,7 @@ wxGISAddCommandDlg::wxGISAddCommandDlg( wxGISApplication* pGxApp, wxWindow* pare
 	m_sdbSizer = new wxStdDialogButtonSizer();
 	m_sdbSizerOK = new wxButton( this, wxID_OK, wxString(_("OK")) );
 	m_sdbSizer->AddButton( m_sdbSizerOK );
-	m_sdbSizerCancel = new wxButton( this, wxID_OK, wxString(_("Cancel")) );
+	m_sdbSizerCancel = new wxButton( this, wxID_CANCEL, wxString(_("Cancel")) );
 	m_sdbSizer->AddButton( m_sdbSizerCancel );
 	m_sdbSizer->Realize();
 
@@ -92,7 +92,7 @@ void wxGISAddCommandDlg::OnListboxSelect(wxCommandEvent& event)
 	COMMANDARRAY* pArr = m_CategoryMap[selName];
 	if (pArr != NULL)
 	{
-		m_listCtrl3->DeleteAllColumns();
+		m_listCtrl3->DeleteAllItems();
 		m_ImageList.RemoveAll();
 		for(size_t i = 0; i< pArr->size(); i++)
 		{

@@ -1,12 +1,11 @@
 #include "wxgis/framework/commandbar.h"
-#include "../art\default_16.xpm"
+#include "../../art\default_16.xpm"
 
 //---------
 // wxGISCommandBar
 //------------------------
 
-wxGISCommandBar::wxGISCommandBar(const wxString& sName, 
-	const wxString& sCaption, wxGISEnumCommandBars type)
+wxGISCommandBar::wxGISCommandBar(const wxString& sName, const wxString& sCaption, wxGISEnumCommandBars type)
 {
 	m_sName = sName;
 	m_sCaption = sCaption;
@@ -81,7 +80,7 @@ size_t wxGISCommandBar::GetCommandCount(void)
 
 ICommand* wxGISCommandBar::GetCommand(size_t nIndex)
 {
-	wxASSERT(nIndex >= 0 && nIndex > m_CommandArray.size());
+	wxASSERT(nIndex >= 0 && nIndex < m_CommandArray.size());
 	return m_CommandArray[nIndex];
 }
 
@@ -167,7 +166,7 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 			}
 			else
 			{
-				ICommand* pSubCmd = pApp->GetCommand(wxT("wxGISCommandCmd"), 3);
+				ICommand* pSubCmd = pApp->GetCommand(wxT("wxGISCommonCmd"), 3);
 				if(pSubCmd)
 					AddCommand(pSubCmd);
 			}
@@ -179,8 +178,7 @@ void wxGISCommandBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStor
 //-----------
 // wxGISMenu
 //------------
-wxGISMenu::wxGISMenu(const wxString& sName, const wxString& sCaption, wxGISEnumCommandBars type, const wxString& title, long style) : 
-wxMenu(title, style), wxGISCommandBar(sName, sCaption, type)
+wxGISMenu::wxGISMenu(const wxString& sName, const wxString& sCaption, wxGISEnumCommandBars type, const wxString& title, long style) : wxMenu(title, style), wxGISCommandBar(sName, sCaption, type)
 {
 }
 
@@ -269,9 +267,7 @@ BEGIN_EVENT_TABLE(wxGISToolBar, wxAuiToolBar)
 	EVT_MOTION(wxGISToolBar::OnMotion)
 END_EVENT_TABLE()
 
-wxGISToolBar::wxGISToolBar(wxWindow* parent, wxWindowID id, const wxPoint& position, const wxSize& size, long style, const wxString& sName, const wxString& sCaption,
-wxGISEnumCommandBars type ) : 
-wxAuiToolBar(parent, id, position, size, style), wxGISCommandBar(sName, sCaption, type), m_pStatusBar(NULL)
+wxGISToolBar::wxGISToolBar(wxWindow* parent, wxWindowID id, const wxPoint& position, const wxSize& size, long style, const wxString& sName, const wxString& sCaption, wxGISEnumCommandBars type ) : wxAuiToolBar(parent, id, position, size, style), wxGISCommandBar(sName, sCaption, type), m_pStatusBar(NULL)
 {
 	IApplication* pApp = dynamic_cast<IApplication*>(parent);
 	if(pApp)
@@ -339,7 +335,7 @@ void wxGISToolBar::AddCommand(ICommand* pCmd)
 	case enumGISCommandNormal:
 		{
 			wxBitmap Bitmap = pCmd->GetBitmap();
-			if(Bitmap.IsOk())
+			if(!Bitmap.IsOk())
 				Bitmap = wxBitmap(default_16_xpm);
 
 			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->GetCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), pCmd->GetMessage(), NULL);
@@ -390,8 +386,7 @@ void wxGISToolBar::ReAddCommand(ICommand* pCmd)
 			if(!Bitmap.IsOk())
 				Bitmap = wxBitmap(default_16_xpm);
 
-			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->GetCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), 
-				pCmd->GetMessage(), NULL);
+			AddTool(pCmd->GetID(), wxStripMenuCodes(pCmd->GetCaption()), Bitmap, wxBitmap(), (wxItemKind)pCmd->GetKind(), pCmd->GetTooltip(), pCmd->GetMessage(), NULL);
 		}
 		break;
 	case enumGISCommandControl:
@@ -487,7 +482,7 @@ void wxGISToolBar::Serialize(IApplication* pApp, wxXmlNode* pNode, bool bStore)
 
 		wxAuiToolBarItemArray prepend_items;
 		wxAuiToolBarItemArray append_items;
-		ICommand* pCmd = pApp->GetCommand(wxT("wxGISCommand"), 2);
+		ICommand* pCmd = pApp->GetCommand(wxT("wxGISCommonCmd"), 2);
 		if(pCmd)
 		{
 			wxAuiToolBarItem item;

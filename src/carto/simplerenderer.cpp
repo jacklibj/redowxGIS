@@ -1,4 +1,4 @@
-#include "wxgis/carto/simplerender.h"
+#include "wxgis/carto/simplerenderer.h"
 #include "wxgis/display/simplefillsymbol.h"
 #include "wxgis/display/simplelinesymbol.h"
 #include "wxgis/display/simplemarkersymbol.h"
@@ -55,8 +55,8 @@ void wxGISSimpleRenderer::Draw(wxGISFeatureSet* pSet, wxGISEnumDrawPhase DrawPha
 					break;
 				case wxGISDPAnnotation:
 					break;
-				case  wxGISDPSelection:
-					break;;
+				case wxGISDPSelection:
+					break;
 				default:
 					break;
 				}
@@ -115,7 +115,7 @@ void wxGISSimpleRenderer::DrawGeometry(OGRGeometry *poGeometry, IDisplay* pDispl
 		}
 		break;
 	case wkbMultiPolygon:
-#ifdef RENDERPOLYPOLY
+#ifndef RENDERPOLYPOLY
 		//1. type drawing
 		//break;
 #else

@@ -8,7 +8,7 @@ enum wxGISEnumMapToolState
 	enumGISMapNone = 0x0000,
 	enumGISMapPanning = 0x0001,
 	enumGISMapZooming = 0x0002,
-	enumGISMapRotating = 0x0004,
+	enumGISMapRotating = 0x0004
 };
 
 class wxGISLayer
@@ -29,9 +29,9 @@ public:
 	virtual bool IsValid(void) = 0;
 	virtual void Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisplay, ITrackCancel* pTrackCancel) = 0;
 	//
-	virtual void SetMaximunScale(double dMaxScale){m_dMaxScale = dMaxScale;};
-	virtual double GetMaximumScale(void){return  m_dMaxScale;};
-	virtual void SetMinimunScale(double dMinScale){m_dMinScale = dMinScale;};
+	virtual void SetMaximumScale(double dMaxScale){m_dMaxScale = dMaxScale;};
+	virtual double GetMaximumScale(void){return m_dMaxScale;};
+	virtual void SetMinimumScale(double dMinScale){m_dMinScale = dMinScale;};
 	virtual double GetMinimumScale(void){return m_dMinScale;};
 	//
 	virtual bool GetVisible(void) {return m_bVisible;};
@@ -39,9 +39,9 @@ public:
 	virtual void SetName(wxString sName) {m_sName = sName;};
 	virtual wxString GetName(wxString sName){return m_sName;};
 	virtual size_t GetCacheID(void){return m_iCacheID;};
-	virtual void SetCacheID(size_t iCacheID){ m_iCacheID = iCacheID;}
+	virtual void SetCacheID(size_t iCacheID){m_iCacheID = iCacheID;};
 	virtual bool GetCached(void){return m_bCached;};
-	virtual void SetCacheID(bool bCached){m_bCached = bCached;};
+	virtual void SetCached(bool bCached){m_bCached = bCached;};
 protected:
 	double m_dMaxScale, m_dMinScale;
 	wxString m_sName;
@@ -53,15 +53,15 @@ protected:
 class IRenderer
 {
 public:
-	virtual ~IRenderer(void){}
-	virtual bool CanRender(wxGISDataset* pDataset) = 0;
+	virtual ~IRenderer(void){};
+	virtual bool CanRender(wxGISDataset* pDataset) = 0;	
 };
 
 class IFeatureRenderer : public IRenderer
 {
 public:
 	virtual ~IFeatureRenderer(void){};
-	virtual void Draw(wxGISFeatureSet* pSet, wxGISEnumDrawPhase DrawPhase, IDisplay* pDisplay,ITrackCancel* pTrackCancel)=0;
+	virtual void Draw(wxGISFeatureSet* pSet, wxGISEnumDrawPhase DrawPhase, IDisplay* pDisplay, ITrackCancel* pTrackCancel) = 0;
 };
 
 class IRasterRenderer : public IRenderer

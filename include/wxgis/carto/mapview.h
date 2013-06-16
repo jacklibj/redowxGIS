@@ -27,11 +27,11 @@ private:
 
 class WXDLLIMPEXP_GIS_CRT wxGISMapView;
 
-//ExtentStack
-class WXDLLIMPEXP_GIS_CRT ExtentStack
+//ExtenStack
+class WXDLLIMPEXP_GIS_CRT ExtenStack
 {
 public:
-	ExtentStack(wxGISMapView* pView);
+	ExtenStack(wxGISMapView* pView);
 	virtual bool CanRedo();
 	virtual bool CanUndo();
 	virtual void Do(OGREnvelope NewEnv);
@@ -53,17 +53,16 @@ class WXDLLIMPEXP_GIS_CRT wxGISMapView :
 	public wxGISMap
 {
 public:
-	friend class ExtentStack;
+	friend class ExtenStack;
 public:
-	wxGISMapView(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize, long style = wxSTATIC_BORDER|wxTAB_TRAVERSAL);
+	wxGISMapView(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSTATIC_BORDER|wxTAB_TRAVERSAL);
 	virtual ~wxGISMapView(void);
 	virtual void OnDraw(wxDC& dc);
 	virtual void PanStart(wxPoint MouseLocation);
 	virtual void PanMoveTo(wxPoint MouseLocation);
 	virtual void PanStop(wxPoint MouseLocation);
 	//events
-	void OnEraseBackGround(wxEraseEvent & event);
+	void OnEraseBackground(wxEraseEvent & event);
 	void OnSize(wxSizeEvent & event);
 	void OnKeyDown(wxKeyEvent & event);
 	void OnMouseWheel(wxMouseEvent& event);
@@ -78,11 +77,11 @@ public:
 	virtual void SetTrackCancel(ITrackCancel* pTrackCancel);
 	virtual void SetFullExtent(void);
 	virtual void SetExtent(OGREnvelope Env);
-	virtual ExtentStack* GetExtentStack(void){return m_pExtentStack;};
+	virtual ExtenStack* GetExtenStack(void){return m_pExtenStack;};
 protected:
 	ICachedDisplay* pGISScreenDisplay;
-	WXWORD m_MouseState;
-	WXWORD m_MapToolState;;
+	WXDWORD m_MouseState;
+	WXDWORD m_MapToolState;
 	ITrackCancel* m_pTrackCancel;
 	wxDrawingThread* m_pThread;
 	wxGISAnimation* m_pAni;
@@ -92,7 +91,7 @@ protected:
 	OGREnvelope m_virtualbounds;
 	wxPoint m_StartMouseLocation;
 	bool m_bZoomIn;
-	ExtentStack* m_pExtentStack;
+	ExtenStack* m_pExtenStack;
 
 	DECLARE_EVENT_TABLE()
 };

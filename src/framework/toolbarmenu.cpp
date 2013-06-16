@@ -15,7 +15,7 @@ wxGISToolBarMenu::~wxGISToolBarMenu(void)
 
 void wxGISToolBarMenu::Update(void)
 {
-	//clear
+	//clear contents
 	for(size_t i = 0; i< m_delitems.size(); i++)
 		Destroy(m_delitems[i]);
 	m_delitems.clear();
@@ -36,7 +36,7 @@ void wxGISToolBarMenu::Update(void)
 		}
 	}
 	m_delitems.push_back(AppendSeparator());
-	ICommand* pCmd = m_pApp->GetCommand(wxT("wxGISCommand"), 2);
+	ICommand* pCmd = m_pApp->GetCommand(wxT("wxGISCommonCmd"), 2);
 	if(pCmd)
 		m_delitems.push_back(Append(pCmd->GetID(), pCmd->GetCaption(), pCmd->GetTooltip(), (wxItemKind)pCmd->GetKind()));
 }

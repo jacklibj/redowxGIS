@@ -1,5 +1,5 @@
 #include "wxgis/carto/featurelayer.h"
-#include "wxgis/carto/simplerender.h"
+#include "wxgis/carto/simplerenderer.h"
 
 wxGISFeatureLayer::wxGISFeatureLayer(wxGISDataset* pwxGISDataset) : wxGISLayer(), m_pwxGISFeatureDataset(NULL), m_pFeatureRenderer(NULL)
 {
@@ -27,8 +27,7 @@ void wxGISFeatureLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDisp
 	OGREnvelope Env = pDisplayTransformation->GetVisibleBounds();
 	OGREnvelope* LayerEnv = m_pwxGISFeatureDataset->GetEnvelope();
 	bool bSetFilter(false);
-	if(m_pPreviousDisplayEnv.MaxX - Env.MaxX > DELTA || m_pPreviousDisplayEnv.MaxY - Env.MaxY > DELTA || m_pPreviousDisplayEnv.MinX - Env.MinX > DELTA 
-		|| m_pPreviousDisplayEnv.MinY - Env.MinY > DELTA)
+	if(m_pPreviousDisplayEnv.MaxX - Env.MaxX > DELTA || m_pPreviousDisplayEnv.MaxY - Env.MaxY > DELTA || m_pPreviousDisplayEnv.MinX - Env.MinX > DELTA || m_pPreviousDisplayEnv.MinY - Env.MinY > DELTA)
 	bSetFilter = LayerEnv->Contains(Env); //!Env.Contains(*LayerEnv);
 	OGRSpatialReference* pEnvSpaRef = pDisplayTransformation->GetSpatialReference();
 	OGRSpatialReference* pLayerSpaRef = m_pwxGISFeatureDataset->GetSpatialReference();

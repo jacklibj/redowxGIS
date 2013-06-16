@@ -1,4 +1,6 @@
-#include "application.h"
+#pragma once
+//#include "wxgis/framework/framework.h"
+#include "wxgis/framework/application.h"
 
 #include "wx\init.h"
 

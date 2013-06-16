@@ -17,7 +17,7 @@ enum wxGISEnumDrawQuality
 	enumGISQualityNearest = wxIMAGE_QUALITY_NEAREST,
 	enumGISQualityBilinear = wxIMAGE_QUALITY_BILINEAR,
 	enumGISQualityBicubic = wxIMAGE_QUALITY_BICUBIC,
-	enumGISQualityHalfBilinear = wxIMAGE_QUALITY_HALFBILINEAR,
+	enumGISQualityHalfBilinear = 3/*wxIMAGE_QUALITY_HALFBILINEAR*/,
 	enumGISQualityHalfQuadBilinear,
 	enumGISQualityFourQuadBilinear
 };

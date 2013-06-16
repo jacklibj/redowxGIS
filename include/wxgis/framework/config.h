@@ -1,7 +1,7 @@
 
 #pragma once
-#include "framework.h"
 
+#include "wxgis/framework/framework.h"
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
 
@@ -19,9 +19,8 @@ public:
 	virtual ~wxGISConfig(void);
 
 	//IGISConfig
-	virtual wxXmlNode* GetConfigNode(wxGISEnumConfigKey key, wxString sPath);
-	virtual wxXmlNode* CreateConfigNode(wxGISEnumConfigKey key, wxString sPath, bool bUniq = true);
-
+    virtual wxXmlNode* GetConfigNode(wxGISEnumConfigKey Key, wxString sPath);
+    virtual wxXmlNode* CreateConfigNode(wxGISEnumConfigKey Key, wxString sPath, bool bUniq = true);
 	static void DeleteNodeChildren(wxXmlNode* pNode);
 
 	virtual void Clean(void);
@@ -54,9 +53,9 @@ protected:
 class WXDLLIMPEXP_GIS_FRW wxGISAppConfig :
 	public wxGISConfig
 {
-	public:
-		wxGISAppConfig(wxString sAppName, wxString sConfigDir, bool bbPortable = false );
-		virtual ~wxGISAppConfig(void);
+public:
+	wxGISAppConfig(wxString sAppName, wxString sConfigDir, bool bPortable = false);
+	virtual ~wxGISAppConfig(void);
 
 		virtual wxString GetLocale(void);
 		virtual wxString GetLocaleDir(void);

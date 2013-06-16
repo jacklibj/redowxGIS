@@ -334,9 +334,9 @@ void wxGISAppConfig::SetLocale(wxString sLocale)
 		if(!pNode)
 			return;
 	}
-	if(pNode->HasProp(wxT("path")))
-		pNode->DeleteProperty(wxT("path"));
-	pNode->AddProperty(wxT("path"), sLocale);
+	if(pNode->HasProp(wxT("locale")))
+		pNode->DeleteProperty(wxT("locale"));
+	pNode->AddProperty(wxT("locale"), sLocale);
 }
 
 void wxGISAppConfig::SetLocaleDir(wxString sLocaleDir)
@@ -388,7 +388,7 @@ void wxGISAppConfig::SetLogDir(wxString sLogDir)
 
 void wxGISAppConfig::SetDebugMode(bool  bDebug)
 {
-	wxString sPropPath(wxT("debug"));
+	wxString sPropPath =  wxString(wxT("debug"));
 	wxXmlNode* pNode = GetConfigNode(enumGISHKLM, sPropPath);
     if(!pNode)
 	{

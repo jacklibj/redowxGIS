@@ -1,8 +1,7 @@
 #include "wxgis/carto/featuredataset.h"
 #include <wx/filename.h>
 
-wxGISFeatureDataset::wxGISFeatureDataset(wxString sPath) : wxGISDataset(sPath), m_poDS(NULL), m_bIsOpened(false), m_psExtent(NULL),
-	m_poLayer(NULL), m_pQuadTree(NULL)
+wxGISFeatureDataset::wxGISFeatureDataset(wxString sPath) : wxGISDataset(sPath), m_poDS(NULL), m_bIsOpened(false), m_psExtent(NULL), m_poLayer(NULL), m_pQuadTree(NULL)
 {
 
 }
@@ -48,7 +47,7 @@ bool wxGISFeatureDataset::Open(int iLayer)
 	if ( m_poDS == NULL)
 	{
 		const char* err = CPLGetLastErrorMsg();
-		wxString sErr = wxString::Format(_("wxGISFeatureDataset: Open failed! Path '%s'. OGR error : %s"), m_sPath.c_str(), wgMB2WX(err));
+		wxString sErr = wxString::Format(_("wxGISFeatureDataset: Open failed! Path '%s'. OGR error: %s"), m_sPath.c_str(), wgMB2WX(err));
 	    wxLogError(sErr);
 		wxMessageBox(sErr, _("Error"), wxOK | wxICON_ERROR);
 		return false;
@@ -70,7 +69,7 @@ bool wxGISFeatureDataset::Open(int iLayer)
 			{
 				OGREnvelope Env = *m_psExtent;
 				CPLRectObj Rect = {Env.MinX, Env.MinY, Env.MaxX, Env.MaxY};
-				m_pQuadTree = CPLQuadTreeCreate(&Rect, GetFeatureBoundFunc);
+				m_pQuadTree = CPLQuadTreeCreate(&Rect, GetFeatureBoundsFunc); 
 			}
 		//
 		//
@@ -228,8 +227,8 @@ wxGISFeatureSet* wxGISFeatureDataset::GetFeatureSet(IQueryFilter* pQFilter /* = 
 			OGRFeature** pFeatureArr = (OGRFeature**)CPLQuadTreeSearch(m_pQuadTree, &Rect, &count);
 			for (int i = 0; i < count; i++)
 			{
-				if (pTrackCancel && pTrackCancel->Continue())
-			         break;
+				if(pTrackCancel && !pTrackCancel->Continue())
+					break;
 				pGISFeatureSet->AddFeature(pFeatureArr[i]);
 			}
 			delete [] pFeatureArr;
@@ -247,7 +246,7 @@ wxGISFeatureSet* wxGISFeatureDataset::GetFeatureSet(IQueryFilter* pQFilter /* = 
 	return pGISFeatureSet;
 }
 
-void GetFeatureBoundFunc(const void* hFeature, CPLRectObj* pBounds)
+void GetFeatureBoundsFunc(const void* hFeature, CPLRectObj* pBounds)
 {
 	OGRFeature* pFeature = (OGRFeature*)hFeature;
 	if(!pFeature)

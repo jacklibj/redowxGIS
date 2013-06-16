@@ -1,3 +1,4 @@
+#pragma once
 #include "wxgis/datasource.h"
 #include "cpl_quad_tree.h"
 
@@ -5,7 +6,7 @@
 //
 //
 
-void GetFeatureBoundFunc(const void* hFeature, CPLRectObj* pBounds);
+void GetFeatureBoundsFunc(const void* hFeature, CPLRectObj* pBounds);
 
 class WXDLLIMPEXP_GIS_CRT wxGISFeatureDataset :
 	public wxGISDataset

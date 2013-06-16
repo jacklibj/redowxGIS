@@ -13,7 +13,7 @@ public:
 	virtual void ClearLayers(void);
 	virtual size_t GetLayerCount(void){return m_Layers.size();};
 	virtual wxString GetDescription(void){return m_sDescription;};
-	virtual void SetDescription(wxString sDescription){m_sDescription = sDescription;}
+	virtual void SetDescription(wxString sDescription){m_sDescription = sDescription;};
 	virtual OGREnvelope GetFullExtent(void);
 protected:
 	wxString m_sMapName, m_sDescription;

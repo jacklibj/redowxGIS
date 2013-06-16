@@ -1,8 +1,8 @@
 #pragma once
-#include "statusbar.h"
-#include "accelerator.h"
-#include "menubar.h"
-#include "commandbar.h"
+#include "wxgis/framework/statusbar.h"
+#include "wxgis/framework/accelerator.h"
+#include "wxgis/framework/menubar.h"
+#include "wxgis/framework/commandbar.h"
 
 
 class WXDLLIMPEXP_GIS_FRW wxGISApplication :
@@ -16,8 +16,7 @@ public:
 	};
 
 	//cosntructor
-	wxGISApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, 
-		const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER );
+	wxGISApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE | wxSUNKEN_BORDER );
 	//destructor
 	virtual ~wxGISApplication(void);
 	//events

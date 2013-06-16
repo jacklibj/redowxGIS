@@ -44,7 +44,7 @@ void wxGISRasterLayer::Draw(wxGISEnumDrawPhase DrawPhase, ICachedDisplay* pDispl
 	if (m_pRasterRenderer && m_pRasterRenderer->CanRender(m_pwxGISRasterDataset))
 	{
 		m_pRasterRenderer->Draw(m_pwxGISRasterDataset, DrawPhase, pDisplay, pTrackCancel);
-		m_pPreviousDisplayEvn = Env;
+		m_pPreviousDisplayEnv = Env;
 	}
 	// 5. clear a spatial filter
 	pDisplay->FinishDrawing();

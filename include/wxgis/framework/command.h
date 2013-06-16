@@ -8,7 +8,7 @@ class wxGISCommonCmd :
 public:
 	wxGISCommonCmd(void);
 	virtual ~wxGISCommonCmd(void);
-	//ICommond
+	//ICommand
 	virtual wxIcon GetBitmap(void);
 	virtual wxString GetCaption(void);
 	virtual wxString GetCategory(void);

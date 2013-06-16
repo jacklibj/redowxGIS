@@ -17,7 +17,7 @@ wxGISMenuBar::wxGISMenuBar(long style, IApplication* pApp, wxXmlNode* pConf) : w
 
 wxGISMenuBar::~wxGISMenuBar(void)
 {
-	m_menus.clear();
+	m_menus.Clear();
 }
 
 bool wxGISMenuBar::IsMenuBarMenu(wxString sMenuName)
@@ -48,7 +48,7 @@ void wxGISMenuBar::MoveLeft(int pos)
 
 void wxGISMenuBar::MoveRight(int pos)
 {
-	if(pos == 0)
+	if(pos == m_MenubarArray.size() - 1)
 		return;
 
 	IGISCommandBar* val = m_MenubarArray[pos];
@@ -57,7 +57,7 @@ void wxGISMenuBar::MoveRight(int pos)
 	Insert(pos + 1, Remove(pos), m_MenubarArray[pos + 1]->GetCaption());
 }
 
-void wxGISMenuBar::Removemenu(IGISCommandBar* pBar)
+void wxGISMenuBar::RemoveMenu(IGISCommandBar* pBar)
 {
 	for (size_t i = 0; i< m_MenubarArray.size(); i++)
 	{
@@ -86,7 +86,7 @@ void wxGISMenuBar::Serialize(wxXmlNode* pConf)
 	if(!pConf)
 		return;
 	wxGISConfig::DeleteNodeChildren(pConf);
-	for(size_t i = m_MenubarArray.size(); i > 0; i++)
+	for(size_t i = m_MenubarArray.size(); i > 0; i--)
 	{
 		wxString sName = m_MenubarArray[i - 1]->GetName();
 		wxXmlNode* pNewNode = new wxXmlNode(pConf, wxXML_ELEMENT_NODE, wxString(wxT("menu")));

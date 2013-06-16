@@ -20,5 +20,5 @@ public:
 protected:
 	wxGISRasterDataset* m_pwxGISRasterDataset;
 	IRasterRenderer* m_pRasterRenderer;
-	OGREnvelope m_pPreviousDisplayEvn;
+	OGREnvelope m_pPreviousDisplayEnv;
 };

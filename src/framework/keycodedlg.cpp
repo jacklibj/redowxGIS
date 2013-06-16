@@ -110,7 +110,7 @@ wxKeyCodeDlg::wxKeyCodeDlg(wxWindow* parent, wxWindowID id, const wxString& titl
 	 this->SetSizer( bSizer1 );
 	 this->Layout();
 
-	 this->Center( wxBOTH );
+	 this->Centre( wxBOTH );
 }
 
 wxKeyCodeDlg::~wxKeyCodeDlg()

@@ -174,7 +174,7 @@ void wxGxApplication::RemoveCommandBar(IGISCommandBar* pBar)
 			switch (m_CommandBarArray[i]->GetType())
 			{
 			case enumGISCBMenubar:
-				m_pMenuBar->Removemenu(pBar);
+				m_pMenuBar->RemoveMenu(pBar);
 				break;
 			case enumGISCBToolbar:
 				m_mgr.DetachPane(dynamic_cast<wxWindow*>(pBar));

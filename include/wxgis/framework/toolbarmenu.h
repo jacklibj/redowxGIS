@@ -1,6 +1,6 @@
 #pragma once
-#include "wxgis\framework\framework.h"
-#include "application.h"
+#include "wxgis/framework/framework.h"
+#include "wxgis/framework/application.h"
 
 #define TOOLBARMENUNAME _("Application.ToolbarsMenu")
 
@@ -12,10 +12,10 @@ public:
 	wxGISToolBarMenu(const wxString& sName = TOOLBARMENUNAME, const wxString& sCaption = _("Toolbars"), wxGISEnumCommandBars type = enumGISCBContextmenu, const wxString& title = _(""), long style = 0 );
 	~wxGISToolBarMenu(void);
 	//wxGISMenu
-	virtual void AddCommand(ICommand* pCmd) {};
-	virtual void RemoveCommand(size_t nIndex) {};
-	virtual void MoveCommandleft(size_t nIndex) {};
-	virtual void MoveCommandRight(size_t nIndex) {};
+	virtual void AddCommand(ICommand* pCmd){};
+	virtual void RemoveCommand(size_t nIndex){};
+	virtual void MoveCommandLeft(size_t nIndex){};
+	virtual void MoveCommandRight(size_t nIndex){};
 	//ICommand
 	virtual wxIcon GetBitmap(void);
 	virtual wxString GetCaption(void);

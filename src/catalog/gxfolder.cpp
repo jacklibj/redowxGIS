@@ -1,11 +1,11 @@
 #include "wxgis/catalog/gxfolder.h"
-#include "../art/folder1_16.xpm"
-#include "../art/folder1_48.xpm"
+#include "../../art/folder1_16.xpm"
+#include "../../art/folder1_48.xpm"
 
-wxGxFolder::wxGxFolder(wxString path, wxString Name, bool bShowHidden) : m_bShowHidden(bShowHidden), m_bIsChildrenLoaded(false)
+wxGxFolder::wxGxFolder(wxString Path, wxString Name, bool bShowHidden) : m_bShowHidden(bShowHidden), m_bIsChildrenLoaded(false)
 {
 	m_sName = Name;
-	m_sPath = path;
+	m_sPath = Path;
 }
 
 wxGxFolder::~wxGxFolder(void)
@@ -90,7 +90,7 @@ bool wxGxFolder::Rename(wxString NewName)
 	//
 	m_sName = NewName;
 	m_pCatalog->ObjectChanged(this);
-	return false;
+	return true;
 }
 
 void wxGxFolder::EditProperties(wxWindow * parent)
@@ -115,7 +115,7 @@ bool wxGxFolder::DeleteChild(IGxObject* pChild)
 	bool bHasChildren = m_Children.size() > 0? true : false;
 	if(!IGxObjectContainer::DeleteChild(pChild))
 		return false;
-	if(!bHasChildren != m_Children.size() >0 ? true : false)
+	if(bHasChildren != m_Children.size() > 0 ? true : false)
 		m_pCatalog->ObjectChanged(this);
 	return true;
 }

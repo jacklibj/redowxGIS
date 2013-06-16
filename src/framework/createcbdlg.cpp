@@ -74,7 +74,7 @@ wxGISCreateCommandBarDlg::wxGISCreateCommandBarDlg(wxWindow* parent, wxWindowID 
 	this->SetSizer( bSizer1 );
 	this->Layout();
 
-	this->Center( wxBOTH );
+	this->Centre( wxBOTH );
 }
 
 wxGISCreateCommandBarDlg::~wxGISCreateCommandBarDlg()

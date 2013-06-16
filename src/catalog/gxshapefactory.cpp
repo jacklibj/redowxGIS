@@ -38,9 +38,9 @@ bool wxGxShapeFactory::GetChildren(wxString sParentDir, wxArrayString* pFileName
 			data_map[name].bHasDbf = (ext == wxT("dbf")) ? 1 : 0;
 		if(data_map[name].bHasPrj != 1)
 			data_map[name].bHasPrj = (ext == wxT("prj")) ? 1 : 0;
-		if (data_map[name].path.IsEmpty() && (data_map[name].bHasShp || data_map[name].bHasPrj))
-			data_map[name].path = sParentDir + wxFileName::GetPathSeparator() + name;
-		if(data_map[name].path.IsEmpty())
+		if(data_map[name].path.IsEmpty() && (data_map[name].bHasShp || data_map[name].bHasDbf || data_map[name].bHasPrj))
+			data_map[name].path = sParentDir+ wxFileName::GetPathSeparator() + name;
+		if(data_map[name].path.IsEmpty())	
 			data_map.erase(name);
 
 		if(path.Find(wxT(".shp")) != wxNOT_FOUND)

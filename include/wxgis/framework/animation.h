@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wxgis\framework\framework.h"
+#include "wxgis/framework/framework.h"
 
 #define ATIMER_ID 1012
 

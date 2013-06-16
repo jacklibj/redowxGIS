@@ -23,7 +23,7 @@ protected:
 	wxCoord m_StartX;
 	wxCoord m_StartY;
 	wxCoord m_StartXScr;
-	wxCoord m_StartYSrc;
+	wxCoord m_StartYScr;
 	wxWindow* m_pWnd;
 	ICachedDisplay* m_pCachedDisplay;
 	ISymbol* m_pSymbol;

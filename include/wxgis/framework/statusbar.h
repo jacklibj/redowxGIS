@@ -1,7 +1,6 @@
 #pragma once
 
-
-#include "animation.h"
+#include "wxgis/framework/animation.h"
 
 #define TIMER_ID 1011
 
@@ -10,8 +9,7 @@ class WXDLLIMPEXP_GIS_FRW wxGISStatusBar :
 	public IStatusBar
 {
 public:
-	wxGISStatusBar(wxWindow *parent, wxWindowID id, long style = wxST_SIZEGRIP, const wxString& name = wxT("statusBar"), WXDWORD panesstyle 
-		= enumGISStatusMain | enumGISStatusAnimation | enumGISStatusPosition | enumGISStatusClock);
+	wxGISStatusBar(wxWindow *parent, wxWindowID id, long style = wxST_SIZEGRIP, const wxString& name = wxT("statusBar"), WXDWORD panesstyle = enumGISStatusMain | enumGISStatusAnimation | enumGISStatusPosition | enumGISStatusClock);
 	virtual ~wxGISStatusBar(void);
 	void OnSize(wxSizeEvent & event);
 	virtual void SetMessage(const wxString& text, int i = 0);

@@ -60,9 +60,12 @@ enum wxGISEnumConfigKey
 class IGISConfig
 {
 public:
-	virtual ~IGISConfig(void) {};
-	//
-	virtual wxXmlNode* GetConfigNode(wxGISEnumConfigKey key, wxString sPath) = 0;
+	virtual ~IGISConfig(void){};
+	//pure virtual
+	//virtual wxXmlNode* GetRootNodeByName(wxString sApp, bool bUser, wxString sName) = 0;
+	//virtual wxXmlNode* GetNodeByName(wxXmlNode* pRoot, wxString sName) = 0;
+	//virtual wxXmlNode* GetXmlConfig(wxString sApp, bool bUser) = 0;
+    virtual wxXmlNode* GetConfigNode(wxGISEnumConfigKey Key, wxString sPath) = 0;
 	virtual wxXmlNode* CreateConfigNode(wxGISEnumConfigKey Key, wxString sPath, bool bUniq) = 0;
 };
 
