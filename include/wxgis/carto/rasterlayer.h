@@ -1,7 +1,7 @@
 #pragma once
 
-#include "carto.h"
-#include "rasterdataset.h"
+#include "wxgis/carto/carto.h"
+#include "wxgis/carto/rasterdataset.h"
 
 class WXDLLIMPEXP_GIS_CRT wxGISRasterLayer :
 	public wxGISLayer

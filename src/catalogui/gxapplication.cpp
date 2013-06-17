@@ -128,7 +128,7 @@ IGxCatalog* wxGxApplication::GetCatalog(void)
 
 void wxGxApplication::SerializeFramePos(bool bSave)
 {
-	wxGxApplication::SerializeFramePos(bSave);
+	wxGISApplication::SerializeFramePos(bSave);
 
 	wxXmlNode *pPerspectiveXmlNode = m_pConfig->GetConfigNode(enumGISHKCU, wxString(wxT("frame/perspective")));
 	if(bSave)

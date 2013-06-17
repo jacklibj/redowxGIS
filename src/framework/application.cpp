@@ -186,7 +186,9 @@ void wxGISApplication::OnCommand(ICommand* pCmd)
 void wxGISApplication::OnCommandUI(wxUpdateUIEvent& event)
 {
 	ICommand* pCmd = GetCommand(event.GetId());
+	/*
 	if(pCmd)
+	
 	{
 		if(pCmd->GetKind() == enumGISCommandCheck)
 			event.Check(pCmd->GetChecked());
@@ -234,6 +236,7 @@ void wxGISApplication::OnCommandUI(wxUpdateUIEvent& event)
 			}
 		}
 	}
+	*/
 }
 
 void wxGISApplication::SerializeFramePos(bool bSave)

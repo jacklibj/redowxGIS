@@ -2,8 +2,8 @@
 
 #include "wxgis/carto/carto.h"
 
-//wxGISRasterRGBRender
-class  wxGISRasterRGBRenderer :
+//wxGISRasterRGBRenderer
+class wxGISRasterRGBRenderer :
 	public IRasterRenderer
 {
 public:

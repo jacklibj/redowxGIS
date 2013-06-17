@@ -3,8 +3,8 @@
 #include "wxgis/carto/map.h"
 #include "wxgis/framework/animation.h"
 
-#include "wx/scrolbar.h"
-#include "wx/tipwin.h"
+#include <wx/scrolwin.h>
+#include <wx/tipwin.h>
 
 #define  TIMER_ID 1013
 
