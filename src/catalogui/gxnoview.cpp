@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGxNoView class.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/catalogui/gxnoview.h"
 
 BEGIN_EVENT_TABLE(wxGxNoView, wxControl)
@@ -9,13 +29,13 @@ END_EVENT_TABLE()
 bool wxGxNoView::Activate(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pConf)
 {
 	wxGxView::Activate(application, Catalog, pConf);
-	Serialized(m_pXmlConf, false);
+	Serialize(m_pXmlConf, false);
 	return true;
 }
 
 void wxGxNoView::Deactivate(void)
 {
-	Serialized(m_pXmlConf, true);
+	Serialize(m_pXmlConf, true);
 	wxGxView::Deactivate();
 }
 
@@ -23,7 +43,7 @@ wxGxNoView::wxGxNoView(wxWindow* parent, wxWindowID id /* = wxID_ANY */, const w
 	                           : wxControl(parent, id, pos, size, wxNO_BORDER)
 {
 	m_sViewName = wxString(_("NoView"));
-	R = 255, G = 255, B = 230;
+	R = 255; G = 255; B = 230;
 	IsBold = true;
 	IsItalic = false;
 	FontSize = 12;
@@ -34,7 +54,7 @@ wxGxNoView::~wxGxNoView(void)
 
 }
 
-void wxGxNoView::Serialized(wxXmlNode* pRootNode, bool bStore)
+void wxGxNoView::Serialize(wxXmlNode* pRootNode, bool bStore)
 {
 	if(pRootNode == NULL)
 		return;
@@ -64,21 +84,21 @@ void wxGxNoView::Serialized(wxXmlNode* pRootNode, bool bStore)
 	}
 }
 
-void wxGxNoView::OnPaint(wxPaintEvent& WXUNUSED)
+void wxGxNoView::OnPaint(wxPaintEvent& WXUNUSED(evt))
 {
 	wxPaintDC dc(this);
-	wxString s(_("Selection can not be viewed"));
+	wxString s(_("Selection cannot be viewed"));
 	wxSize size = GetClientSize();
 	int width, height;
 
-	wxFont font(FontSize, wxFONTFAMILY_DEFAULT, IsItalic == true ? wxFONTSTYLE_ITALIC : wxFONTSTYLE_NORMAL,
-		IsBold ? wxFONTWEIGHT_BOLD : wxFONTWEIGHT_NORMAL);
-	dc.SetFont(font);
-	dc.GetTextExtent(s, &width, &height);
-	height += 3;
-	dc.SetBrush(*wxWHITE_BRUSH);
-	dc.SetPen(*wxGREY_PEN);
-	dc.DrawRectangle(0, 0, size.x, size.y);
+	wxFont font(FontSize, wxFONTFAMILY_DEFAULT , IsItalic == true ? wxFONTSTYLE_ITALIC : wxFONTSTYLE_NORMAL, 
+		IsBold == true ? wxFONTWEIGHT_BOLD : wxFONTWEIGHT_NORMAL);
+    dc.SetFont(font);
+    dc.GetTextExtent(s, &width, &height);
+    height += 3;
+    dc.SetBrush(*wxWHITE_BRUSH);
+    dc.SetPen(*wxGREY_PEN);
+    dc.DrawRectangle(0, 0, size.x, size.y);
 
 	wxBrush br(wxColour(R,G,B));
 	dc.SetBrush(br);

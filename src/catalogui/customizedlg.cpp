@@ -2,9 +2,9 @@
 #include "wxgis/framework/keycodedlg.h"
 #include "wxgis/framework/createcbdlg.h"
 #include "wxgis/framework/addcommanddlg.h"
-#include "wx\accel.h"
-#include "wx\utils.h"
-/////////
+#include <wx/accel.h>
+#include <wx/utils.h>
+///////////////////////////////////////////////////////////////////////////
 
 /////////////////
 // Class wxGISToolBarpanel
@@ -69,7 +69,7 @@ wxGISToolBarPanel::wxGISToolBarPanel(wxGxApplication* pGxApp, wxWindow* parent, 
 	m_movedown = new wxButton( this, wxGISToolBarPanel::ID_MOVECONTROLDOWN, _("Move down"), wxDefaultPosition, wxDefaultSize, 0);
 	bSizer3->Add( m_movedown, 0, wxALL| wxEXPAND, 5);
 
-	bSizer3->Add( bSizer3, 0, wxEXPAND, 5);
+	bSizer->Add( bSizer3, 0, wxEXPAND, 5);
 
 	m_splitter1->SetSashGravity(0.5);
 	m_splitter1->SplitVertically(m_commandbarlist, m_buttonslist, 100);
@@ -97,7 +97,7 @@ wxGISToolBarPanel::wxGISToolBarPanel(wxGxApplication* pGxApp, wxWindow* parent, 
 	{
 		IGISCommandBar* pBar = pMenuBarArray->at(i);
 		wxString sCaption = pBar->GetCaption();
-		sCaption += wxString(_(" Menu"));
+		sCaption += wxString(_(" menu"));
 
 		m_CategoryArray.push_back(pBar);
 
@@ -497,8 +497,9 @@ void wxGISToolBarPanel::OnRemoveButton(wxCommandEvent& event)
 			if (pWnd)
 			{
 				wxSize sz = pWnd->GetSize();
-				m_pGxApp->GetAuiManager()->Update();
+				m_pGxApp->GetAuiManager()->GetPane(pWnd).BestSize(sz);
 			}
+			m_pGxApp->GetAuiManager()->Update();
 		}
 	}
 }
@@ -641,7 +642,8 @@ wxGISCommandPanel::wxGISCommandPanel(wxGxApplication* pGxApp, wxWindow* parent,w
 	m_listCtrl3->InsertColumn(1, _("Description"), wxLIST_FORMAT_LEFT, 120);
 	m_listCtrl3->InsertColumn(2, _("KeyCode"), wxLIST_FORMAT_LEFT, 60);
 	m_ImageList.Create(16, 16);
-	//
+	m_listCtrl3->SetImageList(&m_ImageList, wxIMAGE_LIST_SMALL);
+	//bSizer5->Add( m_listCtrl3, 0, wxALL, 5 );
 	m_splitter2->SetSashGravity(0.5);
 	m_splitter2->SplitVertically(m_listBox1, m_listCtrl3, 150);
 
@@ -752,7 +754,7 @@ void wxGISCommandPanel::OnSetKeyCode(wxCommandEvent& event)
 wxGISCustomizeDlg::wxGISCustomizeDlg(wxWindow* parent, wxWindowID id /* = wxID_ANY */, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxDialog(parent, id, title, pos, size, style)
 {
 	m_pGxApp = dynamic_cast<wxGxApplication*>(parent);
-	this->SetSizeHints( wxSize( 500, 400 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 540, 400 ), wxDefaultSize );
 	if(!m_pGxApp)
 		return;
 
@@ -761,10 +763,10 @@ wxGISCustomizeDlg::wxGISCustomizeDlg(wxWindow* parent, wxWindowID id /* = wxID_A
 
 	m_auinotebook = new wxAuiNotebook( this, wxID_ANY,wxDefaultPosition, wxDefaultSize, wxAUI_NB_TOP | wxNO_BORDER | wxAUI_NB_TAB_MOVE );
 	m_auinotebook->AddPage(new wxGISToolBarPanel(m_pGxApp, m_auinotebook), _("ToolBars & Menues"));
-	m_auinotebook->AddPage(new wxGISToolBarPanel(m_pGxApp, m_auinotebook), _("Commands"));
-
-	bSizerMain->Add( m_auinotebook, 1, wxEXPAND | wxALL, 5);
-
+	m_auinotebook->AddPage(new wxGISCommandPanel(m_pGxApp, m_auinotebook), _("Commands"));
+	
+	bSizerMain->Add( m_auinotebook, 1, wxEXPAND | wxALL, 5 );
+	
 	m_sdbSizer = new wxStdDialogButtonSizer();
 	m_sdbSizerOK = new wxButton( this, wxID_OK, wxString(_("Close")) );
 	m_sdbSizer->AddButton( m_sdbSizerOK );

@@ -1,3 +1,24 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  display header.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
+
 #pragma once
 
 #include "wxgis/base.h"
@@ -37,10 +58,9 @@ public:
 	virtual double GetScaleRatio(void) = 0;
 	virtual void SetSpatialReference(OGRSpatialReference* pSpatialReference) = 0;
 	virtual OGRSpatialReference* GetSpatialReference(void) = 0;
-
-	virtual wxPoint* TransformCoordWorld2DC(OGRRawPoint* point, size_t nPointCount) = 0;
-	virtual void TransformCoordWorld2DC(OGRRawPoint* point, size_t nPointCount, wxPoint* pResult) = 0;
-	virtual OGRRawPoint* TransformCoordDC2World(wxPoint* pPoints, size_t nPointCount)=0;
+	virtual wxPoint* TransformCoordWorld2DC(OGRRawPoint* pPoints, size_t nPointCount) = 0;
+	virtual void TransformCoordWorld2DC(OGRRawPoint* pPoints, size_t nPointCount, wxPoint* pResult) = 0;
+	virtual OGRRawPoint* TransformCoordDC2World(wxPoint* pPoints, size_t nPointCount) = 0;
 	virtual void SetPPI(wxSize new_res) = 0;
 	virtual OGREnvelope TransformRect(wxRect rect) = 0;
 };
@@ -56,7 +76,7 @@ public:
 	virtual void SetBrush(wxBrush& Brush) = 0;
 	virtual void SetPen(wxPen& Pen) = 0;
 	virtual void SetFont(wxFont& Font) = 0;
-	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoofset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE) = 0;
+	virtual void DrawPolygon(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE) = 0;
 	virtual void DrawPolyPolygon(int n, int count[], wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0, wxPolygonFillMode fill_style = wxODDEVEN_RULE) = 0;
 	virtual void DrawPoint(wxCoord x, wxCoord y) = 0;
 	virtual void DrawLines(int n, wxPoint points[], wxCoord xoffset = 0, wxCoord yoffset = 0) = 0;
@@ -71,9 +91,8 @@ class ICachedDisplay :
 {
 public:
 	virtual ~ICachedDisplay(void){};
-	virtual void OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDestHeight, wxCoord x = 0, wxCoord y = 0, bool bClearBackground = false,
-		wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
-	virtual void OnStretchDraw2(wxDC &dc, wxRect rect, bool bClearBackground = false, wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
+	virtual void OnStretchDraw(wxDC &dc, wxCoord nDestWidth, wxCoord nDestHeight, wxCoord x = 0, wxCoord y = 0, bool bClearBackground = false, wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
+	virtual void OnStretchDraw2(wxDC &dc, wxRect Rect, bool bClearBackground = false, wxGISEnumDrawQuality quality = enumGISQualityNearest) = 0;
 	virtual void OnPanDraw(wxDC &dc, wxCoord x, wxCoord y) = 0;
 	//
 	//
@@ -81,7 +100,7 @@ public:
 	virtual void SetCacheDerty(size_t cache_id, bool bIsDerty) = 0;
 	virtual size_t AddCache(void) = 0;
 	virtual size_t GetLastCacheID(void) = 0;
-	virtual void MergeCaches(size_t SrcCacheID, size_t DstCache) = 0;
+	virtual void MergeCaches(size_t SrcCacheID, size_t DstCacheID) = 0;
 	virtual void StartDrawing(size_t CacheID) = 0;
 	virtual void FinishDrawing(void) = 0;
 	virtual void ClearCaches(void) = 0;
@@ -92,7 +111,7 @@ class ISymbol
 public:
 	//
 	virtual ~ISymbol(void){};
-	virtual void Draw(OGRGeometry* pGeometry, IDisplay* pDispaly) = 0;
+	virtual void Draw(OGRGeometry* pGeometry, IDisplay* pDisplay) = 0;
 	virtual void SetPen(wxPen NewPen) {m_Pen = NewPen;};
 	virtual wxPen GetPen(void) {return m_Pen;};
 	virtual void SetBrush(wxBrush NewBrush){m_Brush = NewBrush;};

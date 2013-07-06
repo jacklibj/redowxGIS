@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGISScreenDisplay class.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/display/screendisplay.h"
 
 //---
@@ -6,46 +26,46 @@
 
 wxRasterDrawThread::wxRasterDrawThread(unsigned char* pOrigData, unsigned char* pDestData, int nOrigX, int nOrigY, double rOrigX, double rOrigY, int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel, int nYbeg, int nYend) : wxThread(wxTHREAD_JOINABLE)
 {
-	m_pTrackCancel = pTrackCancel;
-	m_pOrigData = pOrigData;
-	m_pDestData = pDestData;
-	m_nOrigX = nOrigX;
-	m_nOrigY = nOrigY;
-	m_rOrigX = rOrigX;
-	m_rOrigY = rOrigY;
-	m_nDestX = nDestX;
-	m_nDestY = nDestY;
-	m_rDeltaX = nDestX;
-	m_rDeltaY = nDestY;
-	m_Quality = Quality;
-	m_nYbeg = nYbeg;
-	m_nYend = nYend;
+    m_pTrackCancel = pTrackCancel;
+    m_pOrigData = pOrigData;
+    m_pDestData = pDestData;
+    m_nOrigX = nOrigX;
+    m_nOrigY = nOrigY;
+    m_rOrigX = rOrigX;
+    m_rOrigY = rOrigY;
+    m_nDestX = nDestX;
+    m_nDestY = nDestY;
+    m_rDeltaX = rDeltaX;
+    m_rDeltaY = rDeltaY;
+    m_Quality = Quality;
+    m_nYbeg = nYbeg;
+    m_nYend = nYend;
 }
 
 void *wxRasterDrawThread::Entry()
 {
-	double rWRatio, rHRatio;
-	rWRatio = m_rOrigX / m_nDestX;
-	rHRatio = m_rOrigX / m_nDestY;
-	switch(m_Quality)
-	{
-	case enumGISQualityBilinear:
-		OnBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
-		break;
-	case enumGISQualityHalfBilinear:
-		OnHalfBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
-		break;
-	case enumGISQualityHalfQuadBilinear:
-		OnHalfQuadBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
-		break;
-	case enumGISQualityBicubic:
-		OnBicubicInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
-		break;
-	case enumGISQualityNearest:
-	default:
-		OnNearestNeighbourInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
-		break;
-	}
+    double rWRatio, rHRatio;
+    rWRatio = m_rOrigX / m_nDestX;
+    rHRatio = m_rOrigY / m_nDestY;
+    switch(m_Quality)
+    {
+    case enumGISQualityBilinear:
+        OnBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+        break;
+    case enumGISQualityHalfBilinear:
+        OnHalfBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+        break;
+    case enumGISQualityHalfQuadBilinear:
+        OnHalfQuadBilinearInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+        break;
+    case enumGISQualityBicubic:
+        OnBicubicInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nOrigY, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+        break;
+    case enumGISQualityNearest:
+    default:
+        OnNearestNeighbourInterpolation(m_pOrigData, m_pDestData, m_nYbeg, m_nYend, m_nOrigX, m_nDestX,  rWRatio, rHRatio, m_rDeltaX, m_rDeltaY, m_pTrackCancel);
+        break;
+    }
 
 	return NULL;
 }
@@ -57,23 +77,23 @@ void wxRasterDrawThread::OnExit()
 
 void wxRasterDrawThread::OnNearestNeighbourInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
 {
-	for (int nDestPixY = nYbeg; nDestPixY < nYend; nDestPixY)
-	{
-		int nOriPixY = (int)(rHRatio * double(nDestPixY) + rDeltaY);
-		int scan_line = nOriPixY * nOrigWidth;
-		for (int nDestPixX = 0; nDestPixX < nDestWidth; nDestPixX++)
-		{
-			int nOrigPixX = (int)(rWRatio * double(nDestPixX) + rDeltaY);
-			int src_pixel_index = scan_line + nOrigPixX;
-			src_pixel_index *= 3;
-			pDestData[0] = pOrigData[src_pixel_index + 0];
-			pDestData[1] = pOrigData[src_pixel_index + 1];
-			pDestData[2] = pOrigData[src_pixel_index + 2];
-			pDestData += 3;
-			if(pTrackCancel && !pTrackCancel->Continue())
-				return;
-		}
-	}
+    for(int nDestPixY = nYbeg; nDestPixY < nYend; nDestPixY++)
+    {
+        int nOrigPixY = (int)(rHRatio * double(nDestPixY) + rDeltaY);
+        int scan_line = nOrigPixY * nOrigWidth;
+        for(int nDestPixX = 0; nDestPixX < nDestWidth; nDestPixX++)
+        {
+            int nOrigPixX = (int)(rWRatio * double(nDestPixX) + rDeltaX);
+            int src_pixel_index = scan_line + nOrigPixX;
+            src_pixel_index *= 3;
+            pDestData[0] = pOrigData[src_pixel_index + 0];
+            pDestData[1] = pOrigData[src_pixel_index + 1];
+            pDestData[2] = pOrigData[src_pixel_index + 2];
+            pDestData += 3;  
+            if(pTrackCancel && !pTrackCancel->Continue())
+                return;
+        }
+    }
 }
 
 void wxRasterDrawThread::OnBilinearInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
@@ -189,16 +209,16 @@ void wxRasterDrawThread::OnHalfBilinearInterpolation(unsigned char* pOrigData, u
 			//result line
 			//
 
-			pDestData[0] = r1 * dy1 + r2 * dy;
-			pDestData[1] = g1 * dy1 + g2 * dy;
-			pDestData[2] = b1 * dy1 + b2 * dy;
-
-			if (nDestPixX < nYend - 1)
-			{
-				pDestData[0 + W] = pDestData[0];
-				pDestData[1 + W] = pDestData[1];
-				pDestData[2 + W] = pDestData[2];
-			}
+            pDestData[0] = r1 * dy1 + r2 * dy;
+            pDestData[1] = g1 * dy1 + g2 * dy;
+            pDestData[2] = b1 * dy1 + b2 * dy;
+             
+            if(nDestPixY < nYend - 1)
+            {
+                pDestData[0 + W] = pDestData[0];
+                pDestData[1 + W] = pDestData[1];
+                pDestData[2 + W] = pDestData[2];
+            }
 
 			pDestData += 3;
 			if(pTrackCancel && !pTrackCancel->Continue())
@@ -387,25 +407,25 @@ double wxRasterDrawThread::BiCubicKernel(double x)
 	return ( 0.16666666666666666667 * ( a - ( 4.0 * b ) + ( 6.0 * c ) - ( 4.0 * d ) ) );
 }
 
-void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDelatX, double rDelstaY, ITrackCancel* pTrackCancel)
+void wxRasterDrawThread::OnBicubicInterpolation(unsigned char* pOrigData, unsigned char* pDestData, int nYbeg, int nYend, int nOrigWidth, int nOrigHeight, int nDestWidth, double rWRatio, double rHRatio, double rDeltaX, double rDeltaY, ITrackCancel* pTrackCancel)
 {
 	int srcpixymax = nOrigHeight - 1;
 	int srcpixxmax = nOrigWidth - 1;
 
-	double srcpixy, dy;
-	double srcpixx, dx;
+    double srcpixy, dy;
+    double srcpixx, dx;
+	
+    for(int nDestPixY = nYbeg; nDestPixY < nYend; nDestPixY++)
+    {
+        // We need to calculate the source pixel to interpolate from - Y-axis
+        srcpixy = double(nDestPixY) * rHRatio + rDeltaY;
+        dy = srcpixy - (int)srcpixy;
 
-	for (int nDestPixY = nYbeg; nDestPixY < nYend; nDestPixY++)
-	{
-		// We need to calculate the source pixel to interpolate from - Y-axis
-		srcpixy = (double)(nDestPixY) * rHRatio + rDelstaY;
-		dy = srcpixy - (int)srcpixy;
-
-		for (int nDestPixX = 0; nDestPixX < nDestWidth; nDestPixX++)
-		{
-			// X-axis of pixel to interpolate from
-			srcpixx = (double)(nDestPixX) * rWRatio + rDelatX;
-			dx = srcpixx - (int)srcpixx;
+        for(int nDestPixX = 0; nDestPixX < nDestWidth; nDestPixX++)
+        {
+            // X-axis of pixel to interpolate from
+            srcpixx = double(nDestPixX) * rWRatio + rDeltaX;
+            dx = srcpixx - (int)srcpixx;
 
 			// Sums for each color chanel
 			double sum_r = 0, sum_g = 0, sum_b = 0, sum_a = 0;
@@ -711,15 +731,15 @@ wxImage wxGISScreenDisplay::Scale(wxImage SourceImage, int nDestWidth, int nDest
 	return Scale(pData, nSourceWidth, nSourceHeight, nSourceWidth, nSourceHeight, nDestWidth, nDestHeight, 0, 0, Quality, pTrackCancel);
 }
 
-wxImage wxGISScreenDisplay::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY,
-	int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel)
-{
-	wxImage ResultImage(nDestX, nDestY, false);
-	unsigned char* pDestData = ResultImage.GetData();
 
-	double rWRatio, rHRatio;
-	rWRatio = rOrigX / nDestY;
-	rHRatio = rOrigY / nDestY;
+wxImage wxGISScreenDisplay::Scale(unsigned char* pData, int nOrigX, int nOrigY, double rOrigX, double rOrigY, int nDestX, int nDestY, double rDeltaX, double rDeltaY, wxGISEnumDrawQuality Quality, ITrackCancel* pTrackCancel)
+{
+    wxImage ResultImage(nDestX, nDestY, false);
+    unsigned char* pDestData = ResultImage.GetData();
+    
+    double rWRatio, rHRatio;
+    rWRatio = rOrigX / nDestX;
+    rHRatio = rOrigY / nDestY;
 
 	switch(Quality)
 	{

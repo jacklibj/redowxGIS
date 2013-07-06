@@ -1,3 +1,24 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  base header.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
+
 #pragma once
 
 #include "wx/wxprec.h"
@@ -77,11 +98,11 @@
 #include <map>
 #include <vector>
 
-#define CONFIG_DIR wxT("wxGIS")
-#define DEF wxT("~def")
-#define NON wxT("~non")
-#define ERR wxT("~err")
-#define NONAME _("no name")
+#define CONFIG_DIR wxT("wxGIS") 
+#define DEF wxT("~def~") 
+#define NON wxT("~non~") 
+#define ERR wxT("~err~") 
+#define NONAME _("no name") 
 #define DELTA 0.0001
 #define CACHE_SIZE 3000
 #define ZOOM_FACTOR 0.25
@@ -107,7 +128,7 @@ static wxString DoubleToString(double Val, bool IsLon)
 	int sec = floor((Val - grad - (double) min / 60) * 3600);
 	wxString str;
 	if(IsLon)
-		str.Printf(wxT("%.3d-%2d - %.2d%s"),grad, min, sec, znak.c_str());
+		str.Printf(wxT("%.3d-%.2d-%.2d%s"), grad, min, sec, znak.c_str());
 	else
 		str.Printf(wxT("%.2d-%.2d-%.2d%s"), grad, min, sec, znak.c_str());
 	return str;
@@ -151,7 +172,7 @@ static wxString NumberScale(double fScaleRatio)
 	if (pos == wxNOT_FOUND)
 		pos = str.Len();
 	wxString res = str.Right(str.Len() - pos);
-	for (size_t i = 1; i< pos; i++)
+	for(size_t i = 1; i < pos + 1; i++)
 	{
 		res.Prepend(str[pos - i]);
 		if((i % 3) == 0)

@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGxContentView class.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/catalogui/gxcontentview.h"
 #include "../../art/cont_view_16.xpm"
 #include "../../art/cont_view_48.xpm"
@@ -28,9 +48,7 @@ int wxCALLBACK MyCompareFunction(long item1, long item2, long sortData)
 }
 
 wxGxContentView::wxGxContentView(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size) :
-wxListCtrl(parent, id, pos, size, wxLC_REPORT | wxBORDER_NONE |wxLC_EDIT_LABELS | wxLC_SORT_ASCENDING),
-	m_bSortAsc(true), m_current_style(REPORT), m_pConnectionPointCatalog(NULL), 
-	m_ConnectionPointCatalogCookie(-1), m_pParentGxObject(NULL), m_currentSortCol(0), m_pSelection(NULL)
+wxListCtrl(parent, id, pos, size, wxLC_REPORT | wxBORDER_NONE |wxLC_EDIT_LABELS | wxLC_SORT_ASCENDING), m_bSortAsc(true), m_current_style(REPORT), m_pConnectionPointCatalog(NULL), m_ConnectionPointCatalogCookie(-1), m_pParentGxObject(NULL), m_currentSortCol(0), m_pSelection(NULL)
 {
 	m_style = wxBORDER_NONE | wxLC_EDIT_LABELS;
 	InsertColumn(0, _("Name"), wxLIST_FORMAT_LEFT, 150);
@@ -252,7 +270,7 @@ void wxGxContentView::OnEndLabelEdit(wxListEvent& event)
 {
 	if ( event.GetLabel().Len() == 0)
 	{
-		wxMessageBox(_("wxGxContentView: too short label. Please add longer text!"));
+		wxMessageBox(_("wxGxContentView: Too short label. Please add longer text!"));
 		event.Veto();
 	}
 	else
@@ -274,22 +292,22 @@ void wxGxContentView::OnEndLabelEdit(wxListEvent& event)
 	}
 }
 
-void wxGxContentView::OnObjectAdded(IGxObject* object)
+void wxGxContentView::OnObjectAdded(IGxObject* pObj)
 {
 
 }
 
-void wxGxContentView::OnObjectDeleted(IGxObject* object)
+void wxGxContentView::OnObjectDeleted(IGxObject* pObj)
 {
 
 }
 
-void wxGxContentView::OnObjectChanged(IGxObject* object)
+void wxGxContentView::OnObjectChanged(IGxObject* pObj)
 {
 
 }
 
-void wxGxContentView::OnObjectRefreshed(IGxObject* object)
+void wxGxContentView::OnObjectRefreshed(IGxObject* pObj)
 {
 
 }

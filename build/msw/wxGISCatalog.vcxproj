@@ -24,7 +24,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\catalog\gxcatalog.cpp" />
     <ClCompile Include="..\..\src\catalog\gxdataset.cpp" />
-    <ClCompile Include="..\..\src\catalog\gxdisconnection.cpp" />
+    <ClCompile Include="..\..\src\catalog\gxdiscconnection.cpp" />
     <ClCompile Include="..\..\src\catalog\gxfolder.cpp" />
     <ClCompile Include="..\..\src\catalog\gxfolderfactory.cpp" />
     <ClCompile Include="..\..\src\catalog\gxrasterfactory.cpp" />

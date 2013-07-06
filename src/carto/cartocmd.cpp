@@ -441,7 +441,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 				}
 				m_pMapView->SetExtent(Env);
 			}
-			wxDELETE(pGeom);
+			//wxDELETE(pGeom);
 			break;
 		}
 	case 1:
@@ -464,7 +464,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 				NewEnv.MaxY = CurrentEnv.MaxY + CurrentEnv.MaxY - Env.MaxY;
 				m_pMapView->SetExtent(NewEnv);
 			}
-			wxDELETE(pGeom);
+			//wxDELETE(pGeom);
 			break;
 		}
 	case 2: // pan
@@ -489,7 +489,7 @@ void wxGISCartoMainTool::OnMouseDown(wxMouseEvent& event)
 			{
 				//
 			}
-			wxDELETE(pGeom);
+			//wxDELETE(pGeom);
 			break;
 		}
 	default:

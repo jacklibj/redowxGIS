@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGISTabView class.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/catalogui/gxtabview.h"
 #include "wxgis/catalogui/viewsfactory.h"
 #include "wxgis/catalogui/gxapplication.h"
@@ -10,8 +30,8 @@ BEGIN_EVENT_TABLE(wxGxTab, wxPanel)
 	EVT_CHOICE(wxID_ANY, wxGxTab::OnChoice)
 END_EVENT_TABLE()
 
-wxGxTab::wxGxTab(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pTabDesc, wxWindow* parent,
-wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : wxPanel( parent, id, pos, size, style), m_bShowChoices(false), m_pCurrentWnd(NULL)
+
+wxGxTab::wxGxTab(wxGxApplication* application, IGxCatalog* Catalog, wxXmlNode* pTabDesc, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : wxPanel( parent, id, pos, size, style), m_bShowChoices(false), m_pCurrentWnd(NULL)
 {
 	m_sName = wxGetTranslation( pTabDesc->GetPropVal(wxT("name"), NONAME) );
 	m_bShowChoices = pTabDesc->GetPropVal( wxT("show_choices"), wxT("f")) == wxT("f") ? false : true;
@@ -58,7 +78,7 @@ wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : wxPanel( p
 		}
 		else
 		{
-			wxLogError(_("wxGxTab: Error initialing ViewsFacory %s"), sClass.c_str());
+			wxLogError(_("wxGxTab: Error initializing ViewsFactory %s"), sClass.c_str());
 			wxDELETE(obj);
 		}
 
@@ -102,6 +122,17 @@ wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : wxPanel( p
 	this->Layout();
 
 	m_pSelection = Catalog->GetSelection();
+}
+wxGxTab::~wxGxTab(void)
+{
+	for(size_t i = 0; i < m_pWindows.size(); i++)
+	{
+		wxGxView* pView = dynamic_cast<wxGxView*>(m_pWindows[i]);
+		if(pView != NULL)
+			pView->Deactivate();
+		wxDELETE(m_pWindows[i]);
+	}
+
 }
 
 wxString wxGxTab::GetName(void)
@@ -153,7 +184,7 @@ void wxGxTab::OnSelectionChanged(IGxSelection* Selection, long nInitiator)
 				continue;
 			if(pView->Applies(Selection))
 			{
-				if(pView->GetName() != _("noView"))
+				if(pView->GetName() != _("NoView"))
 					m_choice->Append(pView->GetName(), pWnd);
 				else
 					pNoWnd = pWnd;
@@ -269,16 +300,7 @@ bool wxGxTab::Show(bool bShow)
 	return wxWindow::Show(bShow);
 }
 
-wxGxTab::~wxGxTab(void)
-{
-	for(size_t i = 0; i < m_pWindows.size(); i++)
-	{
-		wxGxView* pView = dynamic_cast<wxGxView*>(m_pWindows[i]);
-		if(pView != NULL)
-			pView->Deactivate();
-		wxDELETE(m_pWindows[i]);
-	}
-}
+
 
 //------
 // wxGxTabView
@@ -306,10 +328,10 @@ bool wxGxTabView::Activate(wxGxApplication* application, IGxCatalog* Catalog, wx
 	wxUint8 count(0);
 	while(pChild)
 	{
-		wxGxTab* pGxTab = new wxGxTab(application, Catalog, pConf, this);
-
-
-
+		wxGxTab* pGxTab = new wxGxTab(application, Catalog, pChild, this);
+		//wxWindow* pWnd = pGxTab->GetWindow(0);
+		//if(pWnd == NULL)
+		//	pWnd = new wxWindow(this, wxID_ANY);
 		m_Tabs.push_back(pGxTab);
 
 		AddPage(static_cast<wxWindow*>(pGxTab), pGxTab->GetName(), count == 0 ? true : false );

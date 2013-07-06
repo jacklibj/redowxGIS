@@ -2,85 +2,39 @@
 #include "wxgis/cat_app/catalogapp.h"
 #include "wxgis/cat_app/catalogframe.h"
 
-
 #include <locale.h>
 #include "ogrsf_frmts.h"
 #include "ogr_api.h"
-#include "gdal_priv.h"
 
-IMPLEMENT_APP(wxGISCatalogApp)
+IMPLEMENT_APP(wxGISCatalogApp);
 
-	// Define a new frame type: this is going to be our main frame
-class MyFrame : public wxFrame
+wxGISCatalogApp::wxGISCatalogApp(void) : m_pszOldLocale(NULL)
 {
-public:
-	// ctor(s)
-	MyFrame(const wxString& title);
+}
 
-	// event handlers (these functions should _not_ be virtual)
-	void OnHello(wxCommandEvent& event);
-	void OnQuit(wxCommandEvent& event);
-	void OnAbout(wxCommandEvent& event);
-
-private:
-	// any class wishing to process wxWidgets events must use this macro
-	DECLARE_EVENT_TABLE()
-};
-
-// ----------------------------------------------------------------------------
-// constants
-// ----------------------------------------------------------------------------
-
-// IDs for the controls and the menu commands
-enum
+wxGISCatalogApp::~wxGISCatalogApp(void)
 {
-	// menu items
-	Minimal_Hello = 1,
-	Minimal_Quit = wxID_EXIT,
+	//wxLogMessage(_("wxGISCatalogApp is exiting..."));
 
-	// it is important for the id corresponding to the "About" command to have
-	// this standard value as otherwise it won't be handled properly under Mac
-	// (where it is special and put into the "Apple" menu)
-	Minimal_About = wxID_ABOUT
-};
+	OGRCleanupAll();
+	GDALDestroyDriverManager();
 
-// ----------------------------------------------------------------------------
-// event tables and other macros for wxWidgets
-// ----------------------------------------------------------------------------
+	if(m_pszOldLocale != NULL)
+		setlocale(LC_NUMERIC, m_pszOldLocale);
+	wxDELETE(m_pszOldLocale);
 
-// the event tables connect the wxWidgets events with the functions (event
-// handlers) which process them. It can be also done at run-time, but for the
-// simple menu events like this the static method is much simpler.
-BEGIN_EVENT_TABLE(MyFrame, wxFrame)
-	EVT_MENU(Minimal_Hello, MyFrame::OnHello)
-	EVT_MENU(Minimal_Quit,  MyFrame::OnQuit)
-	EVT_MENU(Minimal_About, MyFrame::OnAbout)
-	END_EVENT_TABLE()
+	wxDELETE(m_pConfig);
+}
 
-	// Create a new application object: this macro will allow wxWidgets to create
-	// the application object during program execution (it's better than using a
-	// static object for many reasons) and also implements the accessor function
-	// wxGetApp() which will return the reference of the right type (i.e. MyApp and
-	// not wxApp)
-
-
-	// ============================================================================
-	// implementation
-	// ============================================================================
-
-	// ----------------------------------------------------------------------------
-	// the application class
-	// ----------------------------------------------------------------------------
-
-	// 'Main program' equivalent: the program execution "starts" here
-	bool wxGISCatalogApp::OnInit()
+bool wxGISCatalogApp::OnInit()
 {
 	m_pConfig = new wxGISAppConfig(APP_NAME, CONFIG_DIR);
 	//setup loging
 	wxString sLogDir = m_pConfig->GetLogDir();
 	if(sLogDir.IsEmpty())
 	{
-		wxLogError(_("wxGISCatalogApp: Failed to log dir"));
+		wxLogError(_("wxGISCatalogApp: Filed to get log dir"));
+        return false;
 	}
 
 	if(!wxDirExists(sLogDir))
@@ -90,7 +44,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	wxString logfilename = sLogDir + wxFileName::GetPathSeparator() + wxString::Format(wxT("log_%.4d%.2d%.2d.log"), dt.GetYear(), dt.GetMonth() + 1, dt.GetDay());
 
 	if(!m_LogFile.Open(logfilename.GetData(), wxT("a+")))
-		wxLogError(_("wxGISCatalogApp: Failed to open log file %s"), logfilename.c_str());
+		wxLogError(_("wxGISCatalogApp: Filed to open log file %s"), logfilename.c_str());
 
 	wxLog::SetActiveTarget(new wxLogStderr(m_LogFile.fp()));
 
@@ -99,9 +53,10 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	wxLogMessage(wxT("##                    %s                    ##"),wxNow().c_str()); 
 	wxLogMessage(wxT("####################################################################")); 
 	//wxLogMessage(_("HOST '%s': OS desc - %s, free memory - %u Mb"), wxGetFullHostName().c_str(),wxGetOsDescription().c_str(), wxGetFreeMemory()/1048576);
+	wxLogMessage(_("HOST '%s': OS desc - %s, free memory -  Mb"), wxGetFullHostName().c_str(),wxGetOsDescription().c_str() );
 
 
-	wxLogMessage(_("wxGISCatalogApp: Initializeing..."));
+	wxLogMessage(_("wxGISCatalogApp: Initializing..."));
 	wxLogMessage(_("wxGISCatalogApp: Log file: %s"), logfilename.c_str());
 	wxLogMessage(_("wxGISCatalogApp: Initialize locale"));
 
@@ -117,15 +72,15 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 			wxLogMessage(_("wxGISCatalogApp: Language set to %s"), loc_info->Description.c_str());
 		}
 
-		//don't use wxLOCALE_LOAD_DEFAULT flag so that Init() deesn't return
-		//false just becasue it failed tp load wxstd catalog
-		if( !m_locale.Init(iLocale) /*!m_locale.Init(iLocale, wxLOCALE_CONV_ENCODING) */)
-		{
-			wxLogError(wxT("wxGISCatalogApp: This language is not supported by the system."));
-			return false;
-		}
-
-	}
+        // don't use wxLOCALE_LOAD_DEFAULT flag so that Init() doesn't return
+        // false just because it failed to load wxstd catalog
+       // if ( !m_locale.Init(iLocale, wxLOCALE_CONV_ENCODING) )
+		if ( !m_locale.Init(iLocale) )
+        {
+            wxLogError(wxT("wxGISCatalogApp: This language is not supported by the system."));
+            return false;
+        }
+    }
 
 
 	//m_locale.Init(wxLANGUAGE_DEFAUTL);
@@ -175,7 +130,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	wxString sSysDir = m_pConfig->GetSysDir(); //´í³öÔÚÕâ
 	if(!wxDirExists(sSysDir))
 	{
-		wxLogError(wxString::Format(_T("wxGISaCatalogApp: System dir is absent! Lookup path '%s'"), sSysDir.c_str()));
+		wxLogError(wxString::Format(_T("wxGISCatalogApp: System dir is absent! Lookup path '%s'"), sSysDir.c_str()));
 		return false;
 	}
 
@@ -184,11 +139,11 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	CPLSetConfigOption("CPL_DEBUG", bDebugMode == true ? "ON" : "OFF");
 	CPLSetConfigOption("CPL_TIMESTAMP", "ON");
 	CPLSetConfigOption("CPL_LOG_ERRORS", bDebugMode == true ? "ON" : "OFF");
-	//liyang
-	//CPLSetConfigOption("GDAL_DATA", wgWX2MB( (sSysDir + wxFileName::GetPathSeparator() + wxString(wxT("epsg_csv")) + wxFileName::GetPathSeparator()).c_str() ) );
+	
+	CPLSetConfigOption("GDAL_DATA", wgWX2MB( (sSysDir + wxFileName::GetPathSeparator() + wxString(wxT("epsg_csv")) + wxFileName::GetPathSeparator()).c_str() ) );
 	wxString sCPLLogPath = sLogDir + wxFileName::GetPathSeparator() + wxString(wxT("gdal_log_cat.txt"));
-	//liyang
-	//CPLSetConfigOption("CPL_LOG", wgWX2MB(sCPLLogPath.c_str()) );
+	
+	CPLSetConfigOption("CPL_LOG", wgWX2MB(sCPLLogPath.c_str()) );
 
 	OGRRegisterAll();
 	GDALAllRegister();
@@ -203,11 +158,9 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	m_pConfig->SetSysDir(sSysDir);
 	m_pConfig->SetDebugMode(bDebugMode);
 
-
-	// need add wxGISCatalogFrame class
-	wxFrame* frame = new wxGISCatalogFrame( m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
-	//SetTopWindow(frame);
-	//frame->Show();
+	wxFrame* frame = new wxGISCatalogFrame(m_pConfig, NULL, wxID_ANY, _("wxGIS Catalog"), wxDefaultPosition, wxSize(800, 480) );
+   // SetTopWindow(frame);
+    //frame->Show();
 
 	// call the base class initialization method, currently it only parses a
 	// few common command-line options but it could be do more in the future
@@ -227,72 +180,4 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
 	return true;
 }
 
-// ----------------------------------------------------------------------------
-// main frame
-// ----------------------------------------------------------------------------
 
-// frame constructor
-MyFrame::MyFrame(const wxString& title)
-	: wxFrame(NULL, wxID_ANY, title)
-{
-	// set the frame icon
-	SetIcon(wxICON(sample));
-
-#if wxUSE_MENUS
-	// create a menu bar
-	wxMenu *fileMenu = new wxMenu;
-
-	// the "About" item should be in the help menu
-	wxMenu *helpMenu = new wxMenu;
-	helpMenu->Append(Minimal_About, "&About\tF1", "Show about dialog");
-
-	//fileMenu->Append(Minimal_Hello,"&Hello...\tCtrl-H",
-	//	"Help String shown in status bar for this menu item");
-
-	fileMenu->Append(Minimal_Quit, "E&xit\tAlt-X", "Quit this program");
-
-	// now append the freshly created menu to the menu bar...
-	wxMenuBar *menuBar = new wxMenuBar();
-	menuBar->Append(fileMenu, "&File");
-	menuBar->Append(helpMenu, "&Help");
-
-	// ... and attach this menu bar to the frame
-	SetMenuBar(menuBar);
-#endif // wxUSE_MENUS
-
-#if wxUSE_STATUSBAR
-	// create a status bar just for fun (by default with 1 pane only)
-	CreateStatusBar(2);
-	SetStatusText("Welcome to wxWidgets!");
-#endif // wxUSE_STATUSBAR
-}
-
-
-// event handlers
-
-void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
-{
-	// true is to force the frame to close
-	Close(true);
-}
-
-void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-{
-	wxMessageBox(wxString::Format
-		(
-		"Welcome to %s!\n"
-		"\n"
-		"This is the minimal wxWidgets sample\n"
-		"running under %s.",
-		wxVERSION_STRING,
-		wxGetOsDescription()
-		),
-		"About wxWidgets minimal sample",
-		wxOK | wxICON_INFORMATION,
-		this);
-}
-
-void MyFrame::OnHello(wxCommandEvent& event)
-{
-	wxLogMessage("Hello world from wxWidgets!");
-}

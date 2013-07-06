@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGxTreeView class.
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/catalogui/gxtreeview.h"
 
 BEGIN_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
@@ -5,7 +25,7 @@ BEGIN_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
 	EVT_TREE_END_LABEL_EDIT(TREECTRLID, wxGxTreeView::OnEndLabelEdit)
 	EVT_TREE_ITEM_EXPANDING(TREECTRLID, wxGxTreeView::OnItemExpanding)
 	EVT_TREE_SEL_CHANGED(TREECTRLID, wxGxTreeView::OnSelChanged)
-END_EVENT_TABLE(wxGxTreeView, wxTreeCtrl)
+END_EVENT_TABLE()
 
 wxGxTreeView::wxGxTreeView(wxWindow* parent, wxWindowID id) : wxTreeCtrl(parent, id, wxDefaultPosition, wxDefaultSize, wxTR_HAS_BUTTONS | wxBORDER_NONE | wxTR_EDIT_LABELS/*|wxTR_MULTIPLE| wxTR_HIDE_ROOT | wxTR_LINES_AT_ROOT*/ ,wxDefaultValidator, wxT("wxGxTreeView")), m_pConnectionPointCatalog(NULL), m_pConnectionPointSelection(NULL), m_ConnectionPointCatalogCookie(-1),m_ConnectionPointSelectionCookie(-1)
 {

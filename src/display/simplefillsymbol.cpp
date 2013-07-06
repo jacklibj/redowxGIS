@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  Simple Fill Symbol class. For drawing polygones
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/display/simplefillsymbol.h"
 
 wxSimpleFillSymbol::wxSimpleFillSymbol(void)
@@ -104,7 +124,7 @@ void wxSimpleFillSymbol::DrawPolygon(OGRPolygon* pPoly, IDisplay* pwxGISDisplay)
 				OGRLineString *pLStrInt = (OGRLineString*)pRing;
 				pOGRRawPoints = new OGRRawPoint[nN[iPart + 1]];
 				pLStrInt->getPoints(pOGRRawPoints);
-				pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[iPart + 1], &pFullPoints[nPointCount]);
+				pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[iPart + 1], &pFullPoints[counter]);
 				delete[](pOGRRawPoints);
 				counter += nN[iPart + 1];
 			}
@@ -165,14 +185,15 @@ void wxSimpleFillSymbol::DrawPolyPolygon(OGRMultiPolygon* pPoly, IDisplay* pwxGI
 		pLStr->getPoints(pOGRRawPoints);
 		pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[counter], &pFullPoints[pos]);
 		pos += nN[counter];
+		delete[](pOGRRawPoints);
 		counter++;
 		int NumInteriorRings = pPolygon->getNumInteriorRings();
 		for (int iPart = 0; iPart < NumInteriorRings; iPart++ )
 		{
 			pRing = pPolygon->getInteriorRing(iPart);
-			OGRLineString *pLstrInt = (OGRLineString*)pRing;
+			OGRLineString *pLStrInt = (OGRLineString*)pRing;
 			pOGRRawPoints = new OGRRawPoint[nN[counter]];
-			pLstrInt->getPoints(pOGRRawPoints);
+			pLStrInt->getPoints(pOGRRawPoints);
 			pDisplayTransformation->TransformCoordWorld2DC(pOGRRawPoints, nN[counter], &pFullPoints[pos]);
 			pos += nN[counter];
 			delete[](pOGRRawPoints);

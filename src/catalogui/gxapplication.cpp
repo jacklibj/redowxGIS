@@ -6,10 +6,7 @@
 //---------------------
 // wxGxApplication
 //----------------------
-
-wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id,
-	const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxGISApplication(pConfig, parent, id, title, pos, size, style),
-	m_pCatalog(NULL), m_pTreeView(NULL), m_pTabView(NULL)
+wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxGISApplication(pConfig, parent, id, title, pos, size, style), m_pCatalog(NULL), m_pTreeView(NULL), m_pTabView(NULL)
 {
 	wxLogMessage(_("wxGxApplication: Creating main application frame..."));
 
@@ -70,7 +67,7 @@ wxGxApplication::wxGxApplication(IGISConfig* pConfig, wxWindow* parent, wxWindow
 		sLastPath = pObj->GetName();
 	m_pCatalog->SetLocation(sLastPath);
 
-	wxLogMessage(_("wxGxApplication: Creation completion"));
+	wxLogMessage(_("wxGxApplication: Creation complete"));
 }
 
 wxGxApplication::~wxGxApplication(void)
@@ -179,6 +176,7 @@ void wxGxApplication::RemoveCommandBar(IGISCommandBar* pBar)
 			case enumGISCBToolbar:
 				m_mgr.DetachPane(dynamic_cast<wxWindow*>(pBar));
 				m_mgr.Update();
+                break;
 			case enumGISCBContextmenu:
 			case enumGISCBSubMenu:
 			case enumGISCBNone:

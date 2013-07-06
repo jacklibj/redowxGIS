@@ -1,3 +1,23 @@
+/******************************************************************************
+ * Project:  wxGIS (GIS Catalog)
+ * Purpose:  wxGxLocationComboBox class
+ * Author:   Bishop (aka Barishnikov Dmitriy), polimax@mail.ru
+ ******************************************************************************
+*   Copyright (C) 2009  Bishop
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+*
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ****************************************************************************/
 #include "wxgis/catalogui/gxlocationcombobox.h"
 
 BEGIN_EVENT_TABLE(wxGxLocationComboBox, wxComboBox)
@@ -5,9 +25,7 @@ BEGIN_EVENT_TABLE(wxGxLocationComboBox, wxComboBox)
 	EVT_COMBOBOX(wxID_ANY, wxGxLocationComboBox::OnTextEnter)
 END_EVENT_TABLE()
 
-wxGxLocationComboBox::wxGxLocationComboBox(wxWindow* parent, wxWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size, 
-const wxArrayString& choices, long style /* = 0 */, const wxValidator& validator /* = wxDefaultValidator */, const wxString& name /* = wxT */) :
-wxComboBox(parent, id , value, pos, size, choices, style, validator, name), m_pApp(NULL)
+wxGxLocationComboBox::wxGxLocationComboBox(wxWindow* parent, wxWindowID id, const wxString& value, const wxPoint& pos, const wxSize& size, const wxArrayString& choices, long style /* = 0 */, const wxValidator& validator /* = wxDefaultValidator */, const wxString& name /* = wxT */) : wxComboBox(parent, id , value, pos, size, choices, style, validator, name), m_pApp(NULL)
 {
 
 }
@@ -55,11 +73,11 @@ void wxGxLocationComboBox::Activate(IApplication* pApp)
 	wxGxApplication* pGxApp = dynamic_cast<wxGxApplication*>(pApp);
 	m_pConnectionPointSelection = dynamic_cast<IConnectionPointContainer*>( pGxApp->GetCatalog()->GetSelection() );
 	if(m_pConnectionPointSelection != NULL)
-		m_pConnectionPointSelectionCookie = m_pConnectionPointSelection->Advise(this);
+		m_ConnectionPointSelectionCookie = m_pConnectionPointSelection->Advise(this);
 }
 
 void wxGxLocationComboBox::Deactivate(void)
 {
-	if(m_pConnectionPointSelectionCookie != -1)
-		m_pConnectionPointSelection->Unadvise(m_pConnectionPointSelectionCookie);
+	if(m_ConnectionPointSelectionCookie != -1)
+		m_pConnectionPointSelection->Unadvise(m_ConnectionPointSelectionCookie);
 }

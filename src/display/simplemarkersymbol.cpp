@@ -6,8 +6,7 @@ wxSimpleMarkerSymbol::wxSimpleMarkerSymbol(void)
 	m_Brush.SetStyle(wxSOLID);
 
 	m_Pen.SetColour(128, 128, 128);
-	m_Pen.SetCap(
-		wxCAP_ROUND);
+	m_Pen.SetCap(wxCAP_ROUND);
 	m_Pen.SetStyle(wxSOLID);
 	m_Pen.SetWidth(1);
 

@@ -97,8 +97,8 @@ bool wxGISCatalogMainCmd::GetEnabled(void)
 				GxObjectArray* pArr = pSel->GetSelectedObjects();
 				IGxObject* pGxObject = pArr->at(0);
 				IGxObject* pParentGxObject = pGxObject->GetParent();
-				if (!pParentGxObject)
-			       return true;
+				if(!pParentGxObject)
+					return false;
 			}
 			return true;
 		}
@@ -115,8 +115,8 @@ bool wxGISCatalogMainCmd::GetEnabled(void)
 					return false;
 				GxObjectArray* pArr = pSel->GetSelectedObjects();
 				IGxObject* pGxObject = pArr->at(0);
-				if (dynamic_cast<wxGxDiscConnection*>(pGxObject))
-					return false;
+				if(dynamic_cast<wxGxDiscConnection*>(pGxObject))
+					return true;
 			}
 			return false;
 		}
@@ -262,8 +262,7 @@ IToolBarControl* wxGISCatalogMainCmd::GetControl(void)
 	case 3:
 		{
 			wxArrayString PathArray;
-			wxGxLocationComboBox* pGxLocationComboBox = new wxGxLocationComboBox(dynamic_cast<wxWindow*>(m_pApp), wxID_ANY, wxEmptyString, wxDefaultPosition, 
-				wxSize( 400, 22 ), PathArray);
+			wxGxLocationComboBox* pGxLocationComboBox = new wxGxLocationComboBox(dynamic_cast<wxWindow*>(m_pApp), wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 400, 22 ), PathArray);
 			return static_cast<IToolBarControl*>(pGxLocationComboBox);
 		}
 	default:
